@@ -24,6 +24,10 @@ else:
     # messages persist across reruns.
     if "messages" not in st.session_state:
         st.session_state.messages = []
+    if "active_mode" not in st.session_state:
+        st.session_state.active_mode = "none"  # Valores possíveis: "none", "artigos", "pensadores"
+    if "selected_thinker" not in st.session_state:
+        st.session_state.selected_thinker = None
 
     # Display the existing chat messages via `st.chat_message`.
     for message in st.session_state.messages:
