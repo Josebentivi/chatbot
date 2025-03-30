@@ -25,6 +25,29 @@ else:
     # Create an OpenAI client.
     #client = OpenAI(api_key=openai_api_key)
     with coluna1:
+        if st.button("Artigos Científicos"):
+            # Ativa o modo "artigos" ou desativa se já estiver ativo
+            if st.session_state.active_mode == "artigos":
+                st.session_state.active_mode = "none"
+            else:
+                st.session_state.active_mode = "artigos"
+
+        if st.button("Pensadores"):
+            # Ativa o modo "pensadores" ou desativa se já estiver ativo
+            if st.session_state.active_mode == "pensadores":
+                st.session_state.active_mode = "none"
+            else:
+                st.session_state.active_mode = "pensadores"
+                if st.session_state.selected_thinker is None:
+                    st.session_state.selected_thinker = "Sócrates"
+                        
+        if st.session_state.active_mode == "pensadores":
+            st.session_state.selected_thinker = st.selectbox(
+                "Selecione o pensador:",
+                options=["Sócrates", "Platão", "Aristóteles", "Descartes"],
+                index=["Sócrates", "Platão", "Aristóteles", "Descartes"].index(st.session_state.selected_thinker)
+            )
+            
         if st.session_state.active_mode != "artigos":
             st.info("Artigos desativados", icon="⚠️")
         if st.session_state.active_mode != "pensadores":
@@ -108,27 +131,4 @@ else:
                 st.session_state.messages.append({"role": "assistant", "content": response,"referencia": True,"argumentacao": True})
             st.session_state.messages.append({"role": "assistant", "content": response,"referencia": True,"argumentacao": False})
 
-        col1, col2, col3, col4  = st.columns([1, 1, 1, 1])
-        with col1:
-            if st.button("Artigos Científicos"):
-                # Ativa o modo "artigos" ou desativa se já estiver ativo
-                if st.session_state.active_mode == "artigos":
-                    st.session_state.active_mode = "none"
-                else:
-                    st.session_state.active_mode = "artigos"
-        with col2:
-            if st.button("Pensadores"):
-                # Ativa o modo "pensadores" ou desativa se já estiver ativo
-                if st.session_state.active_mode == "pensadores":
-                    st.session_state.active_mode = "none"
-                else:
-                    st.session_state.active_mode = "pensadores"
-                    if st.session_state.selected_thinker is None:
-                        st.session_state.selected_thinker = "Sócrates"
-                        
-        if st.session_state.active_mode == "pensadores":
-            st.session_state.selected_thinker = st.selectbox(
-                "Selecione o pensador:",
-                options=["Sócrates", "Platão", "Aristóteles", "Descartes"],
-                index=["Sócrates", "Platão", "Aristóteles", "Descartes"].index(st.session_state.selected_thinker)
-            )
+        
