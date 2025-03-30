@@ -44,9 +44,10 @@ else:
                     st.markdown("Why hello there")
                 else:
                     st.markdown("Goodbye")
-    if not openai_api_key:
-        st.info("Teste de template.")
-        st.stop()
+    if st.session_state.active_mode != "artigos":
+        st.info("Artigos desativados", icon="⚠️")
+    if st.session_state.active_mode != "pensadores":
+        st.info("Pensadores desativados", icon="⚠️")
     # Create a chat input field to allow the user to enter a message. This will display
     # automatically at the bottom of the page.
     if prompt := st.chat_input("Em que eu posso te ajudar?"):
@@ -74,7 +75,7 @@ else:
         
         try:
             # Chamada à API (substitua a URL pelo endpoint real)
-            url = "http://52.2.202.37/teste/"
+            url = "http://52.2.202.37/mapamental/"
             data = {"cliente": "string",
                     "produto": "string",
                     }
