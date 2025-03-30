@@ -62,3 +62,28 @@ else:
             response = "Certo"
             st.markdown("Certo")
         st.session_state.messages.append({"role": "assistant", "content": response})
+
+col1, col2, col3, col4  = st.columns([1, 1, 1, 1])
+with col1:
+    if st.button("Pesquisa em Artigos Científicos"):
+        # Ativa o modo "artigos" ou desativa se já estiver ativo
+        if st.session_state.active_mode == "artigos":
+            st.session_state.active_mode = "none"
+        else:
+            st.session_state.active_mode = "artigos"
+with col2:
+    if st.button("Pensadores"):
+        # Ativa o modo "pensadores" ou desativa se já estiver ativo
+        if st.session_state.active_mode == "pensadores":
+            st.session_state.active_mode = "none"
+        else:
+            st.session_state.active_mode = "pensadores"
+            if st.session_state.selected_thinker is None:
+                st.session_state.selected_thinker = "Sócrates"
+                
+if st.session_state.active_mode == "pensadores":
+    st.session_state.selected_thinker = st.selectbox(
+        "Selecione o pensador:",
+        options=["Sócrates", "Platão", "Aristóteles", "Descartes"],
+        index=["Sócrates", "Platão", "Aristóteles", "Descartes"].index(st.session_state.selected_thinker)
+    )
