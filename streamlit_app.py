@@ -2,7 +2,10 @@ import streamlit as st
 #from openai import OpenAI
 import requests
 import warnings
-
+st.title("💬 O Pensador Desktop")
+st.write(
+    "ssssssss"
+)
 
 # Suppress Streamlit's ScriptRunContext warning
 warnings.filterwarnings("ignore", message="missing ScriptRunContext")
