@@ -69,7 +69,7 @@ else:
 
     #col1, col2, col3, col4  = st.columns([1, 1, 1, 1])
     #with col1:
-    if st.sidebar.button("Pesquisa em Artigos Científicos"):
+    if st.sidebar.button("Artigos Científicos"):
         # Ativa o modo "artigos" ou desativa se já estiver ativo
         if st.session_state.active_mode == "artigos":
             st.session_state.active_mode = "none"
