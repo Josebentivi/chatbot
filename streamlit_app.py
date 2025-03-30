@@ -60,5 +60,5 @@ else:
         # session state.
         with st.chat_message("assistant"):
             response = "Certo"
-            st.markdown(prompt)
+            st.markdown("Certo")
         st.session_state.messages.append({"role": "assistant", "content": response})
