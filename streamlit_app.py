@@ -25,14 +25,14 @@ else:
     # Create an OpenAI client.
     #client = OpenAI(api_key=openai_api_key)
     with coluna1:
-        if st.button("Artigos Científicos",use_container_width=True):
+        if st.checkbox("Artigos Científicos"):
             # Ativa o modo "artigos" ou desativa se já estiver ativo
             if st.session_state.active_mode == "artigos":
                 st.session_state.active_mode = "none"
             else:
                 st.session_state.active_mode = "artigos"
 
-        if st.button("Pensadores",use_container_width=True):
+        if st.checkbox("Pensadores",use_container_width=True):
             # Ativa o modo "pensadores" ou desativa se já estiver ativo
             if st.session_state.active_mode == "pensadores":
                 st.session_state.active_mode = "none"
