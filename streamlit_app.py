@@ -75,7 +75,7 @@ else:
         with st.chat_message("assistant"):
             response = "Certo"
             st.markdown("Certo")
-        st.session_state.messages.append({"role": "assistant", "content": response})
+        st.session_state.messages.append({"role": "assistant", "content": response,"referencia": False,"argumentacao": False})
 
     col1, col2, col3, col4  = st.columns([1, 1, 1, 1])
     with col1:
