@@ -43,7 +43,7 @@ else:
                     st.markdown("Why hello there")
                 else:
                     st.markdown("Goodbye")
-    st.markdown("######Pensadores Ativado")
+    st.markdown("##Pensadores Ativado")
 
     # Create a chat input field to allow the user to enter a message. This will display
     # automatically at the bottom of the page.
