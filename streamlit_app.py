@@ -21,7 +21,7 @@ openai_api_key = st.text_input("OpenAI API Key", type="password")
 if not openai_api_key:
     st.info("Please add your OpenAI API key to continue.", icon="🗝️")
 else:
-    coluna1, coluna2, coluna3  = st.columns([1, 6], border=True)
+    coluna1, coluna2  = st.columns([1, 6], border=True)
     # Create an OpenAI client.
     #client = OpenAI(api_key=openai_api_key)
     with coluna1:
