@@ -1,5 +1,6 @@
 import streamlit as st
-from openai import OpenAI
+#from openai import OpenAI
+import requests
 
 # Show title and description.
 st.title("💬 Chatbot")
@@ -43,8 +44,9 @@ else:
                     st.markdown("Why hello there")
                 else:
                     st.markdown("Goodbye")
-    st.markdown("##Pensadores Ativado")
-
+    if not openai_api_key:
+        st.info("Teste de template.")
+        st.stop()
     # Create a chat input field to allow the user to enter a message. This will display
     # automatically at the bottom of the page.
     if prompt := st.chat_input("Em que eu posso te ajudar?"):
@@ -70,7 +72,25 @@ else:
         #with st.chat_message("assistant"):
         #    response = st.write_stream(stream)
         
-
+        try:
+            # Chamada à API (substitua a URL pelo endpoint real)
+            url = "http://52.2.202.37/teste/"
+            data = {"cliente": "string",
+                    "produto": "string",
+                    }
+            response = requests.post(url, json=data, timeout=5*60)
+            if response.status_code == 200:  
+                saida = response.json()["saida"]
+                print(saida)
+                erro = response.json()["erro"]
+                print(erro)
+            else:  
+                print("Erro na requisição")
+                print(response.status_code)
+                print(response.text) 
+                st.stop()   
+        except Exception as e:
+            dados = {"mensagem": "Erro ao processar a mensagem."}
         # Stream the response to the chat using `st.write_stream`, then store it in 
         # session state.
         with st.chat_message("assistant"):
