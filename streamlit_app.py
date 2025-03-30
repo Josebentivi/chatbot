@@ -47,7 +47,7 @@ else:
     if st.session_state.active_mode != "artigos":
         st.info("Artigos desativados", icon="⚠️")
     if st.session_state.active_mode != "pensadores":
-        st.info("Pensadores desativados", icon="⚠️")
+        st.info("#####Pensadores desativados", icon="⚠️")
     # Create a chat input field to allow the user to enter a message. This will display
     # automatically at the bottom of the page.
     if prompt := st.chat_input("Em que eu posso te ajudar?"):
