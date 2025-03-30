@@ -32,7 +32,7 @@ else:
             else:
                 st.session_state.active_mode = "artigos"
 
-        if st.checkbox("Pensadores",use_container_width=True):
+        if st.checkbox("Pensadores"):
             # Ativa o modo "pensadores" ou desativa se já estiver ativo
             if st.session_state.active_mode == "pensadores":
                 st.session_state.active_mode = "none"
