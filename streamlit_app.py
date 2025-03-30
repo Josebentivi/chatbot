@@ -21,11 +21,14 @@ openai_api_key = st.text_input("OpenAI API Key", type="password")
 if not openai_api_key:
     st.info("Please add your OpenAI API key to continue.", icon="🗝️")
 else:
-    coluna1, coluna2, coluna3  = st.columns([1, 6, 1], border=True)
+    coluna1, coluna2, coluna3  = st.columns([1, 6], border=True)
     # Create an OpenAI client.
     #client = OpenAI(api_key=openai_api_key)
     with coluna1:
-        st.image("https://cdn.pixabay.com/photo/2017/08/30/02/53/socrates-2696229_1280.jpg", caption="Sócrates", width=200)
+        if st.session_state.active_mode != "artigos":
+            st.info("Artigos desativados", icon="⚠️")
+        if st.session_state.active_mode != "pensadores":
+            st.info("#####Pensadores desativados", icon="⚠️")
     with coluna2:
         # Create a session state variable to store the chat messages. This ensures that the
         # messages persist across reruns.
@@ -50,10 +53,6 @@ else:
                         st.markdown("Why hello there")
                     else:
                         st.markdown("Goodbye")
-        if st.session_state.active_mode != "artigos":
-            st.info("Artigos desativados", icon="⚠️")
-        if st.session_state.active_mode != "pensadores":
-            st.info("#####Pensadores desativados", icon="⚠️")
         # Create a chat input field to allow the user to enter a message. This will display
         # automatically at the bottom of the page.
         if prompt := st.chat_input("Em que eu posso te ajudar?"):
@@ -133,6 +132,3 @@ else:
                 options=["Sócrates", "Platão", "Aristóteles", "Descartes"],
                 index=["Sócrates", "Platão", "Aristóteles", "Descartes"].index(st.session_state.selected_thinker)
             )
-        
-    with coluna3:
-        st.image("https://cdn.pixabay.com/photo/2017/08/30/02/53/socrates-2696229_1280.jpg", caption="Sócrates", width=200)
