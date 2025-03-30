@@ -33,13 +33,23 @@ else:
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
+            if message["referencia"]:
+                if st.button("Referência"):
+                    st.markdown("Why hello there")
+                else:
+                    st.markdown("Goodbye")
+            if message["argumentacao"]:
+                if st.button("Argumentação"):
+                    st.markdown("Why hello there")
+                else:
+                    st.markdown("Goodbye")
 
     # Create a chat input field to allow the user to enter a message. This will display
     # automatically at the bottom of the page.
     if prompt := st.chat_input("Em que eu posso te ajudar?"):
 
         # Store and display the current prompt.
-        st.session_state.messages.append({"role": "user", "content": prompt})
+        st.session_state.messages.append({"role": "user", "content": prompt,"referencia": False,"argumentacao": False})
         with st.chat_message("user"):
             st.markdown(prompt)
 
