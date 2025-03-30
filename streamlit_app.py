@@ -2,16 +2,17 @@ import streamlit as st
 #from openai import OpenAI
 import requests
 import warnings
-st.title("💬 O Pensador Desktop")
-st.write(
-    "ssssssss"
-)
 
 # Suppress Streamlit's ScriptRunContext warning
 warnings.filterwarnings("ignore", message="missing ScriptRunContext")
 
 # Configuração inicial da página
 st.set_page_config(page_title="O Pensador Desktop", layout="wide")
+
+st.title("💬 O Pensador Desktop")
+st.write(
+    "ssssssss"
+)
 
 # Ask user for their OpenAI API key via `st.text_input`.
 # Alternatively, you can store the API key in `./.streamlit/secrets.toml` and access it
