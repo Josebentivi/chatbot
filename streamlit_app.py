@@ -48,11 +48,16 @@ else:
             key="marcar_pensadores", 
             on_change=ativar_pensadores
         )
+        
+        if "selected_thinker" not in st.session_state:
+            st.session_state.selected_thinker = None
 
         if st.session_state.marcar_artigos:
             st.write("Modo 'Artigos Científicos' ativado.")
         elif st.session_state.marcar_pensadores:
             st.write("Modo 'Pensadores' ativado.")
+            if st.session_state.selected_thinker is None:
+                st.session_state.selected_thinker = "Sócrates"
         else:
             st.write("Nenhum modo ativo.")
 
@@ -60,7 +65,7 @@ else:
             st.session_state.selected_thinker = st.selectbox(
                 "Selecione o pensador:",
                 options=["Sócrates", "Platão", "Aristóteles", "Descartes"],
-                index=["Sócrates", "Platão", "Aristóteles", "Descartes"].index(st.session_state.marcar_pensadores)
+                index=["Sócrates", "Platão", "Aristóteles", "Descartes"].index(st.session_state.selected_thinker)
             )
             
         if st.session_state.marcar_pensadores:
@@ -72,10 +77,6 @@ else:
         # messages persist across reruns.
         if "messages" not in st.session_state:
             st.session_state.messages = []
-        if "active_mode" not in st.session_state:
-            st.session_state.active_mode = "none"  # Valores possíveis: "none", "artigos", "pensadores"
-        if "selected_thinker" not in st.session_state:
-            st.session_state.selected_thinker = None
 
         # Display the existing chat messages via `st.chat_message`.
         for message in st.session_state.messages:
