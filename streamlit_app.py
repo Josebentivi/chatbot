@@ -19,7 +19,7 @@ def ativar_pensadores():
 warnings.filterwarnings("ignore", message="missing ScriptRunContext")
 
 # Configuração inicial da página
-st.set_page_config(page_title="O Pensador Desktop", layout="wide")
+st.set_page_config(page_title="O Pensador Desktop", layout="centered")
 
 st.title("💬 O Pensador Desktop")
 #st.write("ssssssss")
