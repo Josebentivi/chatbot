@@ -42,8 +42,6 @@ elif st.session_state.openai_api_entered == True:
     col1, col2, col3, col4 = st.columns(4,vertical_alignment="center")
 
     with col1:
-        if st.button("💬 Chat", use_container_width=True):
-            st.session_state.product_page = "chat"
         # Define o texto que aparecerá ao passar o mouse
         info_text1 = "Um assistente que se adapta a você! Com capacidade de ler e processar PDFs, imagens e  áudios com precisão, tudo em uma única ferramenta inteligente que facilita o acesso a informações essenciais, otimiza seu fluxo de trabalho e impulsiona sua criatividade em qualquer tarefa."
         # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
@@ -55,10 +53,10 @@ elif st.session_state.openai_api_entered == True:
         """,
         unsafe_allow_html=True
         )
-
+        if st.button("💬 Chat", use_container_width=True):
+            st.session_state.product_page = "chat"
+        
     with col2:
-        if st.button("📚 Artigos Científicos", use_container_width=True):
-            st.session_state.product_page = "artigos"
         # Define o texto que aparecerá ao passar o mouse
         info_text2 = "Com mais de 220 mil artigos da Arxiv (Base de dados mantida pela Cornell University) do ano de 2024. Superando as limitações dos modelos atuais treinados com informações até outubro de 2023. Além de proporcionar uma melhora da qualidade das respostas e apresentando referências para ser validadas. Isto tem como objetivo de ter um mecanismo de pesquisa imparcial."
         # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
@@ -70,12 +68,10 @@ elif st.session_state.openai_api_entered == True:
         """,
         unsafe_allow_html=True
         )
-
-
-
+        if st.button("📚 Artigos Científicos", use_container_width=True):
+            st.session_state.product_page = "artigos"
+        
     with col3:
-        if st.button("🤔 Filósofos", use_container_width=True):
-            st.session_state.product_page = "filosofos"
         # Define o texto que aparecerá ao passar o mouse
         info_text3 = """Tenha uma inteligência artificial treinada nas obras de diversos pensadores. Desbrave o mundo das ideias e encontre respostas para os seus questionamentos mais difíceis."""
         # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
@@ -87,10 +83,11 @@ elif st.session_state.openai_api_entered == True:
         """,
         unsafe_allow_html=True
         )
+        if st.button("🤔 Filósofos", use_container_width=True):
+            st.session_state.product_page = "filosofos"
+        
 
     with col4:
-        if st.button("🗣 Mesa de discussão", use_container_width=True):
-            st.session_state.product_page = "mesa_discussao"
         # Define o texto que aparecerá ao passar o mouse
         info_text4 = """A mesa de discussão reúne quatro filósofos para analisar um tema em seis etapas: fatos, emoções, pontos negativos, pontos positivos, visões alternativas e, por fim, a organização das ideias. Essa abordagem garante um debate equilibrado e multidimensional, onde cada aspecto do tema é explorado de forma clara e estruturada."""
         # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
@@ -102,6 +99,8 @@ elif st.session_state.openai_api_entered == True:
         """,
         unsafe_allow_html=True
         )
+        if st.button("🗣 Mesa de discussão", use_container_width=True):
+            st.session_state.product_page = "mesa_discussao"
     
     if st.session_state.product_page == "chat":
         openai_api_key = st.session_state.openai_api_key
