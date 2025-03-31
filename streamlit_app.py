@@ -36,7 +36,7 @@ elif st.session_state.openai_api_entered == True:
     if "product_page" not in st.session_state:
         st.session_state.product_page = "home"
 
-    st.header("Selecione um Produto")
+    st.header("Sobre o que você gostaria de conversar hoje?")
 
     # Cria quatro colunas para os produtos
     col1, col2, col3, col4 = st.columns(4,vertical_alignment="center")
@@ -166,7 +166,7 @@ elif st.session_state.openai_api_entered == True:
                 st.markdown(message["content"])
         # Create a chat input field to allow the user to enter a message. This will display
         # automatically at the bottom of the page.
-        if prompt := st.chat_input("Em que eu posso te ajudar?"):
+        if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=True,file_type=["jpg", "jpeg", "png","pdf","mp3"],):
 
             # Store and display the current prompt.
             st.session_state.messages.append({"role": "user", "content": prompt})
