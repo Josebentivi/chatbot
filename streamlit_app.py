@@ -45,7 +45,7 @@ elif st.session_state.openai_api_entered == True:
         if st.button("💬 Chat", use_container_width=True):
             st.session_state.product_page = "chat"
         # Define o texto que aparecerá ao passar o mouse
-        info_text1 = "Com o objetivo de ter um mecanismo de pesquisa imparcial. Desenvolvemos um algoritimo que verifica semânticamente toda nossa base de dados com mais de 220 mil artigos publicados no ano de 2024."
+        info_text1 = "Um assistente que se adapta a você! Com capacidade de ler e processar PDFs, imagens e  áudios com precisão, tudo em uma única ferramenta inteligente que facilita o acesso a informações essenciais, otimiza seu fluxo de trabalho e impulsiona sua criatividade em qualquer tarefa."
         # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
         st.markdown(
         f"""
@@ -60,7 +60,7 @@ elif st.session_state.openai_api_entered == True:
         if st.button("📚 Artigos Científicos", use_container_width=True):
             st.session_state.product_page = "artigos"
         # Define o texto que aparecerá ao passar o mouse
-        info_text2 = "Com o objetivo de ter um mecanismo de pesquisa imparcial. Desenvolvemos um algoritimo que verifica semânticamente toda nossa base de dados com mais de 220 mil artigos publicados no ano de 2024."
+        info_text2 = "Com mais de 220 mil artigos da Arxiv (Base de dados mantida pela Cornell University) do ano de 2024. Superando as limitações dos modelos atuais treinados com informações até outubro de 2023. Além de proporcionar uma melhora da qualidade das respostas e apresentando referências para ser validadas. Isto tem como objetivo de ter um mecanismo de pesquisa imparcial."
         # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
         st.markdown(
         f"""
