@@ -190,12 +190,10 @@ elif st.session_state.openai_api_entered == True:
             #    response = st.write_stream(stream)
 
             # Chamada à API (substitua a URL pelo endpoint real)
-            url = "http://52.2.202.37/teste/"
-            data = {"entrada": "string",
-                    "livro": "string",
-                    "historico": "string",
-                    "nivel": "string",
-                    "tema": "string"
+            url = "http://52.2.202.37/noticias/"
+            data = {"cliente": "string",
+                    "pesquisa": prompt["text"],
+                    "area": ""
                     }
             
             #data = {"cliente": "string",
