@@ -27,11 +27,14 @@ st.title("💬 O Pensador Desktop")
 # Ask user for their OpenAI API key via `st.text_input`.
 # Alternatively, you can store the API key in `./.streamlit/secrets.toml` and access it
 # via `st.secrets`, see https://docs.streamlit.io/develop/concepts/connections/secrets-management
+
 if "openai_api_entered" not in st.session_state:
     st.session_state.openai_api_key = st.text_input("Senha", type="password")
     st.session_state.openai_api_entered = True
 else:
     openai_api_key = st.session_state.openai_api_key
+    if "messages" not in st.session_state:
+        st.session_state.messages = []
     coluna1, coluna2  = st.columns([2, 6], border=True)
     # Create an OpenAI client.
     #client = OpenAI(api_key=openai_api_key)
@@ -86,8 +89,6 @@ else:
     with coluna2:
         # Create a session state variable to store the chat messages. This ensures that the
         # messages persist across reruns.
-        if "messages" not in st.session_state:
-            st.session_state.messages = []
 
         # Display the existing chat messages via `st.chat_message`.
         for message in st.session_state.messages:
