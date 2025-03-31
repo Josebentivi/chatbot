@@ -36,14 +36,26 @@ else:
     # Create an OpenAI client.
     #client = OpenAI(api_key=openai_api_key)
     with coluna1:
-        
+        # Cria duas colunas: a primeira para o checkbox e a segunda para o ícone de informação
+        col_checkbox, col_info = st.columns([0.9, 0.1])
 
-        marcarArtigos = st.checkbox(
-            "Artigos Científicos", 
-            value=False, 
-            key="marcar_artigos", 
-            on_change=ativar_artigos
-        )
+        with col_checkbox:
+            st.subheader("Ferramentas")
+            marcarArtigos = st.checkbox(
+                "Artigos Científicos", 
+                value=False, 
+                key="marcar_artigos", 
+                on_change=ativar_artigos
+            )
+        with col_info:
+            # Define o texto que aparecerá ao passar o mouse
+            info_text = "Selecione essa opção para ativar o modo 'Artigos Científicos'."
+            # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
+            st.markdown(
+                f"<span title='{info_text}' style='cursor: pointer;'>&#9432;</span>",
+                unsafe_allow_html=True
+            )
+
 
         marcarPensador = st.checkbox(
             "Pensadores", 
