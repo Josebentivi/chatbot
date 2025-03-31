@@ -61,10 +61,9 @@ elif st.session_state.openai_api_entered == True:
         openai_api_key = st.session_state.openai_api_key
         if "messages" not in st.session_state:
             st.session_state.messages = []
-        coluna1, coluna2  = st.columns([2, 6], border=True)
+        '''
         # Create an OpenAI client.
         #client = OpenAI(api_key=openai_api_key)
-        with coluna1:
             st.subheader("Ferramentas")
             # Cria duas colunas: a primeira para o checkbox e a segunda para o ícone de informação
             col_checkbox, col_info = st.columns([0.6, 0.4])
@@ -112,16 +111,16 @@ elif st.session_state.openai_api_entered == True:
                 st.info("Artigos desativados", icon="⚠️")
             if st.session_state.marcar_artigos:
                 st.info("Pensadores desativados", icon="⚠️")
-        with coluna2:
-            # Create a session state variable to store the chat messages. This ensures that the
-            # messages persist across reruns.
+            '''
+        # Create a session state variable to store the chat messages. This ensures that the
+        # messages persist across reruns.
 
-            # Display the existing chat messages via `st.chat_message`.
-            for message in st.session_state.messages:
-                with st.chat_message(message["role"]):
-                    st.markdown(message["content"])
-            # Create a chat input field to allow the user to enter a message. This will display
-            # automatically at the bottom of the page.
+        # Display the existing chat messages via `st.chat_message`.
+        for message in st.session_state.messages:
+            with st.chat_message(message["role"]):
+                st.markdown(message["content"])
+        # Create a chat input field to allow the user to enter a message. This will display
+        # automatically at the bottom of the page.
         if prompt := st.chat_input("Em que eu posso te ajudar?"):
 
             # Store and display the current prompt.
