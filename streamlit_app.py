@@ -25,7 +25,7 @@ st.write(
 # Ask user for their OpenAI API key via `st.text_input`.
 # Alternatively, you can store the API key in `./.streamlit/secrets.toml` and access it
 # via `st.secrets`, see https://docs.streamlit.io/develop/concepts/connections/secrets-management
-if "openai_api_entered" not in st.session_state:
+if st.session_state.openai_api_entered:
     openai_api_key = st.text_input("Senha", type="password")
     st.info("Por favor, adicione a sua senha de acesso.", icon="🗝️")
     if openai_api_key:
