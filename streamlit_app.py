@@ -25,8 +25,15 @@ st.write(
 # Ask user for their OpenAI API key via `st.text_input`.
 # Alternatively, you can store the API key in `./.streamlit/secrets.toml` and access it
 # via `st.secrets`, see https://docs.streamlit.io/develop/concepts/connections/secrets-management
-openai_api_key = st.text_input("Senha", type="password")
-if not openai_api_key:
+if "openai_api_entered" not in st.session_state:
+    openai_api_key = st.text_input("Senha", type="password")
+    if openai_api_key:
+        st.session_state.openai_api_key = openai_api_key
+        st.session_state.openai_api_entered = True
+else:
+    openai_api_key = st.session_state.openai_api_key
+
+if not st.session_state.openai_api_key:
     st.info("Por favor, adicione a sua senha de acesso.", icon="🗝️")
 else:
     coluna1, coluna2  = st.columns([2, 6], border=True)
@@ -70,7 +77,7 @@ else:
             
         if st.session_state.marcar_pensadores:
             st.info("Artigos desativados", icon="⚠️")
-        if st.session_state.marcar_artigos != "pensadores":
+        if st.session_state.marcar_artigos:
             st.info("Pensadores desativados", icon="⚠️")
     with coluna2:
         # Create a session state variable to store the chat messages. This ensures that the
