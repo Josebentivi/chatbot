@@ -27,15 +27,12 @@ st.write(
 # via `st.secrets`, see https://docs.streamlit.io/develop/concepts/connections/secrets-management
 if "openai_api_entered" not in st.session_state:
     openai_api_key = st.text_input("Senha", type="password")
+    st.info("Por favor, adicione a sua senha de acesso.", icon="🗝️")
     if openai_api_key:
         st.session_state.openai_api_key = openai_api_key
         st.session_state.openai_api_entered = True
 else:
     openai_api_key = st.session_state.openai_api_key
-
-if not st.session_state.openai_api_key:
-    st.info("Por favor, adicione a sua senha de acesso.", icon="🗝️")
-else:
     coluna1, coluna2  = st.columns([2, 6], border=True)
     # Create an OpenAI client.
     #client = OpenAI(api_key=openai_api_key)
