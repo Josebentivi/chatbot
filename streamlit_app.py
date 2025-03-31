@@ -92,21 +92,7 @@ elif st.session_state.openai_api_entered == True:
         if st.button("🗣 Mesa de discussão", use_container_width=True):
             st.session_state.product_page = "mesa_discussao"
         # Define o texto que aparecerá ao passar o mouse
-        info_text4 = """Na mesa de discussão, você pode selecionar 4 filósofos que discutirão o tema fornecido pelo moderador (Você). A mesa consistirá em 6 etapas:
-
-1- Análise dos fatos e informações.
-
-2- Análise das emoções relacionadas a situação.
-
-3- Análise dos pontos negativos.
-
-4- Análise dos pontos positivos.
-
-5- Exploração de visões alternativas.
-
-6- Organização de ideias.
-
-Isto procura de observar um tema através dos mais distintos pontos de vista."""
+        info_text4 = """A mesa de discussão reúne quatro filósofos para analisar um tema em seis etapas: fatos, emoções, pontos negativos, pontos positivos, visões alternativas e, por fim, a organização das ideias. Essa abordagem garante um debate equilibrado e multidimensional, onde cada aspecto do tema é explorado de forma clara e estruturada."""
         # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
         st.markdown(
         f"""
