@@ -6,10 +6,14 @@ import warnings
 def ativar_artigos():
     if st.session_state.marcar_artigos:
         st.session_state.marcar_pensadores = False
+        if st.session_state.selected_thinker:
+            st.session_state.selected_thinker = None
 
 def ativar_pensadores():
     if st.session_state.marcar_pensadores:
         st.session_state.marcar_artigos = False
+        if st.session_state.selected_thinker is None:
+            st.session_state.selected_thinker = "Sócrates"
 
 # Suppress Streamlit's ScriptRunContext warning
 warnings.filterwarnings("ignore", message="missing ScriptRunContext")
@@ -55,8 +59,6 @@ else:
             st.write("Modo 'Artigos Científicos' ativado.")
         elif st.session_state.marcar_pensadores:
             st.write("Modo 'Pensadores' ativado.")
-            if st.session_state.selected_thinker is None:
-                st.session_state.selected_thinker = "Sócrates"
         else:
             st.write("Nenhum modo ativo.")
 
