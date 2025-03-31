@@ -135,7 +135,7 @@ else:
                     print(response.text) 
                     st.stop()   
             except Exception as e:
-                dados = {"mensagem": "Erro ao processar a mensagem."}
+                saida = f"{e}"
             # Stream the response to the chat using `st.write_stream`, then store it in 
             # session state.
 
@@ -146,6 +146,6 @@ else:
             #if st.session_state.marcar_artigos:
             #    st.session_state.messages.append({"role": "assistant", "content": saida})
             
-            st.session_state.messages.append({"role": "assistant", "content": response})
+            st.session_state.messages.append({"role": "assistant", "content": saida})
 
         
