@@ -95,56 +95,56 @@ else:
                 st.markdown(message["content"])
         # Create a chat input field to allow the user to enter a message. This will display
         # automatically at the bottom of the page.
-        if prompt := st.chat_input("Em que eu posso te ajudar?"):
+    if prompt := st.chat_input("Em que eu posso te ajudar?"):
 
-            # Store and display the current prompt.
-            st.session_state.messages.append({"role": "user", "content": prompt})
-            with st.chat_message("user"):
-                st.markdown(prompt)
-
-            
-            # Generate a response using the OpenAI API.
-            #stream = client.chat.completions.create(
-            #    model="gpt-3.5-turbo",
-            #    messages=[
-            #        {"role": m["role"], "content": m["content"]}
-            #        for m in st.session_state.messages
-            #    ],
-            #    stream=True,
-            #)
-
-            # Stream the response to the chat using `st.write_stream`, then store it in 
-            # session state.
-            #with st.chat_message("assistant"):
-            #    response = st.write_stream(stream)
-
-            # Chamada à API (substitua a URL pelo endpoint real)
-            url = "http://52.2.202.37/teste/"
-            data = {"entrada": "string",
-                    "livro": "string",
-                    "historico": "string",
-                    "nivel": "string",
-                    "tema": "string"
-                    }
-            
-            #data = {"cliente": "string",
-            #        "produto": "string",
-            #        }
-            response = requests.post(url, json=data, timeout=5*60)
-            if response.status_code == 200:  
-                saida = response.json()["saida"]
-                #erro = response.json()["erro"]
-            else:  
-                print("Erro na requisição")
-                print(response.status_code)
-                print(response.text) 
-                st.stop()   
-            # Stream the response to the chat using `st.write_stream`, then store it in 
-            # session state.
-            
-            st.session_state.messages.append({"role": "assistant", "content": saida})
-            with st.chat_message("assistant"):
-                st.write_stream(saida)
-            
+        # Store and display the current prompt.
+        st.session_state.messages.append({"role": "user", "content": prompt})
+        with st.chat_message("user"):
+            st.markdown(prompt)
 
         
+        # Generate a response using the OpenAI API.
+        #stream = client.chat.completions.create(
+        #    model="gpt-3.5-turbo",
+        #    messages=[
+        #        {"role": m["role"], "content": m["content"]}
+        #        for m in st.session_state.messages
+        #    ],
+        #    stream=True,
+        #)
+
+        # Stream the response to the chat using `st.write_stream`, then store it in 
+        # session state.
+        #with st.chat_message("assistant"):
+        #    response = st.write_stream(stream)
+
+        # Chamada à API (substitua a URL pelo endpoint real)
+        url = "http://52.2.202.37/teste/"
+        data = {"entrada": "string",
+                "livro": "string",
+                "historico": "string",
+                "nivel": "string",
+                "tema": "string"
+                }
+        
+        #data = {"cliente": "string",
+        #        "produto": "string",
+        #        }
+        response = requests.post(url, json=data, timeout=5*60)
+        if response.status_code == 200:  
+            saida = response.json()["saida"]
+            #erro = response.json()["erro"]
+        else:  
+            print("Erro na requisição")
+            print(response.status_code)
+            print(response.text) 
+            st.stop()   
+        # Stream the response to the chat using `st.write_stream`, then store it in 
+        # session state.
+        
+        st.session_state.messages.append({"role": "assistant", "content": saida})
+        with st.chat_message("assistant"):
+            st.write_stream(saida)
+        
+
+    
