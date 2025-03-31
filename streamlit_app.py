@@ -35,14 +35,12 @@ else:
         if marcarPensador:
             # Ativa o modo "pensadores" ou desativa se já estiver ativo
             marcarArtigos = False
-        """    
         # Cria um menu suspenso para selecionar o modo ativo    
         st.session_state.active_mode = st.selectbox(
             "Selecione o modo:",
             options=["Artigos", "Pensadores"],
             index=["Artigos", "Pensadores"].index(st.session_state.active_mode)
         )
-        """
         # Atualiza o estado da variável de sessão com o modo ativo  
                         
         if st.session_state.active_mode == "pensadores":
