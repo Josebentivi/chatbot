@@ -18,9 +18,7 @@ warnings.filterwarnings("ignore", message="missing ScriptRunContext")
 st.set_page_config(page_title="O Pensador Desktop", layout="wide")
 
 st.title("💬 O Pensador Desktop")
-st.write(
-    "ssssssss"
-)
+#st.write("ssssssss")
 
 # Ask user for their OpenAI API key via `st.text_input`.
 # Alternatively, you can store the API key in `./.streamlit/secrets.toml` and access it
@@ -28,10 +26,10 @@ st.write(
 if "openai_api_entered" not in st.session_state:
     openai_api_key = st.text_input("Senha", type="password")
     st.info("Por favor, adicione a sua senha de acesso.", icon="🗝️")
-    if openai_api_key:
-        st.session_state.openai_api_key = openai_api_key
-        st.session_state.openai_api_entered = True
-        st.info(f"{'openai_api_entered' not in st.session_state}")
+if openai_api_key:
+    st.session_state.openai_api_key = openai_api_key
+    st.session_state.openai_api_entered = True
+    st.info(f"{'openai_api_entered' not in st.session_state}")
 else:
     openai_api_key = st.session_state.openai_api_key
     coluna1, coluna2  = st.columns([2, 6], border=True)
