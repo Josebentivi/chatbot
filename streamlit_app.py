@@ -31,6 +31,7 @@ if "openai_api_entered" not in st.session_state:
     if openai_api_key:
         st.session_state.openai_api_key = openai_api_key
         st.session_state.openai_api_entered = True
+        st.info(f"{"openai_api_entered" not in st.session_state}")
 else:
     openai_api_key = st.session_state.openai_api_key
     coluna1, coluna2  = st.columns([2, 6], border=True)
