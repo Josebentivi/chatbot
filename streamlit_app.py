@@ -81,22 +81,12 @@ else:
         for message in st.session_state.messages:
             with st.chat_message(message["role"]):
                 st.markdown(message["content"])
-                if message["referencia"]:
-                    if st.button("Referência"):
-                        st.markdown("Why hello there")
-                    else:
-                        st.markdown("Goodbye")
-                if message["argumentacao"]:
-                    if st.button("Argumentação"):
-                        st.markdown("Why hello there")
-                    else:
-                        st.markdown("Goodbye")
         # Create a chat input field to allow the user to enter a message. This will display
         # automatically at the bottom of the page.
         if prompt := st.chat_input("Em que eu posso te ajudar?"):
 
             # Store and display the current prompt.
-            st.session_state.messages.append({"role": "user", "content": prompt,"referencia": False,"argumentacao": False})
+            st.session_state.messages.append({"role": "user", "content": prompt})
             with st.chat_message("user"):
                 st.markdown(prompt)
 
@@ -115,7 +105,7 @@ else:
             # session state.
             #with st.chat_message("assistant"):
             #    response = st.write_stream(stream)
-            
+            """
             try:
                 # Chamada à API (substitua a URL pelo endpoint real)
                 url = "http://52.2.202.37/mapamental/"
@@ -134,7 +124,8 @@ else:
                     print(response.text) 
                     st.stop()   
             except Exception as e:
-                dados = {"mensagem": "Erro ao processar a mensagem."}
+                dados = {"mensagem": "Erro ao processar a mensagem."}"
+            """
             # Stream the response to the chat using `st.write_stream`, then store it in 
             # session state.
             with st.chat_message("assistant"):
