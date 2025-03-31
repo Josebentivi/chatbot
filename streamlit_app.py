@@ -46,14 +46,14 @@ elif st.session_state.openai_api_entered == True:
             st.session_state.product_page = "chat"
 
     with col2:
+        # Define o texto que aparecerá ao passar o mouse
+        info_text = "Com o objetivo de ter um mecanismo de pesquisa imparcial. Desenvolvemos um algoritimo que verifica semânticamente toda nossa base de dados com mais de 220 mil artigos publicados no ano de 2024."
+        # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
+        st.markdown(
+            f"<span title='{info_text}' style='cursor: pointer;'>&#9432;</span>",
+            unsafe_allow_html=True
+        )
         if st.button("📚 Artigos", use_container_width=True):
-            # Define o texto que aparecerá ao passar o mouse
-            info_text = "Com o objetivo de ter um mecanismo de pesquisa imparcial. Desenvolvemos um algoritimo que verifica semânticamente toda nossa base de dados com mais de 220 mil artigos publicados no ano de 2024."
-            # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
-            st.markdown(
-                f"<span title='{info_text}' style='cursor: pointer;'>&#9432;</span>",
-                unsafe_allow_html=True
-            )
             st.session_state.product_page = "artigos"
 
     with col3:
