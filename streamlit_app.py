@@ -30,19 +30,20 @@ else:
         marcarPensador = st.checkbox("Artigos Científicos", value=True, key="marcar_artigos")
         if marcarArtigos:
             # Ativa o modo "artigos" ou desativa se já estiver ativo
-            if st.session_state.active_mode == "artigos":
-                st.session_state.active_mode = "none"
-            else:
-                st.session_state.active_mode = "artigos"
+            marcarPensador = False
 
         if marcarPensador:
             # Ativa o modo "pensadores" ou desativa se já estiver ativo
-            if st.session_state.active_mode == "pensadores":
-                st.session_state.active_mode = "none"
-            else:
-                st.session_state.active_mode = "pensadores"
-                if st.session_state.selected_thinker is None:
-                    st.session_state.selected_thinker = "Sócrates"
+            marcarArtigos = False
+        """    
+        # Cria um menu suspenso para selecionar o modo ativo    
+        st.session_state.active_mode = st.selectbox(
+            "Selecione o modo:",
+            options=["Artigos", "Pensadores"],
+            index=["Artigos", "Pensadores"].index(st.session_state.active_mode)
+        )
+        """
+        # Atualiza o estado da variável de sessão com o modo ativo  
                         
         if st.session_state.active_mode == "pensadores":
             st.session_state.selected_thinker = st.selectbox(
