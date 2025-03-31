@@ -202,12 +202,9 @@ elif st.session_state.openai_api_entered == True:
             response = requests.post(url, json=data, timeout=5*60)
             if response.status_code == 200:  
                 saida = response.json()["saida"]
-                #erro = response.json()["erro"]
+                erro = response.json()["erro"]
             else:  
-                print("Erro na requisição")
-                print(response.status_code)
-                print(response.text) 
-                st.stop()   
+                saida = str(response.status_code)+"\n\n"+str(response.text)
             # Stream the response to the chat using `st.write_stream`, then store it in 
             # session state.
             
