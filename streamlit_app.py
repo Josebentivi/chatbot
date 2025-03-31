@@ -31,6 +31,31 @@ st.title("💬 O Pensador Desktop")
 if "openai_api_entered" not in st.session_state:
     st.session_state.openai_api_key = st.text_input("Senha", type="password")
     st.session_state.openai_api_entered = True
+elif st.session_state.openai_api_entered == True:
+    # Adiciona uma variável de controle para a página atual se ainda não existir
+    if "product_page" not in st.session_state:
+        st.session_state.product_page = "home"
+
+    st.header("Selecione um Produto")
+
+    # Cria quatro colunas para os produtos
+    col1, col2, col3, col4 = st.columns(4)
+
+    with col1:
+        if st.button("💬 Chat"):
+            st.session_state.product_page = "chat"
+
+    with col2:
+        if st.button("📚 Artigos"):
+            st.session_state.product_page = "artigos"
+
+    with col3:
+        if st.button("🤔 Filósofos"):
+            st.session_state.product_page = "filosofos"
+
+    with col4:
+        if st.button("🗣 Mesa de discussão"):
+            st.session_state.product_page = "mesa_discussao"
 else:
     openai_api_key = st.session_state.openai_api_key
     if "messages" not in st.session_state:
