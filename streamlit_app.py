@@ -25,9 +25,9 @@ else:
     # Create an OpenAI client.
     #client = OpenAI(api_key=openai_api_key)
     with coluna1:
-        marcarArtigos = st.checkbox("Artigos Científicos", value=True, key="marcar_artigos")
+        marcarArtigos = st.checkbox("Artigos Científicos", value=False, key="marcar_artigos")
         st.info(f"{marcarArtigos}")
-        marcarPensador = st.checkbox("Pensadores", value=True, key="marcar_pensadores")
+        marcarPensador = st.checkbox("Pensadores", value=False, key="marcar_pensadores")
         st.info(f"{marcarArtigos}")
         if marcarArtigos:
             # Ativa o modo "artigos" ou desativa se já estiver ativo
