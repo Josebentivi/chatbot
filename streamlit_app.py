@@ -31,13 +31,15 @@ else:
         st.info(f"{marcarArtigos}")
         if marcarArtigos:
             # Ativa o modo "artigos" ou desativa se já estiver ativo
-            marcarPensador = False
+            if marcarPensador:
+                marcarPensador = False
         st.info(f"{marcarArtigos}")
         st.info(f"{marcarPensador}")
 
         if marcarPensador:
             # Ativa o modo "pensadores" ou desativa se já estiver ativo
-            marcarArtigos = False
+            if marcarArtigos:
+                marcarArtigos = False
         st.info(f"{marcarArtigos}")
         st.info(f"{marcarPensador}")
         # Cria um menu suspenso para selecionar o modo ativo    
