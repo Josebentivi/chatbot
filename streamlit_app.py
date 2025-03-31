@@ -117,32 +117,28 @@ else:
             # session state.
             #with st.chat_message("assistant"):
             #    response = st.write_stream(stream)
-            try:
-                # Chamada à API (substitua a URL pelo endpoint real)
-                url = "http://52.2.202.37/teste/"
-                data = {"entrada": "string",
-                        "livro": "string",
-                        "historico": "string",
-                        "nivel": "string",
-                        "tema": "string"
-                        }
-                
-                #data = {"cliente": "string",
-                #        "produto": "string",
-                #        }
-                response = requests.post(url, json=data, timeout=5*60)
-                if response.status_code == 200:  
-                    saida = response.json()["saida"]
-                    print(saida)
-                    erro = response.json()["erro"]
-                    print(erro)
-                else:  
-                    print("Erro na requisição")
-                    print(response.status_code)
-                    print(response.text) 
-                    st.stop()   
-            except Exception as e:
-                saida = f"{e}"
+
+            # Chamada à API (substitua a URL pelo endpoint real)
+            url = "http://52.2.202.37/teste/"
+            data = {"entrada": "string",
+                    "livro": "string",
+                    "historico": "string",
+                    "nivel": "string",
+                    "tema": "string"
+                    }
+            
+            #data = {"cliente": "string",
+            #        "produto": "string",
+            #        }
+            response = requests.post(url, json=data, timeout=5*60)
+            if response.status_code == 200:  
+                saida = response.json()["saida"]
+                #erro = response.json()["erro"]
+            else:  
+                print("Erro na requisição")
+                print(response.status_code)
+                print(response.text) 
+                st.stop()   
             # Stream the response to the chat using `st.write_stream`, then store it in 
             # session state.
             
