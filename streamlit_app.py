@@ -39,7 +39,7 @@ elif st.session_state.openai_api_entered == True:
     st.header("Selecione um Produto")
 
     # Cria quatro colunas para os produtos
-    col1, col2, col3, col4 = st.columns(4)
+    col1, col2, col3, col4 = st.columns(4,vertical_alignment="center")
 
     with col1:
         if st.button("💬 Chat", use_container_width=True):
