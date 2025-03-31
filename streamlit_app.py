@@ -3,6 +3,14 @@ import streamlit as st
 import requests
 import warnings
 
+def ativar_artigos():
+    if st.session_state.marcar_artigos:
+        st.session_state.marcar_pensadores = False
+
+def ativar_pensadores():
+    if st.session_state.marcar_pensadores:
+        st.session_state.marcar_artigos = False
+
 # Suppress Streamlit's ScriptRunContext warning
 warnings.filterwarnings("ignore", message="missing ScriptRunContext")
 
@@ -25,31 +33,29 @@ else:
     # Create an OpenAI client.
     #client = OpenAI(api_key=openai_api_key)
     with coluna1:
-        marcarArtigos = st.checkbox("Artigos Científicos", value=False, key="marcar_artigos")
-        st.info(f"{marcarArtigos}")
-        marcarPensador = st.checkbox("Pensadores", value=False, key="marcar_pensadores")
-        st.info(f"{marcarArtigos}")
-        if marcarArtigos:
-            # Ativa o modo "artigos" ou desativa se já estiver ativo
-            if marcarPensador:
-                marcarPensador = False
-        st.info(f"{marcarArtigos}")
-        st.info(f"{marcarPensador}")
+        
 
-        if marcarPensador:
-            # Ativa o modo "pensadores" ou desativa se já estiver ativo
-            if marcarArtigos:
-                marcarArtigos = False
-        st.info(f"{marcarArtigos}")
-        st.info(f"{marcarPensador}")
-        # Cria um menu suspenso para selecionar o modo ativo    
-        st.session_state.active_mode = st.selectbox(
-            "Selecione o modo:",
-            options=["Artigos", "Pensadores"],
-            index=["Artigos", "Pensadores"].index(st.session_state.active_mode)
+        marcarArtigos = st.checkbox(
+            "Artigos Científicos", 
+            value=False, 
+            key="marcar_artigos", 
+            on_change=ativar_artigos
         )
-        # Atualiza o estado da variável de sessão com o modo ativo  
-                        
+
+        marcarPensador = st.checkbox(
+            "Pensadores", 
+            value=False, 
+            key="marcar_pensadores", 
+            on_change=ativar_pensadores
+        )
+
+        if st.session_state.marcar_artigos:
+            st.write("Modo 'Artigos Científicos' ativado.")
+        elif st.session_state.marcar_pensadores:
+            st.write("Modo 'Pensadores' ativado.")
+        else:
+            st.write("Nenhum modo ativo.")
+
         if st.session_state.active_mode == "pensadores":
             st.session_state.selected_thinker = st.selectbox(
                 "Selecione o pensador:",
