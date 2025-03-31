@@ -60,7 +60,7 @@ else:
             st.session_state.selected_thinker = st.selectbox(
                 "Selecione o pensador:",
                 options=["Sócrates", "Platão", "Aristóteles", "Descartes"],
-                index=["Sócrates", "Platão", "Aristóteles", "Descartes"].index(st.session_state.selected_thinker)
+                index=["Sócrates", "Platão", "Aristóteles", "Descartes"].index(st.session_state.marcar_pensadores)
             )
             
         if st.session_state.marcar_pensadores:
