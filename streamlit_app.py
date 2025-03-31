@@ -148,12 +148,7 @@ else:
             
             st.session_state.messages.append({"role": "assistant", "content": saida})
             with st.chat_message("assistant"):
-                st.markdown(saida)
-            
-            #if st.session_state.marcar_pensadores:
-            #    st.session_state.messages.append({"role": "assistant", "content": saida})
-            #if st.session_state.marcar_artigos:
-            #    st.session_state.messages.append({"role": "assistant", "content": saida})
+                st.write_stream(saida)
             
 
         
