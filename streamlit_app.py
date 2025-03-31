@@ -145,7 +145,8 @@ else:
         
         st.session_state.messages.append({"role": "assistant", "content": saida})
         with st.chat_message("assistant"):
-            st.write_stream(saida)
+            st.markdown(saida)
+            #st.write_stream(saida)
         
 
     
