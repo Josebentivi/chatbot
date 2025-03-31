@@ -61,7 +61,7 @@ elif st.session_state.openai_api_entered == True:
         openai_api_key = st.session_state.openai_api_key
         if "messages" not in st.session_state:
             st.session_state.messages = []
-        '''
+        """
         # Create an OpenAI client.
         #client = OpenAI(api_key=openai_api_key)
             st.subheader("Ferramentas")
@@ -111,7 +111,7 @@ elif st.session_state.openai_api_entered == True:
                 st.info("Artigos desativados", icon="⚠️")
             if st.session_state.marcar_artigos:
                 st.info("Pensadores desativados", icon="⚠️")
-            '''
+            """
         # Create a session state variable to store the chat messages. This ensures that the
         # messages persist across reruns.
 
