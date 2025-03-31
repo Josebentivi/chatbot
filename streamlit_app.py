@@ -56,7 +56,7 @@ else:
         else:
             st.write("Nenhum modo ativo.")
 
-        if st.session_state.active_mode == "pensadores":
+        if st.session_state.marcar_artigos :
             st.session_state.selected_thinker = st.selectbox(
                 "Selecione o pensador:",
                 options=["Sócrates", "Platão", "Aristóteles", "Descartes"],
