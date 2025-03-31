@@ -45,12 +45,12 @@ elif st.session_state.openai_api_entered == True:
         if st.button("💬 Chat", use_container_width=True):
             st.session_state.product_page = "chat"
         # Define o texto que aparecerá ao passar o mouse
-        info_text = "Com o objetivo de ter um mecanismo de pesquisa imparcial. Desenvolvemos um algoritimo que verifica semânticamente toda nossa base de dados com mais de 220 mil artigos publicados no ano de 2024."
+        info_text1 = "Com o objetivo de ter um mecanismo de pesquisa imparcial. Desenvolvemos um algoritimo que verifica semânticamente toda nossa base de dados com mais de 220 mil artigos publicados no ano de 2024."
         # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
         st.markdown(
         f"""
         <div style='display: flex; align-items: center; justify-content: center; height: 100%;'>
-            <span title="{info_text}" style="cursor: pointer; font-size: 18px;">&#9432;</span>
+            <span title="{info_text1}" style="cursor: pointer; font-size: 18px;">&#9432;</span>
         </div>
         """,
         unsafe_allow_html=True
@@ -60,12 +60,12 @@ elif st.session_state.openai_api_entered == True:
         if st.button("📚 Artigos Científicos", use_container_width=True):
             st.session_state.product_page = "artigos"
         # Define o texto que aparecerá ao passar o mouse
-        info_text = "Com o objetivo de ter um mecanismo de pesquisa imparcial. Desenvolvemos um algoritimo que verifica semânticamente toda nossa base de dados com mais de 220 mil artigos publicados no ano de 2024."
+        info_text2 = "Com o objetivo de ter um mecanismo de pesquisa imparcial. Desenvolvemos um algoritimo que verifica semânticamente toda nossa base de dados com mais de 220 mil artigos publicados no ano de 2024."
         # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
         st.markdown(
         f"""
         <div style='display: flex; align-items: center; justify-content: center; height: 100%;'>
-            <span title="{info_text}" style="cursor: pointer; font-size: 18px;">&#9432;</span>
+            <span title="{info_text2}" style="cursor: pointer; font-size: 18px;">&#9432;</span>
         </div>
         """,
         unsafe_allow_html=True
@@ -77,12 +77,12 @@ elif st.session_state.openai_api_entered == True:
         if st.button("🤔 Filósofos", use_container_width=True):
             st.session_state.product_page = "filosofos"
         # Define o texto que aparecerá ao passar o mouse
-        info_text = """Tenha uma inteligência artificial treinada nas obras de diversos pensadores. Desbrave o mundo das ideias e encontre respostas para os seus questionamentos mais difíceis."""
+        info_text3 = """Tenha uma inteligência artificial treinada nas obras de diversos pensadores. Desbrave o mundo das ideias e encontre respostas para os seus questionamentos mais difíceis."""
         # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
         st.markdown(
         f"""
         <div style='display: flex; align-items: center; justify-content: center; height: 100%;'>
-            <span title="{info_text}" style="cursor: pointer; font-size: 18px;">&#9432;</span>
+            <span title="{info_text3}" style="cursor: pointer; font-size: 18px;">&#9432;</span>
         </div>
         """,
         unsafe_allow_html=True
@@ -92,7 +92,7 @@ elif st.session_state.openai_api_entered == True:
         if st.button("🗣 Mesa de discussão", use_container_width=True):
             st.session_state.product_page = "mesa_discussao"
         # Define o texto que aparecerá ao passar o mouse
-        info_text = """Na mesa de discussão, você pode selecionar 4 filósofos que discutirão o tema fornecido pelo moderador (Você). A mesa consistirá em 6 etapas:
+        info_text4 = """Na mesa de discussão, você pode selecionar 4 filósofos que discutirão o tema fornecido pelo moderador (Você). A mesa consistirá em 6 etapas:
 
 1- Análise dos fatos e informações.
 
@@ -111,7 +111,7 @@ Isto procura de observar um tema através dos mais distintos pontos de vista."""
         st.markdown(
         f"""
         <div style='display: flex; align-items: center; justify-content: center; height: 100%;'>
-            <span title="{info_text}" style="cursor: pointer; font-size: 18px;">&#9432;</span>
+            <span title="{info_text4}" style="cursor: pointer; font-size: 18px;">&#9432;</span>
         </div>
         """,
         unsafe_allow_html=True
