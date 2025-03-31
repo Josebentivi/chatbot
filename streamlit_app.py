@@ -58,16 +58,14 @@ else:
         if st.session_state.marcar_artigos:
             st.write("Modo 'Artigos Científicos' ativado.")
         elif st.session_state.marcar_pensadores:
-            st.write("Modo 'Pensadores' ativado.")
-        else:
-            st.write("Nenhum modo ativo.")
-
-        if st.session_state.marcar_artigos :
             st.session_state.selected_thinker = st.selectbox(
                 "Selecione o pensador:",
                 options=["Sócrates", "Platão", "Aristóteles", "Descartes"],
                 index=["Sócrates", "Platão", "Aristóteles", "Descartes"].index(st.session_state.selected_thinker)
             )
+            st.write("Modo 'Pensadores' ativado.")
+        else:
+            st.write("Nenhum modo ativo.")            
             
         if st.session_state.marcar_pensadores:
             st.info("Artigos desativados", icon="⚠️")
