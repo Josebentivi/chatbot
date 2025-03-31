@@ -189,7 +189,7 @@ elif st.session_state.openai_api_entered == True:
             #with st.chat_message("assistant"):
             #    response = st.write_stream(stream)
 
-            # Chamada à API (substitua a URL pelo endpoint real)
+            # Chamada à API (substitua a URL pelo endpoint real) 
             url = "http://52.2.202.37/noticias/"
             data = {"cliente": "string",
                     "pesquisa": prompt["text"],
