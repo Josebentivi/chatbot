@@ -36,11 +36,11 @@ else:
     # Create an OpenAI client.
     #client = OpenAI(api_key=openai_api_key)
     with coluna1:
+        st.subheader("Ferramentas")
         # Cria duas colunas: a primeira para o checkbox e a segunda para o ícone de informação
         col_checkbox, col_info = st.columns([0.9, 0.1])
-
+        # Cria o checkbox e o ícone de informação na mesma linha
         with col_checkbox:
-            st.subheader("Ferramentas")
             marcarArtigos = st.checkbox(
                 "Artigos Científicos", 
                 value=False, 
