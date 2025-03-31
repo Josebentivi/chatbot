@@ -63,9 +63,9 @@ else:
                 index=["Sócrates", "Platão", "Aristóteles", "Descartes"].index(st.session_state.selected_thinker)
             )
             
-        if st.session_state.active_mode != "artigos":
+        if st.session_state.marcar_pensadores:
             st.info("Artigos desativados", icon="⚠️")
-        if st.session_state.active_mode != "pensadores":
+        if st.session_state.marcar_artigos != "pensadores":
             st.info("Pensadores desativados", icon="⚠️")
     with coluna2:
         # Create a session state variable to store the chat messages. This ensures that the
