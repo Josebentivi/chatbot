@@ -26,8 +26,6 @@ st.title("💬 O Pensador Desktop")
 if "openai_api_entered" not in st.session_state:
     st.session_state.openai_api_key = st.text_input("Senha", type="password")
     st.session_state.openai_api_entered = True
-elif not st.session_state.openai_api_key:
-    st.info("Por favor, adicione a sua senha de acesso.", icon="🗝️")
 else:
     openai_api_key = st.session_state.openai_api_key
     coluna1, coluna2  = st.columns([2, 6], border=True)
