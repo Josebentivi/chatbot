@@ -27,7 +27,7 @@ else:
     with coluna1:
         marcarArtigos = st.checkbox("Artigos Científicos", value=True, key="marcar_artigos")
         st.info(f"{marcarArtigos}")
-        marcarPensador = st.checkbox("Artigos Científicos", value=True, key="marcar_artigos")
+        marcarPensador = st.checkbox("Pensadores", value=True, key="marcar_pensadores")
         if marcarArtigos:
             # Ativa o modo "artigos" ou desativa se já estiver ativo
             marcarPensador = False
