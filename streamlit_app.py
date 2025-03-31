@@ -105,10 +105,9 @@ else:
             # session state.
             #with st.chat_message("assistant"):
             #    response = st.write_stream(stream)
-            """
             try:
                 # Chamada à API (substitua a URL pelo endpoint real)
-                url = "http://52.2.202.37/mapamental/"
+                url = "http://52.2.202.37/teste/"
                 data = {"cliente": "string",
                         "produto": "string",
                         }
@@ -124,17 +123,17 @@ else:
                     print(response.text) 
                     st.stop()   
             except Exception as e:
-                dados = {"mensagem": "Erro ao processar a mensagem."}"
-            """
+                dados = {"mensagem": "Erro ao processar a mensagem."}
             # Stream the response to the chat using `st.write_stream`, then store it in 
             # session state.
+
             with st.chat_message("assistant"):
-                response = "Certo"
-                st.markdown("Certo")
-            if st.session_state.active_mode == "artigos":
-                st.session_state.messages.append({"role": "assistant", "content": response,"referencia": True,"argumentacao": False})
-            if st.session_state.active_mode == "pensadores":
-                st.session_state.messages.append({"role": "assistant", "content": response,"referencia": True,"argumentacao": True})
-            st.session_state.messages.append({"role": "assistant", "content": response,"referencia": True,"argumentacao": False})
+                st.markdown(saida)
+            if st.session_state.marcar_pensadores:
+                st.session_state.messages.append({"role": "assistant", "content": saida})
+            if st.session_state.marcar_artigos:
+                st.session_state.messages.append({"role": "assistant", "content": saida})
+            
+            #st.session_state.messages.append({"role": "assistant", "content": response})
 
         
