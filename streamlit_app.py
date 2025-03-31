@@ -38,7 +38,7 @@ else:
     with coluna1:
         st.subheader("Ferramentas")
         # Cria duas colunas: a primeira para o checkbox e a segunda para o ícone de informação
-        col_checkbox, col_info = st.columns([0.4, 0.2])
+        col_checkbox, col_info = st.columns([0.4, 0.4])
         # Cria o checkbox e o ícone de informação na mesma linha
         with col_checkbox:
             marcarArtigos = st.checkbox(
