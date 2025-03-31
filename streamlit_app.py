@@ -28,13 +28,18 @@ else:
         marcarArtigos = st.checkbox("Artigos Científicos", value=True, key="marcar_artigos")
         st.info(f"{marcarArtigos}")
         marcarPensador = st.checkbox("Pensadores", value=True, key="marcar_pensadores")
+        st.info(f"{marcarArtigos}")
         if marcarArtigos:
             # Ativa o modo "artigos" ou desativa se já estiver ativo
             marcarPensador = False
+        st.info(f"{marcarArtigos}")
+        st.info(f"{marcarPensador}")
 
         if marcarPensador:
             # Ativa o modo "pensadores" ou desativa se já estiver ativo
             marcarArtigos = False
+        st.info(f"{marcarArtigos}")
+        st.info(f"{marcarPensador}")
         # Cria um menu suspenso para selecionar o modo ativo    
         st.session_state.active_mode = st.selectbox(
             "Selecione o modo:",
