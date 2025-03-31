@@ -49,7 +49,7 @@ else:
             )
         with col_info:
             # Define o texto que aparecerá ao passar o mouse
-            info_text = "Selecione essa opção para ativar o modo 'Artigos Científicos'."
+            info_text = "Selecione"
             # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
             st.markdown(
                 f"<span title='{info_text}' style='cursor: pointer;'>&#9432;</span>",
