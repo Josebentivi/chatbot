@@ -120,9 +120,16 @@ else:
             try:
                 # Chamada à API (substitua a URL pelo endpoint real)
                 url = "http://52.2.202.37/teste/"
-                data = {"cliente": "string",
-                        "produto": "string",
+                data = {"entrada": "string",
+                        "livro": "string",
+                        "historico": "string",
+                        "nivel": "string",
+                        "tema": "string"
                         }
+                
+                #data = {"cliente": "string",
+                #        "produto": "string",
+                #        }
                 response = requests.post(url, json=data, timeout=5*60)
                 if response.status_code == 200:  
                     saida = response.json()["saida"]
