@@ -44,7 +44,7 @@ elif st.session_state.openai_api_entered == True:
     with col1:
         # Define o texto que aparecerá ao passar o mouse
         info_text1 = "Um assistente que se adapta a você! Com capacidade de ler e processar PDFs, imagens e  áudios com precisão, tudo em uma única ferramenta inteligente que facilita o acesso a informações essenciais, otimiza seu fluxo de trabalho e impulsiona sua criatividade em qualquer tarefa."
-        # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
+        # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip 
         st.markdown(
         f"""
         <div style='display: flex; align-items: center; justify-content: center; height: 100%;'>
