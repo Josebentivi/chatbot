@@ -42,21 +42,22 @@ elif st.session_state.openai_api_entered == True:
     col1, col2, col3, col4 = st.columns(4)
 
     with col1:
-        if st.button("💬 Chat"):
+        if st.button("💬 Chat", use_container_width=True):
             st.session_state.product_page = "chat"
 
     with col2:
-        if st.button("📚 Artigos"):
+        if st.button("📚 Artigos", use_container_width=True):
             st.session_state.product_page = "artigos"
 
     with col3:
-        if st.button("🤔 Filósofos"):
+        if st.button("🤔 Filósofos", use_container_width=True):
             st.session_state.product_page = "filosofos"
 
     with col4:
-        if st.button("🗣 Mesa de discussão"):
+        if st.button("🗣 Mesa de discussão", use_container_width=True):
             st.session_state.product_page = "mesa_discussao"
-else:
+    
+if st.session_state.product_page == "chat":
     openai_api_key = st.session_state.openai_api_key
     if "messages" not in st.session_state:
         st.session_state.messages = []
