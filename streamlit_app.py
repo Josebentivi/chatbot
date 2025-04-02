@@ -284,7 +284,7 @@ elif st.session_state.usuario:
                 #st.write_stream(saida)
 
         # Menu do chat
-        opcoeschat = st.columns(5)
+        opcoeschat = st.columns(5, vertical_alignment="center")
         # Cria o checkbox e o ícone de informação na mesma linha
         with opcoeschat[0]:
             # Cria duas colunas: a primeira para o checkbox e a segunda para o ícone de informação
