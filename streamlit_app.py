@@ -54,6 +54,7 @@ if "usuario" not in st.session_state:
     #st.session_state.openai_api_key = st.text_input("Senha", type="password")
     #st.session_state.openai_api_entered = True
 elif st.session_state.usuario:
+    st.set_page_config(page_title="O Pensador Desktop", layout="wide")
     # Adiciona uma variável de controle para a página atual se ainda não existir
     if "product_page" not in st.session_state:
         st.session_state.product_page = "home"
