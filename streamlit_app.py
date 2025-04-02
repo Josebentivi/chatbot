@@ -270,6 +270,13 @@ elif st.session_state.usuario:
             
             # Stream the response to the chat using `st.write_stream`, then store it in 
             # session state.
+            with st.status("Downloading data..."):
+                st.write("Searching for data...")
+                time.sleep(2)
+                st.write("Found URL.")
+                time.sleep(1)
+                st.write("Downloading data...")
+                time.sleep(1)
             st.session_state.messages.append({"role": "assistant", "content": "Certo"})
             with st.chat_message("assistant"):
                 st.markdown("Certo")
