@@ -269,18 +269,20 @@ elif st.session_state.openai_api_entered == True:
                 color = "gray"
             # Cria um botão que redireciona para o link indicado
             button_html = f"""
-            <a href="{link}" target="_blank">
-                <button style="background-color: {color}; color: white; border: none; padding: 5px 10px; border-radius: 4px;">
-                    {status}
-                </button>
-            </a>
+            <div style="text-align: center;">
+                <a href="{link}" target="_blank">
+                    <button style="background-color: {color}; color: white; border: none; padding: 5px 10px; border-radius: 4px;">
+                        {status}
+                    </button>
+                </a>
+            </div>
             """
             return button_html
 
         st.subheader("Lista de Pagamentos")
         # Exibe os pagamentos em linhas com três colunas: id, valor e status (botão)
         for payment in payments:
-            col_id, col_valor, col_status = st.columns([1, 1, 2], border=True,vertical_alignment='center')
+            col_id, col_valor, col_status = st.columns([1, 1, 2], border=True)
             with col_id:
                 st.write(payment["id"])
             with col_valor:
