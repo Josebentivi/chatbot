@@ -132,9 +132,9 @@ elif st.session_state.usuario:
     )
 
     # Cria quatro colunas para os produtos
-    col = st.columns(6,vertical_alignment="top")
+    col = st.columns(7,vertical_alignment="top")
 
-    with col[0]:
+    with col[3]:
         if st.button("💬 Chat", use_container_width=True):
             st.session_state.product_page = "chat"
         # Define o texto que aparecerá ao passar o mouse
@@ -180,7 +180,7 @@ elif st.session_state.usuario:
     #        st.session_state.product_page = "filosofos"
         
 
-    with col[1]:
+    with col[4]:
         if st.button("🗣 Mesa de discussão", use_container_width=True):
             st.session_state.product_page = "mesa_discussao"
         # Define o texto que aparecerá ao passar o mouse
@@ -194,7 +194,7 @@ elif st.session_state.usuario:
         """,
         unsafe_allow_html=True
         )
-    with col[2]:
+    with col[5]:
         if st.button("Loja", use_container_width=True):
             st.session_state.product_page = "loja"
         # Define o texto que aparecerá ao passar o mouse
