@@ -26,7 +26,7 @@ warnings.filterwarnings("ignore", message="missing ScriptRunContext")
 
 if "usuario" not in st.session_state:
     # Configuração inicial da página
-    st.set_page_config(page_title="O Pensador Desktop", layout="wide")
+    st.set_page_config(page_title="O Pensador Desktop", layout="centered")
 
     st.title("💬 O Pensador Desktop")
     with st.form("login_form"):
