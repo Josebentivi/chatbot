@@ -54,15 +54,15 @@ st.set_page_config(page_title="O Pensador Desktop", layout="wide")
 
 
 
-cols = st.columns([5, 1])
-with cols[1]:
-    cols2 = st.columns([1, 1])
-    with cols2[0]:
-        if st.button("Login", key="login_button"):
-            Entrar()
-    with cols2[1]:
-        if st.button("Sign Up", key="signup_button"):
-            Cadastrar()
+#cols = st.columns([5, 1])
+#with cols[1]:
+#    cols2 = st.columns([1, 1])
+#    with cols2[0]:
+#        if st.button("Login", key="login_button"):
+#            Entrar()
+#    with cols2[1]:
+#        if st.button("Sign Up", key="signup_button"):
+#            Cadastrar()
 
 
 if "usuario" not in st.session_state:
@@ -71,14 +71,20 @@ if "usuario" not in st.session_state:
         image = Image.open("dados/exemplo/imagem.jpg")
         st.image(image, use_container_width=True)
     
-    st.markdown(
-        """
-        <div style="text-align: center; font-size: 24px; font-weight: bold;">
-            💬 O Pensador Desktop
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+        st.markdown(
+            """
+            <div style="text-align: center; font-size: 24px; font-weight: bold;">
+                💬 O Pensador Desktop
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+        if st.button("Login", key="login_button"):
+            Entrar()
+        if st.button("Sign Up", key="signup_button"):
+            Cadastrar()
+
+    
     #st.title("💬 O Pensador Desktop") 
     
     #st.session_state.openai_api_key = st.text_input("Senha", type="password")
