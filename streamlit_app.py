@@ -102,10 +102,12 @@ if "usuario" not in st.session_state:
         with cols[1]:
             if st.button("Login", key="login_button",use_container_width=True):
                 Entrar()
-                st.rerun()
+                if "usuario" in st.session_state:
+                    st.rerun()
             if st.button("Sign Up", key="signup_button",use_container_width=True):
                 Cadastrar()
-                st.rerun()
+                if "usuario" in st.session_state:
+                    st.rerun()
         
 
     
