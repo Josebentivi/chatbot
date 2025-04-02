@@ -34,7 +34,7 @@ def Entrar():
             st.session_state.usuario = usuario
             st.session_state.senha = senha
             if "usuario" in st.session_state:
-                st.rerun()
+                st.rerun(scope="app")
 
 @st.dialog("Criar Usuário")
 def Cadastrar():
