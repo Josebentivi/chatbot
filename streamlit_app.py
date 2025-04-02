@@ -52,14 +52,12 @@ def Cadastrar():
         if submit_login and usuario.strip() and senha.strip():
             st.session_state.usuario = usuario
             st.session_state.senha = senha
-            st.rerun(scope="app")
 
 def ativar_artigos():
     if st.session_state.marcar_artigos:
         st.session_state.marcar_pensadores = False
         if st.session_state.selected_thinker:
             st.session_state.selected_thinker = None
-    st.rerun(scope="app")
 
 def ativar_pensadores():
     if st.session_state.marcar_pensadores:
