@@ -66,8 +66,8 @@ st.set_page_config(page_title="O Pensador Desktop", layout="wide")
 
 
 if "usuario" not in st.session_state:
-    cols = st.columns(5)
-    with cols[2]:
+    cols = st.columns(3)
+    with cols[1]:
         image = Image.open("dados/exemplo/imagem.jpg")
         st.image(image, use_container_width=True)
     
