@@ -34,7 +34,6 @@ def Entrar():
         if submit_login and usuario.strip() and senha.strip():
             st.session_state.usuario = usuario
             st.session_state.senha = senha
-            st.rerun()
 
 @st.dialog("Criar Usuário")
 def Cadastrar():
@@ -47,7 +46,6 @@ def Cadastrar():
         if submit_login and usuario.strip() and senha.strip():
             st.session_state.usuario = usuario
             st.session_state.senha = senha
-            st.rerun()
 
 def ativar_artigos():
     if st.session_state.marcar_artigos:
