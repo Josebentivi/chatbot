@@ -221,13 +221,12 @@ elif st.session_state.openai_api_entered == True:
         st.markdown(
             """
             <div style='text-align: center; font-size: 20px; font-weight: bold;'>Escolha o seu plano:</div>
-                <style>
-                .loja-buttons div.stButton > button {
-                    height: 150px;
-                    min-height: 150px;
-                }
-                </style>
                 <div class="loja-buttons">
+                    <style>
+                    .loja-buttons div.stButton > button {
+                        height: 150px;
+                        min-height: 150px;
+                    }
             """,
             unsafe_allow_html=True
         )
@@ -258,6 +257,6 @@ elif st.session_state.openai_api_entered == True:
                 st.success("Plano Premium selecionado")
                 
         # Lembre-se de fechar o container após os botões:
-        st.markdown(''' </div></div>''', unsafe_allow_html=True)
+        st.markdown('''</style></div></div>''', unsafe_allow_html=True)
 
         
