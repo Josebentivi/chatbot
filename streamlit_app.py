@@ -79,7 +79,7 @@ st.set_page_config(page_title="O Pensador Desktop", layout="wide")
 #            Entrar()
 #    with cols2[1]:
 #        if st.button("Sign Up", key="signup_button"):
-#            Cadastrar()
+#            Cadastrar() 
 
 if "carregado" not in st.session_state:
     Carregando()
