@@ -126,7 +126,7 @@ elif st.session_state.usuario:
     st.header("Sobre o que você gostaria de conversar hoje?")
 
     # Cria quatro colunas para os produtos
-    col = st.columns(8,vertical_alignment="top")
+    col = st.columns(6,vertical_alignment="top")
 
     with col[0]:
         # Define o texto que aparecerá ao passar o mouse
