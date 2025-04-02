@@ -64,7 +64,6 @@ def ativar_pensadores():
         st.session_state.marcar_artigos = False
         if st.session_state.selected_thinker is None:
             st.session_state.selected_thinker = "Sócrates"
-    st.rerun(scope="app")
 
 
 #st.write("ssssssss")
