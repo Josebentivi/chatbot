@@ -105,6 +105,8 @@ if "usuario" not in st.session_state:
                 Entrar()
             if st.button("Sign Up", key="signup_button",use_container_width=True):
                 Cadastrar()
+        if st.session_state.usuario:
+            st.rerun()
 
     
     #st.title("💬 O Pensador Desktop") 
