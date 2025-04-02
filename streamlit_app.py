@@ -251,17 +251,17 @@ elif st.session_state.openai_api_entered == True:
         payments = [
             {"id": "P001", "valor": "100.00", "status": "Link Gerado", "link": "https://example.com/payment/P001"},
             {"id": "P002", "valor": "200.00", "status": "Processando", "link": "https://example.com/payment/P002"},
-            {"id": "P003", "valor": "300.00", "status": " Aprovado  ", "link": "https://example.com/payment/P003"},
-            {"id": "P004", "valor": "400.00", "status": " Cancelado ", "link": "https://example.com/payment/P004"},
+            {"id": "P003", "valor": "300.00", "status": "Aprovado", "link": "https://example.com/payment/P003"},
+            {"id": "P004", "valor": "400.00", "status": "Cancelado", "link": "https://example.com/payment/P004"},
         ]
 
         def render_status_button(status, link):
             # Define a cor do botão conforme o status: "Aprovado" e "Link Gerado" verde,
             # "Processando Pagamento" amarelo e "Cancelado" vermelho.
-            if status in ["Aprovado", "Link Gerado"]:
-                color = "green"
-            elif status == "Processando Pagamento":
+            if status in ["Processando", "Link Gerado"]:
                 color = "yellow"
+            elif status == "Aprovado":
+                color = "green"
             elif status == "Cancelado":
                 color = "red"
             else:
