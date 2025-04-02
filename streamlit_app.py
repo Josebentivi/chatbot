@@ -81,7 +81,6 @@ st.set_page_config(page_title="O Pensador Desktop", layout="wide")
 #        if st.button("Sign Up", key="signup_button"):
 #            Cadastrar()
 
-Carregando()
 if "usuario" not in st.session_state:
     Carregando()
     cols = st.columns(3)
