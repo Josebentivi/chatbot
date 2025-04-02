@@ -7,15 +7,14 @@ from PIL import Image
 
 @st.dialog("Entrar")
 def Entrar(item):
-    with st.form("login_form"):
-        usuario = st.text_input("Usuário")
-        senha = st.text_input("Senha", type="password")
-        cols2 = st.columns(3)
-        with cols2[1]:
-            submit_login = st.form_submit_button("Entrar")
-        if submit_login and usuario.strip() and senha.strip():
-            st.session_state.usuario = usuario
-            st.session_state.senha = senha
+    usuario = st.text_input("Usuário")
+    senha = st.text_input("Senha", type="password")
+    cols2 = st.columns(3)
+    with cols2[1]:
+        submit_login = st.form_submit_button("Entrar")
+    if submit_login and usuario.strip() and senha.strip():
+        st.session_state.usuario = usuario
+        st.session_state.senha = senha
 
 @st.dialog("Criar Usuário")
 def Cadastrar(item):
