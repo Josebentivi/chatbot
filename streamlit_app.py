@@ -66,11 +66,10 @@ with cols[1]:
 
 
 if "usuario" not in st.session_state:
-    cols = st.columns(3)
-    with cols[1]:
+    cols = st.columns(5)
+    with cols[2]:
         image = Image.open("dados/exemplo/imagem.jpg")
-        st.image(image, width=300)
-        #st.image(image, use_container_width=True)
+        st.image(image, use_container_width=True)
     
     st.markdown(
         """
