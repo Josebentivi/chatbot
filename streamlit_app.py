@@ -129,6 +129,8 @@ elif st.session_state.usuario:
     col = st.columns(6,vertical_alignment="top")
 
     with col[0]:
+        if st.button("💬 Chat", use_container_width=True):
+            st.session_state.product_page = "chat"
         # Define o texto que aparecerá ao passar o mouse
         info_text1 = "Um assistente que se adapta a você! Com capacidade de ler e processar PDFs, imagens e  áudios com precisão, tudo em uma única ferramenta inteligente que facilita o acesso a informações essenciais, otimiza seu fluxo de trabalho e impulsiona sua criatividade em qualquer tarefa."
         # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip 
@@ -140,8 +142,6 @@ elif st.session_state.usuario:
         """,
         unsafe_allow_html=True
         )
-        if st.button("💬 Chat", use_container_width=True):
-            st.session_state.product_page = "chat"
         
     #with col2:
     #    # Define o texto que aparecerá ao passar o mouse
@@ -175,6 +175,8 @@ elif st.session_state.usuario:
         
 
     with col[1]:
+        if st.button("🗣 Mesa de discussão", use_container_width=True):
+            st.session_state.product_page = "mesa_discussao"
         # Define o texto que aparecerá ao passar o mouse
         info_text4 = """A mesa de discussão reúne quatro filósofos para analisar um tema em seis etapas: fatos, emoções, pontos negativos, pontos positivos, visões alternativas e, por fim, a organização das ideias. Essa abordagem garante um debate equilibrado e multidimensional, onde cada aspecto do tema é explorado de forma clara e estruturada."""
         # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
@@ -186,11 +188,20 @@ elif st.session_state.usuario:
         """,
         unsafe_allow_html=True
         )
-        if st.button("🗣 Mesa de discussão", use_container_width=True):
-            st.session_state.product_page = "mesa_discussao"
     with col[2]:
         if st.button("Loja", use_container_width=True):
             st.session_state.product_page = "loja"
+        # Define o texto que aparecerá ao passar o mouse
+        info_text1 = "Uma loja com produtos e serviços que podem ser adquiridos com o uso de créditos. Os créditos podem ser comprados diretamente na loja."
+        # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip 
+        st.markdown(
+        f"""
+        <div style='display: flex; align-items: center; justify-content: center; height: 100%;'>
+            <span title="{info_text1}" style="cursor: pointer; font-size: 18px;">&#9432;</span>
+        </div>
+        """,
+        unsafe_allow_html=True
+        )
     if st.session_state.product_page == "chat":
         #openai_api_key = st.session_state.openai_api_key
         if "messages" not in st.session_state:
