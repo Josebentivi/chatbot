@@ -37,6 +37,7 @@ def Entrar():
             st.session_state.usuario = usuario
             st.session_state.senha = senha
             st.session_state.carregado = False
+            st.rerun(scope="app")
 
 @st.dialog("Criar Usuário")
 def Cadastrar():
@@ -49,6 +50,7 @@ def Cadastrar():
         if submit_login and usuario.strip() and senha.strip():
             st.session_state.usuario = usuario
             st.session_state.senha = senha
+            st.rerun(scope="app")
 
 def ativar_artigos():
     if st.session_state.marcar_artigos:
@@ -113,9 +115,6 @@ if "usuario" not in st.session_state:
     #st.session_state.openai_api_entered = True
 
 elif st.session_state.usuario:
-    if not st.session_state.carregado:
-        Carregando()
-        st.session_state.carregado = True
     # Adiciona uma variável de controle para a página atual se ainda não existir
     if "product_page" not in st.session_state:
         st.session_state.product_page = "home"
@@ -127,6 +126,10 @@ elif st.session_state.usuario:
         """,
         unsafe_allow_html=True
     )
+    
+    if not st.session_state.carregado:
+        Carregando()
+        st.session_state.carregado = True
 
     # Cria quatro colunas para os produtos
     col = st.columns(7,vertical_alignment="top")
