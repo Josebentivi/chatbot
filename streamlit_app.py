@@ -33,6 +33,7 @@ def Entrar():
         if submit_login and usuario.strip() and senha.strip():
             st.session_state.usuario = usuario
             st.session_state.senha = senha
+            st.close_dialog()
             if "usuario" in st.session_state:
                 st.rerun(scope="app")
 
