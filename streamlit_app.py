@@ -23,6 +23,7 @@ def Carregando(aceleracao=0.1):
             tempo+=aceleracao
             sleep(tempo)
         my_bar.empty()
+        st.rerun(scope="app")
 
 
 @st.dialog("Entrar")
