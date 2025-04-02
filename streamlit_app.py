@@ -4,6 +4,22 @@ import requests
 import warnings
 from PIL import Image
 import time
+from time import sleep
+
+def Carregando():
+    porcentagem = 0
+    cols = st.columns(3)
+    with cols[1]:
+        my_bar = st.progress(porcentagem, text="Aprimorando plataforma...")
+        tempo=1
+        sleep(1)
+        CarregandoInicio = ["Carregando leis e jurisprudência...","Carregando doutrinas...","Finalizando melhoria...","Pronto!"]
+        for texto in CarregandoInicio:
+            porcentagem += 25
+            my_bar.progress(porcentagem, text=texto)
+            tempo+=0.25
+            sleep(tempo)
+        my_bar.empty()
 
 
 @st.dialog("Entrar")
@@ -65,7 +81,7 @@ st.set_page_config(page_title="O Pensador Desktop", layout="wide")
 #        if st.button("Sign Up", key="signup_button"):
 #            Cadastrar()
 
-
+Carregando()
 if "usuario" not in st.session_state:
     cols = st.columns(3)
     with cols[1]:
@@ -77,7 +93,7 @@ if "usuario" not in st.session_state:
         time.sleep(1)
         placeholder.progress(100, "Wait for it...")
         time.sleep(1)
-        
+
         cols3 = st.columns(3)
         with cols3[1]:
             image = Image.open("dados/exemplo/imagem.jpg")
