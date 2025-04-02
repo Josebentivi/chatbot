@@ -250,9 +250,9 @@ elif st.session_state.openai_api_entered == True:
         # Exemplo de lista de pagamentos com id, valor, status e link
         payments = [
             {"id": "P001", "valor": "100.00", "status": "Link Gerado", "link": "https://example.com/payment/P001"},
-            {"id": "P002", "valor": "200.00", "status": "Processando Pagamento", "link": "https://example.com/payment/P002"},
-            {"id": "P003", "valor": "300.00", "status": "Aprovado", "link": "https://example.com/payment/P003"},
-            {"id": "P004", "valor": "400.00", "status": "Cancelado", "link": "https://example.com/payment/P004"},
+            {"id": "P002", "valor": "200.00", "status": "Processando", "link": "https://example.com/payment/P002"},
+            {"id": "P003", "valor": "300.00", "status": " Aprovado  ", "link": "https://example.com/payment/P003"},
+            {"id": "P004", "valor": "400.00", "status": " Cancelado ", "link": "https://example.com/payment/P004"},
         ]
 
         def render_status_button(status, link):
@@ -287,7 +287,7 @@ elif st.session_state.openai_api_entered == True:
         with col_valor:
             st.write(f"Valor")
         with col_status:
-            status_button = render_status_button("Atualizar", "https://chatbot-filosofo.streamlit.app/")
+            status_button = render_status_button("Atualizar Pagamentos", "https://chatbot-filosofo.streamlit.app/")
             st.markdown(status_button, unsafe_allow_html=True)
         st.markdown("---")
         for idx, payment in enumerate(payments):
