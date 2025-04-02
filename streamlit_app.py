@@ -249,7 +249,6 @@ elif st.session_state.openai_api_entered == True:
 
         # Exemplo de lista de pagamentos com id, valor, status e link
         payments = [
-            {"id": "Código de Pagamento", "valor": "Valor", "status": "Atualizar", "link": "https://chatbot-filosofo.streamlit.app/"},
             {"id": "P001", "valor": "100.00", "status": "Link Gerado", "link": "https://example.com/payment/P001"},
             {"id": "P002", "valor": "200.00", "status": "Processando Pagamento", "link": "https://example.com/payment/P002"},
             {"id": "P003", "valor": "300.00", "status": "Aprovado", "link": "https://example.com/payment/P003"},
@@ -281,8 +280,18 @@ elif st.session_state.openai_api_entered == True:
 
         st.subheader("Lista de Pagamentos")
         # Exibe os pagamentos em linhas com três colunas: id, valor e status (botão)
+            
+        col_id, col_valor, col_status = st.columns([1, 1, 1])
+        with col_id:
+            st.write("Código de Pagamento")
+        with col_valor:
+            st.write(f"Valor")
+        with col_status:
+            status_button = render_status_button("Atualizar", "https://chatbot-filosofo.streamlit.app/")
+            st.markdown(status_button, unsafe_allow_html=True)
+        st.markdown("---")
         for idx, payment in enumerate(payments):
-            col_id, col_valor, col_status = st.columns([1, 1, 1])
+            #col_id, col_valor, col_status = st.columns([1, 1, 1])
             with col_id:
                 st.write(payment["id"])
             with col_valor:
