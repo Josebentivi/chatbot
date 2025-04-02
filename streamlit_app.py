@@ -123,7 +123,7 @@ elif st.session_state.usuario:
     if "product_page" not in st.session_state:
         st.session_state.product_page = "home"
 
-    st.header("Sobre o que você gostaria de conversar hoje?")
+    st.header("Olá 😊")
 
     # Cria quatro colunas para os produtos
     col = st.columns(6,vertical_alignment="top")
