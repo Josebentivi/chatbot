@@ -32,7 +32,16 @@ if "usuario" not in st.session_state:
     with cols[1]:
         image = Image.open("dados/exemplo/imagem.jpg")
         st.image(image, use_container_width=True)
-    st.title("💬 O Pensador Desktop")
+    
+    st.markdown(
+        """
+        <div style="text-align: center; font-size: 24px; font-weight: bold;">
+            💬 O Pensador Desktop
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    #st.title("💬 O Pensador Desktop")
     with st.form("login_form"):
         usuario = st.text_input("Usuário")
         senha = st.text_input("Senha", type="password")
