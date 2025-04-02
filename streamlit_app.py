@@ -2,6 +2,7 @@ import streamlit as st
 #from openai import OpenAI
 import requests
 import warnings
+from PIL import Image
 
 def ativar_artigos():
     if st.session_state.marcar_artigos:
@@ -27,12 +28,17 @@ warnings.filterwarnings("ignore", message="missing ScriptRunContext")
 if "usuario" not in st.session_state:
     # Configuração inicial da página
     st.set_page_config(page_title="O Pensador Desktop", layout="centered")
-
+    cols = st.columns(3)
+    with cols[1]:
+        image = Image.open("dados/exemplo/imagem.png")
+        st.image(image, use_column_width=True)
     st.title("💬 O Pensador Desktop")
     with st.form("login_form"):
         usuario = st.text_input("Usuário")
         senha = st.text_input("Senha", type="password")
-        submit_login = st.form_submit_button("Entrar")
+        cols2 = st.columns(3)
+        with cols2[1]:
+            submit_login = st.form_submit_button("Entrar")
         if submit_login and usuario.strip() and senha.strip():
             st.session_state.usuario = usuario
             st.session_state.senha = senha
