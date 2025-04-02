@@ -330,7 +330,7 @@ elif st.session_state.usuario:
             if "selected_thinker" not in st.session_state:
                 st.session_state.selected_thinker = None
             if st.session_state.marcar_artigos:
-                st.write("Modo 'Artigos Científicos' ativado.")
+                st.write("Artigos ativado.")
             elif st.session_state.marcar_pensadores:
                 st.session_state.selected_thinker = st.selectbox(
                     "Selecione o pensador:",
