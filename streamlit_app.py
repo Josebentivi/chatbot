@@ -20,6 +20,7 @@ def Carregando():
             tempo+=0.5
             sleep(tempo)
         my_bar.empty()
+    st.rerun()
 
 
 @st.dialog("Entrar")
@@ -83,9 +84,6 @@ st.set_page_config(page_title="O Pensador Desktop", layout="wide")
 #        if st.button("Sign Up", key="signup_button"):
 #            Cadastrar() 
 
-if "carregado" not in st.session_state:
-    Carregando()
-    st.session_state.carregado = True
 
 if "usuario" not in st.session_state:
     cols = st.columns(3)
@@ -115,6 +113,10 @@ if "usuario" not in st.session_state:
     
     #st.session_state.openai_api_key = st.text_input("Senha", type="password")
     #st.session_state.openai_api_entered = True
+elif "carregado" not in st.session_state:
+    Carregando()
+    st.session_state.carregado = True
+
 elif st.session_state.usuario:
     # Adiciona uma variável de controle para a página atual se ainda não existir
     if "product_page" not in st.session_state:
