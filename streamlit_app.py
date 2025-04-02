@@ -218,19 +218,32 @@ elif st.session_state.openai_api_entered == True:
 
     if st.session_state.product_page == "loja":
         st.subheader("Loja")
-
-        cols = st.columns(3)
         st.markdown(
             """
-            <style>
-            div.stButton > button {
-                height: 150px;
-                min-height: 150px;
-            }
-            </style>
+            <div style='text-align: center; font-size: 20px; font-weight: bold;'>Escolha o seu plano:</div>
+                <style>
+                .loja-buttons div.stButton > button {
+                    height: 150px;
+                    min-height: 150px;
+                }
+                </style>
+                <div class="loja-buttons">
             """,
             unsafe_allow_html=True
         )
+        cols = st.columns(3)
+        
+        #st.markdown(
+        #    """
+        #    <style>
+        #    div.stButton > button {
+        #        height: 150px;
+        #        min-height: 150px;
+        #    }
+        #    </style>
+        #    """,
+        #    unsafe_allow_html=True
+        #)
 
         with cols[0]:
             if st.button('Você poderá realizar +40 interações com o chat e mais +10 Consultas nos Livros.',icon = "⚡", key="plan1", use_container_width=True):
@@ -243,5 +256,8 @@ elif st.session_state.openai_api_entered == True:
         with cols[2]:
             if st.button("Você poderá realizar +70 Consultas nos Livros.",icon = "💎", key="plan3", use_container_width=True):
                 st.success("Plano Premium selecionado")
+                
+        # Lembre-se de fechar o container após os botões:
+        st.markdown(''' </div></div>''', unsafe_allow_html=True)
 
         
