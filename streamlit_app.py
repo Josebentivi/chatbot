@@ -116,6 +116,7 @@ if "usuario" not in st.session_state:
     #st.session_state.openai_api_key = st.text_input("Senha", type="password")
     #st.session_state.openai_api_entered = True
 elif "carregado" not in st.session_state:
+    st.header("")
     Carregando()
     st.session_state.carregado = True
     st.rerun()
