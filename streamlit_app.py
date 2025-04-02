@@ -291,7 +291,7 @@ elif st.session_state.openai_api_entered == True:
             st.markdown(status_button, unsafe_allow_html=True)
         st.markdown("---")
         for idx, payment in enumerate(payments):
-            #col_id, col_valor, col_status = st.columns([1, 1, 1])
+            col_id, col_valor, col_status = st.columns([1, 1, 1])
             with col_id:
                 st.write(payment["id"])
             with col_valor:
