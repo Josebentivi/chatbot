@@ -18,10 +18,6 @@ def ativar_pensadores():
 # Suppress Streamlit's ScriptRunContext warning
 warnings.filterwarnings("ignore", message="missing ScriptRunContext")
 
-# Configuração inicial da página
-st.set_page_config(page_title="O Pensador Desktop", layout="wide")
-
-st.title("💬 O Pensador Desktop")
 #st.write("ssssssss")
 
 # Ask user for their OpenAI API key via `st.text_input`.
@@ -29,6 +25,10 @@ st.title("💬 O Pensador Desktop")
 # via `st.secrets`, see https://docs.streamlit.io/develop/concepts/connections/secrets-management
 
 if "usuario" not in st.session_state:
+    # Configuração inicial da página
+    st.set_page_config(page_title="O Pensador Desktop", layout="wide")
+
+    st.title("💬 O Pensador Desktop")
     with st.form("login_form"):
         usuario = st.text_input("Usuário")
         senha = st.text_input("Senha", type="password")
