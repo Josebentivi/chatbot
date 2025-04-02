@@ -220,19 +220,21 @@ elif st.session_state.openai_api_entered == True:
         st.subheader("Loja")
         # Adiciona estilo customizado para que os botões fiquem quadrados e chamem atenção
         st.markdown(
-        """
-        <style>
-        div.stButton > button {
-            width: 100%;
-            height: 150px;
-            font-size: 48px;
-            border-radius: 10px;
-            border: 2px solid #007BFF;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
+            """
+            <style>
+            /* Aplica o estilo somente aos botões contidos no container com id "loja-buttons" */
+            #loja-buttons div.stButton > button {
+                width: 100%;
+                height: 150px;
+                font-size: 48px;
+                border-radius: 10px;
+                border: 2px solid #007BFF;
+            }
+            </style>
+            """,
+            unsafe_allow_html=True
         )
+        st.markdown('<div id="loja-buttons">', unsafe_allow_html=True)
 
         cols = st.columns(3)
 
@@ -248,23 +250,7 @@ elif st.session_state.openai_api_entered == True:
             if st.button("💎", key="plan3"):
                 st.success("Plano Premium selecionado")
 
-        with st.container():
-            st.markdown(
-            """
-            <div id="loja-container">
-                <!-- Os botões já exibidos ficam dentro deste contêiner -->
-            </div>
-            <style>
-            /* Estiliza somente os botões dentro do contêiner "loja-container" */
-            #loja-container .stButton > button {
-                width: 100%;
-                height: 150px;
-                font-size: 48px;
-                border-radius: 10px;
-                border: 2px solid #007BFF;
-            }
-            </style>
-            """,
-            unsafe_allow_html=True
-            )
+        # Lembre-se de fechar o container após os botões:
+        st.markdown('</div>', unsafe_allow_html=True)
+
         
