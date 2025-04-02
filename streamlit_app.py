@@ -102,8 +102,10 @@ if "usuario" not in st.session_state:
         with cols[1]:
             if st.button("Login", key="login_button",use_container_width=True):
                 Entrar()
+                st.rerun()
             if st.button("Sign Up", key="signup_button",use_container_width=True):
                 Cadastrar()
+                st.rerun()
         
 
     
@@ -114,6 +116,7 @@ if "usuario" not in st.session_state:
 elif "carregado" not in st.session_state:
     Carregando()
     st.session_state.carregado = True
+    st.rerun()
 
 elif st.session_state.usuario:
     # Adiciona uma variável de controle para a página atual se ainda não existir
