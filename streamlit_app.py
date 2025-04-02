@@ -225,7 +225,7 @@ elif st.session_state.openai_api_entered == True:
             /* Aplica o estilo somente aos botões contidos no container com id "loja-buttons" */
             #loja-buttons div.stButton > button {
                 width: 100%;
-                height: 150px;
+                height: 400px;
                 font-size: 48px;
                 border-radius: 10px;
                 border: 2px solid #007BFF;
