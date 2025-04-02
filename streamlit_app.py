@@ -216,6 +216,67 @@ elif st.session_state.usuario:
         #client = OpenAI(api_key=openai_api_key)
         #    st.subheader("Ferramentas")
         
+        
+        # Create a session state variable to store the chat messages. This ensures that the
+        # messages persist across reruns.
+
+        # Display the existing chat messages via `st.chat_message`.
+        for message in st.session_state.messages:
+            with st.chat_message(message["role"]):
+                st.markdown(message["content"])
+        # Create a chat input field to allow the user to enter a message. This will display
+        # automatically at the bottom of the page.
+        if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=True,file_type=["jpg", "jpeg", "png","pdf","mp3"],):
+
+            # Store and display the current prompt.
+            st.session_state.messages.append({"role": "user", "content": prompt["text"]})
+            with st.chat_message("user"):
+                st.markdown(prompt["text"])
+
+            
+            # Generate a response using the OpenAI API.
+            #stream = client.chat.completions.create(
+            #    model="gpt-3.5-turbo",
+            #    messages=[
+            #        {"role": m["role"], "content": m["content"]}
+            #        for m in st.session_state.messages
+            #    ],
+            #    stream=True,
+            #)
+
+            # Stream the response to the chat using `st.write_stream`, then store it in 
+            # session state.
+            #with st.chat_message("assistant"):
+            #    response = st.write_stream(stream)
+
+            # Chamada à API (substitua a URL pelo endpoint real) 
+            url = "http://52.2.202.37/noticias/"
+            data = {"cliente": "string",
+                    "pesquisa": prompt["text"],
+                    "area": ""
+                    }
+            
+            #data = {"cliente": "string",
+            #        "produto": "string",
+            #        }
+
+            #response = requests.post(url, json=data, timeout=5*60)
+            #if response.status_code == 200:  
+            #    saida = response.json()["saida"]
+            #    erro = response.json()["erro"]
+            #else:  
+            #    saida = str(response.status_code)+"\n\n"+str(response.text)
+            
+            
+            # Stream the response to the chat using `st.write_stream`, then store it in 
+            # session state.
+            st.session_state.messages.append({"role": "assistant", "content": "Certo"})
+            with st.chat_message("assistant"):
+                st.markdown("Certo")
+                #st.markdown(saida)
+                #st.write_stream(saida)
+
+        # Menu do chat
         opcoeschat = st.columns(5)
         # Cria o checkbox e o ícone de informação na mesma linha
         with opcoeschat[0]:
@@ -269,61 +330,6 @@ elif st.session_state.usuario:
                     options=["Sócrates", "Platão", "Aristóteles", "Descartes"],
                     index=["Sócrates", "Platão", "Aristóteles", "Descartes"].index(st.session_state.selected_thinker)
                 )
-        
-        # Create a session state variable to store the chat messages. This ensures that the
-        # messages persist across reruns.
-
-        # Display the existing chat messages via `st.chat_message`.
-        for message in st.session_state.messages:
-            with st.chat_message(message["role"]):
-                st.markdown(message["content"])
-        # Create a chat input field to allow the user to enter a message. This will display
-        # automatically at the bottom of the page.
-        if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=True,file_type=["jpg", "jpeg", "png","pdf","mp3"],):
-
-            # Store and display the current prompt.
-            st.session_state.messages.append({"role": "user", "content": prompt["text"]})
-            with st.chat_message("user"):
-                st.markdown(prompt["text"])
-
-            
-            # Generate a response using the OpenAI API.
-            #stream = client.chat.completions.create(
-            #    model="gpt-3.5-turbo",
-            #    messages=[
-            #        {"role": m["role"], "content": m["content"]}
-            #        for m in st.session_state.messages
-            #    ],
-            #    stream=True,
-            #)
-
-            # Stream the response to the chat using `st.write_stream`, then store it in 
-            # session state.
-            #with st.chat_message("assistant"):
-            #    response = st.write_stream(stream)
-
-            # Chamada à API (substitua a URL pelo endpoint real) 
-            url = "http://52.2.202.37/noticias/"
-            data = {"cliente": "string",
-                    "pesquisa": prompt["text"],
-                    "area": ""
-                    }
-            
-            #data = {"cliente": "string",
-            #        "produto": "string",
-            #        }
-            response = requests.post(url, json=data, timeout=5*60)
-            if response.status_code == 200:  
-                saida = response.json()["saida"]
-                erro = response.json()["erro"]
-            else:  
-                saida = str(response.status_code)+"\n\n"+str(response.text)
-            # Stream the response to the chat using `st.write_stream`, then store it in 
-            # session state.
-            st.session_state.messages.append({"role": "assistant", "content": saida})
-            with st.chat_message("assistant"):
-                st.markdown(saida)
-                #st.write_stream(saida)
         
 
     if st.session_state.product_page == "loja":
