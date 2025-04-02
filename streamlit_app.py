@@ -259,4 +259,45 @@ elif st.session_state.openai_api_entered == True:
         # Lembre-se de fechar o container após os botões:
         st.markdown('''</div>''', unsafe_allow_html=True)
 
+        # Exemplo de lista de pagamentos com id, valor, status e link
+        payments = [
+            {"id": "P001", "valor": "100.00", "status": "Link Gerado", "link": "https://example.com/payment/P001"},
+            {"id": "P002", "valor": "200.00", "status": "Processando Pagamento", "link": "https://example.com/payment/P002"},
+            {"id": "P003", "valor": "300.00", "status": "Aprovado", "link": "https://example.com/payment/P003"},
+            {"id": "P004", "valor": "400.00", "status": "Cancelado", "link": "https://example.com/payment/P004"},
+        ]
+
+        def render_status_button(status, link):
+            # Define a cor do botão conforme o status: "Aprovado" e "Link Gerado" verde,
+            # "Processando Pagamento" amarelo e "Cancelado" vermelho.
+            if status in ["Aprovado", "Link Gerado"]:
+                color = "green"
+            elif status == "Processando Pagamento":
+                color = "yellow"
+            elif status == "Cancelado":
+                color = "red"
+            else:
+                color = "gray"
+            # Cria um botão que redireciona para o link indicado
+            button_html = f"""
+            <a href="{link}" target="_blank">
+                <button style="background-color: {color}; color: white; border: none; padding: 5px 10px; border-radius: 4px;">
+                    {status}
+                </button>
+            </a>
+            """
+            return button_html
+
+        st.subheader("Lista de Pagamentos")
+        # Exibe os pagamentos em linhas com três colunas: id, valor e status (botão)
+        for payment in payments:
+            col_id, col_valor, col_status = st.columns([1, 1, 2])
+            with col_id:
+                st.write(payment["id"])
+            with col_valor:
+                st.write(f"R$ {payment['valor']}")
+            with col_status:
+                status_button = render_status_button(payment["status"], payment["link"])
+                st.markdown(status_button, unsafe_allow_html=True)
+
         
