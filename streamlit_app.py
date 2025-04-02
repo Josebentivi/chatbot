@@ -259,7 +259,7 @@ elif st.session_state.openai_api_entered == True:
             # Define a cor do botão conforme o status: "Aprovado" e "Link Gerado" verde,
             # "Processando Pagamento" amarelo e "Cancelado" vermelho.
             if status in ["Processando", "Link Gerado"]:
-                color = "yellow"
+                color = "#B8860B"  # dark goldenrod, a darker yellow
             elif status == "Aprovado":
                 color = "green"
             elif status == "Cancelado":
