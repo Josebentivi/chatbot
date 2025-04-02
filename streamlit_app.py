@@ -126,10 +126,6 @@ elif st.session_state.usuario:
         """,
         unsafe_allow_html=True
     )
-    
-    if not st.session_state.carregado:
-        Carregando()
-        st.session_state.carregado = True
 
     # Cria quatro colunas para os produtos
     col = st.columns(7,vertical_alignment="top")
@@ -209,6 +205,9 @@ elif st.session_state.usuario:
         unsafe_allow_html=True
         )
     if st.session_state.product_page == "chat":
+        if not st.session_state.carregado:
+            Carregando()
+            st.session_state.carregado = True
         #openai_api_key = st.session_state.openai_api_key
         if "messages" not in st.session_state:
             st.session_state.messages = []
