@@ -281,7 +281,7 @@ elif st.session_state.openai_api_entered == True:
 
         st.subheader("Lista de Pagamentos")
         # Exibe os pagamentos em linhas com três colunas: id, valor e status (botão)
-        for payment in payments:
+        for idx, payment in enumerate(payments):
             col_id, col_valor, col_status = st.columns([1, 1, 1])
             with col_id:
                 st.write(payment["id"])
@@ -290,5 +290,7 @@ elif st.session_state.openai_api_entered == True:
             with col_status:
                 status_button = render_status_button(payment["status"], payment["link"])
                 st.markdown(status_button, unsafe_allow_html=True)
+            if idx < len(payments) - 1:
+                st.markdown("---")
 
         
