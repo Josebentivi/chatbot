@@ -4,13 +4,30 @@ import requests
 import warnings
 from PIL import Image
 
-if "usuario" not in st.session_state:
-    # Configuração inicial da página
-    st.set_page_config(page_title="O Pensador Desktop", layout="centered")
-else:
-    # Configuração inicial da página
-    st.set_page_config(page_title="O Pensador Desktop", layout="wide")
 
+@st.dialog("Entrar")
+def Entrar(item):
+    with st.form("login_form"):
+        usuario = st.text_input("Usuário")
+        senha = st.text_input("Senha", type="password")
+        cols2 = st.columns(3)
+        with cols2[1]:
+            submit_login = st.form_submit_button("Entrar")
+        if submit_login and usuario.strip() and senha.strip():
+            st.session_state.usuario = usuario
+            st.session_state.senha = senha
+
+@st.dialog("Criar Usuário")
+def Cadastrar(item):
+    with st.form("login_form"):
+        usuario = st.text_input("Usuário")
+        senha = st.text_input("Senha", type="password")
+        cols2 = st.columns(3)
+        with cols2[1]:
+            submit_login = st.form_submit_button("Entrar")
+        if submit_login and usuario.strip() and senha.strip():
+            st.session_state.usuario = usuario
+            st.session_state.senha = senha
 
 def ativar_artigos():
     if st.session_state.marcar_artigos:
@@ -26,6 +43,13 @@ def ativar_pensadores():
 
 # Suppress Streamlit's ScriptRunContext warning
 warnings.filterwarnings("ignore", message="missing ScriptRunContext")
+
+if "usuario" not in st.session_state:
+    # Configuração inicial da página
+    st.set_page_config(page_title="O Pensador Desktop", layout="centered")
+else:
+    # Configuração inicial da página
+    st.set_page_config(page_title="O Pensador Desktop", layout="wide")
 
 #st.write("ssssssss")
 
@@ -48,15 +72,13 @@ if "usuario" not in st.session_state:
         unsafe_allow_html=True
     )
     #st.title("💬 O Pensador Desktop")
-    with st.form("login_form"):
-        usuario = st.text_input("Usuário")
-        senha = st.text_input("Senha", type="password")
-        cols2 = st.columns(3)
-        with cols2[1]:
-            submit_login = st.form_submit_button("Entrar")
-        if submit_login and usuario.strip() and senha.strip():
-            st.session_state.usuario = usuario
-            st.session_state.senha = senha
+
+
+    if st.button("Login"):
+        Entrar()
+    if st.button("Sign Up"):
+        Cadastrar()
+    
     #st.session_state.openai_api_key = st.text_input("Senha", type="password")
     #st.session_state.openai_api_entered = True
 elif st.session_state.usuario:
