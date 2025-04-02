@@ -9,6 +9,9 @@ from time import sleep
 warnings.filterwarnings("ignore", message="missing ScriptRunContext")
 st.set_page_config(page_title="O Pensador Desktop", layout="wide")
 
+if "selected_thinker" not in st.session_state:
+    st.session_state.selected_thinker = None
+
 def Carregando(aceleracao=0.1):
     porcentagem = 0
     cols = st.columns(3)
@@ -327,8 +330,6 @@ elif st.session_state.usuario:
                 )
         
         with opcoeschat[2]:
-            if "selected_thinker" not in st.session_state:
-                st.session_state.selected_thinker = None
             if st.session_state.marcar_artigos:
                 st.write("Artigos ativado.")
             elif st.session_state.marcar_pensadores:
