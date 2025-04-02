@@ -249,7 +249,7 @@ elif st.session_state.openai_api_entered == True:
 
         # Exemplo de lista de pagamentos com id, valor, status e link
         payments = [
-            {"id": "Código de Pagamento", "valor": "Valor", "Atualizar": "Status", "link": "https://chatbot-filosofo.streamlit.app/"},
+            {"id": "Código de Pagamento", "valor": "Valor", "status": "Atualizar", "link": "https://chatbot-filosofo.streamlit.app/"},
             {"id": "P001", "valor": "100.00", "status": "Link Gerado", "link": "https://example.com/payment/P001"},
             {"id": "P002", "valor": "200.00", "status": "Processando Pagamento", "link": "https://example.com/payment/P002"},
             {"id": "P003", "valor": "300.00", "status": "Aprovado", "link": "https://example.com/payment/P003"},
