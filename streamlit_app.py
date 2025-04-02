@@ -9,7 +9,7 @@ from time import sleep
 warnings.filterwarnings("ignore", message="missing ScriptRunContext")
 st.set_page_config(page_title="O Pensador Desktop", layout="wide")
 
-def Carregando():
+def Carregando(aceleracao=0.1):
     porcentagem = 0
     cols = st.columns(3)
     with cols[1]:
@@ -20,7 +20,7 @@ def Carregando():
         for texto in CarregandoInicio:
             porcentagem += 25
             my_bar.progress(porcentagem, text=texto)
-            tempo+=0.5
+            tempo+=aceleracao
             sleep(tempo)
         my_bar.empty()
 
