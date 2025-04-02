@@ -31,7 +31,7 @@ if "usuario" not in st.session_state:
     cols = st.columns(3)
     with cols[1]:
         image = Image.open("dados/exemplo/imagem.jpg")
-        st.image(image, use_column_width=True)
+        st.image(image, use_container_width=True)
     st.title("💬 O Pensador Desktop")
     with st.form("login_form"):
         usuario = st.text_input("Usuário")
