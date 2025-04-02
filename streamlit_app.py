@@ -22,8 +22,8 @@ def Cadastrar():
     with st.form("login_form"):
         usuario = st.text_input("Usuário")
         senha = st.text_input("Senha", type="password")
-        cols2 = st.columns(3)
-        with cols2[1]:
+        cols2 = st.columns([1,1,1,1,1])
+        with cols2[2]:
             submit_login = st.form_submit_button("Entrar")
         if submit_login and usuario.strip() and senha.strip():
             st.session_state.usuario = usuario
@@ -68,11 +68,15 @@ if "usuario" not in st.session_state:
     )
     #st.title("💬 O Pensador Desktop") 
 
-
-    if st.button("Login"):
-        Entrar()
-    if st.button("Sign Up"):
-        Cadastrar()
+    cols = st.columns([7, 1])
+    with cols[1]:
+        cols2 = st.columns([1, 1])
+        with cols2[0]:
+            if st.button("Login", key="login_button"):
+                Entrar()
+        with cols2[1]:
+            if st.button("Sign Up", key="signup_button"):
+                Cadastrar()
     
     #st.session_state.openai_api_key = st.text_input("Senha", type="password")
     #st.session_state.openai_api_entered = True
