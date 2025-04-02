@@ -10,14 +10,14 @@ def Carregando():
     porcentagem = 0
     cols = st.columns(3)
     with cols[1]:
-        my_bar = st.progress(porcentagem, text="Aprimorando plataforma...")
+        my_bar = st.progress(porcentagem, text="Iniciando plataforma...")
         tempo=1
-        sleep(1)
-        CarregandoInicio = ["Carregando Filósofos...","Carregando Artigos científicos...","Aprimorando inteligência...","Pronto!"]
+        sleep(2)
+        CarregandoInicio = ["Carregando Filósofos...","Carregando Artigos científicos...","Aprimorando inteligência...","Finalizando..."]
         for texto in CarregandoInicio:
             porcentagem += 25
             my_bar.progress(porcentagem, text=texto)
-            tempo+=0.25
+            tempo+=0.5
             sleep(tempo)
         my_bar.empty()
 
