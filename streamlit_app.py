@@ -4,6 +4,14 @@ import requests
 import warnings
 from PIL import Image
 
+if "usuario" not in st.session_state:
+    # Configuração inicial da página
+    st.set_page_config(page_title="O Pensador Desktop", layout="centered")
+else:
+    # Configuração inicial da página
+    st.set_page_config(page_title="O Pensador Desktop", layout="wide")
+
+
 def ativar_artigos():
     if st.session_state.marcar_artigos:
         st.session_state.marcar_pensadores = False
@@ -26,8 +34,6 @@ warnings.filterwarnings("ignore", message="missing ScriptRunContext")
 # via `st.secrets`, see https://docs.streamlit.io/develop/concepts/connections/secrets-management
 
 if "usuario" not in st.session_state:
-    # Configuração inicial da página
-    st.set_page_config(page_title="O Pensador Desktop", layout="centered")
     cols = st.columns(3)
     with cols[1]:
         image = Image.open("dados/exemplo/imagem.jpg")
