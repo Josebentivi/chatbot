@@ -220,6 +220,17 @@ elif st.session_state.openai_api_entered == True:
         st.subheader("Loja")
 
         cols = st.columns(3)
+        st.markdown(
+            """
+            <style>
+            div.stButton > button {
+                height: 150px;
+                min-height: 150px;
+            }
+            </style>
+            """,
+            unsafe_allow_html=True
+        )
 
         with cols[0]:
             if st.button('Você poderá realizar +40 interações com o chat e mais +10 Consultas nos Livros.',icon = "⚡", key="plan1", use_container_width=True):
