@@ -20,7 +20,6 @@ def Carregando():
             tempo+=0.5
             sleep(tempo)
         my_bar.empty()
-    st.rerun()
 
 
 @st.dialog("Entrar")
