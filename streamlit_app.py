@@ -3,6 +3,7 @@ import streamlit as st
 import requests
 import warnings
 from PIL import Image
+import time
 
 
 @st.dialog("Entrar")
@@ -68,6 +69,14 @@ st.set_page_config(page_title="O Pensador Desktop", layout="wide")
 if "usuario" not in st.session_state:
     cols = st.columns(3)
     with cols[1]:
+        
+        placeholder = st.empty()
+        placeholder.progress(0, "Wait for it...")
+        time.sleep(1)
+        placeholder.progress(50, "Wait for it...")
+        time.sleep(1)
+        placeholder.progress(100, "Wait for it...")
+        time.sleep(1)
         
         cols3 = st.columns(3)
         with cols3[1]:
@@ -272,7 +281,6 @@ elif st.session_state.usuario:
                 saida = str(response.status_code)+"\n\n"+str(response.text)
             # Stream the response to the chat using `st.write_stream`, then store it in 
             # session state.
-            
             st.session_state.messages.append({"role": "assistant", "content": saida})
             with st.chat_message("assistant"):
                 st.markdown(saida)
