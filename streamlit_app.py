@@ -52,6 +52,19 @@ st.set_page_config(page_title="O Pensador Desktop", layout="wide")
 # Alternatively, you can store the API key in `./.streamlit/secrets.toml` and access it
 # via `st.secrets`, see https://docs.streamlit.io/develop/concepts/connections/secrets-management
 
+
+
+cols = st.columns([5, 1])
+with cols[1]:
+    cols2 = st.columns([1, 1])
+    with cols2[0]:
+        if st.button("Login", key="login_button"):
+            Entrar()
+    with cols2[1]:
+        if st.button("Sign Up", key="signup_button"):
+            Cadastrar()
+
+
 if "usuario" not in st.session_state:
     cols = st.columns(3)
     with cols[1]:
@@ -67,16 +80,6 @@ if "usuario" not in st.session_state:
         unsafe_allow_html=True
     )
     #st.title("💬 O Pensador Desktop") 
-
-    cols = st.columns([7, 1])
-    with cols[1]:
-        cols2 = st.columns([1, 1])
-        with cols2[0]:
-            if st.button("Login", key="login_button"):
-                Entrar()
-        with cols2[1]:
-            if st.button("Sign Up", key="signup_button"):
-                Cadastrar()
     
     #st.session_state.openai_api_key = st.text_input("Senha", type="password")
     #st.session_state.openai_api_entered = True
