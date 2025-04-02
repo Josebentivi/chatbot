@@ -126,7 +126,7 @@ elif st.session_state.usuario:
     st.header("Sobre o que você gostaria de conversar hoje?")
 
     # Cria quatro colunas para os produtos
-    col = st.columns(6,vertical_alignment="top")
+    col = st.columns(8,vertical_alignment="top")
 
     with col[0]:
         # Define o texto que aparecerá ao passar o mouse
@@ -188,9 +188,9 @@ elif st.session_state.usuario:
         )
         if st.button("🗣 Mesa de discussão", use_container_width=True):
             st.session_state.product_page = "mesa_discussao"
-    
-    if st.button("Loja", use_container_width=True):
-        st.session_state.product_page = "loja"
+    with col[2]:
+        if st.button("Loja", use_container_width=True):
+            st.session_state.product_page = "loja"
     if st.session_state.product_page == "chat":
         #openai_api_key = st.session_state.openai_api_key
         if "messages" not in st.session_state:
