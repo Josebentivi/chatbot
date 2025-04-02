@@ -222,15 +222,15 @@ elif st.session_state.openai_api_entered == True:
         cols = st.columns(3)
 
         with cols[0]:
-            if st.button("⚡", key="plan1"):
+            if st.button('Você poderá realizar +40 interações com o chat e mais +10 Consultas nos Livros.',icon = "⚡", key="plan1", use_container_width=True):
                 st.success("Plano Básico selecionado")
 
         with cols[1]:
-            if st.button("🔥", key="plan2"):
+            if st.button("Você poderá realizar +30 Consultas nos Livros.",icon = "🔥", key="plan2", use_container_width=True):
                 st.success("Plano Intermediário selecionado")
 
         with cols[2]:
-            if st.button("💎", key="plan3"):
+            if st.button("Você poderá realizar +70 Consultas nos Livros.",icon = "💎", key="plan3", use_container_width=True):
                 st.success("Plano Premium selecionado")
 
         
