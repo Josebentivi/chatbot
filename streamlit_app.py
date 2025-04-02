@@ -248,4 +248,24 @@ elif st.session_state.openai_api_entered == True:
         with cols[2]:
             if st.button("💎", key="plan3"):
                 st.success("Plano Premium selecionado")
+
+        with st.container():
+            st.markdown(
+            """
+            <div id="loja-container">
+                <!-- Os botões já exibidos ficam dentro deste contêiner -->
+            </div>
+            <style>
+            /* Estiliza somente os botões dentro do contêiner "loja-container" */
+            #loja-container .stButton > button {
+                width: 100%;
+                height: 150px;
+                font-size: 48px;
+                border-radius: 10px;
+                border: 2px solid #007BFF;
+            }
+            </style>
+            """,
+            unsafe_allow_html=True
+            )
         
