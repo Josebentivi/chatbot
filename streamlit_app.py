@@ -6,7 +6,7 @@ from PIL import Image
 
 
 @st.dialog("Entrar")
-def Entrar(item):
+def Entrar():
     usuario = st.text_input("Usuário")
     senha = st.text_input("Senha", type="password")
     cols2 = st.columns(3)
@@ -17,7 +17,7 @@ def Entrar(item):
         st.session_state.senha = senha
 
 @st.dialog("Criar Usuário")
-def Cadastrar(item):
+def Cadastrar():
     with st.form("login_form"):
         usuario = st.text_input("Usuário")
         senha = st.text_input("Senha", type="password")
