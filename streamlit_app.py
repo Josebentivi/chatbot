@@ -44,12 +44,7 @@ def ativar_pensadores():
 # Suppress Streamlit's ScriptRunContext warning
 warnings.filterwarnings("ignore", message="missing ScriptRunContext")
 
-if "usuario" not in st.session_state:
-    # Configuração inicial da página
-    st.set_page_config(page_title="O Pensador Desktop", layout="centered")
-else:
-    # Configuração inicial da página
-    st.set_page_config(page_title="O Pensador Desktop", layout="wide")
+st.set_page_config(page_title="O Pensador Desktop", layout="wide")
 
 #st.write("ssssssss")
 
