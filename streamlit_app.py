@@ -238,7 +238,7 @@ elif st.session_state.usuario:
                     f"<span title='{info_text}' style='cursor: pointer;'>&#9432;</span>",
                     unsafe_allow_html=True
                 )
-        with opcoeschat[0]:
+        with opcoeschat[1]:
             # Cria duas colunas: a primeira para o checkbox e a segunda para o ícone de informação
             col_checkbox, col_info = st.columns([0.6, 0.4])
             # Cria o checkbox e o ícone de informação na mesma linha
