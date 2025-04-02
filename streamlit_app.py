@@ -83,7 +83,7 @@ st.set_page_config(page_title="O Pensador Desktop", layout="wide")
 
 if "carregado" not in st.session_state:
     Carregando()
-    t.session_state.carregado = True
+    st.session_state.carregado = True
 
 if "usuario" not in st.session_state:
     cols = st.columns(3)
