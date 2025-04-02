@@ -36,6 +36,7 @@ def Entrar():
         if submit_login and usuario.strip() and senha.strip():
             st.session_state.usuario = usuario
             st.session_state.senha = senha
+            st.session_state.carregado = False
             st.rerun(scope="app")
 
 @st.dialog("Criar Usuário")
@@ -112,13 +113,11 @@ if "usuario" not in st.session_state:
     
     #st.session_state.openai_api_key = st.text_input("Senha", type="password")
     #st.session_state.openai_api_entered = True
-elif "carregado" not in st.session_state:
-    st.header("")
-    Carregando()
-    st.session_state.carregado = True
-    st.rerun()
 
 elif st.session_state.usuario:
+    if not st.session_state.carregado:
+        Carregando()
+        st.session_state.carregado = True
     # Adiciona uma variável de controle para a página atual se ainda não existir
     if "product_page" not in st.session_state:
         st.session_state.product_page = "home"
