@@ -282,7 +282,7 @@ elif st.session_state.openai_api_entered == True:
         st.subheader("Lista de Pagamentos")
         # Exibe os pagamentos em linhas com três colunas: id, valor e status (botão)
         for payment in payments:
-            col_id, col_valor, col_status = st.columns([1, 1, 2], border=True)
+            col_id, col_valor, col_status = st.columns([1, 1, 1])
             with col_id:
                 st.write(payment["id"])
             with col_valor:
