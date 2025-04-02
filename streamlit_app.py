@@ -258,7 +258,8 @@ elif st.session_state.usuario:
                     f"<span title='{info_text}' style='cursor: pointer;'>&#9432;</span>",
                     unsafe_allow_html=True
                 )
-            
+        
+        with opcoeschat[2]:
             if "selected_thinker" not in st.session_state:
                 st.session_state.selected_thinker = None
             if st.session_state.marcar_artigos:
