@@ -79,10 +79,12 @@ if "usuario" not in st.session_state:
             """,
             unsafe_allow_html=True
         )
-        if st.button("Login", key="login_button"):
-            Entrar()
-        if st.button("Sign Up", key="signup_button"):
-            Cadastrar()
+        cols = st.columns(3)
+        with cols[2]:
+            if st.button("Login", key="login_button",use_container_width=True):
+                Entrar()
+            if st.button("Sign Up", key="signup_button",use_container_width=True):
+                Cadastrar()
 
     
     #st.title("💬 O Pensador Desktop") 
