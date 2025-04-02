@@ -13,7 +13,7 @@ def Carregando():
         my_bar = st.progress(porcentagem, text="Aprimorando plataforma...")
         tempo=1
         sleep(1)
-        CarregandoInicio = ["Carregando leis e jurisprudência...","Carregando doutrinas...","Finalizando melhoria...","Pronto!"]
+        CarregandoInicio = ["Carregando Filósofos...","Carregando Artigos científicos...","Aprimorando inteligência...","Pronto!"]
         for texto in CarregandoInicio:
             porcentagem += 25
             my_bar.progress(porcentagem, text=texto)
