@@ -122,8 +122,14 @@ elif st.session_state.usuario:
     # Adiciona uma variável de controle para a página atual se ainda não existir
     if "product_page" not in st.session_state:
         st.session_state.product_page = "home"
-
-    st.header("Olá 😊")
+    st.markdown(
+        """
+        <div style="text-align: center;">
+            <h1>Olá 😊</h1>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
     # Cria quatro colunas para os produtos
     col = st.columns(6,vertical_alignment="top")
