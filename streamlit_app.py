@@ -23,7 +23,8 @@ def Carregando(aceleracao=0.1):
             tempo+=aceleracao
             sleep(tempo)
         my_bar.empty()
-        st.rerun(scope="app")
+    st.session_state.carregado = True
+    st.rerun(scope="app")
 
 
 @st.dialog("Entrar")
@@ -210,7 +211,6 @@ elif st.session_state.usuario:
     if st.session_state.product_page == "chat":
         if not st.session_state.carregado:
             Carregando()
-            st.session_state.carregado = True
         #openai_api_key = st.session_state.openai_api_key
         if "messages" not in st.session_state:
             st.session_state.messages = []
