@@ -218,23 +218,6 @@ elif st.session_state.openai_api_entered == True:
 
     if st.session_state.product_page == "loja":
         st.subheader("Loja")
-        # Adiciona estilo customizado para que os botões fiquem quadrados e chamem atenção
-        st.markdown(
-            """
-            <style>
-            /* Aplica o estilo somente aos botões contidos no container com id "loja-buttons" */
-            #loja-buttons div.stButton > button {
-                width: 100%;
-                height: 400px;
-                font-size: 48px;
-                border-radius: 10px;
-                border: 2px solid #007BFF;
-            }
-            </style>
-            """,
-            unsafe_allow_html=True
-        )
-        st.markdown('<div id="loja-buttons">', unsafe_allow_html=True)
 
         cols = st.columns(3)
 
@@ -249,8 +232,5 @@ elif st.session_state.openai_api_entered == True:
         with cols[2]:
             if st.button("💎", key="plan3"):
                 st.success("Plano Premium selecionado")
-
-        # Lembre-se de fechar o container após os botões:
-        st.markdown('</div>', unsafe_allow_html=True)
 
         
