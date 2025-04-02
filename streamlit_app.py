@@ -80,7 +80,7 @@ if "usuario" not in st.session_state:
             unsafe_allow_html=True
         )
         cols = st.columns(3)
-        with cols[2]:
+        with cols[1]:
             if st.button("Login", key="login_button",use_container_width=True):
                 Entrar()
             if st.button("Sign Up", key="signup_button",use_container_width=True):
