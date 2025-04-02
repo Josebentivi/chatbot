@@ -5,6 +5,9 @@ import warnings
 from PIL import Image
 import time
 from time import sleep
+# Suppress Streamlit's ScriptRunContext warning
+warnings.filterwarnings("ignore", message="missing ScriptRunContext")
+st.set_page_config(page_title="O Pensador Desktop", layout="wide")
 
 def Carregando():
     porcentagem = 0
@@ -33,8 +36,7 @@ def Entrar():
         if submit_login and usuario.strip() and senha.strip():
             st.session_state.usuario = usuario
             st.session_state.senha = senha
-            if "usuario" in st.session_state:
-                st.rerun(scope="app")
+            st.rerun(scope="app")
 
 @st.dialog("Criar Usuário")
 def Cadastrar():
@@ -47,8 +49,7 @@ def Cadastrar():
         if submit_login and usuario.strip() and senha.strip():
             st.session_state.usuario = usuario
             st.session_state.senha = senha
-            if "usuario" in st.session_state:
-                st.rerun()
+            st.rerun(scope="app")
 
 def ativar_artigos():
     if st.session_state.marcar_artigos:
@@ -62,10 +63,6 @@ def ativar_pensadores():
         if st.session_state.selected_thinker is None:
             st.session_state.selected_thinker = "Sócrates"
 
-# Suppress Streamlit's ScriptRunContext warning
-warnings.filterwarnings("ignore", message="missing ScriptRunContext")
-
-st.set_page_config(page_title="O Pensador Desktop", layout="wide")
 
 #st.write("ssssssss")
 
