@@ -189,7 +189,7 @@ elif st.session_state.usuario:
     if st.button("Loja", use_container_width=True):
         st.session_state.product_page = "loja"
     if st.session_state.product_page == "chat":
-        openai_api_key = st.session_state.openai_api_key
+        #openai_api_key = st.session_state.openai_api_key
         if "messages" not in st.session_state:
             st.session_state.messages = []
     
@@ -216,32 +216,31 @@ elif st.session_state.usuario:
         #        )
         #
         #
-        #    marcarPensador = st.checkbox(
-        #        "Pensadores", 
-        #        value=False, 
-        #        key="marcar_pensadores", 
-        #        on_change=ativar_pensadores
-        #    )
+            marcarPensador = st.checkbox(
+                "Pensadores", 
+                value=False, 
+                key="marcar_pensadores", 
+                on_change=ativar_pensadores
+            )
             
-        #    if "selected_thinker" not in st.session_state:
-        #        st.session_state.selected_thinker = None
-
-        #    if st.session_state.marcar_artigos:
-        #        st.write("Modo 'Artigos Científicos' ativado.")
-        #    elif st.session_state.marcar_pensadores:
-        #        st.session_state.selected_thinker = st.selectbox(
-        #            "Selecione o pensador:",
-        #            options=["Sócrates", "Platão", "Aristóteles", "Descartes"],
-        #            index=["Sócrates", "Platão", "Aristóteles", "Descartes"].index(st.session_state.selected_thinker)
-        #        )
-        #        st.write("Modo 'Pensadores' ativado.")
-        #    else:
-        #        st.write("Nenhum modo ativo.")            
-        #        
-        #    if st.session_state.marcar_pensadores:
-        #        st.info("Artigos desativados", icon="⚠️")
-        #    if st.session_state.marcar_artigos:
-        #        st.info("Pensadores desativados", icon="⚠️")
+            if "selected_thinker" not in st.session_state:
+                st.session_state.selected_thinker = None
+            if st.session_state.marcar_artigos:
+                st.write("Modo 'Artigos Científicos' ativado.")
+            elif st.session_state.marcar_pensadores:
+                st.session_state.selected_thinker = st.selectbox(
+                    "Selecione o pensador:",
+                    options=["Sócrates", "Platão", "Aristóteles", "Descartes"],
+                    index=["Sócrates", "Platão", "Aristóteles", "Descartes"].index(st.session_state.selected_thinker)
+                )
+                st.write("Modo 'Pensadores' ativado.")
+            else:
+                st.write("Nenhum modo ativo.")            
+                
+            if st.session_state.marcar_pensadores:
+                st.info("Artigos desativados", icon="⚠️")
+            if st.session_state.marcar_artigos:
+                st.info("Pensadores desativados", icon="⚠️")
         
         # Create a session state variable to store the chat messages. This ensures that the
         # messages persist across reruns.
