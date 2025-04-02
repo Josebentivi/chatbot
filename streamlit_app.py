@@ -81,8 +81,11 @@ st.set_page_config(page_title="O Pensador Desktop", layout="wide")
 #        if st.button("Sign Up", key="signup_button"):
 #            Cadastrar()
 
+Carregando()
 if "usuario" not in st.session_state:
-        Carregando()
+    Carregando()
+    cols = st.columns(3)
+    with cols[1]:
         cols3 = st.columns(3)
         with cols3[1]:
             image = Image.open("dados/exemplo/imagem.jpg")
