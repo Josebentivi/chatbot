@@ -28,10 +28,17 @@ st.title("💬 O Pensador Desktop")
 # Alternatively, you can store the API key in `./.streamlit/secrets.toml` and access it
 # via `st.secrets`, see https://docs.streamlit.io/develop/concepts/connections/secrets-management
 
-if "openai_api_entered" not in st.session_state:
-    st.session_state.openai_api_key = st.text_input("Senha", type="password")
-    st.session_state.openai_api_entered = True
-elif st.session_state.openai_api_entered == True:
+if "usuario" not in st.session_state:
+    with st.form("login_form"):
+        usuario = st.text_input("Usuário")
+        senha = st.text_input("Senha", type="password")
+        submit_login = st.form_submit_button("Entrar")
+        if submit_login and usuario.strip() and senha.strip():
+            st.session_state.usuario = usuario
+            st.session_state.senha = senha
+    #st.session_state.openai_api_key = st.text_input("Senha", type="password")
+    #st.session_state.openai_api_entered = True
+elif st.session_state.usuario:
     # Adiciona uma variável de controle para a página atual se ainda não existir
     if "product_page" not in st.session_state:
         st.session_state.product_page = "home"
