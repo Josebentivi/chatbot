@@ -33,6 +33,8 @@ def Entrar():
         if submit_login and usuario.strip() and senha.strip():
             st.session_state.usuario = usuario
             st.session_state.senha = senha
+            if "usuario" in st.session_state:
+                st.rerun()
 
 @st.dialog("Criar Usuário")
 def Cadastrar():
@@ -45,6 +47,8 @@ def Cadastrar():
         if submit_login and usuario.strip() and senha.strip():
             st.session_state.usuario = usuario
             st.session_state.senha = senha
+            if "usuario" in st.session_state:
+                st.rerun()
 
 def ativar_artigos():
     if st.session_state.marcar_artigos:
@@ -102,12 +106,8 @@ if "usuario" not in st.session_state:
         with cols[1]:
             if st.button("Login", key="login_button",use_container_width=True):
                 Entrar()
-                if "usuario" in st.session_state:
-                    st.rerun()
             if st.button("Sign Up", key="signup_button",use_container_width=True):
                 Cadastrar()
-                if "usuario" in st.session_state:
-                    st.rerun()
         
 
     
