@@ -271,7 +271,7 @@ elif st.session_state.usuario:
                     }
             response = requests.post(url, json=data, timeout=5*60)
             if response.status_code == 200:  
-                saida = response.json()["saida"]
+                saida = response.json().get("saida")
             else:
                 saida = str(response.status_code)+"\n\n"+str(response.text)
             st.session_state.messages.append({"role": "assistant", "content": saida})
