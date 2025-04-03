@@ -276,7 +276,7 @@ elif st.session_state.usuario:
                 st.markdown(str(saida))
                 st.session_state.messages.append({"role": "assistant", "content": saida})
                 #st.write_stream(saida)
-            with st.chat_message("assistant"):
+            #with st.chat_message("assistant"):
                 #response = st.write_stream(saida)
                 #st.session_state.messages.append({"role": "assistant", "content": response})
 
