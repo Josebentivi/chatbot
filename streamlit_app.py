@@ -107,6 +107,11 @@ def ativar_pensadores():
 #        if st.button("Sign Up", key="signup_button"):
 #            Cadastrar() 
 
+if "product_page" in st.session_state and st.session_state.product_page != "home":
+    cols = st.columns(8)
+    with cols[0]:
+        if st.button("Menu", use_container_width=True):
+            st.session_state.product_page = "home"
 
 if "usuario" not in st.session_state:
     cols = st.columns(3)
@@ -397,7 +402,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
             response = requests.post(url, json=data, timeout=5*60)
 
             st.session_state.messages.append({"role": "assistant", "content": response})
-            
+
 elif st.session_state.usuario and st.session_state.product_page == "loja":
     st.subheader("Loja")
     cols = st.columns(3)
