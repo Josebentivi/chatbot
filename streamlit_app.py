@@ -289,7 +289,7 @@ elif st.session_state.usuario:
             # Cria o checkbox e o ícone de informação na mesma linha
             with col_checkbox:
                 marcarArtigos = st.checkbox(
-                    "Artigos Científicos", 
+                    "Artigos", 
                     value=False, 
                     key="marcar_artigos", 
                     on_change=ativar_artigos
