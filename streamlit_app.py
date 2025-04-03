@@ -285,7 +285,7 @@ elif st.session_state.usuario:
         # Cria o checkbox e o ícone de informação na mesma linha
         with col[0]:
             # Cria duas colunas: a primeira para o checkbox e a segunda para o ícone de informação
-            col_checkbox, col_info = st.columns([0.6, 0.4])
+            col_checkbox, col_info = st.columns([0.7, 0.3])
             # Cria o checkbox e o ícone de informação na mesma linha
             with col_checkbox:
                 marcarArtigos = st.checkbox(
@@ -304,7 +304,7 @@ elif st.session_state.usuario:
                 )
         with col[5]:
             # Cria duas colunas: a primeira para o checkbox e a segunda para o ícone de informação
-            col_checkbox, col_info = st.columns([0.6, 0.4])
+            col_checkbox, col_info = st.columns([0.7, 0.3])
             # Cria o checkbox e o ícone de informação na mesma linha
             with col_checkbox:
                 # Cria o checkbox para o modo "Pensadores" e o ícone de informação na mesma linha
