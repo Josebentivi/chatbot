@@ -17,10 +17,17 @@ def Carregando(aceleracao=0.1):
     cols = st.columns(3)
     with cols[1]:
         my_bar = st.progress(porcentagem, text="Iniciando plataforma...")
-        tempo=1
+        tempo=0
         sleep(2)
         CarregandoInicio = ["Carregando Filósofos...","Carregando Artigos científicos...","Aprimorando inteligência...","Finalizando..."]
         for texto in CarregandoInicio:
+            if CarregandoInicio == "Carregando Filósofos...":
+                url = "http://52.2.202.37/filosofo/chatstream/"
+                data = {"data":{"usuario": int(st.session_state.usuario),
+                        "mensagem": prompt["text"]}
+                        }
+                st.session_state.messages = requests.post(url, json=data, timeout=5*60)
+
             porcentagem += 25
             my_bar.progress(porcentagem, text=texto)
             tempo+=aceleracao
@@ -322,26 +329,28 @@ elif st.session_state.usuario:
             # Stream the response to the chat using `st.write_stream`, then store it in 
             # session state.
 
-            url = "http://52.2.202.37/filosofo/chat/"
-            data = {"data":{"usuario": int(st.session_state.usuario),
-                    "mensagem": prompt["text"]}
-                    }
-            response = requests.post(url, json=data, timeout=5*60)
-            if response.status_code == 200:  
-                saida = response.json().get("saida")
-            else:
-                saida = str(response.status_code)+"\n\n"+str(response)
+            #url = "http://52.2.202.37/filosofo/chat/"
+            #data = {"data":{"usuario": int(st.session_state.usuario),
+            #        "mensagem": prompt["text"]}
+            #        }
+            #response = requests.post(url, json=data, timeout=5*60)
+            #if response.status_code == 200:  
+            #    saida = response.json().get("saida")
+            #else:
+            #    saida = str(response.status_code)+"\n\n"+str(response)
             #with st.chat_message("assistant"):
             #    st.markdown(str(saida))
             #    st.session_state.messages.append({"role": "assistant", "content": saida})
+            
             with st.chat_message("assistant"):
+                st.session_state.messages.append({"role": "user", "content": prompt["text"]})
                 # Create an OpenAI client.
                 #client = OpenAI(api_key=openai_api_key)
                 client = OpenAI()
                 # Generate a response using the OpenAI API.
                 stream = client.chat.completions.create(
                 model=st.session_state.selected_model,
-                messages=saida,
+                messages=st.session_state.messages,
                 stream=True,
             )
                 response = st.write_stream(stream)
