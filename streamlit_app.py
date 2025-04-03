@@ -22,7 +22,7 @@ def Carregando(aceleracao=0.1):
         url = "http://52.2.202.37/filosofo/chatstream/"
         data = {"data":{"usuario": int(st.session_state.usuario)}
                 }
-        st.session_state.messages = requests.post(url, json=data, timeout=5*60).get("saida")
+        st.session_state.messages = requests.post(url, json=data, timeout=5*60).json().get("saida")
 
         porcentagem += 25
         my_bar.progress(porcentagem, text="Carregando Filósofos...")
