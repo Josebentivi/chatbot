@@ -272,13 +272,13 @@ elif st.session_state.usuario:
                 saida = response.json().get("saida")
             else:
                 saida = str(response.status_code)+"\n\n"+str(response)
-            #with st.chat_message("assistant"):
-                #st.markdown(saida)
-                #st.session_state.messages.append({"role": "assistant", "content": saida})
+            with st.chat_message("assistant"):
+                st.markdown(str(saida))
+                st.session_state.messages.append({"role": "assistant", "content": saida})
                 #st.write_stream(saida)
             with st.chat_message("assistant"):
-                response = st.write_stream(saida)
-                st.session_state.messages.append({"role": "assistant", "content": response})
+                #response = st.write_stream(saida)
+                #st.session_state.messages.append({"role": "assistant", "content": response})
 
         # Menu do chat
         opcoeschat = st.columns(5, vertical_alignment="center")
