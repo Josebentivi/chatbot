@@ -250,7 +250,7 @@ elif st.session_state.usuario:
             # Stream the response to the chat using `st.write_stream`, then store it in 
             # session state.
 
-            url = "http://52.2.202.37/filosofo/chat/"
+            url = "http://52.2.202.37/filosofo/chatstream/"
             data = {"data":{"usuario": int(st.session_state.usuario),
                     "mensagem": prompt["text"]}
                     }
