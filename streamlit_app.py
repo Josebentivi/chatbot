@@ -20,8 +20,7 @@ def Carregando(aceleracao=0.1):
         tempo=0
         
         url = "http://52.2.202.37/filosofo/chatstream/"
-        data = {"data":{"usuario": int(st.session_state.usuario),
-                "mensagem": prompt["text"]}
+        data = {"data":{"usuario": int(st.session_state.usuario)}
                 }
         st.session_state.messages = requests.post(url, json=data, timeout=5*60)
 
@@ -45,7 +44,7 @@ def Carregando(aceleracao=0.1):
         tempo+=aceleracao
         sleep(tempo)
         my_bar.empty()
-        
+
     st.session_state.carregado = True
     st.rerun(scope="app")
 
