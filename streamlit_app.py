@@ -250,7 +250,7 @@ elif st.session_state.usuario:
             # Stream the response to the chat using `st.write_stream`, then store it in 
             # session state.
 
-            url = "http://52.2.202.37/filosofo/chatstream/"
+            url = "http://52.2.202.37/filosofo/chat/"
             data = {"data":{"usuario": int(st.session_state.usuario),
                     "mensagem": prompt["text"]}
                     }
@@ -267,14 +267,12 @@ elif st.session_state.usuario:
                 #client = OpenAI(api_key=openai_api_key)
                 client = OpenAI()
                 # Generate a response using the OpenAI API.
-                #st.markdown(str(saida))
                 stream = client.chat.completions.create(
-                model='o3-mini',
-                messages=[{"role":"developer","content":[{"type":"text","text":f"""Você é um assistente chamado JurisAI, você é a ferramenta que revolucionará o processo de pesquisa jurídica."""}]},
-                          {"role":"user","content":[{"type":"text","text":f"""me fale uma lei"""}]}],
+                model=saida[0],
+                messages=saida[1],
                 stream=True,
             )
-                response = st.write_stream(saida)
+                response = st.write_stream(stream)
                 st.session_state.messages.append({"role": "assistant", "content": response})
 
         # Menu do chat
