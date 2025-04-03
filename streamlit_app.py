@@ -267,6 +267,7 @@ elif st.session_state.usuario:
                 #client = OpenAI(api_key=openai_api_key)
                 client = OpenAI()
                 # Generate a response using the OpenAI API.
+                st.markdown(str(saida))
                 stream = client.chat.completions.create(
                 model=saida[0],
                 messages=saida[1],
