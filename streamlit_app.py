@@ -1,5 +1,5 @@
 import streamlit as st
-#from openai import OpenAI
+from openai import OpenAI
 import requests
 import warnings
 from PIL import Image
@@ -214,10 +214,6 @@ elif st.session_state.usuario:
         #openai_api_key = st.session_state.openai_api_key
         if "messages" not in st.session_state:
             st.session_state.messages = []
-    
-        # Create an OpenAI client.
-        #client = OpenAI(api_key=openai_api_key)
-        #    st.subheader("Ferramentas")
         
         
         # Create a session state variable to store the chat messages. This ensures that the
@@ -237,23 +233,6 @@ elif st.session_state.usuario:
                 st.markdown(prompt["text"])
 
             
-            # Generate a response using the OpenAI API.
-            #stream = client.chat.completions.create(
-            #    model="gpt-3.5-turbo",
-            #    messages=[
-            #        {"role": m["role"], "content": m["content"]}
-            #        for m in st.session_state.messages
-            #    ],
-            #    stream=True,
-            #)
-
-            # Stream the response to the chat using `st.write_stream`, then store it in 
-            # session state.
-
-            # Chamada à API (substitua a URL pelo endpoint real) 
-            
-            # Stream the response to the chat using `st.write_stream`, then store it in 
-            # session state.
             with st.status("Processando..."):
                 time.sleep(0.5)
                 st.write("Pesquisando informação...")
@@ -262,6 +241,14 @@ elif st.session_state.usuario:
                 time.sleep(0.5)
                 st.write("Finalizando...")
                 time.sleep(0.5)
+
+            # Stream the response to the chat using `st.write_stream`, then store it in 
+            # session state.
+
+            # Chamada à API (substitua a URL pelo endpoint real) 
+            
+            # Stream the response to the chat using `st.write_stream`, then store it in 
+            # session state.
 
             url = "http://52.2.202.37/filosofo/chat/"
             data = {"data":{"usuario": int(st.session_state.usuario),
@@ -272,13 +259,21 @@ elif st.session_state.usuario:
                 saida = response.json().get("saida")
             else:
                 saida = str(response.status_code)+"\n\n"+str(response)
-            with st.chat_message("assistant"):
-                st.markdown(str(saida))
-                st.session_state.messages.append({"role": "assistant", "content": saida})
-                #st.write_stream(saida)
             #with st.chat_message("assistant"):
-                #response = st.write_stream(saida)
-                #st.session_state.messages.append({"role": "assistant", "content": response})
+            #    st.markdown(str(saida))
+            #    st.session_state.messages.append({"role": "assistant", "content": saida})
+            with st.chat_message("assistant"):
+                # Create an OpenAI client.
+                #client = OpenAI(api_key=openai_api_key)
+                client = OpenAI()
+                # Generate a response using the OpenAI API.
+                stream = client.chat.completions.create(
+                model=saida[0],
+                messages=saida[1],
+                stream=True,
+            )
+                response = st.write_stream(saida)
+                st.session_state.messages.append({"role": "assistant", "content": response})
 
         # Menu do chat
         #opcoeschat = st.columns(5, vertical_alignment="center")
