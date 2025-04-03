@@ -326,27 +326,33 @@ elif st.session_state.usuario:
             data = {"data":{"usuario": int(st.session_state.usuario),
                     "mensagem": prompt["text"]}
                     }
-            #response = requests.post(url, json=data, timeout=5*60)
-            #if response.status_code == 200:  
-            #    saida = response.json().get("saida")
-            #else:
-            #    saida = str(response.status_code)+"\n\n"+str(response)
+            response = requests.post(url, json=data, timeout=5*60)
+            if response.status_code == 200:  
+                saida = response.json().get("saida")
+            else:
+                saida = str(response.status_code)+"\n\n"+str(response)
             #with st.chat_message("assistant"):
             #    st.markdown(str(saida))
             #    st.session_state.messages.append({"role": "assistant", "content": saida})
             with st.chat_message("assistant"):
                 # Create an OpenAI client.
                 #client = OpenAI(api_key=openai_api_key)
-                #client = OpenAI()
+                client = OpenAI()
                 # Generate a response using the OpenAI API.
-                #stream = client.chat.completions.create(
-                #model=st.session_state.selected_model,
-                #messages=saida,
-                #stream=True,
-            #)
-                with requests.post(url, json=data, timeout=5*60, stream=True) as resposta:
-                    response = st.write_stream(resposta.get('saida'))
-                    st.session_state.messages.append({"role": "assistant", "content": response})
+                stream = client.chat.completions.create(
+                model=st.session_state.selected_model,
+                messages=saida,
+                stream=True,
+            )
+                response = st.write_stream(stream)
+
+                url = "http://52.2.202.37/filosofo/chat/adicionar/resposta/"
+                data = {"data":{"usuario": int(st.session_state.usuario),
+                        "mensagem": response}
+                        }
+                response = requests.post(url, json=data, timeout=5*60)
+
+                st.session_state.messages.append({"role": "assistant", "content": response})
         
 
     if st.session_state.product_page == "loja":
