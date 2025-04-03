@@ -325,7 +325,7 @@ elif st.session_state.usuario:
                     st.markdown(message["content"])
             else:
                 with st.chat_message(message["role"]):
-                    st.markdown(message)
+                    st.markdown(message["content"])
                     #st.markdown(message["content"][0].get("text"))
         # Create a chat input field to allow the user to enter a message. This will display
         # automatically at the bottom of the page.
