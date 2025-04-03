@@ -343,7 +343,7 @@ elif st.session_state.usuario:
             #    st.session_state.messages.append({"role": "assistant", "content": saida})
             
             with st.chat_message("assistant"):
-                st.session_state.messages.append({"user": "user", "content": str(st.session_state.messages)})
+                st.write(str(st.session_state.messages))
                 st.session_state.messages.append({"role": "user", "content": prompt["text"]})
                 # Create an OpenAI client.
                 #client = OpenAI(api_key=openai_api_key)
