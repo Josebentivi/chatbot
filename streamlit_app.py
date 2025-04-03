@@ -256,11 +256,20 @@ elif st.session_state.usuario:
             
             if "selected_model" not in st.session_state:
                 st.session_state.selected_model = "gpt-4o-mini"
-            st.session_state.selected_model = st.selectbox(
+            
+            model_keys = ["gpt-4o-mini", "gpt-4o", "o3-mini"]
+            model_names = {
+                "gpt-4o-mini": "Gpt-4o-mini: Resposta rápida para tarefas leves.",
+                "gpt-4o": "Gpt-4o:",
+                "o3-mini": "O3-mini: Modelo de pensamento para tarefas mais complexas"
+            }
+            selected = st.selectbox(
                 "Motor do chat:",
-                options=["Gpt-4o-mini: Resposta rápida para tarefas leves.", "Gpt-4o:", "O3-mini: Modelo de pensamento para tarefas mais complexas"],
-                index=["gpt-4o-mini", "gpt-4o", "o3-mini"].index(st.session_state.selected_model)
+                options=model_keys,
+                index=model_keys.index(st.session_state.selected_model),
+                format_func=lambda key: model_names[key]
             )
+            st.session_state.selected_model = selected
         
         with col[6]:
             #if st.session_state.marcar_artigos:
