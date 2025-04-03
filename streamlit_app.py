@@ -264,7 +264,7 @@ elif st.session_state.usuario:
                 time.sleep(1)
                 st.write("Finalizando...")
                 time.sleep(1)
-                
+
             url = "http://52.2.202.37/filosofo/chat/"
             data = {"usuario": st.session_state.usuario,
                     "mensagem": prompt["text"]
@@ -274,10 +274,9 @@ elif st.session_state.usuario:
                 saida = response.json()["saida"]
             else:
                 saida = str(response.status_code)+"\n\n"+str(response.text)
-            st.session_state.messages.append({"role": "assistant", "content": "Certo"})
+            st.session_state.messages.append({"role": "assistant", "content": saida})
             with st.chat_message("assistant"):
-                st.markdown("Certo")
-                #st.markdown(saida)
+                st.markdown(saida)
                 #st.write_stream(saida)
 
         # Menu do chat
