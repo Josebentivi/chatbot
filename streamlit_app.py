@@ -132,7 +132,7 @@ elif st.session_state.usuario:
     )
 
     # Cria quatro colunas para os produtos
-    col = st.columns([1,1,1,1,1,1,1],vertical_alignment="center")
+    col = st.columns([1,1,1,1,1,2],vertical_alignment="center")
 
     with col[2]:
         if st.button("💬 Chat", use_container_width=True):
@@ -253,26 +253,26 @@ elif st.session_state.usuario:
                 )
         
         with col[5]:
-            
-            if "selected_model" not in st.session_state or st.session_state.selected_model not in ["gpt-4o-mini", "gpt-4o", "o3-mini"]:
-                st.session_state.selected_model = "gpt-4o-mini"
-            
-            
-            model_keys = ["gpt-4o-mini", "gpt-4o", "o3-mini"]
-            model_names = {
-                "gpt-4o-mini": "Gpt-4o-mini: Resposta rápida para tarefas leves.",
-                "gpt-4o": "Gpt-4o:",
-                "o3-mini": "O3-mini: Modelo de pensamento para tarefas mais complexas"
-            }
-            selected = st.selectbox(
-                "Motor do chat:",
-                options=model_keys,
-                index=model_keys.index(st.session_state.selected_model),
-                format_func=lambda key: model_names[key]
-            )
-            st.session_state.selected_model = selected
+            if not st.session_state.marcar_pensadores and not st.session_state.marcar_artigos:
+                if "selected_model" not in st.session_state or st.session_state.selected_model not in ["gpt-4o-mini", "gpt-4o", "o3-mini"]:
+                    st.session_state.selected_model = "gpt-4o-mini"
+                
+                
+                model_keys = ["gpt-4o-mini", "gpt-4o", "o3-mini"]
+                model_names = {
+                    "gpt-4o-mini": "Gpt-4o-mini: Resposta rápida para tarefas leves.",
+                    "gpt-4o": "Gpt-4o:",
+                    "o3-mini": "O3-mini: Modelo de pensamento para tarefas mais complexas"
+                }
+                selected = st.selectbox(
+                    "Motor do chat:",
+                    options=model_keys,
+                    index=model_keys.index(st.session_state.selected_model),
+                    format_func=lambda key: model_names[key]
+                )
+                st.session_state.selected_model = selected
         
-        with col[6]:
+        with col[5]:
             #if st.session_state.marcar_artigos:
             #    st.write("Artigos ativado.")
             if st.session_state.marcar_pensadores:
