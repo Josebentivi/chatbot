@@ -273,7 +273,7 @@ elif st.session_state.usuario:
             if response.status_code == 200:  
                 saida = response.json().get("saida")
             else:
-                saida = str(response.status_code)+"\n\n"+str(response.text)
+                saida = str(response.status_code)+"\n\n"+str(response.text)+"\n\n"+str(response.detail)
             st.session_state.messages.append({"role": "assistant", "content": saida})
             with st.chat_message("assistant"):
                 st.markdown(saida)
