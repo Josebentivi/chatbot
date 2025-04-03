@@ -19,7 +19,7 @@ def Carregando(aceleracao=0.1):
         my_bar = st.progress(porcentagem, text="Iniciando plataforma...")
         tempo=0
         
-        url = "http://52.2.202.37/filosofo/chatstream/"
+        url = "http://52.2.202.37/filosofo/retornarconversa/"
         data = {"data":{"usuario": int(st.session_state.usuario)}
                 }
         st.session_state.messages = requests.post(url, json=data, timeout=5*60).json().get("saida")
@@ -231,6 +231,7 @@ elif st.session_state.usuario:
         # Menu do chat
         #opcoeschat = st.columns(5, vertical_alignment="center")
         # Cria o checkbox e o ícone de informação na mesma linha
+        col = st.columns([1, 1, 1, 1, 1, 2], vertical_alignment="center")
         with col[0]:
             # Cria duas colunas: a primeira para o checkbox e a segunda para o ícone de informação
             col_checkbox, col_info = st.columns([0.7, 0.3])
@@ -270,7 +271,14 @@ elif st.session_state.usuario:
                     f"<span title='{info_text}' style='cursor: pointer;'>&#9432;</span>",
                     unsafe_allow_html=True
                 )
-        
+        with col[2]:
+            if st.button("Limpar Chat", use_container_width=True):
+                url = "http://52.2.202.37/filosofo/recomecarconversa/"
+                data = {"data":{"usuario": int(st.session_state.usuario)}
+                        }
+                requests.post(url, json=data, timeout=5*60).json().get("saida")
+
+                st.session_state.messages = []
         with col[5]:
             if not st.session_state.marcar_pensadores and not st.session_state.marcar_artigos:
                 if "selected_model" not in st.session_state or st.session_state.selected_model not in ["gpt-4o-mini", "gpt-4o", "o3-mini"]:
