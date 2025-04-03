@@ -132,7 +132,7 @@ elif st.session_state.usuario:
     )
 
     # Cria quatro colunas para os produtos
-    col = st.columns([1,1,1,1,1,2],vertical_alignment="top")
+    col = st.columns([1,1,1,1,1,2],vertical_alignment="center")
 
     with col[2]:
         if st.button("💬 Chat", use_container_width=True):
