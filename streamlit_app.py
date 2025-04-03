@@ -317,7 +317,7 @@ elif st.session_state.usuario:
                     st.markdown(message["content"])
             else:
                 with st.chat_message(message["role"]):
-                    st.markdown(message["content"].get("text"))
+                    st.markdown(message["content"].json().get("text"))
         # Create a chat input field to allow the user to enter a message. This will display
         # automatically at the bottom of the page.
         if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=True,file_type=["jpg", "jpeg", "png","pdf","mp3"],):
