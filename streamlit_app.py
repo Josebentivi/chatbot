@@ -344,7 +344,7 @@ elif st.session_state.usuario:
                 #messages=saida,
                 #stream=True,
             #)
-                with requests.post(url, json=data, timeout=5*60, stream=True) as resposta:
+                with requests.post(url, json=data, timeout=5*60, stream=True).get('saida') as resposta:
                     response = st.write_stream(resposta)
                     st.session_state.messages.append({"role": "assistant", "content": response})
         
