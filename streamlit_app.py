@@ -270,7 +270,8 @@ elif st.session_state.usuario:
                 #st.markdown(str(saida))
                 stream = client.chat.completions.create(
                 model='o3-mini',
-                messages=[{"role":"developer","content":[{"type":"text","text":f"""Você é um assistente chamado JurisAI, você é a ferramenta que revolucionará o processo de pesquisa jurídica."""},],},{"role":"user","content":[{"type":"text","text":f"""me fale uma lei"""},],}]
+                messages=[{"role":"developer","content":[{"type":"text","text":f"""Você é um assistente chamado JurisAI, você é a ferramenta que revolucionará o processo de pesquisa jurídica."""}]},
+                          {"role":"user","content":[{"type":"text","text":f"""me fale uma lei"""}]}],
                 stream=True,
             )
                 response = st.write_stream(saida)
