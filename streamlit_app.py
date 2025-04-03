@@ -132,7 +132,7 @@ elif st.session_state.usuario:
     )
 
     # Cria quatro colunas para os produtos
-    col = st.columns(7,vertical_alignment="top")
+    col = st.columns([1,1,1,1,1,2],vertical_alignment="top")
 
     with col[2]:
         if st.button("💬 Chat", use_container_width=True):
@@ -281,7 +281,7 @@ elif st.session_state.usuario:
                 #st.session_state.messages.append({"role": "assistant", "content": response})
 
         # Menu do chat
-        opcoeschat = st.columns(5, vertical_alignment="center")
+        #opcoeschat = st.columns(5, vertical_alignment="center")
         # Cria o checkbox e o ícone de informação na mesma linha
         with col[0]:
             # Cria duas colunas: a primeira para o checkbox e a segunda para o ícone de informação
@@ -324,10 +324,8 @@ elif st.session_state.usuario:
                 )
         
         with col[5]:
-            if st.session_state.marcar_artigos:
-                st.write("Artigos ativado.")
-                
-        with col[6]:
+            #if st.session_state.marcar_artigos:
+            #    st.write("Artigos ativado.")
             if st.session_state.marcar_pensadores:
                 st.session_state.selected_thinker = st.selectbox(
                     "Selecione o pensador:",
