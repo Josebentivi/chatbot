@@ -19,17 +19,34 @@ def Carregando(aceleracao=0.1):
         my_bar = st.progress(porcentagem, text="Iniciando plataforma...")
         tempo=0
         sleep(2)
-        CarregandoInicio = ["Carregando Filósofos...","Carregando Artigos científicos...","Aprimorando inteligência...","Finalizando..."]
-        for texto in CarregandoInicio:
-            if CarregandoInicio == "Carregando Filósofos...":
-                url = "http://52.2.202.37/filosofo/chatstream/"
-                data = {"data":{"usuario": int(st.session_state.usuario),
-                        "mensagem": prompt["text"]}
-                        }
-                st.session_state.messages = requests.post(url, json=data, timeout=5*60)
+        Carregando = ["Carregando Filósofos...","Carregando Artigos científicos...","Aprimorando inteligência...","Finalizando..."]
+        with Carregando[0] as CarregandoInicio:
+            url = "http://52.2.202.37/filosofo/chatstream/"
+            data = {"data":{"usuario": int(st.session_state.usuario),
+                    "mensagem": prompt["text"]}
+                    }
+            st.session_state.messages = requests.post(url, json=data, timeout=5*60)
 
             porcentagem += 25
-            my_bar.progress(porcentagem, text=texto)
+            my_bar.progress(porcentagem, text=CarregandoInicio)
+            tempo+=aceleracao
+            sleep(tempo)
+        
+        with Carregando[1] as CarregandoInicio:
+            porcentagem += 25
+            my_bar.progress(porcentagem, text=CarregandoInicio)
+            tempo+=aceleracao
+            sleep(tempo)
+        
+        with Carregando[2] as CarregandoInicio:
+            porcentagem += 25
+            my_bar.progress(porcentagem, text=CarregandoInicio)
+            tempo+=aceleracao
+            sleep(tempo)
+        
+        with Carregando[3] as CarregandoInicio:
+            porcentagem += 25
+            my_bar.progress(porcentagem, text=CarregandoInicio)
             tempo+=aceleracao
             sleep(tempo)
         my_bar.empty()
@@ -300,8 +317,12 @@ elif st.session_state.usuario:
 
         # Display the existing chat messages via `st.chat_message`.
         for message in st.session_state.messages:
-            with st.chat_message(message["role"]):
-                st.markdown(message["content"])
+            if message["role"] == "developer":
+                with st.chat_message("assistant"):
+                    st.markdown(message["content"])
+            else:
+                with st.chat_message(message["role"]):
+                    st.markdown(message["content"])
         # Create a chat input field to allow the user to enter a message. This will display
         # automatically at the bottom of the page.
         if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=True,file_type=["jpg", "jpeg", "png","pdf","mp3"],):
