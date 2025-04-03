@@ -253,33 +253,27 @@ elif st.session_state.usuario:
             #    response = st.write_stream(stream)
 
             # Chamada à API (substitua a URL pelo endpoint real) 
-            url = "http://52.2.202.37/noticias/"
-            data = {"cliente": "string",
-                    "pesquisa": prompt["text"],
-                    "area": ""
-                    }
-            
-            #data = {"cliente": "string",
-            #        "produto": "string",
-            #        }
-
-            #response = requests.post(url, json=data, timeout=5*60)
-            #if response.status_code == 200:  
-            #    saida = response.json()["saida"]
-            #    erro = response.json()["erro"]
-            #else:  
-            #    saida = str(response.status_code)+"\n\n"+str(response.text)
-            
             
             # Stream the response to the chat using `st.write_stream`, then store it in 
             # session state.
-            with st.status("Downloading data..."):
-                st.write("Searching for data...")
-                time.sleep(2)
-                st.write("Found URL.")
+            with st.status("Processando..."):
                 time.sleep(1)
-                st.write("Downloading data...")
+                st.write("Pesquisando informação...")
                 time.sleep(1)
+                st.write("Aprimorando resposta...")
+                time.sleep(1)
+                st.write("Finalizando...")
+                time.sleep(1)
+                
+            url = "http://52.2.202.37/filosofo/chat/"
+            data = {"usuario": st.session_state.usuario,
+                    "mensagem": prompt["text"]
+                    }
+            response = requests.post(url, json=data, timeout=5*60)
+            if response.status_code == 200:  
+                saida = response.json()["saida"]
+            else:
+                saida = str(response.status_code)+"\n\n"+str(response.text)
             st.session_state.messages.append({"role": "assistant", "content": "Certo"})
             with st.chat_message("assistant"):
                 st.markdown("Certo")
