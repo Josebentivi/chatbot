@@ -293,14 +293,14 @@ elif st.session_state.usuario:
                 st.markdown(prompt["text"])
 
             
-            with st.status("Processando..."):
-                time.sleep(0.5)
-                st.write("Pesquisando informação...")
-                time.sleep(0.5)
-                st.write("Aprimorando resposta...")
-                time.sleep(0.5)
-                st.write("Finalizando...")
-                time.sleep(0.5)
+            #with st.status("Processando..."):
+            #    time.sleep(0.5)
+            #    st.write("Pesquisando informação...")
+            #    time.sleep(0.5)
+            #    st.write("Aprimorando resposta...")
+            #    time.sleep(0.5)
+            #    st.write("Finalizando...")
+            #    time.sleep(0.5)
 
             # Stream the response to the chat using `st.write_stream`, then store it in 
             # session state.
