@@ -302,7 +302,7 @@ elif st.session_state.usuario:
                     f"<span title='{info_text}' style='cursor: pointer;'>&#9432;</span>",
                     unsafe_allow_html=True
                 )
-        with col[1]:
+        with col[5]:
             # Cria duas colunas: a primeira para o checkbox e a segunda para o ícone de informação
             col_checkbox, col_info = st.columns([0.6, 0.4])
             # Cria o checkbox e o ícone de informação na mesma linha
@@ -323,10 +323,12 @@ elif st.session_state.usuario:
                     unsafe_allow_html=True
                 )
         
-        with opcoeschat[2]:
+        with col[2]:
             if st.session_state.marcar_artigos:
                 st.write("Artigos ativado.")
-            elif st.session_state.marcar_pensadores:
+                
+        with col[6]:
+            if st.session_state.marcar_pensadores:
                 st.session_state.selected_thinker = st.selectbox(
                     "Selecione o pensador:",
                     options=["Sócrates", "Platão", "Aristóteles", "Descartes"],
