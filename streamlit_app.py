@@ -249,21 +249,19 @@ elif st.session_state.usuario:
 
             # Stream the response to the chat using `st.write_stream`, then store it in 
             # session state.
-            #with st.chat_message("assistant"):
-            #    response = st.write_stream(stream)
 
             # Chamada à API (substitua a URL pelo endpoint real) 
             
             # Stream the response to the chat using `st.write_stream`, then store it in 
             # session state.
             with st.status("Processando..."):
-                time.sleep(1)
+                time.sleep(0.5)
                 st.write("Pesquisando informação...")
-                time.sleep(1)
+                time.sleep(0.5)
                 st.write("Aprimorando resposta...")
-                time.sleep(1)
+                time.sleep(0.5)
                 st.write("Finalizando...")
-                time.sleep(1)
+                time.sleep(0.5)
 
             url = "http://52.2.202.37/filosofo/chat/"
             data = {"data":{"usuario": int(st.session_state.usuario),
@@ -278,6 +276,8 @@ elif st.session_state.usuario:
             with st.chat_message("assistant"):
                 st.markdown(saida)
                 #st.write_stream(saida)
+            with st.chat_message("assistant"):
+                response = st.write_stream(saida)
 
         # Menu do chat
         opcoeschat = st.columns(5, vertical_alignment="center")
