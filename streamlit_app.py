@@ -23,7 +23,7 @@ def Carregando(aceleracao=0.1):
         data = {"data":{"usuario": int(st.session_state.usuario)}
                 }
         st.session_state.messages = requests.post(url, json=data, timeout=5*60).json().get("saida")
-
+        st.markdown(str(st.session_state.messages))
         porcentagem += 25
         my_bar.progress(porcentagem, text="Carregando Filósofos...")
         tempo+=aceleracao
