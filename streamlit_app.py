@@ -11,6 +11,8 @@ st.set_page_config(page_title="O Pensador Desktop", layout="wide")
 
 if "selected_thinker" not in st.session_state:
     st.session_state.selected_thinker = None
+if "selected_model" not in st.session_state:
+    st.session_state.selected_model = None
 
 def Carregando(aceleracao=0.1):
     porcentagem = 0
@@ -253,12 +255,13 @@ elif st.session_state.usuario:
                 )
         
         with col[5]:
+            st.session_state.selected_model = True
             st.session_state.selected_model = st.selectbox(
                 "Motor do chat:",
                 options=["Gpt-4o-mini: Resposta rápida para tarefas leves.", "Gpt-4o:", "O3-mini: Modelo de pensamento para tarefas mais complexas"],
                 index=["gpt-4o-mini", "gpt-4o", "o3-mini"].index(st.session_state.selected_model)
             )
-            st.session_state.selected_model = "Gpt-4o-mini: Resposta rápida para tarefas leves."
+            st.session_state.selected_model = "gpt-4o-mini"
         
         with col[6]:
             #if st.session_state.marcar_artigos:
