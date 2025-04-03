@@ -323,7 +323,7 @@ elif st.session_state.usuario:
                     unsafe_allow_html=True
                 )
         
-        with col[2]:
+        with col[1]:
             if st.session_state.marcar_artigos:
                 st.write("Artigos ativado.")
                 
