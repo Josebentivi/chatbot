@@ -266,8 +266,8 @@ elif st.session_state.usuario:
                 time.sleep(1)
 
             url = "http://52.2.202.37/filosofo/chat/"
-            data = {"usuario": st.session_state.usuario,
-                    "mensagem": prompt["text"]
+            data = {"data":{"usuario": st.session_state.usuario,
+                    "mensagem": prompt["text"]}
                     }
             response = requests.post(url, json=data, timeout=5*60)
             if response.status_code == 200:  
