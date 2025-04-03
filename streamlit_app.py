@@ -141,14 +141,14 @@ elif st.session_state.usuario:
     # Adiciona uma variável de controle para a página atual se ainda não existir
     if "product_page" not in st.session_state:
         st.session_state.product_page = "home"
-    st.markdown(
-        """
-        <div style="text-align: center;">
-            <h1>Olá 😊</h1>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    #st.markdown(
+    #    """
+    #    <div style="text-align: center;">
+    #        <h1>Olá 😊</h1>
+    #    </div>
+    #    """,
+    #    unsafe_allow_html=True
+    #)
 
     # Cria quatro colunas para os produtos
     col = st.columns([1,1,1,1,1,2],vertical_alignment="center")
@@ -328,6 +328,15 @@ elif st.session_state.usuario:
                     with st.chat_message(message["role"]):
                         st.markdown(message["content"])
                         #st.markdown(message["content"][0].get("text"))
+        else:
+            st.markdown(
+                """
+                <div style="text-align: center;">
+                    <h1>Olá! Como posso ajudar?</h1>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
         # Create a chat input field to allow the user to enter a message. This will display
         # automatically at the bottom of the page.
         if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=True,file_type=["jpg", "jpeg", "png","pdf","mp3"],):
