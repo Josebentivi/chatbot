@@ -19,8 +19,8 @@ def Carregando(aceleracao=0.1):
         my_bar = st.progress(porcentagem, text="Iniciando plataforma...")
         tempo=0
         sleep(2)
-        Carregando = ["Carregando Filósofos...","Carregando Artigos científicos...","Aprimorando inteligência...","Finalizando..."]
-        with Carregando[0] as CarregandoInicio:
+        carregando = ["Carregando Filósofos...","Carregando Artigos científicos...","Aprimorando inteligência...","Finalizando..."]
+        with carregando[0] as CarregandoInicio:
             url = "http://52.2.202.37/filosofo/chatstream/"
             data = {"data":{"usuario": int(st.session_state.usuario),
                     "mensagem": prompt["text"]}
@@ -32,19 +32,19 @@ def Carregando(aceleracao=0.1):
             tempo+=aceleracao
             sleep(tempo)
         
-        with Carregando[1] as CarregandoInicio:
+        with carregando[1] as CarregandoInicio:
             porcentagem += 25
             my_bar.progress(porcentagem, text=CarregandoInicio)
             tempo+=aceleracao
             sleep(tempo)
         
-        with Carregando[2] as CarregandoInicio:
+        with carregando[2] as CarregandoInicio:
             porcentagem += 25
             my_bar.progress(porcentagem, text=CarregandoInicio)
             tempo+=aceleracao
             sleep(tempo)
         
-        with Carregando[3] as CarregandoInicio:
+        with carregando[3] as CarregandoInicio:
             porcentagem += 25
             my_bar.progress(porcentagem, text=CarregandoInicio)
             tempo+=aceleracao
