@@ -302,7 +302,7 @@ elif st.session_state.usuario:
                     f"<span title='{info_text}' style='cursor: pointer;'>&#9432;</span>",
                     unsafe_allow_html=True
                 )
-        with col[5]:
+        with col[1]:
             # Cria duas colunas: a primeira para o checkbox e a segunda para o ícone de informação
             col_checkbox, col_info = st.columns([0.7, 0.3])
             # Cria o checkbox e o ícone de informação na mesma linha
@@ -323,7 +323,7 @@ elif st.session_state.usuario:
                     unsafe_allow_html=True
                 )
         
-        with col[1]:
+        with col[5]:
             if st.session_state.marcar_artigos:
                 st.write("Artigos ativado.")
                 
