@@ -333,14 +333,8 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                     st.markdown(message["content"])
                     #st.markdown(message["content"][0].get("text"))
     else:
-        st.markdown(
-            """
-            <div style="text-align: center;">
-                <h1>Olá! Como posso ajudar?</h1>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+        with st.chat_message("assistant"):
+            st.markdown('Olá! Como posso ajudar?')
     # Create a chat input field to allow the user to enter a message. This will display
     # automatically at the bottom of the page.
     if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=True,file_type=["jpg", "jpeg", "png","pdf","mp3"],):
