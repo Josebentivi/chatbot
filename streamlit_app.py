@@ -209,6 +209,66 @@ elif st.session_state.usuario:
         unsafe_allow_html=True
         )
     if st.session_state.product_page == "chat":
+        # Menu do chat
+        #opcoeschat = st.columns(5, vertical_alignment="center")
+        # Cria o checkbox e o ícone de informação na mesma linha
+        with col[0]:
+            # Cria duas colunas: a primeira para o checkbox e a segunda para o ícone de informação
+            col_checkbox, col_info = st.columns([0.7, 0.3])
+            # Cria o checkbox e o ícone de informação na mesma linha
+            with col_checkbox:
+                marcarArtigos = st.checkbox(
+                    "Artigos", 
+                    value=False, 
+                    key="marcar_artigos", 
+                    on_change=ativar_artigos
+                )
+            with col_info:
+                # Define o texto que aparecerá ao passar o mouse
+                info_text = "Com o objetivo de ter um mecanismo de pesquisa imparcial. Desenvolvemos um algoritimo que verifica semânticamente toda nossa base de dados com mais de 220 mil artigos publicados no ano de 2024."
+                # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
+                st.markdown(
+                    f"<span title='{info_text}' style='cursor: pointer;'>&#9432;</span>",
+                    unsafe_allow_html=True
+                )
+        with col[1]:
+            # Cria duas colunas: a primeira para o checkbox e a segunda para o ícone de informação
+            col_checkbox, col_info = st.columns([0.7, 0.3])
+            # Cria o checkbox e o ícone de informação na mesma linha
+            with col_checkbox:
+                # Cria o checkbox para o modo "Pensadores" e o ícone de informação na mesma linha
+                marcarPensador = st.checkbox(
+                    "Pensadores", 
+                    value=False, 
+                    key="marcar_pensadores", 
+                    on_change=ativar_pensadores
+                )
+            with col_info:
+                # Define o texto que aparecerá ao passar o mouse
+                info_text = "Tenha uma inteligência artificial treinada nas obras de diversos pensadores. Desbrave o mundo das ideias e encontre respostas para os seus questionamentos mais difíceis."
+                # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
+                st.markdown(
+                    f"<span title='{info_text}' style='cursor: pointer;'>&#9432;</span>",
+                    unsafe_allow_html=True
+                )
+        
+        with col[5]:
+            st.session_state.selected_model = st.selectbox(
+                "Motor do chat:",
+                options=["Gpt-4o-mini: Resposta rápida para tarefas leves.", "Gpt-4o:", "O3-mini: Modelo de pensamento para tarefas mais complexas"],
+                index=["gpt-4o-mini", "gpt-4o", "o3-mini"].index(st.session_state.selected_model)
+            )
+            st.session_state.selected_model = "Gpt-4o-mini: Resposta rápida para tarefas leves."
+        
+        with col[6]:
+            #if st.session_state.marcar_artigos:
+            #    st.write("Artigos ativado.")
+            if st.session_state.marcar_pensadores:
+                st.session_state.selected_thinker = st.selectbox(
+                    "Selecione o pensador:",
+                    options=["Sócrates", "Platão", "Aristóteles", "Descartes"],
+                    index=["Sócrates", "Platão", "Aristóteles", "Descartes"].index(st.session_state.selected_thinker)
+                )
         if not st.session_state.carregado:
             Carregando()
         #openai_api_key = st.session_state.openai_api_key
@@ -275,59 +335,6 @@ elif st.session_state.usuario:
             )
                 response = st.write_stream(stream)
                 st.session_state.messages.append({"role": "assistant", "content": response})
-
-        # Menu do chat
-        #opcoeschat = st.columns(5, vertical_alignment="center")
-        # Cria o checkbox e o ícone de informação na mesma linha
-        with col[0]:
-            # Cria duas colunas: a primeira para o checkbox e a segunda para o ícone de informação
-            col_checkbox, col_info = st.columns([0.7, 0.3])
-            # Cria o checkbox e o ícone de informação na mesma linha
-            with col_checkbox:
-                marcarArtigos = st.checkbox(
-                    "Artigos", 
-                    value=False, 
-                    key="marcar_artigos", 
-                    on_change=ativar_artigos
-                )
-            with col_info:
-                # Define o texto que aparecerá ao passar o mouse
-                info_text = "Com o objetivo de ter um mecanismo de pesquisa imparcial. Desenvolvemos um algoritimo que verifica semânticamente toda nossa base de dados com mais de 220 mil artigos publicados no ano de 2024."
-                # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
-                st.markdown(
-                    f"<span title='{info_text}' style='cursor: pointer;'>&#9432;</span>",
-                    unsafe_allow_html=True
-                )
-        with col[1]:
-            # Cria duas colunas: a primeira para o checkbox e a segunda para o ícone de informação
-            col_checkbox, col_info = st.columns([0.7, 0.3])
-            # Cria o checkbox e o ícone de informação na mesma linha
-            with col_checkbox:
-                # Cria o checkbox para o modo "Pensadores" e o ícone de informação na mesma linha
-                marcarPensador = st.checkbox(
-                    "Pensadores", 
-                    value=False, 
-                    key="marcar_pensadores", 
-                    on_change=ativar_pensadores
-                )
-            with col_info:
-                # Define o texto que aparecerá ao passar o mouse
-                info_text = "Tenha uma inteligência artificial treinada nas obras de diversos pensadores. Desbrave o mundo das ideias e encontre respostas para os seus questionamentos mais difíceis."
-                # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
-                st.markdown(
-                    f"<span title='{info_text}' style='cursor: pointer;'>&#9432;</span>",
-                    unsafe_allow_html=True
-                )
-        
-        with col[5]:
-            #if st.session_state.marcar_artigos:
-            #    st.write("Artigos ativado.")
-            if st.session_state.marcar_pensadores:
-                st.session_state.selected_thinker = st.selectbox(
-                    "Selecione o pensador:",
-                    options=["Sócrates", "Platão", "Aristóteles", "Descartes"],
-                    index=["Sócrates", "Platão", "Aristóteles", "Descartes"].index(st.session_state.selected_thinker)
-                )
         
 
     if st.session_state.product_page == "loja":
