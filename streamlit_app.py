@@ -268,8 +268,9 @@ elif st.session_state.usuario:
                 client = OpenAI()
                 # Generate a response using the OpenAI API.
                 stream = client.chat.completions.create(
-                model=saida[0],
-                messages=saida[1],
+                model='o3-mini',
+                messages=[{"role":"developer","content":[{"type":"text","text":f"""Você é um assistente chamado JurisAI, você é a ferramenta que revolucionará o processo de pesquisa jurídica."""}]},
+                          {"role":"user","content":[{"type":"text","text":f"""olá."""}]}],
                 stream=True,
             )
                 response = st.write_stream(stream)
