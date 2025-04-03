@@ -18,38 +18,34 @@ def Carregando(aceleracao=0.1):
     with cols[1]:
         my_bar = st.progress(porcentagem, text="Iniciando plataforma...")
         tempo=0
-        sleep(2)
-        carregando = ["Carregando Filósofos...","Carregando Artigos científicos...","Aprimorando inteligência...","Finalizando..."]
-        with carregando[0] as CarregandoInicio:
-            url = "http://52.2.202.37/filosofo/chatstream/"
-            data = {"data":{"usuario": int(st.session_state.usuario),
-                    "mensagem": prompt["text"]}
-                    }
-            st.session_state.messages = requests.post(url, json=data, timeout=5*60)
+        
+        url = "http://52.2.202.37/filosofo/chatstream/"
+        data = {"data":{"usuario": int(st.session_state.usuario),
+                "mensagem": prompt["text"]}
+                }
+        st.session_state.messages = requests.post(url, json=data, timeout=5*60)
 
-            porcentagem += 25
-            my_bar.progress(porcentagem, text=CarregandoInicio)
-            tempo+=aceleracao
-            sleep(tempo)
+        porcentagem += 25
+        my_bar.progress(porcentagem, text="Carregando Filósofos...")
+        tempo+=aceleracao
+        sleep(tempo)
         
-        with carregando[1] as CarregandoInicio:
-            porcentagem += 25
-            my_bar.progress(porcentagem, text=CarregandoInicio)
-            tempo+=aceleracao
-            sleep(tempo)
+        porcentagem += 25
+        my_bar.progress(porcentagem, text="Carregando Artigos científicos...")
+        tempo+=aceleracao
+        sleep(tempo)
         
-        with carregando[2] as CarregandoInicio:
-            porcentagem += 25
-            my_bar.progress(porcentagem, text=CarregandoInicio)
-            tempo+=aceleracao
-            sleep(tempo)
+        porcentagem += 25
+        my_bar.progress(porcentagem, text="Aprimorando inteligência...")
+        tempo+=aceleracao
+        sleep(tempo)
         
-        with carregando[3] as CarregandoInicio:
-            porcentagem += 25
-            my_bar.progress(porcentagem, text=CarregandoInicio)
-            tempo+=aceleracao
-            sleep(tempo)
+        porcentagem += 25
+        my_bar.progress(porcentagem, text="Finalizando...")
+        tempo+=aceleracao
+        sleep(tempo)
         my_bar.empty()
+        
     st.session_state.carregado = True
     st.rerun(scope="app")
 
