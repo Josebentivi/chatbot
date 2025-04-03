@@ -254,8 +254,9 @@ elif st.session_state.usuario:
         
         with col[5]:
             
-            if "selected_model" not in st.session_state:
+            if "selected_model" not in st.session_state or st.session_state.selected_model not in ["gpt-4o-mini", "gpt-4o", "o3-mini"]:
                 st.session_state.selected_model = "gpt-4o-mini"
+            
             
             model_keys = ["gpt-4o-mini", "gpt-4o", "o3-mini"]
             model_names = {
