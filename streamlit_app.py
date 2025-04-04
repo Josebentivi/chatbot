@@ -24,7 +24,6 @@ def Carregando(aceleracao=0.1):
         data = {"data":{"usuario": int(st.session_state.usuario)}
                 }
         st.session_state.messages = requests.post(url, json=data, timeout=5*60).json().get("saida")
-        st.markdown(str(st.session_state.messages))
         porcentagem += 25
         my_bar.progress(porcentagem, text="Carregando Filósofos...")
         tempo+=aceleracao
@@ -227,6 +226,12 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
             )
     if not st.session_state.carregado:
         Carregando()
+    else:
+        #url = "https://plainly-touched-ox.ngrok-free.app/filosofo/retornar-conversa/"
+        url = "http://52.2.202.37/filosofo/retornar-conversa/"
+        data = {"data":{"usuario": int(st.session_state.usuario)}
+                }
+        st.session_state.messages = requests.post(url, json=data, timeout=5*60).json().get("saida")
     #openai_api_key = st.session_state.openai_api_key
     if "messages" not in st.session_state:
         st.session_state.messages = []
