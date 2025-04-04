@@ -30,8 +30,8 @@ with st.container():
             my_bar = st.progress(porcentagem, text="Iniciando plataforma...")
             tempo=0
             
-            #url = "https://plainly-touched-ox.ngrok-free.app/filosofo/retornar-conversa/"
-            url = "http://52.2.202.37/filosofo/retornar-conversa/"
+            url = "https://plainly-touched-ox.ngrok-free.app/filosofo/retornar-conversa/"
+            #url = "http://52.2.202.37/filosofo/retornar-conversa/"
             data = {"data":{"usuario": int(st.session_state.usuario)}
                     }
             st.session_state.messages = requests.post(url, json=data, timeout=5*60).json().get("saida")
@@ -200,7 +200,8 @@ with st.container():
                 )
         with col[2]:
             if st.button("Limpar Chat", use_container_width=True):
-                url = "http://52.2.202.37/filosofo/recomecarconversa/"
+                url = "https://plainly-touched-ox.ngrok-free.app/filosofo/recomecarconversa/"
+                #url = "http://52.2.202.37/filosofo/recomecarconversa/"
                 data = {"data":{"usuario": int(st.session_state.usuario)}
                         }
                 requests.post(url, json=data, timeout=5*60).json().get("saida")
