@@ -9,104 +9,8 @@ from time import sleep
 warnings.filterwarnings("ignore", message="missing ScriptRunContext")
 st.set_page_config(page_title="O Pensador Desktop", layout="wide")
 
-with st.empty():
-    st.write("⏳")
 if "selected_thinker" not in st.session_state:
     st.session_state.selected_thinker = None
-
-if "usuario" in st.session_state and "product_page" in st.session_state:
-    if st.session_state.usuario and st.session_state.product_page == "home" or True:
-        # Adiciona uma variável de controle para a página atual se ainda não existir
-        #st.markdown(
-        #    """
-        #    <div style="text-align: center;">
-        #        <h1>Olá 😊</h1>
-        #    </div>
-        #    """,
-        #    unsafe_allow_html=True
-        #)
-
-        # Cria quatro colunas para os produtos
-            
-        col = st.columns([1,1,1,1,1,2],vertical_alignment="center")
-
-        with col[2]:
-            if st.button("💬 Chat", use_container_width=True):
-                st.session_state.product_page = "chat"
-                st.rerun(scope="app")
-            # Define o texto que aparecerá ao passar o mouse
-            info_text1 = "Um assistente que se adapta a você! Com capacidade de ler e processar PDFs, imagens e  áudios com precisão, tudo em uma única ferramenta inteligente que facilita o acesso a informações essenciais, otimiza seu fluxo de trabalho e impulsiona sua criatividade em qualquer tarefa."
-            # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip 
-            st.markdown(
-            f"""
-            <div style='display: flex; align-items: center; justify-content: center; height: 100%;'>
-                <span title="{info_text1}" style="cursor: pointer; font-size: 18px;">&#9432;</span>
-            </div>
-            """,
-            unsafe_allow_html=True
-            )
-            
-        #with col2:
-        #    # Define o texto que aparecerá ao passar o mouse
-        #    info_text2 = "Com mais de 220 mil artigos da Arxiv (Base de dados mantida pela Cornell University) do ano de 2024. Superando as limitações dos modelos atuais treinados com informações até outubro de 2023. Além de proporcionar uma melhora da qualidade das respostas e apresentando referências para ser validadas. Isto tem como objetivo de ter um mecanismo de pesquisa imparcial."
-        #    # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
-        #    st.markdown(
-        #    f"""
-        #    <div style='display: flex; align-items: center; justify-content: center; height: 100%;'>
-        #        <span title="{info_text2}" style="cursor: pointer; font-size: 18px;">&#9432;</span>
-        #    </div>
-        #    """,
-        #    unsafe_allow_html=True
-        #    )
-        #    if st.button("📚 Artigos Científicos", use_container_width=True):
-        #        st.session_state.product_page = "artigos"
-            
-        #with col3:
-        #    # Define o texto que aparecerá ao passar o mouse
-        #    info_text3 = """Tenha uma inteligência artificial treinada nas obras de diversos pensadores. Desbrave o mundo das ideias e encontre respostas para os seus questionamentos mais difíceis."""
-        #    # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
-        #    st.markdown(
-        #    f"""
-        #    <div style='display: flex; align-items: center; justify-content: center; height: 100%;'>
-        #        <span title="{info_text3}" style="cursor: pointer; font-size: 18px;">&#9432;</span>
-        #    </div>
-        #    """,
-        #    unsafe_allow_html=True
-        #    )
-        #    if st.button("🤔 Filósofos", use_container_width=True):
-        #        st.session_state.product_page = "filosofos"
-            
-
-        with col[3]:
-            if st.button("🗣 Mesa de discussão", use_container_width=True):
-                st.session_state.product_page = "mesa_discussao"
-                st.rerun(scope="app")
-            # Define o texto que aparecerá ao passar o mouse
-            info_text4 = """A mesa de discussão reúne quatro filósofos para analisar um tema em seis etapas: fatos, emoções, pontos negativos, pontos positivos, visões alternativas e, por fim, a organização das ideias. Essa abordagem garante um debate equilibrado e multidimensional, onde cada aspecto do tema é explorado de forma clara e estruturada."""
-            # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
-            st.markdown(
-            f"""
-            <div style='display: flex; align-items: center; justify-content: center; height: 100%;'>
-                <span title="{info_text4}" style="cursor: pointer; font-size: 18px;">&#9432;</span>
-            </div>
-            """,
-            unsafe_allow_html=True
-            )
-        with col[4]:
-            if st.button("Loja", use_container_width=True):
-                st.session_state.product_page = "loja"
-                st.rerun(scope="app")
-            # Define o texto que aparecerá ao passar o mouse
-            info_text1 = "Uma loja com produtos e serviços que podem ser adquiridos com o uso de créditos. Os créditos podem ser comprados diretamente na loja."
-            # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip 
-            st.markdown(
-            f"""
-            <div style='display: flex; align-items: center; justify-content: center; height: 100%;'>
-                <span title="{info_text1}" style="cursor: pointer; font-size: 18px;">&#9432;</span>
-            </div>
-            """,
-            unsafe_allow_html=True
-            )
 
 def Carregando(aceleracao=0.1):
     porcentagem = 0
@@ -202,12 +106,6 @@ def ativar_pensadores():
 #    with cols2[1]:
 #        if st.button("Sign Up", key="signup_button"):
 #            Cadastrar() 
-
-if "product_page" in st.session_state and st.session_state.product_page != "home":
-    cols = st.columns(8)
-    with cols[0]:
-        if st.button("Menu", use_container_width=True):
-            st.session_state.product_page = "home"
 
 if "usuario" not in st.session_state:
     cols = st.columns(3)
@@ -499,3 +397,104 @@ elif st.session_state.usuario and st.session_state.product_page == "loja":
             st.markdown(status_button, unsafe_allow_html=True)
         if idx < len(payments) - 1:
             st.markdown("---")
+
+
+
+if "product_page" in st.session_state and st.session_state.product_page != "home":
+    cols = st.columns(8)
+    with cols[0]:
+        if st.button("Menu", use_container_width=True):
+            st.session_state.product_page = "home"
+            
+elif st.session_state.usuario and st.session_state.product_page == "home" or True:
+    # Adiciona uma variável de controle para a página atual se ainda não existir
+    #st.markdown(
+    #    """
+    #    <div style="text-align: center;">
+    #        <h1>Olá 😊</h1>
+    #    </div>
+    #    """,
+    #    unsafe_allow_html=True
+    #)
+
+    # Cria quatro colunas para os produtos
+        
+    col = st.columns([1,1,1,1,1,2],vertical_alignment="center")
+
+    with col[2]:
+        if st.button("💬 Chat", use_container_width=True):
+            st.session_state.product_page = "chat"
+            st.rerun(scope="app")
+        # Define o texto que aparecerá ao passar o mouse
+        info_text1 = "Um assistente que se adapta a você! Com capacidade de ler e processar PDFs, imagens e  áudios com precisão, tudo em uma única ferramenta inteligente que facilita o acesso a informações essenciais, otimiza seu fluxo de trabalho e impulsiona sua criatividade em qualquer tarefa."
+        # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip 
+        st.markdown(
+        f"""
+        <div style='display: flex; align-items: center; justify-content: center; height: 100%;'>
+            <span title="{info_text1}" style="cursor: pointer; font-size: 18px;">&#9432;</span>
+        </div>
+        """,
+        unsafe_allow_html=True
+        )
+        
+    #with col2:
+    #    # Define o texto que aparecerá ao passar o mouse
+    #    info_text2 = "Com mais de 220 mil artigos da Arxiv (Base de dados mantida pela Cornell University) do ano de 2024. Superando as limitações dos modelos atuais treinados com informações até outubro de 2023. Além de proporcionar uma melhora da qualidade das respostas e apresentando referências para ser validadas. Isto tem como objetivo de ter um mecanismo de pesquisa imparcial."
+    #    # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
+    #    st.markdown(
+    #    f"""
+    #    <div style='display: flex; align-items: center; justify-content: center; height: 100%;'>
+    #        <span title="{info_text2}" style="cursor: pointer; font-size: 18px;">&#9432;</span>
+    #    </div>
+    #    """,
+    #    unsafe_allow_html=True
+    #    )
+    #    if st.button("📚 Artigos Científicos", use_container_width=True):
+    #        st.session_state.product_page = "artigos"
+        
+    #with col3:
+    #    # Define o texto que aparecerá ao passar o mouse
+    #    info_text3 = """Tenha uma inteligência artificial treinada nas obras de diversos pensadores. Desbrave o mundo das ideias e encontre respostas para os seus questionamentos mais difíceis."""
+    #    # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
+    #    st.markdown(
+    #    f"""
+    #    <div style='display: flex; align-items: center; justify-content: center; height: 100%;'>
+    #        <span title="{info_text3}" style="cursor: pointer; font-size: 18px;">&#9432;</span>
+    #    </div>
+    #    """,
+    #    unsafe_allow_html=True
+    #    )
+    #    if st.button("🤔 Filósofos", use_container_width=True):
+    #        st.session_state.product_page = "filosofos"
+        
+
+    with col[3]:
+        if st.button("🗣 Mesa de discussão", use_container_width=True):
+            st.session_state.product_page = "mesa_discussao"
+            st.rerun(scope="app")
+        # Define o texto que aparecerá ao passar o mouse
+        info_text4 = """A mesa de discussão reúne quatro filósofos para analisar um tema em seis etapas: fatos, emoções, pontos negativos, pontos positivos, visões alternativas e, por fim, a organização das ideias. Essa abordagem garante um debate equilibrado e multidimensional, onde cada aspecto do tema é explorado de forma clara e estruturada."""
+        # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
+        st.markdown(
+        f"""
+        <div style='display: flex; align-items: center; justify-content: center; height: 100%;'>
+            <span title="{info_text4}" style="cursor: pointer; font-size: 18px;">&#9432;</span>
+        </div>
+        """,
+        unsafe_allow_html=True
+        )
+    with col[4]:
+        if st.button("Loja", use_container_width=True):
+            st.session_state.product_page = "loja"
+            st.rerun(scope="app")
+        # Define o texto que aparecerá ao passar o mouse
+        info_text1 = "Uma loja com produtos e serviços que podem ser adquiridos com o uso de créditos. Os créditos podem ser comprados diretamente na loja."
+        # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip 
+        st.markdown(
+        f"""
+        <div style='display: flex; align-items: center; justify-content: center; height: 100%;'>
+            <span title="{info_text1}" style="cursor: pointer; font-size: 18px;">&#9432;</span>
+        </div>
+        """,
+        unsafe_allow_html=True
+        )
