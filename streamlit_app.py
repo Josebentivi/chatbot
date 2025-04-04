@@ -235,6 +235,8 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                     options=["Sócrates", "Platão", "Aristóteles", "Descartes"],
                     index=["Sócrates", "Platão", "Aristóteles", "Descartes"].index(st.session_state.selected_thinker)
                 )
+        if "messages" not in st.session_state:
+            st.session_state.messages = []
         if not st.session_state.carregado:
             Carregando()
         else:
@@ -244,8 +246,6 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                     }
             st.session_state.messages = requests.post(url, json=data, timeout=5*60).json().get("saida")
         #openai_api_key = st.session_state.openai_api_key
-        if "messages" not in st.session_state:
-            st.session_state.messages = []
         
         
         # Create a session state variable to store the chat messages. This ensures that the
