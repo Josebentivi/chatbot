@@ -21,6 +21,7 @@ with placeholder.container():
                 st.session_state.product_page = "home"
                 st.rerun(scope="app")
                 
+rodape = st.empty()        
 def AtivarRodape():
     with rodape.container():
         st.write("This is inside the container") 
