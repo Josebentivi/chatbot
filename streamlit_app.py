@@ -234,7 +234,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                 options=["Sócrates", "Platão", "Aristóteles", "Descartes"],
                 index=["Sócrates", "Platão", "Aristóteles", "Descartes"].index(st.session_state.selected_thinker)
             )
-    with st.container(height=500,border=False):
+    with st.container(height=400,border=False):
         colunachat = st.columns(1, vertical_alignment="bottom")
         with colunachat[0]:
             with st.container():
