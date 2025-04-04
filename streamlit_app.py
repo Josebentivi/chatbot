@@ -30,8 +30,8 @@ with st.container():
             my_bar = st.progress(porcentagem, text="Iniciando plataforma...")
             tempo=0
             
-            url = "https://plainly-touched-ox.ngrok-free.app/filosofo/retornar-conversa/"
-            #url = "http://52.2.202.37/filosofo/retornar-conversa/"
+            url = "https://plainly-touched-ox.ngrok-free.app/filosofo/retornarconversa/"
+            #url = "http://52.2.202.37/filosofo/retornarconversa/"
             data = {"data":{"usuario": int(st.session_state.usuario)}
                     }
             st.session_state.messages = requests.post(url, json=data, timeout=5*60).json().get("saida")
@@ -239,8 +239,8 @@ with st.container():
         if not st.session_state.carregado:
             Carregando()
         else:
-            url = "https://plainly-touched-ox.ngrok-free.app/filosofo/retornar-conversa/"
-            #url = "http://52.2.202.37/filosofo/retornar-conversa/"
+            url = "https://plainly-touched-ox.ngrok-free.app/filosofo/retornarconversa/"
+            #url = "http://52.2.202.37/filosofo/retornarconversa/"
             data = {"data":{"usuario": int(st.session_state.usuario)}
                     }
             st.session_state.messages = requests.post(url, json=data, timeout=5*60).json().get("saida")
