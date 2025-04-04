@@ -237,178 +237,179 @@ if "usuario" not in st.session_state:
     #st.session_state.openai_api_entered = True
 
 elif st.session_state.usuario and st.session_state.product_page == "chat":
-    # Menu do chat
-    #opcoeschat = st.columns(5, vertical_alignment="center")
-    # Cria o checkbox e o ícone de informação na mesma linha
-    col = st.columns([1, 1, 1, 1, 1, 2], vertical_alignment="center")
-    with col[0]:
-        # Cria duas colunas: a primeira para o checkbox e a segunda para o ícone de informação
-        col_checkbox, col_info = st.columns([0.7, 0.3])
+    with st.container(height=500):
+        # Menu do chat
+        #opcoeschat = st.columns(5, vertical_alignment="center")
         # Cria o checkbox e o ícone de informação na mesma linha
-        with col_checkbox:
-            marcarArtigos = st.checkbox(
-                "Artigos", 
-                value=False, 
-                key="marcar_artigos", 
-                on_change=ativar_artigos
-            )
-        with col_info:
-            # Define o texto que aparecerá ao passar o mouse
-            info_text = "Com o objetivo de ter um mecanismo de pesquisa imparcial. Desenvolvemos um algoritimo que verifica semânticamente toda nossa base de dados com mais de 220 mil artigos publicados no ano de 2024."
-            # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
-            st.markdown(
-                f"<span title='{info_text}' style='cursor: pointer;'>&#9432;</span>",
-                unsafe_allow_html=True
-            )
-    with col[1]:
-        # Cria duas colunas: a primeira para o checkbox e a segunda para o ícone de informação
-        col_checkbox, col_info = st.columns([0.7, 0.3])
-        # Cria o checkbox e o ícone de informação na mesma linha
-        with col_checkbox:
-            # Cria o checkbox para o modo "Pensadores" e o ícone de informação na mesma linha
-            marcarPensador = st.checkbox(
-                "Pensadores", 
-                value=False, 
-                key="marcar_pensadores", 
-                on_change=ativar_pensadores
-            )
-        with col_info:
-            # Define o texto que aparecerá ao passar o mouse
-            info_text = "Tenha uma inteligência artificial treinada nas obras de diversos pensadores. Desbrave o mundo das ideias e encontre respostas para os seus questionamentos mais difíceis."
-            # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
-            st.markdown(
-                f"<span title='{info_text}' style='cursor: pointer;'>&#9432;</span>",
-                unsafe_allow_html=True
-            )
-    with col[2]:
-        if st.button("Limpar Chat", use_container_width=True):
-            url = "http://52.2.202.37/filosofo/recomecarconversa/"
+        col = st.columns([1, 1, 1, 1, 1, 2], vertical_alignment="center")
+        with col[0]:
+            # Cria duas colunas: a primeira para o checkbox e a segunda para o ícone de informação
+            col_checkbox, col_info = st.columns([0.7, 0.3])
+            # Cria o checkbox e o ícone de informação na mesma linha
+            with col_checkbox:
+                marcarArtigos = st.checkbox(
+                    "Artigos", 
+                    value=False, 
+                    key="marcar_artigos", 
+                    on_change=ativar_artigos
+                )
+            with col_info:
+                # Define o texto que aparecerá ao passar o mouse
+                info_text = "Com o objetivo de ter um mecanismo de pesquisa imparcial. Desenvolvemos um algoritimo que verifica semânticamente toda nossa base de dados com mais de 220 mil artigos publicados no ano de 2024."
+                # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
+                st.markdown(
+                    f"<span title='{info_text}' style='cursor: pointer;'>&#9432;</span>",
+                    unsafe_allow_html=True
+                )
+        with col[1]:
+            # Cria duas colunas: a primeira para o checkbox e a segunda para o ícone de informação
+            col_checkbox, col_info = st.columns([0.7, 0.3])
+            # Cria o checkbox e o ícone de informação na mesma linha
+            with col_checkbox:
+                # Cria o checkbox para o modo "Pensadores" e o ícone de informação na mesma linha
+                marcarPensador = st.checkbox(
+                    "Pensadores", 
+                    value=False, 
+                    key="marcar_pensadores", 
+                    on_change=ativar_pensadores
+                )
+            with col_info:
+                # Define o texto que aparecerá ao passar o mouse
+                info_text = "Tenha uma inteligência artificial treinada nas obras de diversos pensadores. Desbrave o mundo das ideias e encontre respostas para os seus questionamentos mais difíceis."
+                # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
+                st.markdown(
+                    f"<span title='{info_text}' style='cursor: pointer;'>&#9432;</span>",
+                    unsafe_allow_html=True
+                )
+        with col[2]:
+            if st.button("Limpar Chat", use_container_width=True):
+                url = "http://52.2.202.37/filosofo/recomecarconversa/"
+                data = {"data":{"usuario": int(st.session_state.usuario)}
+                        }
+                requests.post(url, json=data, timeout=5*60).json().get("saida")
+
+                st.session_state.messages = []
+        with col[5]:
+            if not st.session_state.marcar_pensadores and not st.session_state.marcar_artigos:
+                if "selected_model" not in st.session_state or st.session_state.selected_model not in ["gpt-4o-mini", "gpt-4o", "o3-mini"]:
+                    st.session_state.selected_model = "gpt-4o-mini"
+                
+                
+                model_keys = ["gpt-4o-mini", "gpt-4o", "o3-mini"]
+                model_names = {
+                    "gpt-4o-mini": "Gpt-4o-mini: Resposta rápida para tarefas leves.",
+                    "gpt-4o": "Gpt-4o: Resposta rápida para tarefas com média complexidade.",
+                    "o3-mini": "O3-mini: Modelo de pensamento para tarefas mais complexas"
+                }
+                selected = st.selectbox(
+                    "Motor do chat:",
+                    options=model_keys,
+                    index=model_keys.index(st.session_state.selected_model),
+                    format_func=lambda key: model_names[key]
+                )
+                st.session_state.selected_model = selected
+        
+        with col[5]:
+            #if st.session_state.marcar_artigos:
+            #    st.write("Artigos ativado.")
+            if st.session_state.marcar_pensadores:
+                st.session_state.selected_thinker = st.selectbox(
+                    "Selecione o pensador:",
+                    options=["Sócrates", "Platão", "Aristóteles", "Descartes"],
+                    index=["Sócrates", "Platão", "Aristóteles", "Descartes"].index(st.session_state.selected_thinker)
+                )
+        if not st.session_state.carregado:
+            Carregando()
+        else:
+            #url = "https://plainly-touched-ox.ngrok-free.app/filosofo/retornar-conversa/"
+            url = "http://52.2.202.37/filosofo/retornar-conversa/"
             data = {"data":{"usuario": int(st.session_state.usuario)}
                     }
-            requests.post(url, json=data, timeout=5*60).json().get("saida")
-
+            st.session_state.messages = requests.post(url, json=data, timeout=5*60).json().get("saida")
+        #openai_api_key = st.session_state.openai_api_key
+        if "messages" not in st.session_state:
             st.session_state.messages = []
-    with col[5]:
-        if not st.session_state.marcar_pensadores and not st.session_state.marcar_artigos:
-            if "selected_model" not in st.session_state or st.session_state.selected_model not in ["gpt-4o-mini", "gpt-4o", "o3-mini"]:
-                st.session_state.selected_model = "gpt-4o-mini"
-            
-            
-            model_keys = ["gpt-4o-mini", "gpt-4o", "o3-mini"]
-            model_names = {
-                "gpt-4o-mini": "Gpt-4o-mini: Resposta rápida para tarefas leves.",
-                "gpt-4o": "Gpt-4o: Resposta rápida para tarefas com média complexidade.",
-                "o3-mini": "O3-mini: Modelo de pensamento para tarefas mais complexas"
-            }
-            selected = st.selectbox(
-                "Motor do chat:",
-                options=model_keys,
-                index=model_keys.index(st.session_state.selected_model),
-                format_func=lambda key: model_names[key]
-            )
-            st.session_state.selected_model = selected
-    
-    with col[5]:
-        #if st.session_state.marcar_artigos:
-        #    st.write("Artigos ativado.")
-        if st.session_state.marcar_pensadores:
-            st.session_state.selected_thinker = st.selectbox(
-                "Selecione o pensador:",
-                options=["Sócrates", "Platão", "Aristóteles", "Descartes"],
-                index=["Sócrates", "Platão", "Aristóteles", "Descartes"].index(st.session_state.selected_thinker)
-            )
-    if not st.session_state.carregado:
-        Carregando()
-    else:
-        #url = "https://plainly-touched-ox.ngrok-free.app/filosofo/retornar-conversa/"
-        url = "http://52.2.202.37/filosofo/retornar-conversa/"
-        data = {"data":{"usuario": int(st.session_state.usuario)}
-                }
-        st.session_state.messages = requests.post(url, json=data, timeout=5*60).json().get("saida")
-    #openai_api_key = st.session_state.openai_api_key
-    if "messages" not in st.session_state:
-        st.session_state.messages = []
-    
-    
-    # Create a session state variable to store the chat messages. This ensures that the
-    # messages persist across reruns.
-
-    # Display the existing chat messages via `st.chat_message`.
-    if st.session_state.messages:
-        for message in st.session_state.messages:
-            if message["role"] == "developer":
-                with st.chat_message("assistant"):
-                    st.markdown(message["content"])
-            else:
-                with st.chat_message(message["role"]):
-                    st.markdown(message["content"])
-                    #st.markdown(message["content"][0].get("text"))
-    else:
-        st.session_state.messages=[]
-        with st.chat_message("assistant"):
-            st.markdown('Olá! Como posso ajudar?')
-    # Create a chat input field to allow the user to enter a message. This will display
-    # automatically at the bottom of the page.
-    if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=True,file_type=["jpg", "jpeg", "png","pdf","mp3"],):
-
-        # Store and display the current prompt.
-        st.session_state.messages.append({"role": "user", "content": prompt["text"]})
-        with st.chat_message("user"):
-            st.markdown(prompt["text"])
-
         
-        #with st.status("Processando..."):
-        #    time.sleep(0.5)
-        #    st.write("Pesquisando informação...")
-        #    time.sleep(0.5)
-        #    st.write("Aprimorando resposta...")
-        #    time.sleep(0.5)
-        #    st.write("Finalizando...")
-        #    time.sleep(0.5)
-
-        # Stream the response to the chat using `st.write_stream`, then store it in 
-        # session state.
-
-        # Chamada à API (substitua a URL pelo endpoint real) 
         
-        # Stream the response to the chat using `st.write_stream`, then store it in 
-        # session state.
+        # Create a session state variable to store the chat messages. This ensures that the
+        # messages persist across reruns.
 
-        #url = "http://52.2.202.37/filosofo/chat/"
-        #data = {"data":{"usuario": int(st.session_state.usuario),
-        #        "mensagem": prompt["text"]}
-        #        }
-        #response = requests.post(url, json=data, timeout=5*60)
-        #if response.status_code == 200:  
-        #    saida = response.json().get("saida")
-        #else:
-        #    saida = str(response.status_code)+"\n\n"+str(response)
-        #with st.chat_message("assistant"):
-        #    st.markdown(str(saida))
-        #    st.session_state.messages.append({"role": "assistant", "content": saida})
-        
-        with st.chat_message("assistant"):
-            #st.write(str(st.session_state.messages))
+        # Display the existing chat messages via `st.chat_message`.
+        if st.session_state.messages:
+            for message in st.session_state.messages:
+                if message["role"] == "developer":
+                    with st.chat_message("assistant"):
+                        st.markdown(message["content"])
+                else:
+                    with st.chat_message(message["role"]):
+                        st.markdown(message["content"])
+                        #st.markdown(message["content"][0].get("text"))
+        else:
+            st.session_state.messages=[]
+            with st.chat_message("assistant"):
+                st.markdown('Olá! Como posso ajudar?')
+        # Create a chat input field to allow the user to enter a message. This will display
+        # automatically at the bottom of the page.
+        if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=True,file_type=["jpg", "jpeg", "png","pdf","mp3"],):
+
+            # Store and display the current prompt.
             st.session_state.messages.append({"role": "user", "content": prompt["text"]})
-            # Create an OpenAI client.
-            #client = OpenAI(api_key=openai_api_key)
+            with st.chat_message("user"):
+                st.markdown(prompt["text"])
 
-            client = OpenAI()
-            # Generate a response using the OpenAI API.
-            stream = client.chat.completions.create(
-            model=st.session_state.selected_model,
-            messages=st.session_state.messages,
-            stream=True,
-        )
-            response_text = st.write_stream(stream)
+            
+            #with st.status("Processando..."):
+            #    time.sleep(0.5)
+            #    st.write("Pesquisando informação...")
+            #    time.sleep(0.5)
+            #    st.write("Aprimorando resposta...")
+            #    time.sleep(0.5)
+            #    st.write("Finalizando...")
+            #    time.sleep(0.5)
 
-            url = "http://52.2.202.37/filosofo/chat/adicionar/resposta/"
-            data = {"data":{"usuario": int(st.session_state.usuario),
-                    "mensagem": response_text}
-                    }
-            post_response = requests.post(url, json=data, timeout=5*60)
+            # Stream the response to the chat using `st.write_stream`, then store it in 
+            # session state.
 
-            st.session_state.messages.append({"role": "assistant", "content": response_text})
+            # Chamada à API (substitua a URL pelo endpoint real) 
+            
+            # Stream the response to the chat using `st.write_stream`, then store it in 
+            # session state.
+
+            #url = "http://52.2.202.37/filosofo/chat/"
+            #data = {"data":{"usuario": int(st.session_state.usuario),
+            #        "mensagem": prompt["text"]}
+            #        }
+            #response = requests.post(url, json=data, timeout=5*60)
+            #if response.status_code == 200:  
+            #    saida = response.json().get("saida")
+            #else:
+            #    saida = str(response.status_code)+"\n\n"+str(response)
+            #with st.chat_message("assistant"):
+            #    st.markdown(str(saida))
+            #    st.session_state.messages.append({"role": "assistant", "content": saida})
+            
+            with st.chat_message("assistant"):
+                #st.write(str(st.session_state.messages))
+                st.session_state.messages.append({"role": "user", "content": prompt["text"]})
+                # Create an OpenAI client.
+                #client = OpenAI(api_key=openai_api_key)
+
+                client = OpenAI()
+                # Generate a response using the OpenAI API.
+                stream = client.chat.completions.create(
+                model=st.session_state.selected_model,
+                messages=st.session_state.messages,
+                stream=True,
+            )
+                response_text = st.write_stream(stream)
+
+                url = "http://52.2.202.37/filosofo/chat/adicionar/resposta/"
+                data = {"data":{"usuario": int(st.session_state.usuario),
+                        "mensagem": response_text}
+                        }
+                post_response = requests.post(url, json=data, timeout=5*60)
+
+                st.session_state.messages.append({"role": "assistant", "content": response_text})
 
 elif st.session_state.usuario and st.session_state.product_page == "loja":
     st.subheader("Loja")
