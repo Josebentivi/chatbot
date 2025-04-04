@@ -518,9 +518,10 @@ elif st.session_state.usuario and st.session_state.product_page == "home":
         unsafe_allow_html=True
         )
 
-rodape = st.empty()
 
-def AtivarRodape():
-    with rodape.container():
-        st.write("This is inside the container") 
+
+
+rodape = st.empty()
+with rodape.container():
+    st.write("This is inside the container") 
 
