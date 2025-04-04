@@ -412,6 +412,7 @@ with placeholder.container():
         with cols[0]:
             if st.button("Menu", use_container_width=True):
                 st.session_state.product_page = "home"
+                st.rerun(scope="app")
 
 if st.session_state.usuario and st.session_state.product_page == "home" or True:
     placeholder.empty()
