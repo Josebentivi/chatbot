@@ -307,31 +307,30 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
         #with st.chat_message("assistant"):
         #    st.markdown(str(saida))
         #    st.session_state.messages.append({"role": "assistant", "content": saida})
-        
-        with st.chat_message("assistant"):
-            #st.write(str(st.session_state.messages))
-            st.session_state.messages.append({"role": "user", "content": prompt["text"]})
-            # Create an OpenAI client.
-            #client = OpenAI(api_key=openai_api_key)
+        with saidachat.container():
+            with st.chat_message("assistant"):
+                #st.write(str(st.session_state.messages))
+                st.session_state.messages.append({"role": "user", "content": prompt["text"]})
+                # Create an OpenAI client.
+                #client = OpenAI(api_key=openai_api_key)
 
-            client = OpenAI()
-            # Generate a response using the OpenAI API.
-            stream = client.chat.completions.create(
-            model=st.session_state.selected_model,
-            messages=st.session_state.messages,
-            stream=True,
-            )
-            with saidachat.container():
+                client = OpenAI()
+                # Generate a response using the OpenAI API.
+                stream = client.chat.completions.create(
+                model=st.session_state.selected_model,
+                messages=st.session_state.messages,
+                stream=True,
+                )
                 response_text = st.write_stream(stream)
 
-            url = "https://plainly-touched-ox.ngrok-free.app/filosofo/addusuario/"
-            #url = "http://52.2.202.37/filosofo/addusuario/"
-            data = {"data":{"usuario": int(st.session_state.usuario),
-                    "mensagem": response_text}
-                    }
-            post_response = requests.post(url, json=data, timeout=5*60)
+                url = "https://plainly-touched-ox.ngrok-free.app/filosofo/addusuario/"
+                #url = "http://52.2.202.37/filosofo/addusuario/"
+                data = {"data":{"usuario": int(st.session_state.usuario),
+                        "mensagem": response_text}
+                        }
+                post_response = requests.post(url, json=data, timeout=5*60)
 
-            st.session_state.messages.append({"role": "assistant", "content": response_text})
+                st.session_state.messages.append({"role": "assistant", "content": response_text})
 
 elif st.session_state.usuario and st.session_state.product_page == "loja":
     st.subheader("Loja")
