@@ -20,11 +20,6 @@ with placeholder.container():
             if st.button("Menu", use_container_width=True):
                 st.session_state.product_page = "home"
                 st.rerun(scope="app")
-                
-rodape = st.empty()        
-def AtivarRodape():
-    with rodape.container():
-        st.write("This is inside the container") 
 
 def Carregando(aceleracao=0.1):
     porcentagem = 0
@@ -336,7 +331,12 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                 post_response = requests.post(url, json=data, timeout=5*60)
 
                 st.session_state.messages.append({"role": "assistant", "content": response_text})
-    AtivarRodape()
+    
+
+    if "AtivarRodape" in globals():
+        globals().AtivarRodape()
+    
+    
 
 elif st.session_state.usuario and st.session_state.product_page == "loja":
     st.subheader("Loja")
@@ -519,4 +519,8 @@ elif st.session_state.usuario and st.session_state.product_page == "home":
         )
 
 rodape = st.empty()
+
+def AtivarRodape():
+    with rodape.container():
+        st.write("This is inside the container") 
 
