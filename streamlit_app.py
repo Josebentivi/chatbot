@@ -153,103 +153,103 @@ if "usuario" not in st.session_state:
     #st.session_state.openai_api_entered = True
 
 elif st.session_state.usuario and st.session_state.product_page == "chat":
-    with st.container(height=500):
-        # Menu do chat
-        #opcoeschat = st.columns(5, vertical_alignment="center")
+    # Menu do chat
+    #opcoeschat = st.columns(5, vertical_alignment="center")
+    # Cria o checkbox e o ícone de informação na mesma linha
+    col = st.columns([1, 1, 1, 1, 1, 2], vertical_alignment="center")
+    with col[0]:
+        # Cria duas colunas: a primeira para o checkbox e a segunda para o ícone de informação
+        col_checkbox, col_info = st.columns([0.7, 0.3])
         # Cria o checkbox e o ícone de informação na mesma linha
-        col = st.columns([1, 1, 1, 1, 1, 2], vertical_alignment="center")
-        with col[0]:
-            # Cria duas colunas: a primeira para o checkbox e a segunda para o ícone de informação
-            col_checkbox, col_info = st.columns([0.7, 0.3])
-            # Cria o checkbox e o ícone de informação na mesma linha
-            with col_checkbox:
-                marcarArtigos = st.checkbox(
-                    "Artigos", 
-                    value=False, 
-                    key="marcar_artigos", 
-                    on_change=ativar_artigos
-                )
-            with col_info:
-                # Define o texto que aparecerá ao passar o mouse
-                info_text = "Com o objetivo de ter um mecanismo de pesquisa imparcial. Desenvolvemos um algoritimo que verifica semânticamente toda nossa base de dados com mais de 220 mil artigos publicados no ano de 2024."
-                # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
-                st.markdown(
-                    f"<span title='{info_text}' style='cursor: pointer;'>&#9432;</span>",
-                    unsafe_allow_html=True
-                )
-        with col[1]:
-            # Cria duas colunas: a primeira para o checkbox e a segunda para o ícone de informação
-            col_checkbox, col_info = st.columns([0.7, 0.3])
-            # Cria o checkbox e o ícone de informação na mesma linha
-            with col_checkbox:
-                # Cria o checkbox para o modo "Pensadores" e o ícone de informação na mesma linha
-                marcarPensador = st.checkbox(
-                    "Pensadores", 
-                    value=False, 
-                    key="marcar_pensadores", 
-                    on_change=ativar_pensadores
-                )
-            with col_info:
-                # Define o texto que aparecerá ao passar o mouse
-                info_text = "Tenha uma inteligência artificial treinada nas obras de diversos pensadores. Desbrave o mundo das ideias e encontre respostas para os seus questionamentos mais difíceis."
-                # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
-                st.markdown(
-                    f"<span title='{info_text}' style='cursor: pointer;'>&#9432;</span>",
-                    unsafe_allow_html=True
-                )
-        with col[2]:
-            if st.button("Limpar Chat", use_container_width=True):
-                url = "http://52.2.202.37/filosofo/recomecarconversa/"
-                data = {"data":{"usuario": int(st.session_state.usuario)}
-                        }
-                requests.post(url, json=data, timeout=5*60).json().get("saida")
-
-                st.session_state.messages = []
-        with col[5]:
-            if not st.session_state.marcar_pensadores and not st.session_state.marcar_artigos:
-                if "selected_model" not in st.session_state or st.session_state.selected_model not in ["gpt-4o-mini", "gpt-4o", "o3-mini"]:
-                    st.session_state.selected_model = "gpt-4o-mini"
-                
-                
-                model_keys = ["gpt-4o-mini", "gpt-4o", "o3-mini"]
-                model_names = {
-                    "gpt-4o-mini": "Gpt-4o-mini: Resposta rápida para tarefas leves.",
-                    "gpt-4o": "Gpt-4o: Resposta rápida para tarefas com média complexidade.",
-                    "o3-mini": "O3-mini: Modelo de pensamento para tarefas mais complexas"
-                }
-                selected = st.selectbox(
-                    "Motor do chat:",
-                    options=model_keys,
-                    index=model_keys.index(st.session_state.selected_model),
-                    format_func=lambda key: model_names[key]
-                )
-                st.session_state.selected_model = selected
-        
-        with col[5]:
-            #if st.session_state.marcar_artigos:
-            #    st.write("Artigos ativado.")
-            if st.session_state.marcar_pensadores:
-                st.session_state.selected_thinker = st.selectbox(
-                    "Selecione o pensador:",
-                    options=["Sócrates", "Platão", "Aristóteles", "Descartes"],
-                    index=["Sócrates", "Platão", "Aristóteles", "Descartes"].index(st.session_state.selected_thinker)
-                )
-        if not st.session_state.carregado:
-            Carregando()
-        else:
-            #url = "https://plainly-touched-ox.ngrok-free.app/filosofo/retornar-conversa/"
-            url = "http://52.2.202.37/filosofo/retornar-conversa/"
+        with col_checkbox:
+            marcarArtigos = st.checkbox(
+                "Artigos", 
+                value=False, 
+                key="marcar_artigos", 
+                on_change=ativar_artigos
+            )
+        with col_info:
+            # Define o texto que aparecerá ao passar o mouse
+            info_text = "Com o objetivo de ter um mecanismo de pesquisa imparcial. Desenvolvemos um algoritimo que verifica semânticamente toda nossa base de dados com mais de 220 mil artigos publicados no ano de 2024."
+            # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
+            st.markdown(
+                f"<span title='{info_text}' style='cursor: pointer;'>&#9432;</span>",
+                unsafe_allow_html=True
+            )
+    with col[1]:
+        # Cria duas colunas: a primeira para o checkbox e a segunda para o ícone de informação
+        col_checkbox, col_info = st.columns([0.7, 0.3])
+        # Cria o checkbox e o ícone de informação na mesma linha
+        with col_checkbox:
+            # Cria o checkbox para o modo "Pensadores" e o ícone de informação na mesma linha
+            marcarPensador = st.checkbox(
+                "Pensadores", 
+                value=False, 
+                key="marcar_pensadores", 
+                on_change=ativar_pensadores
+            )
+        with col_info:
+            # Define o texto que aparecerá ao passar o mouse
+            info_text = "Tenha uma inteligência artificial treinada nas obras de diversos pensadores. Desbrave o mundo das ideias e encontre respostas para os seus questionamentos mais difíceis."
+            # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
+            st.markdown(
+                f"<span title='{info_text}' style='cursor: pointer;'>&#9432;</span>",
+                unsafe_allow_html=True
+            )
+    with col[2]:
+        if st.button("Limpar Chat", use_container_width=True):
+            url = "http://52.2.202.37/filosofo/recomecarconversa/"
             data = {"data":{"usuario": int(st.session_state.usuario)}
                     }
-            st.session_state.messages = requests.post(url, json=data, timeout=5*60).json().get("saida")
-        #openai_api_key = st.session_state.openai_api_key
-        if "messages" not in st.session_state:
-            st.session_state.messages = []
-        
-        
-        # Create a session state variable to store the chat messages. This ensures that the
-        # messages persist across reruns.
+            requests.post(url, json=data, timeout=5*60).json().get("saida")
 
+            st.session_state.messages = []
+    with col[5]:
+        if not st.session_state.marcar_pensadores and not st.session_state.marcar_artigos:
+            if "selected_model" not in st.session_state or st.session_state.selected_model not in ["gpt-4o-mini", "gpt-4o", "o3-mini"]:
+                st.session_state.selected_model = "gpt-4o-mini"
+            
+            
+            model_keys = ["gpt-4o-mini", "gpt-4o", "o3-mini"]
+            model_names = {
+                "gpt-4o-mini": "Gpt-4o-mini: Resposta rápida para tarefas leves.",
+                "gpt-4o": "Gpt-4o: Resposta rápida para tarefas com média complexidade.",
+                "o3-mini": "O3-mini: Modelo de pensamento para tarefas mais complexas"
+            }
+            selected = st.selectbox(
+                "Motor do chat:",
+                options=model_keys,
+                index=model_keys.index(st.session_state.selected_model),
+                format_func=lambda key: model_names[key]
+            )
+            st.session_state.selected_model = selected
+    
+    with col[5]:
+        #if st.session_state.marcar_artigos:
+        #    st.write("Artigos ativado.")
+        if st.session_state.marcar_pensadores:
+            st.session_state.selected_thinker = st.selectbox(
+                "Selecione o pensador:",
+                options=["Sócrates", "Platão", "Aristóteles", "Descartes"],
+                index=["Sócrates", "Platão", "Aristóteles", "Descartes"].index(st.session_state.selected_thinker)
+            )
+    if not st.session_state.carregado:
+        Carregando()
+    else:
+        #url = "https://plainly-touched-ox.ngrok-free.app/filosofo/retornar-conversa/"
+        url = "http://52.2.202.37/filosofo/retornar-conversa/"
+        data = {"data":{"usuario": int(st.session_state.usuario)}
+                }
+        st.session_state.messages = requests.post(url, json=data, timeout=5*60).json().get("saida")
+    #openai_api_key = st.session_state.openai_api_key
+    if "messages" not in st.session_state:
+        st.session_state.messages = []
+    
+    
+    # Create a session state variable to store the chat messages. This ensures that the
+    # messages persist across reruns.
+
+    with st.container(height=500):
         # Display the existing chat messages via `st.chat_message`.
         if st.session_state.messages:
             for message in st.session_state.messages:
