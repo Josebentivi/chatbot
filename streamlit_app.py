@@ -275,7 +275,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
         st.session_state.messages.append({"role": "user", "content": prompt["text"]})
         with entradachat.container():
             with st.chat_message("user"):
-                entradachat.markdown(prompt["text"])
+                st.markdown(prompt["text"])
 
         
         #with st.status("Processando..."):
@@ -320,7 +320,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
             model=st.session_state.selected_model,
             messages=st.session_state.messages,
             stream=True,
-        )
+            )
             with saidachat.container():
                 response_text = st.write_stream(stream)
 
