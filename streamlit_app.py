@@ -9,6 +9,8 @@ from time import sleep
 warnings.filterwarnings("ignore", message="missing ScriptRunContext")
 st.set_page_config(page_title="O Pensador Desktop", layout="wide")
 
+with st.empty():
+    st.write("⏳")
 if "selected_thinker" not in st.session_state:
     st.session_state.selected_thinker = None
 
@@ -25,6 +27,7 @@ if "usuario" in st.session_state and "product_page" in st.session_state:
         #)
 
         # Cria quatro colunas para os produtos
+            
         col = st.columns([1,1,1,1,1,2],vertical_alignment="center")
 
         with col[2]:
