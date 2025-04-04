@@ -19,7 +19,8 @@ def Carregando(aceleracao=0.1):
         my_bar = st.progress(porcentagem, text="Iniciando plataforma...")
         tempo=0
         
-        url = "http://52.2.202.37/filosofo/retornarconversa/"
+        url = "https://plainly-touched-ox.ngrok-free.app/filosofo/retornar-conversa/"
+        #url = "http://52.2.202.37/filosofo/retornar-conversa/"
         data = {"data":{"usuario": int(st.session_state.usuario)}
                 }
         st.session_state.messages = requests.post(url, json=data, timeout=5*60).json().get("saida")
@@ -293,6 +294,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
             st.session_state.messages.append({"role": "user", "content": prompt["text"]})
             # Create an OpenAI client.
             #client = OpenAI(api_key=openai_api_key)
+
             client = OpenAI()
             # Generate a response using the OpenAI API.
             stream = client.chat.completions.create(
@@ -300,15 +302,15 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
             messages=st.session_state.messages,
             stream=True,
         )
-            response = st.write_stream(stream)
+            response_text = st.write_stream(stream)
 
             url = "http://52.2.202.37/filosofo/chat/adicionar/resposta/"
             data = {"data":{"usuario": int(st.session_state.usuario),
-                    "mensagem": response}
+                    "mensagem": response_text}
                     }
-            response = requests.post(url, json=data, timeout=5*60)
+            post_response = requests.post(url, json=data, timeout=5*60)
 
-            st.session_state.messages.append({"role": "assistant", "content": response})
+            st.session_state.messages.append({"role": "assistant", "content": response_text})
 
 elif st.session_state.usuario and st.session_state.product_page == "loja":
     st.subheader("Loja")
