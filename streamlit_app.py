@@ -12,6 +12,15 @@ st.set_page_config(page_title="O Pensador Desktop", layout="wide")
 if "selected_thinker" not in st.session_state:
     st.session_state.selected_thinker = None
 
+placeholder = st.empty()
+with placeholder.container():
+    if "product_page" in st.session_state and st.session_state.product_page != "home":
+        cols = st.columns(8)
+        with cols[0]:
+            if st.button("Menu", use_container_width=True):
+                st.session_state.product_page = "home"
+                st.rerun(scope="app")
+
 def Carregando(aceleracao=0.1):
     porcentagem = 0
     cols = st.columns(3)
@@ -496,18 +505,3 @@ elif st.session_state.usuario and st.session_state.product_page == "home":
         """,
         unsafe_allow_html=True
         )
-
-
-
-
-
-
-placeholder = st.empty()
-#with placeholder.container():
-if "product_page" in st.session_state:
-    if st.session_state.product_page != "home":
-        cols = st.columns(8, vertical_alignment="bottom")
-        with cols[0]:
-            if st.button("Menu", use_container_width=True):
-                st.session_state.product_page = "home"
-                st.rerun(scope="app")
