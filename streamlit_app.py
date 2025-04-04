@@ -273,7 +273,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
         # Store and display the current prompt.
         st.session_state.messages.append({"role": "user", "content": prompt["text"]})
         with st.chat_message("user"):
-            entradachat.st.markdown(prompt["text"])
+            entradachat.markdown(prompt["text"])
 
         
         #with st.status("Processando..."):
@@ -319,7 +319,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
             messages=st.session_state.messages,
             stream=True,
         )
-            response_text = saidachat.st.write_stream(stream)
+            response_text = saidachat.write_stream(stream)
 
             url = "https://plainly-touched-ox.ngrok-free.app/filosofo/addusuario/"
             #url = "http://52.2.202.37/filosofo/addusuario/"
