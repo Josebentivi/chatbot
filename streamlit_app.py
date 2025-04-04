@@ -12,6 +12,15 @@ st.set_page_config(page_title="O Pensador Desktop", layout="wide")
 if "selected_thinker" not in st.session_state:
     st.session_state.selected_thinker = None
 
+placeholder = st.empty()
+with placeholder.container():
+    if "product_page" in st.session_state and st.session_state.product_page != "home":
+        cols = st.columns(8)
+        with cols[0]:
+            if st.button("Menu", use_container_width=True):
+                st.session_state.product_page = "home"
+                st.rerun(scope="app")
+
 def Carregando(aceleracao=0.1):
     porcentagem = 0
     cols = st.columns(3)
@@ -404,17 +413,7 @@ elif st.session_state.usuario and st.session_state.product_page == "loja":
         if idx < len(payments) - 1:
             st.markdown("---")
 
-
-placeholder = st.empty()
-with placeholder.container():
-    if "product_page" in st.session_state and st.session_state.product_page != "home":
-        cols = st.columns(8)
-        with cols[0]:
-            if st.button("Menu", use_container_width=True):
-                st.session_state.product_page = "home"
-                st.rerun(scope="app")
-
-if st.session_state.usuario and st.session_state.product_page == "home":
+elif st.session_state.usuario and st.session_state.product_page == "home":
     placeholder.empty()
     # Adiciona uma variável de controle para a página atual se ainda não existir
     #st.markdown(
