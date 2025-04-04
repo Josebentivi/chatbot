@@ -234,10 +234,10 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                 options=["Sócrates", "Platão", "Aristóteles", "Descartes"],
                 index=["Sócrates", "Platão", "Aristóteles", "Descartes"].index(st.session_state.selected_thinker)
             )
-    with st.container(height=500):
+    with st.container(height=500,border=False):
         colunachat = st.columns(1, vertical_alignment="bottom")
         with colunachat[0]:
-            with st.container(height=490,border=False):
+            with st.container():
                 if "messages" not in st.session_state:
                     st.session_state.messages = []
                 if not st.session_state.carregado:
