@@ -107,6 +107,12 @@ def ativar_pensadores():
 #        if st.button("Sign Up", key="signup_button"):
 #            Cadastrar() 
 
+if "product_page" in st.session_state and st.session_state.product_page != "home":
+    cols = st.columns(8)
+    with cols[0]:
+        if st.button("Menu", use_container_width=True):
+            st.session_state.product_page = "home"
+
 if "usuario" not in st.session_state:
     cols = st.columns(3)
     with cols[1]:
@@ -398,14 +404,6 @@ elif st.session_state.usuario and st.session_state.product_page == "loja":
         if idx < len(payments) - 1:
             st.markdown("---")
 
-
-
-if "product_page" in st.session_state and st.session_state.product_page != "home":
-    cols = st.columns(8)
-    with cols[0]:
-        if st.button("Menu", use_container_width=True):
-            st.session_state.product_page = "home"
-            
 elif st.session_state.usuario and st.session_state.product_page == "home" or True:
     # Adiciona uma variável de controle para a página atual se ainda não existir
     #st.markdown(
