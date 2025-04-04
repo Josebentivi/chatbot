@@ -249,23 +249,22 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
     # Create a session state variable to store the chat messages. This ensures that the
     # messages persist across reruns.
 
-    with st.container(height=500):
-        # Display the existing chat messages via `st.chat_message`.
-        if st.session_state.messages:
-            for message in st.session_state.messages:
-                if message["role"] == "developer":
-                    with st.chat_message("assistant"):
-                        st.markdown(message["content"])
-                else:
-                    with st.chat_message(message["role"]):
-                        st.markdown(message["content"])
-                        #st.markdown(message["content"][0].get("text"))
-        else:
-            st.session_state.messages=[]
-            with st.chat_message("assistant"):
-                st.markdown('Olá! Como posso ajudar?')
-        # Create a chat input field to allow the user to enter a message. This will display
-        # automatically at the bottom of the page.
+    # Display the existing chat messages via `st.chat_message`.
+    if st.session_state.messages:
+        for message in st.session_state.messages:
+            if message["role"] == "developer":
+                with st.chat_message("assistant"):
+                    st.markdown(message["content"])
+            else:
+                with st.chat_message(message["role"]):
+                    st.markdown(message["content"])
+                    #st.markdown(message["content"][0].get("text"))
+    else:
+        st.session_state.messages=[]
+        with st.chat_message("assistant"):
+            st.markdown('Olá! Como posso ajudar?')
+    # Create a chat input field to allow the user to enter a message. This will display
+    # automatically at the bottom of the page.
     if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=True,file_type=["jpg", "jpeg", "png","pdf","mp3"],):
 
         # Store and display the current prompt.
