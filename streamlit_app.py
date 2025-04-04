@@ -507,3 +507,7 @@ with st.container():
             """,
             unsafe_allow_html=True
             )
+
+with st.container():
+    st.write("This is inside the container")
+
