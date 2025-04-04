@@ -416,7 +416,6 @@ elif st.session_state.usuario and st.session_state.product_page == "loja":
             st.markdown("---")
 
 elif st.session_state.usuario and st.session_state.product_page == "home":
-    placeholder.empty()
     # Adiciona uma variável de controle para a página atual se ainda não existir
     #st.markdown(
     #    """
