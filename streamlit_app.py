@@ -30,7 +30,7 @@ if "usuario" in st.session_state and "product_page" in st.session_state:
         with col[2]:
             if st.button("💬 Chat", use_container_width=True):
                 st.session_state.product_page = "chat"
-                col = False
+                st.rerun(scope="app")
             # Define o texto que aparecerá ao passar o mouse
             info_text1 = "Um assistente que se adapta a você! Com capacidade de ler e processar PDFs, imagens e  áudios com precisão, tudo em uma única ferramenta inteligente que facilita o acesso a informações essenciais, otimiza seu fluxo de trabalho e impulsiona sua criatividade em qualquer tarefa."
             # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip 
@@ -77,6 +77,7 @@ if "usuario" in st.session_state and "product_page" in st.session_state:
         with col[3]:
             if st.button("🗣 Mesa de discussão", use_container_width=True):
                 st.session_state.product_page = "mesa_discussao"
+                st.rerun(scope="app")
             # Define o texto que aparecerá ao passar o mouse
             info_text4 = """A mesa de discussão reúne quatro filósofos para analisar um tema em seis etapas: fatos, emoções, pontos negativos, pontos positivos, visões alternativas e, por fim, a organização das ideias. Essa abordagem garante um debate equilibrado e multidimensional, onde cada aspecto do tema é explorado de forma clara e estruturada."""
             # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
@@ -91,6 +92,7 @@ if "usuario" in st.session_state and "product_page" in st.session_state:
         with col[4]:
             if st.button("Loja", use_container_width=True):
                 st.session_state.product_page = "loja"
+                st.rerun(scope="app")
             # Define o texto que aparecerá ao passar o mouse
             info_text1 = "Uma loja com produtos e serviços que podem ser adquiridos com o uso de créditos. Os créditos podem ser comprados diretamente na loja."
             # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip 
