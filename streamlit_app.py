@@ -264,18 +264,16 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
         st.session_state.messages=[]
         with st.chat_message("assistant"):
             st.markdown('Olá! Como posso ajudar?')
-            
-    with st.chat_message("user"):
-        entradachat = st.empty()
-    with st.chat_message("assistant"):
-        saidachat = st.empty()
+
+    entradachat = st.empty()
+    saidachat = st.empty()
     # Create a chat input field to allow the user to enter a message. This will display
     # automatically at the bottom of the page.
     if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=True,file_type=["jpg", "jpeg", "png","pdf","mp3"],):
 
         # Store and display the current prompt.
         st.session_state.messages.append({"role": "user", "content": prompt["text"]})
-        with st.chat_message("user"):
+        with entradachat.chat_message("user"):
             entradachat.markdown(prompt["text"])
 
         
