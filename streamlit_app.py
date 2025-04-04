@@ -205,7 +205,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
             model_keys = ["gpt-4o-mini", "gpt-4o", "o3-mini"]
             model_names = {
                 "gpt-4o-mini": "Gpt-4o-mini: Resposta rápida para tarefas leves.",
-                "gpt-4o": "Gpt-4o:",
+                "gpt-4o": "Gpt-4o: Resposta rápida para tarefas com média complexidade.",
                 "o3-mini": "O3-mini: Modelo de pensamento para tarefas mais complexas"
             }
             selected = st.selectbox(
