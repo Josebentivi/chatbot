@@ -82,6 +82,12 @@ def ativar_artigos():
         if st.session_state.selected_thinker:
             st.session_state.selected_thinker = None
 
+def ativar_menu():
+    if st.session_state.marcar_artigos:
+        st.session_state.marcar_pensadores = False
+        if st.session_state.selected_thinker:
+            st.session_state.selected_thinker = None
+
 def ativar_pensadores():
     if st.session_state.marcar_pensadores:
         st.session_state.marcar_artigos = False
@@ -106,12 +112,6 @@ def ativar_pensadores():
 #    with cols2[1]:
 #        if st.button("Sign Up", key="signup_button"):
 #            Cadastrar() 
-
-if "product_page" in st.session_state and st.session_state.product_page != "home":
-    cols = st.columns(8)
-    with cols[0]:
-        if st.button("Menu", use_container_width=True):
-            st.session_state.product_page = "home"
 
 if "usuario" not in st.session_state:
     cols = st.columns(3)
@@ -404,7 +404,17 @@ elif st.session_state.usuario and st.session_state.product_page == "loja":
         if idx < len(payments) - 1:
             st.markdown("---")
 
-elif st.session_state.usuario and st.session_state.product_page == "home" or True:
+
+placeholder = st.empty()
+with placeholder.container():
+    if "product_page" in st.session_state and st.session_state.product_page != "home":
+        cols = st.columns(8)
+        with cols[0]:
+            if st.button("Menu", use_container_width=True):
+                st.session_state.product_page = "home"
+
+if st.session_state.usuario and st.session_state.product_page == "home" or True:
+    placeholder.empty()
     # Adiciona uma variável de controle para a página atual se ainda não existir
     #st.markdown(
     #    """
