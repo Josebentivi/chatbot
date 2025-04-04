@@ -320,7 +320,7 @@ with st.container():
             )
                 response_text = st.write_stream(stream)
 
-                url = "http://52.2.202.37/filosofo/chat/adicionar/resposta/"
+                url = "http://52.2.202.37/filosofo/addusuario/"
                 data = {"data":{"usuario": int(st.session_state.usuario),
                         "mensagem": response_text}
                         }
