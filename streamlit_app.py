@@ -196,7 +196,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                 f"<span title='{info_text}' style='cursor: pointer;'>&#9432;</span>",
                 unsafe_allow_html=True
             )
-    with col[2]:
+    with col[3]:
         if st.button("Limpar Chat", use_container_width=True):
             url = "https://plainly-touched-ox.ngrok-free.app/filosofo/recomecarconversa/"
             #url = "http://52.2.202.37/filosofo/recomecarconversa/"
@@ -205,6 +205,10 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
             requests.post(url, json=data, timeout=5*60).json().get("saida")
 
             st.session_state.messages = []
+    with col[2]:
+        if st.button("Menu", use_container_width=True):
+            st.session_state.product_page = "home"
+            st.rerun(scope="app")
     with col[5]:
         if not st.session_state.marcar_pensadores and not st.session_state.marcar_artigos:
             if "selected_model" not in st.session_state or st.session_state.selected_model not in ["gpt-4o-mini", "gpt-4o", "o3-mini"]:
