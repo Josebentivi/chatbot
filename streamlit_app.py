@@ -414,7 +414,7 @@ with placeholder.container():
                 st.session_state.product_page = "home"
                 st.rerun(scope="app")
 
-if st.session_state.usuario and st.session_state.product_page == "home" or True:
+if st.session_state.usuario and st.session_state.product_page == "home":
     placeholder.empty()
     # Adiciona uma variável de controle para a página atual se ainda não existir
     #st.markdown(
