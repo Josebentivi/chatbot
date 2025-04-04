@@ -266,66 +266,66 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                 st.markdown('Olá! Como posso ajudar?')
         # Create a chat input field to allow the user to enter a message. This will display
         # automatically at the bottom of the page.
-        if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=True,file_type=["jpg", "jpeg", "png","pdf","mp3"],):
+    if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=True,file_type=["jpg", "jpeg", "png","pdf","mp3"],):
 
-            # Store and display the current prompt.
+        # Store and display the current prompt.
+        st.session_state.messages.append({"role": "user", "content": prompt["text"]})
+        with st.chat_message("user"):
+            st.markdown(prompt["text"])
+
+        
+        #with st.status("Processando..."):
+        #    time.sleep(0.5)
+        #    st.write("Pesquisando informação...")
+        #    time.sleep(0.5)
+        #    st.write("Aprimorando resposta...")
+        #    time.sleep(0.5)
+        #    st.write("Finalizando...")
+        #    time.sleep(0.5)
+
+        # Stream the response to the chat using `st.write_stream`, then store it in 
+        # session state.
+
+        # Chamada à API (substitua a URL pelo endpoint real) 
+        
+        # Stream the response to the chat using `st.write_stream`, then store it in 
+        # session state.
+
+        #url = "http://52.2.202.37/filosofo/chat/"
+        #data = {"data":{"usuario": int(st.session_state.usuario),
+        #        "mensagem": prompt["text"]}
+        #        }
+        #response = requests.post(url, json=data, timeout=5*60)
+        #if response.status_code == 200:  
+        #    saida = response.json().get("saida")
+        #else:
+        #    saida = str(response.status_code)+"\n\n"+str(response)
+        #with st.chat_message("assistant"):
+        #    st.markdown(str(saida))
+        #    st.session_state.messages.append({"role": "assistant", "content": saida})
+        
+        with st.chat_message("assistant"):
+            #st.write(str(st.session_state.messages))
             st.session_state.messages.append({"role": "user", "content": prompt["text"]})
-            with st.chat_message("user"):
-                st.markdown(prompt["text"])
+            # Create an OpenAI client.
+            #client = OpenAI(api_key=openai_api_key)
 
-            
-            #with st.status("Processando..."):
-            #    time.sleep(0.5)
-            #    st.write("Pesquisando informação...")
-            #    time.sleep(0.5)
-            #    st.write("Aprimorando resposta...")
-            #    time.sleep(0.5)
-            #    st.write("Finalizando...")
-            #    time.sleep(0.5)
+            client = OpenAI()
+            # Generate a response using the OpenAI API.
+            stream = client.chat.completions.create(
+            model=st.session_state.selected_model,
+            messages=st.session_state.messages,
+            stream=True,
+        )
+            response_text = st.write_stream(stream)
 
-            # Stream the response to the chat using `st.write_stream`, then store it in 
-            # session state.
+            url = "http://52.2.202.37/filosofo/chat/adicionar/resposta/"
+            data = {"data":{"usuario": int(st.session_state.usuario),
+                    "mensagem": response_text}
+                    }
+            post_response = requests.post(url, json=data, timeout=5*60)
 
-            # Chamada à API (substitua a URL pelo endpoint real) 
-            
-            # Stream the response to the chat using `st.write_stream`, then store it in 
-            # session state.
-
-            #url = "http://52.2.202.37/filosofo/chat/"
-            #data = {"data":{"usuario": int(st.session_state.usuario),
-            #        "mensagem": prompt["text"]}
-            #        }
-            #response = requests.post(url, json=data, timeout=5*60)
-            #if response.status_code == 200:  
-            #    saida = response.json().get("saida")
-            #else:
-            #    saida = str(response.status_code)+"\n\n"+str(response)
-            #with st.chat_message("assistant"):
-            #    st.markdown(str(saida))
-            #    st.session_state.messages.append({"role": "assistant", "content": saida})
-            
-            with st.chat_message("assistant"):
-                #st.write(str(st.session_state.messages))
-                st.session_state.messages.append({"role": "user", "content": prompt["text"]})
-                # Create an OpenAI client.
-                #client = OpenAI(api_key=openai_api_key)
-
-                client = OpenAI()
-                # Generate a response using the OpenAI API.
-                stream = client.chat.completions.create(
-                model=st.session_state.selected_model,
-                messages=st.session_state.messages,
-                stream=True,
-            )
-                response_text = st.write_stream(stream)
-
-                url = "http://52.2.202.37/filosofo/chat/adicionar/resposta/"
-                data = {"data":{"usuario": int(st.session_state.usuario),
-                        "mensagem": response_text}
-                        }
-                post_response = requests.post(url, json=data, timeout=5*60)
-
-                st.session_state.messages.append({"role": "assistant", "content": response_text})
+            st.session_state.messages.append({"role": "assistant", "content": response_text})
 
 elif st.session_state.usuario and st.session_state.product_page == "loja":
     st.subheader("Loja")
