@@ -153,7 +153,7 @@ if "usuario" not in st.session_state:
     #st.session_state.openai_api_entered = True
 
 elif st.session_state.usuario and st.session_state.product_page == "chat":
-    with st.container():
+    with st.container(height=500):
         # Menu do chat
         #opcoeschat = st.columns(5, vertical_alignment="center")
         # Cria o checkbox e o ícone de informação na mesma linha
