@@ -157,7 +157,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
         # Menu do chat
         #opcoeschat = st.columns(5, vertical_alignment="center")
         # Cria o checkbox e o ícone de informação na mesma linha
-        col = st.columns([1, 1, 1, 1, 1, 2], vertical_alignment="center")
+        col = st.columns([1, 1, 1, 1, 1, 2], vertical_alignment="bottom")
         with col[0]:
             # Cria duas colunas: a primeira para o checkbox e a segunda para o ícone de informação
             col_checkbox, col_info = st.columns([0.7, 0.3])
