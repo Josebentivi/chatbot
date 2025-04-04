@@ -19,8 +19,8 @@ def Carregando(aceleracao=0.1):
         my_bar = st.progress(porcentagem, text="Iniciando plataforma...")
         tempo=0
         
-        url = "https://plainly-touched-ox.ngrok-free.app/filosofo/retornar-conversa/"
-        #url = "http://52.2.202.37/filosofo/retornar-conversa/"
+        #url = "https://plainly-touched-ox.ngrok-free.app/filosofo/retornar-conversa/"
+        url = "http://52.2.202.37/filosofo/retornar-conversa/"
         data = {"data":{"usuario": int(st.session_state.usuario)}
                 }
         st.session_state.messages = requests.post(url, json=data, timeout=5*60).json().get("saida")
