@@ -145,7 +145,7 @@ if "usuario" not in st.session_state:
     #st.session_state.openai_api_entered = True
 
 elif st.session_state.usuario and st.session_state.product_page == "chat":
-    st.session_state.chat = st.empty()
+    st.session_state.chat = st.container()
     with st.session_state.chat:
         # Menu do chat
         #opcoeschat = st.columns(5, vertical_alignment="center")
