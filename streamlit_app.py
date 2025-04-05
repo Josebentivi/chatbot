@@ -518,7 +518,8 @@ with rodape.container():
 
 
 
-
-if st.session_state.chat != "chat":
-    #chat = st.empty()
-    st.session_state.chat.empty()
+if "chat" in st.session_state:
+    # Remove the chat container if it exists
+    if st.session_state.chat != "chat":
+        #chat = st.empty()
+        st.session_state.chat.empty()
