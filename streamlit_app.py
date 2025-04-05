@@ -516,6 +516,6 @@ elif st.session_state.usuario and st.session_state.product_page == "home":
 
 
 limpartela = st.empty()
-with rodape.container(height = 500, border = False):
+with limpartela.container(height = 500, border = False):
     pass
 limpartela.empty()
