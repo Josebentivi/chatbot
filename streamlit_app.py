@@ -252,7 +252,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                     for message in st.session_state.messages:
                         if message["role"] == "developer":
                             with st.chat_message("assistant"):
-                                st.markdown(message["content"])
+                                st.markdown(message["content"]["text"])
                         else:
                             with st.chat_message(message["role"]):
                                 st.markdown(message["content"])
