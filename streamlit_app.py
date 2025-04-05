@@ -11,6 +11,8 @@ st.set_page_config(page_title="O Pensador Desktop", layout="wide")
 
 if "selected_thinker" not in st.session_state:
     st.session_state.selected_thinker = None
+if "messages" not in st.session_state:
+    st.session_state.messages = []
 
 def Carregando(aceleracao=0.1):
     porcentagem = 0
@@ -231,8 +233,6 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
             )
     with st.container(height=400,border=False):
             with st.container():
-                if "messages" not in st.session_state:
-                    st.session_state.messages = []
                 if not st.session_state.carregado:
                     Carregando()
                 else:
@@ -322,7 +322,8 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                             url = "https://plainly-touched-ox.ngrok-free.app/filosofo/addusuario/"
                             #url = "http://52.2.202.37/filosofo/addusuario/"
                             data = {"data":{"usuario": int(st.session_state.usuario),
-                                    "mensagem": response_text}
+                                    "entrada": prompt["text"],
+                                    "saida": response_text}
                                     }
                             post_response = requests.post(url, json=data, timeout=5*60)
             
