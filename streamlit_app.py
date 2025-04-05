@@ -195,6 +195,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
             requests.post(url, json=data, timeout=5*60).json().get("saida")
 
             st.session_state.messages = []
+            st.rerun(scope="app")
     with col[2]:
         if st.button("Menu", use_container_width=True):
             st.session_state.product_page = "home"
@@ -248,7 +249,6 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
 
                 # Display the existing chat messages via `st.chat_message`.
                 if st.session_state.messages:
-                    st.session_state.messages=[]
                     with st.chat_message("assistant"):
                         st.markdown('Olá! Como posso te ajudar?')
                     for message in st.session_state.messages:
