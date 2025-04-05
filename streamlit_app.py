@@ -247,6 +247,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                 # messages persist across reruns.
 
                 # Display the existing chat messages via `st.chat_message`.
+                confirmador=False
                 if st.session_state.messages:
                     for message in st.session_state.messages:
                         if message["role"] == "developer":
@@ -256,8 +257,9 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                         else:
                             with st.chat_message(message["role"]):
                                 st.markdown(message["content"][0]["text"])
+                                confirmador=True
                                 #st.markdown(message["content"][0].get("text"))
-                else:
+                if not confirmador:
                     st.session_state.messages=[]
                     with st.chat_message("assistant"):
                         st.markdown('Olá! Como posso ajudar?')
@@ -431,6 +433,7 @@ elif st.session_state.usuario and st.session_state.product_page == "home":
     with col[2]:
         if st.button("💬 Chat", use_container_width=True):
             st.session_state.product_page = "chat"
+            st.rerun(scope="app")
         # Define o texto que aparecerá ao passar o mouse
         info_text1 = "Um assistente que se adapta a você! Com capacidade de ler e processar PDFs, imagens e  áudios com precisão, tudo em uma única ferramenta inteligente que facilita o acesso a informações essenciais, otimiza seu fluxo de trabalho e impulsiona sua criatividade em qualquer tarefa."
         # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip 
