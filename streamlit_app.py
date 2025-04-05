@@ -255,7 +255,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                                 st.markdown(message["content"][0]["text"])
                         else:
                             with st.chat_message(message["role"]):
-                                st.markdown(message["content"])
+                                st.markdown(message["content"][0]["text"])
                                 #st.markdown(message["content"][0].get("text"))
                 else:
                     st.session_state.messages=[]
