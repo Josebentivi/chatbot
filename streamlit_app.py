@@ -509,7 +509,13 @@ elif st.session_state.usuario and st.session_state.product_page == "home":
 
 
 
-rodape = st.empty()
-with rodape.container():
-    st.write("This is inside the container") 
+#rodape = st.empty()
+#with rodape.container():
+#    st.write("This is inside the container") 
 
+
+
+limpartela = st.empty()
+with rodape.container(height = 500, border = False):
+    pass
+limpartela.empty()
