@@ -326,8 +326,6 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                                     "mensagem": response_text}
                                     }
                             post_response = requests.post(url, json=data, timeout=5*60)
-
-                            st.session_state.messages.append({"role": "assistant", "content": response_text})
             
 elif st.session_state.usuario and st.session_state.product_page == "loja":
     st.subheader("Loja")
