@@ -113,44 +113,42 @@ def ativar_pensadores():
 #    with cols2[1]:
 #        if st.button("Sign Up", key="signup_button"):
 #            Cadastrar() 
+
+if "usuario" not in st.session_state:
+    cols = st.columns(3)
+    with cols[1]:
+        cols3 = st.columns(3)
+        with cols3[1]:
+            image = Image.open("dados/exemplo/imagem.jpg")
+            st.image(image, use_container_width=True)
+    
+        st.markdown(
+            """
+            <div style="text-align: center; font-size: 24px; font-weight: bold;">
+                💬 O Pensador Desktop
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+        cols = st.columns(3)
+        with cols[1]:
+            if st.button("Login", key="login_button",use_container_width=True):
+                Entrar()
+            if st.button("Sign Up", key="signup_button",use_container_width=True):
+                Cadastrar()
+        
+
+    
+    #st.title("💬 O Pensador Desktop") 
+    
+    #st.session_state.openai_api_key = st.text_input("Senha", type="password")
+    #st.session_state.openai_api_entered = True
+
 if "tela" not in st.session_state:
     st.session_state.tela = st.container()
 
 with st.session_state.tela:
-
-    if "usuario" not in st.session_state:
-        cols = st.columns(3)
-        with cols[1]:
-            cols3 = st.columns(3)
-            with cols3[1]:
-                image = Image.open("dados/exemplo/imagem.jpg")
-                st.image(image, use_container_width=True)
-        
-            st.markdown(
-                """
-                <div style="text-align: center; font-size: 24px; font-weight: bold;">
-                    💬 O Pensador Desktop
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
-            cols = st.columns(3)
-            with cols[1]:
-                if st.button("Login", key="login_button",use_container_width=True):
-                    Entrar()
-                if st.button("Sign Up", key="signup_button",use_container_width=True):
-                    Cadastrar()
-            
-
-        
-        #st.title("💬 O Pensador Desktop") 
-        
-        #st.session_state.openai_api_key = st.text_input("Senha", type="password")
-        #st.session_state.openai_api_entered = True
-
-
-
-    elif st.session_state.usuario and st.session_state.product_page == "chat":
+    if st.session_state.usuario and st.session_state.product_page == "chat":
         # Menu do chat
         #opcoeschat = st.columns(5, vertical_alignment="center")
         # Cria o checkbox e o ícone de informação na mesma linha
