@@ -17,12 +17,11 @@ def Carregando(aceleracao=0.1):
     cols = st.columns(3)
     with cols[1]:
         my_bar = st.progress(porcentagem, text="Iniciando plataforma...")
-        tempo=0
+        tempo=0.5
         
         url = "https://plainly-touched-ox.ngrok-free.app/filosofo/retornarconversa/"
         #url = "http://52.2.202.37/filosofo/retornarconversa/"
-        data = {"data":{"usuario": int(st.session_state.usuario)}
-                }
+        data = {"data":{"usuario": int(st.session_state.usuario)}}
         st.session_state.messages = requests.post(url, json=data, timeout=5*60).json().get("saida")
         porcentagem += 25
         my_bar.progress(porcentagem, text="Carregando Filósofos...")
@@ -251,8 +250,9 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                 if st.session_state.messages:
                     for message in st.session_state.messages:
                         if message["role"] == "developer":
-                            with st.chat_message("assistant"):
-                                st.markdown(message["content"][0]["text"])
+                            #with st.chat_message("assistant"):
+                            #    st.markdown(message["content"][0]["text"])
+                            pass
                         else:
                             with st.chat_message(message["role"]):
                                 st.markdown(message["content"][0]["text"])
@@ -431,7 +431,6 @@ elif st.session_state.usuario and st.session_state.product_page == "home":
     with col[2]:
         if st.button("💬 Chat", use_container_width=True):
             st.session_state.product_page = "chat"
-            st.rerun(scope="app")
         # Define o texto que aparecerá ao passar o mouse
         info_text1 = "Um assistente que se adapta a você! Com capacidade de ler e processar PDFs, imagens e  áudios com precisão, tudo em uma única ferramenta inteligente que facilita o acesso a informações essenciais, otimiza seu fluxo de trabalho e impulsiona sua criatividade em qualquer tarefa."
         # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip 
