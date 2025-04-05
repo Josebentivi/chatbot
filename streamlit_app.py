@@ -247,8 +247,10 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                 # messages persist across reruns.
 
                 # Display the existing chat messages via `st.chat_message`.
-                confirmador=False
                 if st.session_state.messages:
+                    st.session_state.messages=[]
+                    with st.chat_message("assistant"):
+                        st.markdown('Olá! Como posso te ajudar?')
                     for message in st.session_state.messages:
                         if message["role"] == "developer":
                             #with st.chat_message("assistant"):
@@ -257,12 +259,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                         else:
                             with st.chat_message(message["role"]):
                                 st.markdown(message["content"][0]["text"])
-                                confirmador=True
                                 #st.markdown(message["content"][0].get("text"))
-                if not confirmador:
-                    st.session_state.messages=[]
-                    with st.chat_message("assistant"):
-                        st.markdown('Olá! Como posso ajudar?')
 
                 entradachat = st.empty()
                 saidachat = st.empty()
