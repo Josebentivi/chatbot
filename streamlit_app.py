@@ -207,7 +207,7 @@ with st.session_state.tela:
         with col[2]:
             if st.button("Menu", use_container_width=True):
                 st.session_state.product_page = "home"
-                st.rerun(scope="app")
+                st.session_state.limpartela = True
         with col[5]:
             if not st.session_state.marcar_pensadores and not st.session_state.marcar_artigos:
                 if "selected_model" not in st.session_state or st.session_state.selected_model not in ["gpt-4o-mini", "gpt-4o", "o3-mini"]:
