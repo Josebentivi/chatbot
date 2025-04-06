@@ -232,7 +232,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                 options=["Sócrates", "Platão", "Aristóteles", "Descartes"],
                 index=["Sócrates", "Platão", "Aristóteles", "Descartes"].index(st.session_state.selected_thinker)
             )
-    with st.container(height=400,border=False):
+    with st.container(height=450,border=False):
             with st.container():
                 if not st.session_state.carregado:
                     Carregando() 
