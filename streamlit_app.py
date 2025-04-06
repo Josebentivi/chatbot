@@ -121,7 +121,7 @@ if "usuario" not in st.session_state:
     with cols[1]:
         cols3 = st.columns(3)
         with cols3[1]:
-            image = Image.open("dados/exemplo/imagem.jpg")
+            image = Image.open("dados/exemplo/introfilosofogif.gif")
             st.image(image, use_container_width=True)
     
         st.markdown(
