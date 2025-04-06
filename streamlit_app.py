@@ -117,8 +117,9 @@ def ativar_pensadores():
 #            Cadastrar() 
 
 if "usuario" not in st.session_state:
-    if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=True,file_type=["jpg", "jpeg", "png","pdf","mp3"],):
-        pass
+    with st.container(height=300,border=False):
+        if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=True,file_type=["jpg", "jpeg", "png","pdf","mp3"],):
+            pass
     cols = st.columns(3)
     with cols[1]:
         cols3 = st.columns(3)
