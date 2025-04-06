@@ -118,6 +118,23 @@ def ativar_pensadores():
 
 if "usuario" not in st.session_state:
     with st.container(height=200,border=False):
+        rainbow_colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"]
+        text = "Revolucionando a Maneira de Pensar e Aprender"
+        rainbow_text = ""
+        color_index = 0
+
+        for char in text:
+            if char != " ":
+                color = rainbow_colors[color_index % len(rainbow_colors)]
+                rainbow_text += f'<span style="color: {color};">{char}</span>'
+                color_index += 1
+            else:
+                rainbow_text += " "
+
+        st.markdown(
+            f'<div style="text-align: center; font-size: 24px; font-weight: bold;">{rainbow_text}</div>',
+            unsafe_allow_html=True
+        )
         st.markdown(
             """
             <div style="text-align: center; font-size: 24px; font-weight: bold;">
