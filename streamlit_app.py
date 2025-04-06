@@ -235,7 +235,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
     with st.container(height=400,border=False):
             with st.container():
                 if not st.session_state.carregado:
-                    Carregando()
+                    Carregando() 
                 else:
                     url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/retornarconversa/"
                     #url = "http://52.2.202.37/produto/post/filosofo/retornarconversa/"
