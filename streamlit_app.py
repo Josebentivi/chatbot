@@ -23,8 +23,8 @@ def Carregando(aceleracao=0.1):
         my_bar = st.progress(porcentagem, text="Iniciando plataforma...")
         tempo=0.5
         
-        url = "https://plainly-touched-ox.ngrok-free.app/produto/filosofo/retornarconversa/"
-        #url = "http://52.2.202.37/produto/filosofo/retornarconversa/"
+        url = "https://plainly-touched-ox.ngrok-free.app/produto/filosofo/post/retornarconversa/"
+        #url = "http://52.2.202.37/produto/filosofo/post/retornarconversa/"
         data = {"data":{"usuario": int(st.session_state.usuario)},"chave":st.secrets["CHAVE"]}
         st.session_state.messages = requests.post(url, json=data, timeout=5*60).json().get("saida")
         porcentagem += 25
@@ -192,8 +192,8 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
             )
     with col[3]:
         if st.button("Limpar Chat", use_container_width=True):
-            url = "https://plainly-touched-ox.ngrok-free.app/produto/filosofo/recomecarconversa/"
-            #url = "http://52.2.202.37/produto/filosofo/recomecarconversa/"
+            url = "https://plainly-touched-ox.ngrok-free.app/produto/filosofo/post/recomecarconversa/"
+            #url = "http://52.2.202.37/produto/filosofo/post/recomecarconversa/"
             data = {"data":{"usuario": int(st.session_state.usuario)},"chave":st.secrets["CHAVE"]}
             requests.post(url, json=data, timeout=5*60).json().get("saida")
 
@@ -320,7 +320,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                             response_text = st.write_stream(stream)
 
                             url = "https://plainly-touched-ox.ngrok-free.app/produto/filosofo/post/addusuario/"
-                            #url = "http://52.2.202.37/produto/filosofo/addusuario/"
+                            #url = "http://52.2.202.37/produto/filosofo/post/addusuario/"
                             data = {"data":{"usuario": int(st.session_state.usuario),
                                     "entrada": prompt["text"],
                                     "saida": response_text},
