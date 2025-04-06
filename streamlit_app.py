@@ -118,33 +118,42 @@ def ativar_pensadores():
 
 if "usuario" not in st.session_state:
     with st.container(height=200,border=False):
-        st.empty()
+        st.markdown(
+            """
+            <div style="text-align: center; font-size: 24px; font-weight: bold;">
+                Revolucionando a Maneira de Pensar e Aprender
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
     with st.container(border=False):
         cols = st.columns(1,vertical_alignment="bottom")
         with cols[0]:
             if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=True,file_type=["jpg", "jpeg", "png","pdf","mp3"],):
                 pass
-    cols = st.columns(3)
-    with cols[1]:
-        cols3 = st.columns(3)
-        with cols3[1]:
-            image = Image.open("dados/exemplo/imagem.jpg")
-            st.image(image, use_container_width=True)
+            if st.button("Experimentar",use_container_width=True):
+                st.session_state.usuario = "6019224769"
+    #cols = st.columns(3)
+    #with cols[1]:
+    #    cols3 = st.columns(3)
+    #    with cols3[1]:
+    #        image = Image.open("dados/exemplo/imagem.jpg")
+    #        st.image(image, use_container_width=True)
     
-        st.markdown(
-            """
-            <div style="text-align: center; font-size: 24px; font-weight: bold;">
-                💬 O Pensador Desktop
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-        cols = st.columns(3)
-        with cols[1]:
-            if st.button("Login", key="login_button",use_container_width=True):
-                Entrar()
-            if st.button("Sign Up", key="signup_button",use_container_width=True):
-                Cadastrar()
+    #    st.markdown(
+    #        """
+    #        <div style="text-align: center; font-size: 24px; font-weight: bold;">
+    #            💬 O Pensador Desktop
+    #        </div>
+    #        """,
+    #        unsafe_allow_html=True
+    #    )
+    #    cols = st.columns(3)
+    #    with cols[1]:
+    #        if st.button("Login", key="login_button",use_container_width=True):
+    #            Entrar()
+    #        if st.button("Sign Up", key="signup_button",use_container_width=True):
+    #            Cadastrar()
         
 
     
