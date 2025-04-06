@@ -158,6 +158,9 @@ if "usuario" not in st.session_state:
         with colss[2]:
             if st.button("Experimentar",use_container_width=True):
                 st.session_state.usuario = "6019224769"
+                st.session_state.carregado = False
+                st.session_state.product_page = "chat"
+                st.rerun(scope="app")
     #cols = st.columns(3)
     #with cols[1]:
     #    cols3 = st.columns(3)
