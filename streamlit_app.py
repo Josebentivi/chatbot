@@ -9,6 +9,8 @@ from time import sleep
 warnings.filterwarnings("ignore", message="missing ScriptRunContext")
 st.set_page_config(page_title="O Pensador Desktop", layout="wide")
 
+
+
 if "selected_thinker" not in st.session_state:
     st.session_state.selected_thinker = None
 if "messages" not in st.session_state:
@@ -23,7 +25,7 @@ def Carregando(aceleracao=0.1):
         
         url = "https://plainly-touched-ox.ngrok-free.app/filosofo/retornarconversa/"
         #url = "http://52.2.202.37/filosofo/retornarconversa/"
-        data = {"data":{"usuario": int(st.session_state.usuario)}}
+        data = {"data":{"usuario": int(st.session_state.usuario)},"chave":st.secrets["CHAVE"]}
         st.session_state.messages = requests.post(url, json=data, timeout=5*60).json().get("saida")
         porcentagem += 25
         my_bar.progress(porcentagem, text="Carregando Filósofos...")
@@ -192,8 +194,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
         if st.button("Limpar Chat", use_container_width=True):
             url = "https://plainly-touched-ox.ngrok-free.app/filosofo/recomecarconversa/"
             #url = "http://52.2.202.37/filosofo/recomecarconversa/"
-            data = {"data":{"usuario": int(st.session_state.usuario)}
-                    }
+            data = {"data":{"usuario": int(st.session_state.usuario)},"chave":st.secrets["CHAVE"]}
             requests.post(url, json=data, timeout=5*60).json().get("saida")
 
             st.session_state.messages = []
@@ -238,8 +239,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                 else:
                     url = "https://plainly-touched-ox.ngrok-free.app/filosofo/retornarconversa/"
                     #url = "http://52.2.202.37/filosofo/retornarconversa/"
-                    data = {"data":{"usuario": int(st.session_state.usuario)}
-                            }
+                    data = {"data":{"usuario": int(st.session_state.usuario)},"chave":st.secrets["CHAVE"]}
                     st.session_state.messages = requests.post(url, json=data, timeout=5*60).json().get("saida")
                 #openai_api_key = st.session_state.openai_api_key
                 
@@ -323,8 +323,8 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                             #url = "http://52.2.202.37/filosofo/addusuario/"
                             data = {"data":{"usuario": int(st.session_state.usuario),
                                     "entrada": prompt["text"],
-                                    "saida": response_text}
-                                    }
+                                    "saida": response_text},
+                                    "chave":st.secrets["CHAVE"]}
                             post_response = requests.post(url, json=data, timeout=5*60)
             
 elif st.session_state.usuario and st.session_state.product_page == "loja":
