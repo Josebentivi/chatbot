@@ -151,11 +151,11 @@ if "usuario" not in st.session_state:
         with cols[0]:
             if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=True,file_type=["jpg", "jpeg", "png","pdf","mp3"],):
                 pass
-    with st.container(height=50,border=False):
+    with st.container(height=25,border=False):
         st.empty()
     with st.container(height=50,border=False):
-        colss = st.columns(1,vertical_alignment="bottom")
-        with colss[0]:
+        colss = st.columns(5,vertical_alignment="bottom")
+        with colss[2]:
             if st.button("Experimentar",use_container_width=True):
                 st.session_state.usuario = "6019224769"
     #cols = st.columns(3)
