@@ -117,11 +117,13 @@ def ativar_pensadores():
 #            Cadastrar() 
 
 if "usuario" not in st.session_state:
+    if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=True,file_type=["jpg", "jpeg", "png","pdf","mp3"],):
+        pass
     cols = st.columns(3)
     with cols[1]:
         cols3 = st.columns(3)
         with cols3[1]:
-            image = Image.open("dados/exemplo/introfilosofogif.gif")
+            image = Image.open("dados/exemplo/imagem.jpg")
             st.image(image, use_container_width=True)
     
         st.markdown(
