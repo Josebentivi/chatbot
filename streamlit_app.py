@@ -143,6 +143,9 @@ if "usuario" not in st.session_state:
         #    """,
         #    unsafe_allow_html=True
         #)
+        
+    with st.container(height=50,border=False):
+        pass
     with st.container(border=False):
         cols = st.columns(1,vertical_alignment="bottom")
         with cols[0]:
