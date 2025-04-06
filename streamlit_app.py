@@ -154,7 +154,7 @@ if "usuario" not in st.session_state:
     with st.container(height=25,border=False):
         st.empty()
     with st.container(height=50,border=False):
-        colss = st.columns(5,vertical_alignment="bottom")
+        colss = st.columns(7,vertical_alignment="bottom")
         with colss[2]:
             if st.button("Experimentar",use_container_width=True):
                 st.session_state.usuario = "6019224769"
