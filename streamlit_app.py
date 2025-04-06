@@ -135,14 +135,14 @@ if "usuario" not in st.session_state:
             f'<div style="text-align: center; font-size: 24px; font-weight: bold;">{rainbow_text}</div>',
             unsafe_allow_html=True
         )
-        st.markdown(
-            """
-            <div style="text-align: center; font-size: 24px; font-weight: bold;">
-                Revolucionando a Maneira de Pensar e Aprender
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+        #st.markdown(
+        #    """
+        #    <div style="text-align: center; font-size: 24px; font-weight: bold;">
+        #        Revolucionando a Maneira de Pensar e Aprender
+        #    </div>
+        #    """,
+        #    unsafe_allow_html=True
+        #)
     with st.container(border=False):
         cols = st.columns(1,vertical_alignment="bottom")
         with cols[0]:
