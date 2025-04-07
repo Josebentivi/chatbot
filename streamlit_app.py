@@ -353,7 +353,8 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                         try:
                             url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/continuar/"
                             #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
-                            data = {"data":{"usuario": usuario,
+                            data = {"data":{"stream": 2,
+                                    "usuario": usuario,
                                     "retornostream": response_text},
                                     "chave":st.secrets["CHAVE"]}
                             post_response = requests.post(url, json=data, timeout=5*60)
@@ -381,7 +382,8 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                         try:
                             url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/continuar/"
                             #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
-                            data = {"data":{"usuario": usuario,
+                            data = {"data":{"stream": 3,
+                                    "usuario": usuario,
                                     "retornostream": response_text},
                                     "chave":st.secrets["CHAVE"]}
                             post_response = requests.post(url, json=data, timeout=5*60)
@@ -409,7 +411,8 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                         try:
                             url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/continuar/"
                             #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
-                            data = {"data":{"usuario": usuario,
+                            data = {"data":{"stream": 4,
+                                    "usuario": usuario,
                                     "retornostream": response_text},
                                     "chave":st.secrets["CHAVE"]}
                             post_response = requests.post(url, json=data, timeout=5*60)
@@ -436,7 +439,8 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                         try:
                             url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/continuar/"
                             #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
-                            data = {"data":{"usuario": usuario,
+                            data = {"data":{"stream": 5,
+                                    "usuario": usuario,
                                     "retornostream": response_text},
                                     "chave":st.secrets["CHAVE"]}
                             post_response = requests.post(url, json=data, timeout=5*60)
