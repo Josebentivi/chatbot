@@ -120,7 +120,8 @@ if "usuario" not in st.session_state:
     with st.container(height=50,border=False):
         st.empty()
     with st.container(height=100,border=False):
-        rainbow_colors = ["#FFB3BA", "orange", "yellow", "green", "blue", "indigo", "violet"]
+        rainbow_colors = ["#FFB3BA", "#FEDEBA", "#FEFDBB", "#B9FEC9", "#BAE0FF", "#CFD2FF", "violet"]
+        #rainbow_colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"]
         text = ["Revolucionando"," a ","Maneira"," de"," Pensar"," e"," Aprender"]
         rainbow_text = ""
         color_index = 0
