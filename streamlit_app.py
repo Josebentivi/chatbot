@@ -360,6 +360,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                         except requests.exceptions.RequestException as e:
                             st.error(f"Erro ao acessar servidor: {e}")
                             st.stop()
+                        st.markdown(post_response.json())
                         client = OpenAI()
                         # Generate a response using the OpenAI API.
                         stream = client.chat.completions.create(
@@ -387,6 +388,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                         except requests.exceptions.RequestException as e:
                             st.error(f"Erro ao acessar servidor: {e}")
                             st.stop()
+                        st.markdown(post_response.json())
                         client = OpenAI()
                         # Generate a response using the OpenAI API.
                         stream = client.chat.completions.create(
@@ -414,6 +416,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                         except requests.exceptions.RequestException as e:
                             st.error(f"Erro ao acessar servidor: {e}")
                             st.stop()
+                        st.markdown(post_response.json())
                         client = OpenAI()
                         # Generate a response using the OpenAI API.
                         stream = client.chat.completions.create(
@@ -440,6 +443,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                         except requests.exceptions.RequestException as e:
                             st.error(f"Erro ao acessar servidor: {e}")
                             st.stop()
+                        st.markdown(post_response.json())
                         client = OpenAI()
                         mensagens,argumentacao = post_response.json().get("saida")
                         # Generate a response using the OpenAI API.
@@ -451,7 +455,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                         response_text = st.write_stream(stream)
 
                         status.update(
-                            label="Download complete!", state="complete", expanded=False
+                            label="Completo!", state="complete", expanded=False
                         )
 
                     # Stream the response to the chat using `st.write_stream`, then store it in 
