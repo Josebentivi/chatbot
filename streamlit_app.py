@@ -308,6 +308,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
 
                 entradachat = st.empty()
                 saidachat = st.empty()
+                pensamento = st.empty()
                 # Create a chat input field to allow the user to enter a message. This will display
                 # automatically at the bottom of the page.
                 if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=True,file_type=["jpg", "jpeg", "png","pdf","mp3"],):
@@ -319,7 +320,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                             st.markdown(prompt["text"])
 
                     
-                    with st.status("Downloading data...", expanded=True) as status:
+                    with pensamento.status("Downloading data...", expanded=True) as status:
                         st.write("Searching for data...")
                         time.sleep(2)
                         st.write("Found URL.")
