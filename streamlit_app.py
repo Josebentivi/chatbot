@@ -308,7 +308,13 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
 
                 entradachat = st.empty()
                 saidachat = st.empty()
-                pensamento = st.empty()
+                pensamento1 = st.empty()
+                pensamento2 = st.empty()
+                pensamento3 = st.empty()
+                pensamento4 = st.empty()
+                pensamento5 = st.empty()
+                pensamento6 = st.empty()
+                pensamento7 = st.empty()
                 # Create a chat input field to allow the user to enter a message. This will display
                 # automatically at the bottom of the page.
                 if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=True,file_type=["jpg", "jpeg", "png","pdf","mp3"],):
@@ -320,7 +326,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                             st.markdown(prompt["text"])
 
                     
-                    with pensamento.status("Acessando a Biblioteca.", expanded=True) as status:
+                    with pensamento1.status("Acessando a Biblioteca.", expanded=True) as status:
                         st.write("Lendo 222.259 Artigos Científicos...")
                         try:
                             url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/iniciar/"
@@ -347,7 +353,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                             label="Consulta a biblioteca concluida.", state="complete", expanded=False
                         )
 
-                    with pensamento.status("Sabatina.", expanded=True) as status:
+                    with pensamento2.status("Sabatina.", expanded=True) as status:
 
                         st.write("Análise Crítica...")
                         try:
@@ -375,7 +381,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                             label="Sabatina completa!", state="complete", expanded=False
                         )
                         
-                    with pensamento.status("Preparo da Contra-Argumentação.", expanded=True) as status:
+                    with pensamento3.status("Preparo da Contra-Argumentação.", expanded=True) as status:
 
 
                         st.write("Pesquisando por Contra-Argumentos...")
@@ -404,7 +410,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                             label="Pesquisa por contra-argumentos completa.", state="complete", expanded=False
                         )
                         
-                    with pensamento.status("Contra-Argumentação.", expanded=True) as status:
+                    with pensamento4.status("Contra-Argumentação.", expanded=True) as status:
 
 
                         st.write("Processando Contra-Argumentos...")
@@ -433,7 +439,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                             label="Download complete!", state="complete", expanded=False
                         )
                         
-                    with pensamento.status("Concluindo consulta.", expanded=True) as status:
+                    with pensamento5.status("Concluindo consulta.", expanded=True) as status:
 
                         st.write("Conclusão...")
                         try:
