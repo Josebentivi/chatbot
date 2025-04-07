@@ -320,8 +320,8 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                             st.markdown(prompt["text"])
 
                     
-                    with pensamento.status("Processando consulta...", expanded=True) as status:
-                        st.write("Acessando Artigos Científicos...")
+                    with pensamento.status("Acessando a Biblioteca.", expanded=True) as status:
+                        st.write("Lendo 222.259 Artigos Científicos...")
                         try:
                             url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/iniciar/"
                             #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
@@ -343,6 +343,12 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                         )
                         response_text = st.write_stream(stream)
 
+                        status.update(
+                            label="Consulta a biblioteca concluida.", state="complete", expanded=False
+                        )
+
+                    with pensamento.status("Sabatina.", expanded=True) as status:
+
                         st.write("Análise Crítica...")
                         try:
                             url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/continuar/"
@@ -363,7 +369,14 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                         )
                         response_text = st.write_stream(stream)
 
-                        st.write("Pesquisa de Contra-Argumentos...")
+                        status.update(
+                            label="Sabatina completa!", state="complete", expanded=False
+                        )
+                        
+                    with pensamento.status("Preparo da Contra-Argumentação.", expanded=True) as status:
+
+
+                        st.write("Pesquisando por Contra-Argumentos...")
                         try:
                             url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/continuar/"
                             #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
@@ -383,7 +396,14 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                         )
                         response_text = st.write_stream(stream)
 
-                        st.write("Pesquisa de Contra-Argumentos...")
+                        status.update(
+                            label="Pesquisa por contra-argumentos completa.", state="complete", expanded=False
+                        )
+                        
+                    with pensamento.status("Contra-Argumentação.", expanded=True) as status:
+
+
+                        st.write("Processando Contra-Argumentos...")
                         try:
                             url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/continuar/"
                             #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
@@ -403,25 +423,11 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                         )
                         response_text = st.write_stream(stream)
 
-                        st.write("Contra-Resposta...")
-                        try:
-                            url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/continuar/"
-                            #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
-                            data = {"data":{"usuario": usuario,
-                                    "retornostream": response_text},
-                                    "chave":st.secrets["CHAVE"]}
-                            post_response = requests.post(url, json=data, timeout=5*60)
-                        except requests.exceptions.RequestException as e:
-                            st.error(f"Erro ao acessar servidor: {e}")
-                            st.stop()
-                        client = OpenAI()
-                        # Generate a response using the OpenAI API.
-                        stream = client.chat.completions.create(
-                        model=st.session_state.selected_model,
-                        messages=post_response.json().get("saida"),
-                        stream=True,
+                        status.update(
+                            label="Download complete!", state="complete", expanded=False
                         )
-                        response_text = st.write_stream(stream)
+                        
+                    with pensamento.status("Concluindo consulta.", expanded=True) as status:
 
                         st.write("Conclusão...")
                         try:
