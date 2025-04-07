@@ -320,13 +320,129 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                             st.markdown(prompt["text"])
 
                     
-                    with pensamento.status("Downloading data...", expanded=True) as status:
-                        st.write("Searching for data...")
-                        time.sleep(2)
-                        st.write("Found URL.")
-                        time.sleep(1)
-                        st.write("Downloading data...")
-                        time.sleep(1)
+                    with pensamento.status("Processando consulta...", expanded=True) as status:
+                        st.write("Acessando Artigos Científicos...")
+                        try:
+                            url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/iniciar/"
+                            #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
+                            data = {"data":{"stream": 1,
+                                    "pesquisa": prompt["text"]},
+                                    "chave":st.secrets["CHAVE"]}
+                            post_response = requests.post(url, json=data, timeout=5*60)
+                        except requests.exceptions.RequestException as e:
+                            st.error(f"Erro ao acessar servidor: {e}")
+                            st.stop()
+                        usuario = post_response.json().get("saida").get("usuario")
+                        client = OpenAI()
+                        # Generate a response using the OpenAI API.
+                        stream = client.chat.completions.create(
+                        model=st.session_state.selected_model,
+                        messages=post_response.json().get("saida").get("mensagem"),
+                        stream=True,
+                        )
+                        response_text = st.write_stream(stream)
+
+                        st.write("Análise Crítica...")
+                        try:
+                            url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/continuar/"
+                            #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
+                            data = {"data":{"usuario": usuario,
+                                    "retornostream": response_text},
+                                    "chave":st.secrets["CHAVE"]}
+                            post_response = requests.post(url, json=data, timeout=5*60)
+                        except requests.exceptions.RequestException as e:
+                            st.error(f"Erro ao acessar servidor: {e}")
+                            st.stop()
+                        client = OpenAI()
+                        # Generate a response using the OpenAI API.
+                        stream = client.chat.completions.create(
+                        model=st.session_state.selected_model,
+                        messages=post_response.json().get("saida"),
+                        stream=True,
+                        )
+                        response_text = st.write_stream(stream)
+
+                        st.write("Pesquisa de Contra-Argumentos...")
+                        try:
+                            url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/continuar/"
+                            #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
+                            data = {"data":{"usuario": usuario,
+                                    "retornostream": response_text},
+                                    "chave":st.secrets["CHAVE"]}
+                            post_response = requests.post(url, json=data, timeout=5*60)
+                        except requests.exceptions.RequestException as e:
+                            st.error(f"Erro ao acessar servidor: {e}")
+                            st.stop()
+                        client = OpenAI()
+                        # Generate a response using the OpenAI API.
+                        stream = client.chat.completions.create(
+                        model=st.session_state.selected_model,
+                        messages=post_response.json().get("saida"),
+                        stream=True,
+                        )
+                        response_text = st.write_stream(stream)
+
+                        st.write("Pesquisa de Contra-Argumentos...")
+                        try:
+                            url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/continuar/"
+                            #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
+                            data = {"data":{"usuario": usuario,
+                                    "retornostream": response_text},
+                                    "chave":st.secrets["CHAVE"]}
+                            post_response = requests.post(url, json=data, timeout=5*60)
+                        except requests.exceptions.RequestException as e:
+                            st.error(f"Erro ao acessar servidor: {e}")
+                            st.stop()
+                        client = OpenAI()
+                        # Generate a response using the OpenAI API.
+                        stream = client.chat.completions.create(
+                        model=st.session_state.selected_model,
+                        messages=post_response.json().get("saida"),
+                        stream=True,
+                        )
+                        response_text = st.write_stream(stream)
+
+                        st.write("Contra-Resposta...")
+                        try:
+                            url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/continuar/"
+                            #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
+                            data = {"data":{"usuario": usuario,
+                                    "retornostream": response_text},
+                                    "chave":st.secrets["CHAVE"]}
+                            post_response = requests.post(url, json=data, timeout=5*60)
+                        except requests.exceptions.RequestException as e:
+                            st.error(f"Erro ao acessar servidor: {e}")
+                            st.stop()
+                        client = OpenAI()
+                        # Generate a response using the OpenAI API.
+                        stream = client.chat.completions.create(
+                        model=st.session_state.selected_model,
+                        messages=post_response.json().get("saida"),
+                        stream=True,
+                        )
+                        response_text = st.write_stream(stream)
+
+                        st.write("Conclusão...")
+                        try:
+                            url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/continuar/"
+                            #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
+                            data = {"data":{"usuario": usuario,
+                                    "retornostream": response_text},
+                                    "chave":st.secrets["CHAVE"]}
+                            post_response = requests.post(url, json=data, timeout=5*60)
+                        except requests.exceptions.RequestException as e:
+                            st.error(f"Erro ao acessar servidor: {e}")
+                            st.stop()
+                        client = OpenAI()
+                        mensagens,argumentacao = post_response.json().get("saida")
+                        # Generate a response using the OpenAI API.
+                        stream = client.chat.completions.create(
+                        model=st.session_state.selected_model,
+                        messages=mensagens,
+                        stream=True,
+                        )
+                        response_text = st.write_stream(stream)
+
                         status.update(
                             label="Download complete!", state="complete", expanded=False
                         )
@@ -367,13 +483,16 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                             )
                             response_text = st.write_stream(stream)
 
-                            url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/addusuario/"
-                            #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
-                            data = {"data":{"usuario": int(st.session_state.usuario),
-                                    "entrada": prompt["text"],
-                                    "saida": response_text},
-                                    "chave":st.secrets["CHAVE"]}
-                            post_response = requests.post(url, json=data, timeout=5*60)
+                            try:
+                                url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/addusuario/"
+                                #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
+                                data = {"data":{"usuario": int(st.session_state.usuario),
+                                        "entrada": prompt["text"],
+                                        "saida": response_text},
+                                        "chave":st.secrets["CHAVE"]}
+                                post_response = requests.post(url, json=data, timeout=5*60)
+                            except requests.exceptions.RequestException as e:
+                                st.error(f"Erro ao enviar os dados: {e}")
             
 elif st.session_state.usuario and st.session_state.product_page == "loja":
     st.subheader("Loja")
