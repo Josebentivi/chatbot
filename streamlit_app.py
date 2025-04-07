@@ -120,7 +120,7 @@ if "usuario" not in st.session_state:
     with st.container(height=50,border=False):
         st.empty()
     with st.container(height=100,border=False):
-        rainbow_colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"]
+        rainbow_colors = ["#FFB3BA", "orange", "yellow", "green", "blue", "indigo", "violet"]
         text = ["Revolucionando"," a ","Maneira"," de"," Pensar"," e"," Aprender"]
         rainbow_text = ""
         color_index = 0
@@ -318,14 +318,16 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                             st.markdown(prompt["text"])
 
                     
-                    #with st.status("Processando..."):
-                    #    time.sleep(0.5)
-                    #    st.write("Pesquisando informação...")
-                    #    time.sleep(0.5)
-                    #    st.write("Aprimorando resposta...")
-                    #    time.sleep(0.5)
-                    #    st.write("Finalizando...")
-                    #    time.sleep(0.5)
+                    with st.status("Downloading data...", expanded=True) as status:
+                        st.write("Searching for data...")
+                        time.sleep(2)
+                        st.write("Found URL.")
+                        time.sleep(1)
+                        st.write("Downloading data...")
+                        time.sleep(1)
+                        status.update(
+                            label="Download complete!", state="complete", expanded=False
+                        )
 
                     # Stream the response to the chat using `st.write_stream`, then store it in 
                     # session state.
