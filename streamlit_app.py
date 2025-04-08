@@ -347,7 +347,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                         except requests.exceptions.RequestException as e:
                             st.error(f"Erro ao acessar servidor: {e}")
                             st.stop()
-                        st.markdown(post_response.json())
+                        #st.markdown(post_response.json())
                         usuario = post_response.json().get("saida").get("usuario")
                         client = OpenAI()
                         # Generate a response using the OpenAI API.
