@@ -363,7 +363,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                             label="Consulta a biblioteca concluida.", state="complete", expanded=False
                         )
 
-                    with pensamento2.status("Sabatina.", expanded=True) as status:
+                    with pensamento2.status("Sabatina", expanded=True) as status:
 
                         st.write("Análise Crítica...")
                         try:
@@ -377,7 +377,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                         except requests.exceptions.RequestException as e:
                             st.error(f"Erro ao acessar servidor: {e}")
                             st.stop()
-                        st.markdown(post_response.json())
+                        #st.markdown(post_response.json())
                         client = OpenAI()
                         # Generate a response using the OpenAI API.
                         stream = client.chat.completions.create(
@@ -388,10 +388,10 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                         response_text = st.write_stream(stream)
 
                         status.update(
-                            label="Sabatina completa!", state="complete", expanded=False
+                            label="Sabatina Completa", state="complete", expanded=False
                         )
                         
-                    with pensamento3.status("Preparo da Contra-Argumentação.", expanded=True) as status:
+                    with pensamento3.status("Preparo da Contra-Argumentação", expanded=True) as status:
 
 
                         st.write("Pesquisando por Contra-Argumentos...")
@@ -406,7 +406,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                         except requests.exceptions.RequestException as e:
                             st.error(f"Erro ao acessar servidor: {e}")
                             st.stop()
-                        st.markdown(post_response.json())
+                        #st.markdown(post_response.json())
                         client = OpenAI()
                         # Generate a response using the OpenAI API.
                         stream = client.chat.completions.create(
@@ -420,7 +420,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                             label="Pesquisa por contra-argumentos completa.", state="complete", expanded=False
                         )
                         
-                    with pensamento4.status("Contra-Argumentação.", expanded=True) as status:
+                    with pensamento4.status("Contra-Argumentação", expanded=True) as status:
 
 
                         st.write("Processando Contra-Argumentos...")
@@ -435,7 +435,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                         except requests.exceptions.RequestException as e:
                             st.error(f"Erro ao acessar servidor: {e}")
                             st.stop()
-                        st.markdown(post_response.json())
+                        #st.markdown(post_response.json())
                         client = OpenAI()
                         # Generate a response using the OpenAI API.
                         stream = client.chat.completions.create(
@@ -446,10 +446,10 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                         response_text = st.write_stream(stream)
 
                         status.update(
-                            label="Contra-Argumentos completo.", state="complete", expanded=False
+                            label="Contra-Argumentos Completo.", state="complete", expanded=False
                         )
                         
-                    with pensamento5.status("Contra-Argumentação.", expanded=True) as status:
+                    with pensamento5.status("Contra-Argumentação", expanded=True) as status:
                         st.write("Conclusão...")
                         try:
                             url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/continuar/"
@@ -462,7 +462,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                         except requests.exceptions.RequestException as e:
                             st.error(f"Erro ao acessar servidor: {e}")
                             st.stop()
-                        st.markdown(post_response.json())
+                        #st.markdown(post_response.json())
                         client = OpenAI()
                         mensagens,argumentacao = post_response.json().get("saida").get("mensagem")
                         # Generate a response using the OpenAI API.
@@ -474,7 +474,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                         response_text = st.write_stream(stream)
 
                         status.update(
-                            label="Completo!", state="complete", expanded=False
+                            label="Contra-Argumentação Completa", state="complete", expanded=False
                         )
                         
                     try:
@@ -487,15 +487,17 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                     except requests.exceptions.RequestException as e:
                         st.error(f"Erro ao acessar servidor: {e}")
                         st.stop()
-                    st.markdown(post_response.json())
+                    #st.markdown(post_response.json())
 
                     with pensamento6.status("Referências", expanded=False) as status:
                         st.write("Referências da Argumentação")
-                        st.write(argumentacao.get("Referências da Argumentação"))
+                        for parte in argumentacao.get("Referências da Argumentação").split("+=-!!-=+"):
+                            st.write(parte)
 
-                    with pensamento7.status("Referências", expanded=False) as status:
+                    with pensamento7.status("Referências Contra-Argumentação", expanded=False) as status:
                         st.write("Referências do Contra-argumento")
-                        st.write(argumentacao.get("Referências do Contra-argumento"))
+                        for parte in argumentacao.get("Referências do Contra-argumento").split("+=-!!-=+"):
+                            st.write(parte)
                     
                     st.stop()
 
