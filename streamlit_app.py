@@ -449,32 +449,33 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                             label="Contra-Argumentos completo.", state="complete", expanded=False
                         )
                         
-                    st.write("Conclusão...")
-                    try:
-                        url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/continuar/"
-                        #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
-                        data = {"data":{"stream": 5,
-                                "usuario": usuario,
-                                "retornostream": response_text},
-                                "chave":st.secrets["CHAVE"]}
-                        post_response = requests.post(url, json=data, timeout=5*60)
-                    except requests.exceptions.RequestException as e:
-                        st.error(f"Erro ao acessar servidor: {e}")
-                        st.stop()
-                    st.markdown(post_response.json())
-                    client = OpenAI()
-                    mensagens,argumentacao = post_response.json().get("saida").get("mensagem")
-                    # Generate a response using the OpenAI API.
-                    stream = client.chat.completions.create(
-                    model=st.session_state.selected_model,
-                    messages=mensagens,
-                    stream=True,
-                    )
-                    response_text = st.write_stream(stream)
+                    with pensamento5.status("Contra-Argumentação.", expanded=True) as status:
+                        st.write("Conclusão...")
+                        try:
+                            url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/continuar/"
+                            #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
+                            data = {"data":{"stream": 5,
+                                    "usuario": usuario,
+                                    "retornostream": response_text},
+                                    "chave":st.secrets["CHAVE"]}
+                            post_response = requests.post(url, json=data, timeout=5*60)
+                        except requests.exceptions.RequestException as e:
+                            st.error(f"Erro ao acessar servidor: {e}")
+                            st.stop()
+                        st.markdown(post_response.json())
+                        client = OpenAI()
+                        mensagens,argumentacao = post_response.json().get("saida").get("mensagem")
+                        # Generate a response using the OpenAI API.
+                        stream = client.chat.completions.create(
+                        model=st.session_state.selected_model,
+                        messages=mensagens,
+                        stream=True,
+                        )
+                        response_text = st.write_stream(stream)
 
-                    status.update(
-                        label="Completo!", state="complete", expanded=False
-                    )
+                        status.update(
+                            label="Completo!", state="complete", expanded=False
+                        )
                         
                     try:
                         url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/addartigostream/"
@@ -488,13 +489,15 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                         st.stop()
                     st.markdown(post_response.json())
 
-                    with pensamento2.status("Referências", expanded=False) as status:
+                    with pensamento6.status("Referências", expanded=False) as status:
                         st.write("Referências da Argumentação")
                         st.write(argumentacao.get("Referências da Argumentação"))
 
-                    with pensamento2.status("Referências", expanded=False) as status:
+                    with pensamento7.status("Referências", expanded=False) as status:
                         st.write("Referências do Contra-argumento")
                         st.write(argumentacao.get("Referências do Contra-argumento"))
+                    
+                    st.stop()
 
                     # Stream the response to the chat using `st.write_stream`, then store it in 
                     # session state.
