@@ -324,6 +324,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                 pensamento5 = st.empty()
                 pensamento6 = st.empty()
                 pensamento7 = st.empty()
+                pensamento8 = st.empty()
                 # Create a chat input field to allow the user to enter a message. This will display
                 # automatically at the bottom of the page.
                 if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=True,file_type=["jpg", "jpeg", "png","pdf","mp3"],):
@@ -492,7 +493,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                         for parte in argumentacao.get("Referências do Contra-argumento").split("+=-!!-=+"):
                             st.write(parte)
                     
-                    with st.chat_message("assistant"):
+                    with pensamento8.chat_message("assistant"):
                         response_text = st.write_stream(stream)
                     
                     st.stop()
