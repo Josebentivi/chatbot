@@ -9,6 +9,30 @@ from time import sleep
 warnings.filterwarnings("ignore", message="missing ScriptRunContext")
 st.set_page_config(page_title="O Pensador Desktop", layout="wide")
 
+st.markdown(
+    """
+    <style>
+    /* Main background and text */
+    .reportview-container {
+        background-color: #0E1117;
+        color: #FFFFFF;
+    }
+    /* Sidebar background */
+    .sidebar .sidebar-content {
+        background-color: #212121;
+        color: #FFFFFF;
+    }
+    /* Buttons */
+    .stButton>button {
+        background-color: #555555;
+        color: white;
+        border: none;
+    }
+    /* Customize other elements as needed */
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 
 if "selected_thinker" not in st.session_state:
