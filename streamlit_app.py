@@ -381,7 +381,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                         # Generate a response using the OpenAI API.
                         stream = client.chat.completions.create(
                         model=st.session_state.selected_model,
-                        messages=post_response.json().get("saida"),
+                        messages=post_response.json().get("saida").get("mensagem"),
                         stream=True,
                         )
                         response_text = st.write_stream(stream)
@@ -410,7 +410,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                         # Generate a response using the OpenAI API.
                         stream = client.chat.completions.create(
                         model=st.session_state.selected_model,
-                        messages=post_response.json().get("saida"),
+                        messages=post_response.json().get("saida").get("mensagem"),
                         stream=True,
                         )
                         response_text = st.write_stream(stream)
@@ -439,7 +439,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                         # Generate a response using the OpenAI API.
                         stream = client.chat.completions.create(
                         model=st.session_state.selected_model,
-                        messages=post_response.json().get("saida"),
+                        messages=post_response.json().get("saida").get("mensagem"),
                         stream=True,
                         )
                         response_text = st.write_stream(stream)
@@ -464,7 +464,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                             st.stop()
                         st.markdown(post_response.json())
                         client = OpenAI()
-                        mensagens,argumentacao = post_response.json().get("saida")
+                        mensagens,argumentacao = post_response.json().get("saida").get("mensagem")
                         # Generate a response using the OpenAI API.
                         stream = client.chat.completions.create(
                         model=st.session_state.selected_model,
