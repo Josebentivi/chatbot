@@ -7,32 +7,17 @@ import time
 from time import sleep
 # Suppress Streamlit's ScriptRunContext warning
 warnings.filterwarnings("ignore", message="missing ScriptRunContext")
-st.set_page_config(page_title="O Pensador Desktop", layout="wide")
+st.set_page_config(
+    page_title="O Pensador Desktop",
+    page_icon="🧊",
+    layout="wide",
+    initial_sidebar_state="expanded",
+    menu_items={
+        'Get Help': 'https://www.extremelycoolapp.com/help',
+        'Report a bug': "https://www.extremelycoolapp.com/bug",
+        'About': "# This is a header. This is an *extremely* cool app!"
+    }
 
-st.markdown(
-    """
-    <style>
-    /* Main background and text */
-    .reportview-container {
-        background-color: #0E1117;
-        color: #000000;
-    }
-    /* Sidebar background */
-    .sidebar .sidebar-content {
-        background-color: #212121;
-        color: #FFFFFF;
-    }
-    /* Buttons */
-    .stButton>button {
-        background-color: #555555;
-        color: white;
-        border: none;
-    }
-    /* Customize other elements as needed */
-    </style>
-    """,
-    unsafe_allow_html=True
-)
 
 
 if "selected_thinker" not in st.session_state:
