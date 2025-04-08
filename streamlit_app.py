@@ -9,7 +9,7 @@ from time import sleep
 warnings.filterwarnings("ignore", message="missing ScriptRunContext")
 st.set_page_config(
     page_title="O Pensador Desktop",
-    page_icon="🧊",
+    page_icon="💬",
     layout="wide",
     initial_sidebar_state="expanded",
     menu_items={
