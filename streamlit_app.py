@@ -334,7 +334,7 @@ elif st.session_state.usuario and st.session_state.product_page == "chat":
                         with st.chat_message("user"):
                             st.markdown(prompt["text"])
 
-                    
+                    usuario = 0
                     with pensamento1.status("Acessando a Biblioteca.", expanded=True) as status:
                         st.write("Lendo 222.259 Artigos Científicos...")
                         try:
