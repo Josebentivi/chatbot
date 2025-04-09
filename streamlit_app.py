@@ -368,7 +368,7 @@ if "usuario" not in st.session_state:
                         except requests.exceptions.RequestException as e:
                             st.error(f"Erro ao acessar servidor: {e}")
                             st.stop()
-                        #st.markdown(post_response.json())
+                        #st.markdown(post_response.json()) 
 
                         with pensamento6.status("Referências", expanded=False) as status:
                             st.write("Referências da Argumentação")
