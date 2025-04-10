@@ -596,6 +596,7 @@ if "product_page" in st.session_state:
                 usuario = 0
                 with pensamento1.status("Acessando a Biblioteca.", expanded=True) as status:
                     st.write("Lendo mais de 220 mil Artigos Científicos.")
+                    st.stop()
                     spinner = st.empty()
                     spinner.spinner("Lendo...", show_time=True)
                     try:
