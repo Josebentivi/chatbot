@@ -383,7 +383,6 @@ if "usuario" not in st.session_state:
                         with pensamento8.chat_message("assistant"):
                             response_text = st.write_stream(stream)
                         st.session_state.product_page = "chat"
-                        st.rerun(scope="app")
                         
     with Chao.container(height=75,border=False):
         colss = st.columns(7,vertical_alignment="center")
