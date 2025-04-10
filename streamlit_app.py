@@ -181,7 +181,7 @@ if "usuario" not in st.session_state:
                         st.session_state.marcar_artigos = False
                         st.session_state.marcar_pensadores = False
                         st.session_state.selected_thinker = None
-                        Carregando() 
+                        #Carregando() 
                         url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/retornarconversa/"
                         #url = "http://52.2.202.37/produto/post/filosofo/retornarconversa/"
                         data = {"data":{"usuario": int(st.session_state.usuario)},"chave":st.secrets["CHAVE"]}
