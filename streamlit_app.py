@@ -592,7 +592,7 @@ if "product_page" in st.session_state:
             dadosenvio={}
 
             
-            if st.session_state.marcar_artigos:
+            if st.session_state.marcar_artigos = True:
                 usuario = 0
                 with pensamento1.status("Acessando a Biblioteca.", expanded=True) as status:
                     st.write("Lendo mais de 220 mil Artigos Científicos.")
