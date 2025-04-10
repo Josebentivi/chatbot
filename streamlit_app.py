@@ -181,6 +181,7 @@ if "usuario" not in st.session_state:
                         st.session_state.marcar_artigos = False
                         st.session_state.marcar_pensadores = False
                         st.session_state.selected_thinker = None
+                        Carregando() 
                         url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/retornarconversa/"
                         #url = "http://52.2.202.37/produto/post/filosofo/retornarconversa/"
                         data = {"data":{"usuario": int(st.session_state.usuario)},"chave":st.secrets["CHAVE"]}
@@ -384,6 +385,16 @@ if "usuario" not in st.session_state:
                         
                         with pensamento8.chat_message("assistant"):
                             response_text = st.write_stream(stream)
+                            try:
+                                url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/addusuario/"
+                                #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
+                                data = {"data":{"usuario": int(st.session_state.usuario),
+                                        "entrada": prompt["text"],
+                                        "saida": response_text},
+                                        "chave":st.secrets["CHAVE"]}
+                                post_response = requests.post(url, json=data, timeout=5*60)
+                            except requests.exceptions.RequestException as e:
+                                st.error(f"Erro ao enviar os dados: {e}")
                         st.rerun(scope="app")
                         
     with Chao.container(height=75,border=False):
@@ -533,6 +544,17 @@ if "product_page" in st.session_state:
                                 #with st.chat_message("assistant"):
                                 #    st.markdown(message["content"][0]["text"])
                                 pass
+                            elif message["role"] == "ReferenciasArtigos":
+                                with st.chat_message("assistant"):
+                                    
+                                    #st.markdown(message["content"][0]["text"].get("Pesquisa"))
+                                    for i in ["Pesquisa","Pensamento","Análise","Contra-argumentos","Referências da Argumentação","Referências do Contra-argumento"]:
+                                        with st.status("Acessando Dados.", expanded=False) as status:
+                                            response_text = st.markdown(message["content"][0]["text"].get(i))
+
+                                            status.update(
+                                                label=f"{i} concluido(a).", state="complete", expanded=False
+                                            )
                             else:
                                 with st.chat_message(message["role"]):
                                     st.markdown(message["content"][0]["text"])
