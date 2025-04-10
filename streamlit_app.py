@@ -545,6 +545,7 @@ if "product_page" in st.session_state:
         if st.session_state.messages:
             with st.chat_message("assistant"):
                 st.markdown('Olá! Como posso te ajudar?')
+            st.markdown(f"Mensagens: {st.session_state.messages}")
             for message in st.session_state.messages:
                 if message["role"] == "developer":
                     #with st.chat_message("assistant"):
