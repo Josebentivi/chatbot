@@ -58,6 +58,7 @@ def Carregando(aceleracao=0.1):
         my_bar.empty()
 
     st.session_state.carregado = True
+    cols = st.empty()
     st.rerun(scope="app")
 
 
