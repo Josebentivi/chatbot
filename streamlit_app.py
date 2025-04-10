@@ -176,9 +176,9 @@ if "usuario" not in st.session_state:
                     with st.container():
                         st.session_state.carregado = False
                         if not st.session_state.carregado:
+                            st.session_state.usuario = "6019224769"
                             Carregando() 
                         else:
-                            st.session_state.usuario = "6019224769"
                             url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/retornarconversa/"
                             #url = "http://52.2.202.37/produto/post/filosofo/retornarconversa/"
                             data = {"data":{"usuario": int(st.session_state.usuario)},"chave":st.secrets["CHAVE"]}
