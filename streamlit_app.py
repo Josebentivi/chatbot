@@ -421,7 +421,7 @@ if "usuario" not in st.session_state:
     
     #st.session_state.openai_api_key = st.text_input("Senha", type="password")
     #st.session_state.openai_api_entered = True
-if "product_page" not in st.session_state:
+if "product_page" in st.session_state:
     elif st.session_state.usuario and st.session_state.product_page == "chat":
         # Menu do chat
         #opcoeschat = st.columns(5, vertical_alignment="center")
