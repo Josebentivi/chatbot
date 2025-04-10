@@ -767,7 +767,7 @@ if "product_page" in st.session_state:
                     except requests.exceptions.RequestException as e:
                         st.error(f"Erro ao enviar os dados: {e}")
                 
-                st.restart(scope="app")
+                st.rerun(scope="app")
             else:
 
                 # Stream the response to the chat using `st.write_stream`, then store it in 
@@ -793,7 +793,7 @@ if "product_page" in st.session_state:
                 with saidachat.container():
                     with st.chat_message("assistant"):
                         #st.write(str(st.session_state.messages))
-                        st.session_state.messages.append({"role": "user", "content": prompt["text"]})
+                        st.session_state.messages.append({"role": "assistant", "content": prompt["text"]})
                         # Create an OpenAI client.
                         #client = OpenAI(api_key=openai_api_key)
 
@@ -816,6 +816,7 @@ if "product_page" in st.session_state:
                             post_response = requests.post(url, json=data, timeout=5*60)
                         except requests.exceptions.RequestException as e:
                             st.error(f"Erro ao enviar os dados: {e}")
+                        st.rerun(scope="app")
         
     elif st.session_state.usuario and st.session_state.product_page == "loja":
         st.subheader("Loja")
