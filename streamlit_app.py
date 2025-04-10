@@ -548,9 +548,13 @@ if "product_page" in st.session_state:
                         with st.chat_message("assistant"):
                             
                             #st.markdown(message["content"][0]["text"].get("Pesquisa"))
-                            for i in ["Pesquisa","Pensamento","Análise","Contra-argumentos","Referências da Argumentação","Referências do Contra-argumento"]:
+                            for i in ["Pensamento","Análise","Contra-argumentos","Referências da Argumentação","Referências do Contra-argumento"]:
                                 with st.status("Acessando Dados.", expanded=False) as status:
-                                    response_text = st.markdown(message["content"][0]["text"].get(i))
+                                    if i in ["Referências da Argumentação","Referências do Contra-argumento"]:
+                                        for k in message["content"][0]["text"].get(i).split("+=-!!-=+"):
+                                            st.markdown(k)
+                                    else:
+                                        st.markdown(message["content"][0]["text"].get(i))
 
                                     status.update(
                                         label=f"{i} concluido(a).", state="complete", expanded=False
