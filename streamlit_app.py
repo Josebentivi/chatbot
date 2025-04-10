@@ -175,6 +175,12 @@ if "usuario" not in st.session_state:
                 with MensagensIniciais.container(height=600,border=False): 
                     with st.container():
                         st.session_state.usuario = "6019224769"
+                        st.session_state.selected_model = "gpt-4o-mini"
+                        st.session_state.carregado = False
+                        st.session_state.product_page = "chat"
+                        st.session_state.marcar_artigos = False
+                        st.session_state.marcar_pensadores = False
+                        st.session_state.selected_thinker = None
                         url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/retornarconversa/"
                         #url = "http://52.2.202.37/produto/post/filosofo/retornarconversa/"
                         data = {"data":{"usuario": int(st.session_state.usuario)},"chave":st.secrets["CHAVE"]}
@@ -378,7 +384,6 @@ if "usuario" not in st.session_state:
                         
                         with pensamento8.chat_message("assistant"):
                             response_text = st.write_stream(stream)
-                        st.session_state.product_page = "chat"
                         st.rerun(scope="app")
                         
     with Chao.container(height=75,border=False):
