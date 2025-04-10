@@ -172,13 +172,13 @@ if "usuario" not in st.session_state:
         cols = ChatInterno.columns(1,vertical_alignment="bottom")
         with cols[0]:
             if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=True,file_type=["jpg", "jpeg", "png","pdf","mp3"],):
-                st.session_state.usuario = "6019224769"
-                st.session_state.carregado = False
                 with MensagensIniciais.container(height=600,border=False): 
                     with st.container():
+                        st.session_state.carregado = False
                         if not st.session_state.carregado:
                             Carregando() 
                         else:
+                            st.session_state.usuario = "6019224769"
                             url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/retornarconversa/"
                             #url = "http://52.2.202.37/produto/post/filosofo/retornarconversa/"
                             data = {"data":{"usuario": int(st.session_state.usuario)},"chave":st.secrets["CHAVE"]}
@@ -383,6 +383,7 @@ if "usuario" not in st.session_state:
                         with pensamento8.chat_message("assistant"):
                             response_text = st.write_stream(stream)
                         st.session_state.product_page = "chat"
+                        st.rerun(scope="app")
                         
     with Chao.container(height=75,border=False):
         colss = st.columns(7,vertical_alignment="center")
