@@ -174,15 +174,11 @@ if "usuario" not in st.session_state:
             if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=True,file_type=["jpg", "jpeg", "png","pdf","mp3"],):
                 with MensagensIniciais.container(height=600,border=False): 
                     with st.container():
-                        st.session_state.carregado = False
-                        if not st.session_state.carregado:
-                            st.session_state.usuario = "6019224769"
-                            Carregando() 
-                        else:
-                            url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/retornarconversa/"
-                            #url = "http://52.2.202.37/produto/post/filosofo/retornarconversa/"
-                            data = {"data":{"usuario": int(st.session_state.usuario)},"chave":st.secrets["CHAVE"]}
-                            st.session_state.messages = requests.post(url, json=data, timeout=5*60).json().get("saida")
+                        st.session_state.usuario = "6019224769"
+                        url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/retornarconversa/"
+                        #url = "http://52.2.202.37/produto/post/filosofo/retornarconversa/"
+                        data = {"data":{"usuario": int(st.session_state.usuario)},"chave":st.secrets["CHAVE"]}
+                        st.session_state.messages = requests.post(url, json=data, timeout=5*60).json().get("saida")
                         #openai_api_key = st.session_state.openai_api_key
                         
                         
