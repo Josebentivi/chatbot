@@ -794,7 +794,6 @@ if "product_page" in st.session_state:
                 with saidachat.container():
                     with st.chat_message("assistant"):
                         #st.write(str(st.session_state.messages))
-                        st.session_state.messages.append({"role": "user", "content": prompt["text"]})
                         # Create an OpenAI client.
                         #client = OpenAI(api_key=openai_api_key)
 
@@ -806,6 +805,7 @@ if "product_page" in st.session_state:
                         stream=True,
                         )
                         response_text = st.write_stream(stream)
+                        st.session_state.messages.append({"role": "assistant", "content": response_text})
 
                         try:
                             url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/addusuario/"
