@@ -234,7 +234,7 @@ if "usuario" not in st.session_state:
 
                     usuario = 0
                     with pensamento1.status("Acessando a Biblioteca.", expanded=True) as status:
-                        st.write("Lendo 222.259 Artigos Científicos...")
+                        st.write("Lendo mais de 220 mil Artigos Científicos...")
                         try:
                             url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/iniciar/"
                             #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
@@ -595,7 +595,9 @@ if "product_page" in st.session_state:
             if st.session_state.marcar_artigos:
                 usuario = 0
                 with pensamento1.status("Acessando a Biblioteca.", expanded=True) as status:
-                    st.write("Lendo 222.259 Artigos Científicos...")
+                    st.write("Lendo mais de 220 mil Artigos Científicos.")
+                    spinner = st.empty()
+                    spinner.spinner("Lendo...", show_time=True)
                     try:
                         url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/iniciar/"
                         #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
@@ -615,6 +617,7 @@ if "product_page" in st.session_state:
                     messages=post_response.json().get("saida").get("mensagem"),
                     stream=True,
                     )
+                    spinner = st.empty()
                     response_text = st.write_stream(stream)
 
                     status.update(
