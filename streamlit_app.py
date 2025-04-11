@@ -870,7 +870,7 @@ if "product_page" in st.session_state:
                         stream=True,
                         )
                         response_text = st.write_stream(stream)
-                        st.session_state.messages.append({"role": "assistant", "content": response_text})
+                        st.session_state.messages.append({"role": "assistant", "content": response_text}) 
 
                         try:
                             url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/addusuario/"
