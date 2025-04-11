@@ -199,6 +199,21 @@ if "usuario" not in st.session_state:
                             #with st.chat_message("assistant"):
                             #    st.markdown(message["content"][0]["text"])
                             pass
+                        elif message["role"] == "ReferenciasArtigos":
+                            with st.chat_message("assistant"):
+                                
+                                #st.markdown(message["content"][0]["text"].get("Pesquisa"))
+                                for i in ["Pensamento","Análise","Contra-argumentos","Referências da Argumentação","Referências do Contra-argumento"]:
+                                    with st.status("Acessando Dados.", expanded=False) as status:
+                                        if i in ["Referências da Argumentação","Referências do Contra-argumento"]:
+                                            for k in message["content"][0]["text"].get(i).split("+=-!!-=+"):
+                                                st.markdown(k)
+                                        else:
+                                            st.markdown(message["content"][0]["text"].get(i))
+
+                                        status.update(
+                                            label=f"{i} concluido(a).", state="complete", expanded=False
+                                        )
                         else:
                             with st.chat_message(message["role"]):
                                 st.markdown(message["content"][0]["text"])
@@ -479,7 +494,8 @@ if "product_page" in st.session_state:
                     f"<span title='{info_text}' style='cursor: pointer;'>&#9432;</span>",
                     unsafe_allow_html=True
                 )"""
-        with col[3]:
+        with col[1]:
+        #with col[3]:
             if st.button("Limpar Chat", use_container_width=True):
                 url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/recomecarconversa/"
                 #url = "http://52.2.202.37/produto/post/filosofo/recomecarconversa/"
