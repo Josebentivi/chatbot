@@ -61,7 +61,7 @@ def Carregando(aceleracao=0.1):
 
     st.session_state.carregado = True
     cols = st.empty()
-    st.rerun(scope="app")
+    #st.rerun(scope="app")
 
 
 @st.dialog("Entrar")
