@@ -416,6 +416,19 @@ if "usuario" not in st.session_state:
                             post_response = requests.post(url, json=data, timeout=5*60)
                         except requests.exceptions.RequestException as e:
                             st.error(f"Erro ao enviar os dados: {e}")
+                    provisorio = []
+                    st.markdown("---")
+                    st.markdown(st.session_state.messages)
+                    for i in st.session_state.messages:
+                        if i["role"] == "assistant":
+                            provisorio.append(i)
+                        elif i["role"] == "user":
+                            provisorio.append(i)
+                        elif i["role"] == "developer":
+                            provisorio.append(i)
+                    st.markdown("---")
+                    st.markdown(st.session_state.messages)
+                    st.stop()
                     st.rerun(scope="app")
                         
     with Chao.container(height=75,border=False):
@@ -818,6 +831,19 @@ if "product_page" in st.session_state:
                         post_response = requests.post(url, json=data, timeout=5*60)
                     except requests.exceptions.RequestException as e:
                         st.error(f"Erro ao enviar os dados: {e}")
+                provisorio = []
+                st.markdown("---")
+                st.markdown(st.session_state.messages)
+                for i in st.session_state.messages:
+                    if i["role"] == "assistant":
+                        provisorio.append(i)
+                    elif i["role"] == "user":
+                        provisorio.append(i)
+                    elif i["role"] == "developer":
+                        provisorio.append(i)
+                st.markdown("---")
+                st.markdown(st.session_state.messages)
+                st.stop()
                 
                 st.rerun(scope="app")
             else:
