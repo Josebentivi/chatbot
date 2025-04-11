@@ -481,6 +481,7 @@ if "product_page" in st.session_state:
             colunalateral = st.columns([1,5,1], vertical_alignment="center")
             with colunalateral[1]:
                 st.image("dados/exemplo/Poster JurisAI.png", use_container_width=True)
+                st.link_button("Saiba mais", "https://www.jurisaiapp.com.br/")
         # Menu do chat
         #opcoeschat = st.columns(5, vertical_alignment="center")
         # Cria o checkbox e o ícone de informação na mesma linha
