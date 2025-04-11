@@ -418,7 +418,7 @@ if "usuario" not in st.session_state:
                     st.session_state.Artigos = False
                     st.rerun(scope="app")
                         
-    with Chao.container(height=75,border=False):
+    with st.container(height=75,border=False):
         colss = st.columns(7,vertical_alignment="center")
         with colss[3]:
             if st.button("Experimentar",use_container_width=True):
