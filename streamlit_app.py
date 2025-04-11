@@ -173,11 +173,11 @@ if "usuario" not in st.session_state:
     with Chat.container(border=False):
         cols = ChatInterno.columns(1,vertical_alignment="bottom")
         with cols[0]:
-            if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=True,):
+            if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=False,):
                 st.session_state.PrimeitaEntrada = prompt["text"]
                 ChatInterno.empty()
     if "PrimeiraEntrada" in st.session_state:
-        if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=True,file_type=None,) or True:
+        if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=True,file_type=["jpg", "jpeg", "png","pdf","mp3"],) or True:
             with MensagensIniciais.container(height=600,border=False): 
                 with st.container():
                     st.session_state.usuario = "6019224769"
