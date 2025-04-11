@@ -171,7 +171,7 @@ if "usuario" not in st.session_state:
     ConfigInicio = st.empty()
     MensagensIniciais = st.empty()
     ChatInterno = st.empty()
-    with ChatInterno.container(height=2500,border=False):
+    with ChatInterno.container(height=250,border=False):
         if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=False,):
             st.session_state.PrimeitaEntrada = prompt
             with MensagensIniciais.container(height=600,border=False): 
