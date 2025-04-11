@@ -469,6 +469,9 @@ if "product_page" in st.session_state:
             st.markdown(
                 ":gray-badge[Versão Gratuita] :orange-badge[Chat Provisório]"
             )
+            st.markdown(
+                "#Programas Parceiros"
+            )
         # Menu do chat
         #opcoeschat = st.columns(5, vertical_alignment="center")
         # Cria o checkbox e o ícone de informação na mesma linha
