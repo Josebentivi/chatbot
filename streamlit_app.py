@@ -381,18 +381,6 @@ if "usuario" not in st.session_state:
                     messages=mensagens,
                     stream=True,
                     )
-                        
-                    try:
-                        url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/addartigostream/"
-                        #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
-                        data = {"data":{"usuario": st.session_state.usuario,
-                                        "dados": argumentacao},
-                                        "chave":st.secrets["CHAVE"]}
-                        post_response = requests.post(url, json=data, timeout=5*60)
-                    except requests.exceptions.RequestException as e:
-                        st.error(f"Erro ao acessar servidor: {e}")
-                        st.stop()
-                    #st.markdown(post_response.json()) 
 
                     with pensamento6.status("Referências", expanded=False) as status:
                         st.write("Referências da Argumentação")
@@ -416,6 +404,17 @@ if "usuario" not in st.session_state:
                             post_response = requests.post(url, json=data, timeout=5*60)
                         except requests.exceptions.RequestException as e:
                             st.error(f"Erro ao enviar os dados: {e}")
+                        
+                    try:
+                        url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/addartigostream/"
+                        #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
+                        data = {"data":{"usuario": st.session_state.usuario,
+                                        "dados": argumentacao},
+                                        "chave":st.secrets["CHAVE"]}
+                        post_response = requests.post(url, json=data, timeout=5*60)
+                    except requests.exceptions.RequestException as e:
+                        st.error(f"Erro ao acessar servidor: {e}")
+                        st.stop()
                     st.rerun(scope="app")
                         
     with Chao.container(height=75,border=False):
@@ -783,18 +782,6 @@ if "product_page" in st.session_state:
                 messages=mensagens,
                 stream=True,
                 )
-                    
-                try:
-                    url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/addartigostream/"
-                    #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
-                    data = {"data":{"usuario": st.session_state.usuario,
-                                    "dados": argumentacao},
-                                    "chave":st.secrets["CHAVE"]}
-                    post_response = requests.post(url, json=data, timeout=5*60)
-                except requests.exceptions.RequestException as e:
-                    st.error(f"Erro ao acessar servidor: {e}")
-                    st.stop()
-                #st.markdown(post_response.json())
 
                 with pensamento6.status("Referências", expanded=False) as status:
                     st.write("Referências da Argumentação")
@@ -818,6 +805,17 @@ if "product_page" in st.session_state:
                         post_response = requests.post(url, json=data, timeout=5*60)
                     except requests.exceptions.RequestException as e:
                         st.error(f"Erro ao enviar os dados: {e}")
+                    
+                try:
+                    url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/addartigostream/"
+                    #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
+                    data = {"data":{"usuario": st.session_state.usuario,
+                                    "dados": argumentacao},
+                                    "chave":st.secrets["CHAVE"]}
+                    post_response = requests.post(url, json=data, timeout=5*60)
+                except requests.exceptions.RequestException as e:
+                    st.error(f"Erro ao acessar servidor: {e}")
+                    st.stop()
                 
                 st.rerun(scope="app")
             else:
@@ -849,8 +847,6 @@ if "product_page" in st.session_state:
                         #client = OpenAI(api_key=openai_api_key)
                         
                         provisorio = []
-                        st.markdown("---")
-                        st.markdown(st.session_state.messages) 
                         for i in st.session_state.messages:
                             if i["role"] == "assistant":
                                 provisorio.append(i)
@@ -866,10 +862,6 @@ if "product_page" in st.session_state:
                                 provisorio.append({'role': 'assistant', 'content': [{'type': 'text', 'text': i["content"][0]["text"].get("Referências da Argumentação")}]})
                                 provisorio.append({'role': 'assistant', 'content': [{'type': 'text', 'text': i["content"][0]["text"].get("Referências do Contra-argumento")}]})
                                 
-                        st.markdown("---")
-                        st.markdown(provisorio) 
-
-                        st.stop()
                         client = OpenAI()
                         # Generate a response using the OpenAI API.
                         stream = client.chat.completions.create(
