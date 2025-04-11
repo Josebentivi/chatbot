@@ -183,11 +183,12 @@ if "usuario" not in st.session_state:
                     st.session_state.marcar_artigos = True
                     st.session_state.marcar_pensadores = False
                     st.session_state.selected_thinker = None
-                    #Carregando() 
-                    url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/retornarconversa/"
+                    Carregando() 
+                    
+                    #url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/retornarconversa/"
                     #url = "http://52.2.202.37/produto/post/filosofo/retornarconversa/"
-                    data = {"data":{"usuario": st.session_state.usuario},"chave":st.secrets["CHAVE"]}
-                    st.session_state.messages = requests.post(url, json=data, timeout=5*60).json().get("saida")
+                    #data = {"data":{"usuario": st.session_state.usuario},"chave":st.secrets["CHAVE"]}
+                    #st.session_state.messages = requests.post(url, json=data, timeout=5*60).json().get("saida")
                     #openai_api_key = st.session_state.openai_api_key
                     
                     
