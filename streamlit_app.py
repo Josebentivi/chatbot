@@ -425,7 +425,7 @@ if "usuario" not in st.session_state:
                 st.session_state.carregado = False
                 st.session_state.Artigos = True
                 st.session_state.product_page = "chat"
-                st.rerun(scope="app")
+                st.rerun(scope="app") 
     
     
     
