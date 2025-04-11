@@ -470,7 +470,7 @@ if "product_page" in st.session_state:
                 ":gray-badge[Versão Gratuita] :orange-badge[Chat Provisório]"
             )
             st.markdown(
-                "# Programas Parceiros"
+                "## Programas Parceiros"
             )
         # Menu do chat
         #opcoeschat = st.columns(5, vertical_alignment="center")
