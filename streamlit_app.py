@@ -13,7 +13,7 @@ st.set_page_config(
     page_title="O Pensador Desktop",
     page_icon="💬",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="auto",
     menu_items={
         'Get Help': 'https://www.extremelycoolapp.com/help',
         'Report a bug': "https://www.extremelycoolapp.com/bug",
