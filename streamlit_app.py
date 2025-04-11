@@ -850,7 +850,7 @@ if "product_page" in st.session_state:
                         
                         provisorio = []
                         st.markdown("---")
-                        st.markdown(st.session_state.messages)
+                        st.markdown(st.session_state.messages) 
                         for i in st.session_state.messages:
                             if i["role"] == "assistant":
                                 provisorio.append(i)
