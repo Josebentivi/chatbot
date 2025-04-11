@@ -533,7 +533,8 @@ if "product_page" in st.session_state:
             #    st.rerun(scope="app")
             pass
         with col[5]:
-            if not st.session_state.marcar_pensadores and not st.session_state.marcar_artigos:
+            #if not st.session_state.marcar_pensadores and not st.session_state.marcar_artigos:
+            if not st.session_state.marcar_artigos:
                 if "selected_model" not in st.session_state or st.session_state.selected_model not in ["gpt-4o-mini", "gpt-4o", "o3-mini"]:
                     #st.session_state.selected_model = "o3-mini"
                     st.session_state.selected_model = "gpt-4o-mini"
