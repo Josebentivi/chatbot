@@ -174,7 +174,7 @@ if "usuario" not in st.session_state:
     with ChatInterno.container(height=600,border=False):
         if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=False,):
             st.session_state.PrimeitaEntrada = prompt
-            with MensagensIniciais.container(height=200,border=False): 
+            with MensagensIniciais.container(height=200,border=False):   
                 with st.container():
                     st.session_state.usuario = str(uuid.uuid4())
                     st.session_state.selected_model = "gpt-4o-mini"
