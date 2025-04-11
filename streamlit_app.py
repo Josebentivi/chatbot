@@ -596,18 +596,17 @@ if "product_page" in st.session_state:
                 usuario = 0
                 with pensamento1.status("Acessando a Biblioteca.", expanded=True) as status:
                     st.write("Lendo mais de 220 mil Artigos Científicos.")
-                    spinner = st.empty()
-                    spinner.spinner("Lendo...", show_time=True)
-                    try:
-                        url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/iniciar/"
-                        #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
-                        data = {"data":{"stream": 1,
-                                "pesquisa": prompt["text"]},
-                                "chave":st.secrets["CHAVE"]}
-                        post_response = requests.post(url, json=data, timeout=5*60)
-                    except requests.exceptions.RequestException as e:
-                        st.error(f"Erro ao acessar servidor: {e}")
-                        st.stop()
+                    with st.spinner("Aguarde. (Tempo de espera médio de 15 minutos)", show_time=True):
+                        try:
+                            url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/iniciar/"
+                            #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
+                            data = {"data":{"stream": 1,
+                                    "pesquisa": prompt["text"]},
+                                    "chave":st.secrets["CHAVE"]}
+                            post_response = requests.post(url, json=data, timeout=5*60)
+                        except requests.exceptions.RequestException as e:
+                            st.error(f"Erro ao acessar servidor: {e}")
+                            st.stop()
                     #st.markdown(post_response.json())
                     usuario = post_response.json().get("saida").get("usuario")
                     client = OpenAI()
