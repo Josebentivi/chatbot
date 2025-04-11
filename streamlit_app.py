@@ -60,7 +60,7 @@ def Carregando(aceleracao=0.1):
         my_bar.empty()
 
     st.session_state.carregado = True
-    cols = st.empty()
+    colsCarregando = st.empty()
     #st.rerun(scope="app")
 
 
@@ -177,7 +177,8 @@ if "usuario" not in st.session_state:
             with MensagensIniciais.container(height=600,border=False): 
                 with st.container():
                     st.session_state.usuario = str(uuid.uuid4())
-                    st.session_state.selected_model = "gpt-4o-mini"
+                    #st.session_state.selected_model = "gpt-4o-mini"
+                    st.session_state.selected_model = "o3-mini"
                     st.session_state.carregado = True
                     st.session_state.product_page = "chat"
                     st.session_state.marcar_artigos = True
@@ -247,7 +248,7 @@ if "usuario" not in st.session_state:
                     usuario = 0
                     with pensamento1.status("Acessando a Biblioteca.", expanded=True) as status:
                         st.write("Lendo mais de 220 mil Artigos Científicos...")
-                        with st.spinner("Aguarde.", show_time=True):
+                        with st.spinner("Aguarde. (Tempo de espera médio de 5 minutos)", show_time=True):
                             try:
                                 url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/iniciar/"
                                 #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
@@ -547,8 +548,8 @@ if "product_page" in st.session_state:
             #if not st.session_state.marcar_pensadores and not st.session_state.marcar_artigos:
             if not st.session_state.marcar_artigos:
                 if "selected_model" not in st.session_state or st.session_state.selected_model not in ["gpt-4o-mini", "gpt-4o", "o3-mini"]:
-                    #st.session_state.selected_model = "o3-mini"
-                    st.session_state.selected_model = "gpt-4o-mini"
+                    st.session_state.selected_model = "o3-mini"
+                    #st.session_state.selected_model = "gpt-4o-mini"
                 
                 
                 model_keys = [ "o3-mini", "gpt-4o","gpt-4o-mini"]
