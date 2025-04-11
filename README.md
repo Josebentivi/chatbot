@@ -1,19 +1,5 @@
-# 💬 Chatbot template
+# 💬 O Pensador
 
-A simple Streamlit app that shows how to build a chatbot using OpenAI's GPT-3.5.
+Com o objetivo de ter um mecanismo de pesquisa imparcial. Desenvolvemos um algoritimo que verifica semânticamente toda nossa base de dados com mais de 220 mil artigos publicados no ano de 2024. O objetivo é quebrar vieses que existem nos modelos atuais. Ao fazer isto é possível forçar uma mudança de pespectiva e um diálogo construtivo.
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://chatbot-template.streamlit.app/)
-
-### How to run it on your own machine
-
-1. Install the requirements
-
-   ```
-   $ pip install -r requirements.txt
-   ```
-
-2. Run the app
-
-   ```
-   $ streamlit run streamlit_app.py
-   ```
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://opensador.streamlit.app/)
