@@ -542,7 +542,6 @@ if "product_page" in st.session_state:
         # messages persist across reruns.
 
         # Display the existing chat messages via `st.chat_message`.
-        st.markdown(f"Mensagens: {st.session_state.messages}")
         if st.session_state.messages:
             with st.chat_message("assistant"):
                 st.markdown('Olá! Como posso te ajudar?')
@@ -597,7 +596,6 @@ if "product_page" in st.session_state:
                 usuario = 0
                 with pensamento1.status("Acessando a Biblioteca.", expanded=True) as status:
                     st.write("Lendo mais de 220 mil Artigos Científicos.")
-                    st.stop()
                     spinner = st.empty()
                     spinner.spinner("Lendo...", show_time=True)
                     try:
