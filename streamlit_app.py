@@ -176,6 +176,7 @@ if "usuario" not in st.session_state:
             if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=False,):
                 st.markdown(prompt)
                 st.session_state.PrimeitaEntrada = prompt
+                st.stop()
                 ChatInterno.empty()
     if "PrimeiraEntrada" in st.session_state:
         if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=True,file_type=["jpg", "jpeg", "png","pdf","mp3"],) or True:
