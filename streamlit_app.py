@@ -1023,6 +1023,4 @@ if "product_page" in st.session_state:
 
 
 
-with st.container(height=250,border=False):
-    st.empty()
 
