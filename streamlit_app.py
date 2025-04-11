@@ -467,10 +467,7 @@ if "product_page" in st.session_state:
                 unsafe_allow_html=True
             )
             st.markdown(
-                ":gray-badge[Versão Gratuita]"
-            )
-            st.markdown(
-                ":orange-badge[Chat Provisório]"
+                ":gray-badge[Versão Gratuita] :orange-badge[Chat Provisório]"
             )
         # Menu do chat
         #opcoeschat = st.columns(5, vertical_alignment="center")
