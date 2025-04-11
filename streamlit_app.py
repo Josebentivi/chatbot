@@ -20,6 +20,11 @@ st.set_page_config(
         'About': "# This is a header. This is an *extremely* cool app!"
     }) 
 
+st.markdown("""<meta name="description" content="_" />
+<meta name="title" property="og:title" content="_" />
+<meta property="og:type" content="_" />
+<meta name="image" property="og:image" content="_" />
+<meta name="description" property="og:description" content="_" /><meta name="author" content="_" />""", unsafe_allow_html=True)
 
 
 if "selected_thinker" not in st.session_state:
