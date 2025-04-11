@@ -557,12 +557,14 @@ if "product_page" in st.session_state:
         with col[5]:
             #if st.session_state.marcar_artigos:
             #    st.write("Artigos ativado.")
-            if st.session_state.marcar_pensadores:
-                st.session_state.selected_thinker = st.selectbox(
-                    "Selecione o pensador:",
-                    options=["Sócrates", "Platão", "Aristóteles", "Descartes"],
-                    index=["Sócrates", "Platão", "Aristóteles", "Descartes"].index(st.session_state.selected_thinker)
-                )
+            
+            #if st.session_state.marcar_pensadores:
+            #    st.session_state.selected_thinker = st.selectbox(
+            #        "Selecione o pensador:",
+            #        options=["Sócrates", "Platão", "Aristóteles", "Descartes"],
+            #        index=["Sócrates", "Platão", "Aristóteles", "Descartes"].index(st.session_state.selected_thinker)
+            #    )
+            pass
 
 
         #with st.container(height=600,border=False): 
