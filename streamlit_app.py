@@ -33,11 +33,15 @@ def Carregando(aceleracao=0.1):
     with colsCarregando[1]:
         my_bar = st.progress(porcentagem, text="Iniciando plataforma...")
         tempo=0.5
-        
-        url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/retornarconversa/"
-        #url = "http://52.2.202.37/produto/post/filosofo/retornarconversa/"
-        data = {"data":{"usuario": st.session_state.usuario},"chave":st.secrets["CHAVE"]}
-        st.session_state.messages = requests.post(url, json=data, timeout=5*60).json().get("saida")
+        try:
+            url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/retornarconversa/"
+            #url = "http://52.2.202.37/produto/post/filosofo/retornarconversa/"
+            data = {"data":{"usuario": st.session_state.usuario},"chave":st.secrets["CHAVE"]}
+            
+            st.session_state.messages = requests.post(url, json=data, timeout=5*60).json().get("saida")
+        except requests.exceptions.RequestException as e:
+            st.error(f"Erro ao acessar servidor: {e}")
+            st.stop()
         porcentagem += 25
         my_bar.progress(porcentagem, text="Carregando Filósofos...")
         tempo+=aceleracao
@@ -532,10 +536,14 @@ if "product_page" in st.session_state:
         with col[1]:
         #with col[3]:
             if st.button("Limpar Chat", use_container_width=True):
-                url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/recomecarconversa/"
-                #url = "http://52.2.202.37/produto/post/filosofo/recomecarconversa/"
-                data = {"data":{"usuario": st.session_state.usuario},"chave":st.secrets["CHAVE"]}
-                requests.post(url, json=data, timeout=5*60).json().get("saida")
+                try:
+                    url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/recomecarconversa/"
+                    #url = "http://52.2.202.37/produto/post/filosofo/recomecarconversa/"
+                    data = {"data":{"usuario": st.session_state.usuario},"chave":st.secrets["CHAVE"]}
+                    requests.post(url, json=data, timeout=5*60).json().get("saida")
+                except requests.exceptions.RequestException as e:
+                    st.error(f"Erro ao acessar servidor: {e}")
+                    st.stop()
 
                 st.session_state.messages = []
                 st.rerun(scope="app")
@@ -584,10 +592,14 @@ if "product_page" in st.session_state:
         if not st.session_state.carregado:
             Carregando() 
         else:
-            url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/retornarconversa/"
-            #url = "http://52.2.202.37/produto/post/filosofo/retornarconversa/"
-            data = {"data":{"usuario": st.session_state.usuario},"chave":st.secrets["CHAVE"]}
-            st.session_state.messages = requests.post(url, json=data, timeout=5*60).json().get("saida")
+            try:
+                url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/retornarconversa/"
+                #url = "http://52.2.202.37/produto/post/filosofo/retornarconversa/"
+                data = {"data":{"usuario": st.session_state.usuario},"chave":st.secrets["CHAVE"]}
+                st.session_state.messages = requests.post(url, json=data, timeout=5*60).json().get("saida")
+            except requests.exceptions.RequestException as e:
+                st.error(f"Erro ao acessar servidor: {e}")
+                st.stop()
         #openai_api_key = st.session_state.openai_api_key
         
         
