@@ -467,9 +467,11 @@ if "product_page" in st.session_state:
                 """,
                 unsafe_allow_html=True
             )
-            st.markdown(
-                ":gray-badge[Versão Gratuita] :orange-badge[Chat Provisório]"
-            )
+            colunalateral = st.columns([1,3,1], vertical_alignment="center")
+            with colunalateral[1]:
+                st.markdown(
+                    ":gray-badge[Versão Gratuita] :orange-badge[Chat Provisório]"
+                )
             st.markdown(
                 "## Programas Parceiros"
             )
