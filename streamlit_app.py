@@ -472,6 +472,7 @@ if "product_page" in st.session_state:
             st.markdown(
                 "## Programas Parceiros"
             )
+            st.image("dados/exemplo/Poster JurisAI.jpg", use_column_width=True)
         # Menu do chat
         #opcoeschat = st.columns(5, vertical_alignment="center")
         # Cria o checkbox e o ícone de informação na mesma linha
