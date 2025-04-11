@@ -477,7 +477,7 @@ if "product_page" in st.session_state:
                 )
             st.markdown(
                 "## Programas Parceiros"
-            )
+            ) 
             colunalateral = st.columns([1,3,1], vertical_alignment="center")
             with colunalateral[1]:
                 st.image("dados/exemplo/Poster JurisAI.png", use_container_width=True)
