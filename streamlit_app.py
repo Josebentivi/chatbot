@@ -415,6 +415,7 @@ if "usuario" not in st.session_state:
                     except requests.exceptions.RequestException as e:
                         st.error(f"Erro ao acessar servidor: {e}")
                         st.stop()
+                    st.session_state.Artigos = False
                     st.rerun(scope="app")
                         
     with Chao.container(height=75,border=False):
@@ -816,7 +817,7 @@ if "product_page" in st.session_state:
                 except requests.exceptions.RequestException as e:
                     st.error(f"Erro ao acessar servidor: {e}")
                     st.stop()
-                
+                st.session_state.Artigos = False
                 st.rerun(scope="app")
             else:
 
