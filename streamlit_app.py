@@ -468,7 +468,7 @@ if "product_page" in st.session_state:
                 unsafe_allow_html=True
             )
             colunalateral = st.columns(1, vertical_alignment="center")
-            with colunalateral[1]:
+            with colunalateral[0]:
                 st.markdown(
                     ":gray-badge[Versão Gratuita] :orange-badge[Chat Provisório]"
                 )
