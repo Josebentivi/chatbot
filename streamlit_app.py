@@ -184,7 +184,7 @@ if "usuario" not in st.session_state:
                     st.session_state.selected_model = "gpt-4o-mini"
                     st.session_state.carregado = True
                     st.session_state.product_page = "chat"
-                    st.session_state.marcar_artigos = False
+                    st.session_state.marcar_artigos = True
                     st.session_state.marcar_pensadores = False
                     st.session_state.selected_thinker = None
                     #Carregando() 
