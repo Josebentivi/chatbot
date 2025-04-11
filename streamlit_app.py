@@ -465,7 +465,7 @@ if "product_page" in st.session_state:
                     unsafe_allow_html=True
                 )
         with col[1]:
-            # Cria duas colunas: a primeira para o checkbox e a segunda para o ícone de informação
+            ativarpensadorestexto = """# Cria duas colunas: a primeira para o checkbox e a segunda para o ícone de informação
             col_checkbox, col_info = st.columns([0.7, 0.3])
             # Cria o checkbox e o ícone de informação na mesma linha
             with col_checkbox:
@@ -483,7 +483,7 @@ if "product_page" in st.session_state:
                 st.markdown(
                     f"<span title='{info_text}' style='cursor: pointer;'>&#9432;</span>",
                     unsafe_allow_html=True
-                )
+                )"""
         with col[3]:
             if st.button("Limpar Chat", use_container_width=True):
                 url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/recomecarconversa/"
@@ -494,20 +494,22 @@ if "product_page" in st.session_state:
                 st.session_state.messages = []
                 st.rerun(scope="app")
         with col[2]:
-            if st.button("Menu", use_container_width=True):
-                st.session_state.product_page = "home"
-                st.rerun(scope="app")
+            #if st.button("Menu", use_container_width=True):
+            #    st.session_state.product_page = "home"
+            #    st.rerun(scope="app")
+            pass
         with col[5]:
             if not st.session_state.marcar_pensadores and not st.session_state.marcar_artigos:
                 if "selected_model" not in st.session_state or st.session_state.selected_model not in ["gpt-4o-mini", "gpt-4o", "o3-mini"]:
+                    #st.session_state.selected_model = "o3-mini"
                     st.session_state.selected_model = "gpt-4o-mini"
                 
                 
-                model_keys = ["gpt-4o-mini", "gpt-4o", "o3-mini"]
+                model_keys = [ "o3-mini", "gpt-4o","gpt-4o-mini"]
                 model_names = {
-                    "gpt-4o-mini": "Gpt-4o-mini: Resposta rápida para tarefas leves.",
+                    "o3-mini": "O3-mini: Modelo de pensamento para tarefas mais complexas",
                     "gpt-4o": "Gpt-4o: Resposta rápida para tarefas com média complexidade.",
-                    "o3-mini": "O3-mini: Modelo de pensamento para tarefas mais complexas"
+                    "gpt-4o-mini": "Gpt-4o-mini: Resposta rápida para tarefas leves."
                 }
                 selected = st.selectbox(
                     "Motor do chat:",
@@ -526,6 +528,8 @@ if "product_page" in st.session_state:
                     options=["Sócrates", "Platão", "Aristóteles", "Descartes"],
                     index=["Sócrates", "Platão", "Aristóteles", "Descartes"].index(st.session_state.selected_thinker)
                 )
+
+
         #with st.container(height=600,border=False): 
                 #with st.container():
         if not st.session_state.carregado:
@@ -596,7 +600,7 @@ if "product_page" in st.session_state:
                 usuario = 0
                 with pensamento1.status("Acessando a Biblioteca.", expanded=True) as status:
                     st.write("Lendo mais de 220 mil Artigos Científicos.")
-                    with st.spinner("Aguarde. (Tempo de espera médio de 15 minutos)", show_time=True):
+                    with st.spinner("Aguarde. (Tempo de espera médio de 5 minutos)", show_time=True):
                         try:
                             url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/iniciar/"
                             #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
