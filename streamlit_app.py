@@ -183,8 +183,44 @@ if "usuario" not in st.session_state:
                     st.session_state.marcar_artigos = True
                     st.session_state.marcar_pensadores = False
                     st.session_state.selected_thinker = None
-                    Carregando() 
+                    #Carregando() 
                     
+                    porcentagem = 0
+                    aceleracao=0.1
+                    cols = st.columns(3)
+                    with cols[1]:
+                        my_bar = st.progress(porcentagem, text="Iniciando plataforma...")
+                        tempo=0.5
+                        
+                        url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/retornarconversa/"
+                        #url = "http://52.2.202.37/produto/post/filosofo/retornarconversa/"
+                        data = {"data":{"usuario": st.session_state.usuario},"chave":st.secrets["CHAVE"]}
+                        st.session_state.messages = requests.post(url, json=data, timeout=5*60).json().get("saida")
+                        porcentagem += 25
+                        my_bar.progress(porcentagem, text="Carregando Filósofos...")
+                        tempo+=aceleracao
+                        sleep(tempo)
+                        
+                        porcentagem += 25
+                        my_bar.progress(porcentagem, text="Carregando Artigos científicos...")
+                        tempo+=aceleracao
+                        sleep(tempo)
+                        
+                        porcentagem += 25
+                        my_bar.progress(porcentagem, text="Aprimorando inteligência...")
+                        tempo+=aceleracao
+                        sleep(tempo)
+                        
+                        porcentagem += 25
+                        my_bar.progress(porcentagem, text="Finalizando...")
+                        tempo+=aceleracao
+                        sleep(tempo)
+                        my_bar.empty()
+
+                    st.session_state.carregado = True
+                    cols = st.empty()
+
+
                     #url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/retornarconversa/"
                     #url = "http://52.2.202.37/produto/post/filosofo/retornarconversa/"
                     #data = {"data":{"usuario": st.session_state.usuario},"chave":st.secrets["CHAVE"]}
