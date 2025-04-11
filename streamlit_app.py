@@ -174,7 +174,7 @@ if "usuario" not in st.session_state:
         cols = ChatInterno.columns(1,vertical_alignment="bottom")
         with cols[0]:
             if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=False,):
-                st.session_state.PrimeitaEntrada = prompt["text"]
+                st.session_state.PrimeitaEntrada = prompt
                 ChatInterno.empty()
     if "PrimeiraEntrada" in st.session_state:
         if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=True,file_type=["jpg", "jpeg", "png","pdf","mp3"],) or True:
