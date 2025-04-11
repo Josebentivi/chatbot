@@ -860,6 +860,8 @@ if "product_page" in st.session_state:
                                 provisorio.append(i)
                         st.markdown("---")
                         st.markdown(st.session_state.messages)
+
+                        st.stop()
                         client = OpenAI()
                         # Generate a response using the OpenAI API.
                         stream = client.chat.completions.create(
