@@ -457,6 +457,21 @@ if "usuario" not in st.session_state:
     #st.session_state.openai_api_entered = True
 if "product_page" in st.session_state:
     if st.session_state.usuario and st.session_state.product_page == "chat":
+        with st.sidebar:
+            st.markdown(
+                """
+                <div style="text-align: center; font-size: 24px; font-weight: bold;">
+                    💬 O Pensador Desktop
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+            st.markdown(
+                ":gray-badge[Versão Gratuita]"
+            )
+            st.markdown(
+                ":orange-badge[Chat Provisório]"
+            )
         # Menu do chat
         #opcoeschat = st.columns(5, vertical_alignment="center")
         # Cria o checkbox e o ícone de informação na mesma linha
