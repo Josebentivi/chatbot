@@ -174,6 +174,7 @@ if "usuario" not in st.session_state:
         cols = ChatInterno.columns(1,vertical_alignment="bottom")
         with cols[0]:
             if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=False,):
+                st.markdown(prompt)
                 st.session_state.PrimeitaEntrada = prompt
                 ChatInterno.empty()
     if "PrimeiraEntrada" in st.session_state:
