@@ -172,9 +172,6 @@ if "usuario" not in st.session_state:
     with Chat.container(height=600,border=False):
         if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=False,):
             st.session_state.PrimeitaEntrada = prompt
-    if "PrimeitaEntrada" in st.session_state:
-        Chat = st.empty()
-        if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=False,) or True:
             with MensagensIniciais.container(height=600,border=False): 
                 with st.container():
                     st.session_state.usuario = "6019224769"
