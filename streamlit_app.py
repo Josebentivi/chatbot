@@ -409,8 +409,8 @@ if "usuario" not in st.session_state:
                     except requests.exceptions.RequestException as e:
                         st.error(f"Erro ao enviar os dados: {e}")
                 st.rerun(scope="app")
-    with st.container(height=250,border=False):
-        st.empty()
+with st.container(height=250,border=False):
+    st.empty()
                     
     #with Chao.container(height=75,border=False):
     #    colss = st.columns(7,vertical_alignment="center")
