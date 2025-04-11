@@ -177,7 +177,6 @@ if "usuario" not in st.session_state:
             st.session_state.PrimeitaEntrada = prompt
             with MensagensIniciais.container(height=600,border=False): 
                 with st.container():
-                    st.session_state.usuario = "6019224769"
                     st.session_state.selected_model = "gpt-4o-mini"
                     st.session_state.carregado = True
                     st.session_state.product_page = "chat"
@@ -423,7 +422,6 @@ if "usuario" not in st.session_state:
         colss = st.columns(7,vertical_alignment="center")
         with colss[3]:
             if st.button("Experimentar",use_container_width=True):
-                st.session_state.usuario = "6019224769"
                 st.session_state.carregado = False
                 st.session_state.Artigos = True
                 st.session_state.product_page = "chat"
