@@ -470,7 +470,12 @@ if "product_page" in st.session_state:
             colunalateral = st.columns(1, vertical_alignment="center")
             with colunalateral[0]:
                 st.markdown(
-                    ":gray-badge[Versão Gratuita] :orange-badge[Chat Provisório]"
+                """
+                <div style="text-align: center; font-size: 24px; font-weight: bold;">
+                    :gray-badge[Versão Gratuita] :orange-badge[Chat Provisório]
+                </div>
+                """,
+                unsafe_allow_html=True
                 )
             st.markdown(
                 "## Programas Parceiros"
