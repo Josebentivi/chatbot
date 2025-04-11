@@ -4,6 +4,8 @@ import requests
 import warnings
 from PIL import Image
 import time
+import uuid
+
 from time import sleep
 # Suppress Streamlit's ScriptRunContext warning
 warnings.filterwarnings("ignore", message="missing ScriptRunContext")
@@ -23,6 +25,7 @@ st.set_page_config(
 if "selected_thinker" not in st.session_state:
     st.session_state.selected_thinker = None
 if "messages" not in st.session_state:
+    st.session_state.usuario = str(uuid.uuid4())
     st.session_state.messages = []
 
 def Carregando(aceleracao=0.1):
@@ -34,7 +37,7 @@ def Carregando(aceleracao=0.1):
         
         url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/retornarconversa/"
         #url = "http://52.2.202.37/produto/post/filosofo/retornarconversa/"
-        data = {"data":{"usuario": int(st.session_state.usuario)},"chave":st.secrets["CHAVE"]}
+        data = {"data":{"usuario": st.session_state.usuario},"chave":st.secrets["CHAVE"]}
         st.session_state.messages = requests.post(url, json=data, timeout=5*60).json().get("saida")
         porcentagem += 25
         my_bar.progress(porcentagem, text="Carregando Filósofos...")
@@ -184,7 +187,7 @@ if "usuario" not in st.session_state:
                     #Carregando() 
                     url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/retornarconversa/"
                     #url = "http://52.2.202.37/produto/post/filosofo/retornarconversa/"
-                    data = {"data":{"usuario": int(st.session_state.usuario)},"chave":st.secrets["CHAVE"]}
+                    data = {"data":{"usuario": st.session_state.usuario},"chave":st.secrets["CHAVE"]}
                     st.session_state.messages = requests.post(url, json=data, timeout=5*60).json().get("saida")
                     #openai_api_key = st.session_state.openai_api_key
                     
@@ -383,7 +386,7 @@ if "usuario" not in st.session_state:
                     try:
                         url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/addartigostream/"
                         #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
-                        data = {"data":{"usuario": int(st.session_state.usuario),
+                        data = {"data":{"usuario": st.session_state.usuario,
                                         "dados": argumentacao},
                                         "chave":st.secrets["CHAVE"]}
                         post_response = requests.post(url, json=data, timeout=5*60)
@@ -407,7 +410,7 @@ if "usuario" not in st.session_state:
                         try:
                             url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/addusuario/"
                             #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
-                            data = {"data":{"usuario": int(st.session_state.usuario),
+                            data = {"data":{"usuario": st.session_state.usuario,
                                     "entrada": st.session_state.PrimeitaEntrada,
                                     "saida": response_text},
                                     "chave":st.secrets["CHAVE"]}
@@ -530,7 +533,7 @@ if "product_page" in st.session_state:
             if st.button("Limpar Chat", use_container_width=True):
                 url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/recomecarconversa/"
                 #url = "http://52.2.202.37/produto/post/filosofo/recomecarconversa/"
-                data = {"data":{"usuario": int(st.session_state.usuario)},"chave":st.secrets["CHAVE"]}
+                data = {"data":{"usuario": st.session_state.usuario},"chave":st.secrets["CHAVE"]}
                 requests.post(url, json=data, timeout=5*60).json().get("saida")
 
                 st.session_state.messages = []
@@ -582,7 +585,7 @@ if "product_page" in st.session_state:
         else:
             url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/retornarconversa/"
             #url = "http://52.2.202.37/produto/post/filosofo/retornarconversa/"
-            data = {"data":{"usuario": int(st.session_state.usuario)},"chave":st.secrets["CHAVE"]}
+            data = {"data":{"usuario": st.session_state.usuario},"chave":st.secrets["CHAVE"]}
             st.session_state.messages = requests.post(url, json=data, timeout=5*60).json().get("saida")
         #openai_api_key = st.session_state.openai_api_key
         
@@ -785,7 +788,7 @@ if "product_page" in st.session_state:
                 try:
                     url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/addartigostream/"
                     #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
-                    data = {"data":{"usuario": int(st.session_state.usuario),
+                    data = {"data":{"usuario": st.session_state.usuario,
                                     "dados": argumentacao},
                                     "chave":st.secrets["CHAVE"]}
                     post_response = requests.post(url, json=data, timeout=5*60)
@@ -809,7 +812,7 @@ if "product_page" in st.session_state:
                     try:
                         url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/addusuario/"
                         #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
-                        data = {"data":{"usuario": int(st.session_state.usuario),
+                        data = {"data":{"usuario": st.session_state.usuario,
                                 "entrada": prompt["text"],
                                 "saida": response_text},
                                 "chave":st.secrets["CHAVE"]}
@@ -829,7 +832,7 @@ if "product_page" in st.session_state:
                 # session state.
 
                 #url = "http://52.2.202.37/produto/post/filosofo/chat/"
-                #data = {"data":{"usuario": int(st.session_state.usuario),
+                #data = {"data":{"usuario": st.session_state.usuario,
                 #        "mensagem": prompt["text"]}
                 #        }
                 #response = requests.post(url, json=data, timeout=5*60)
@@ -859,7 +862,7 @@ if "product_page" in st.session_state:
                         try:
                             url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/addusuario/"
                             #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
-                            data = {"data":{"usuario": int(st.session_state.usuario),
+                            data = {"data":{"usuario": st.session_state.usuario,
                                     "entrada": prompt["text"],
                                     "saida": response_text},
                                     "chave":st.secrets["CHAVE"]}
