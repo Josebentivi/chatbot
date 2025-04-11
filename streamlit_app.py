@@ -403,14 +403,17 @@ if "usuario" not in st.session_state:
                             st.error(f"Erro ao enviar os dados: {e}")
                     st.rerun(scope="app")
                         
-    with Chao.container(height=75,border=False):
-        colss = st.columns(7,vertical_alignment="center")
-        with colss[3]:
-            if st.button("Experimentar",use_container_width=True):
-                st.session_state.usuario = "6019224769"
-                st.session_state.carregado = False
-                st.session_state.product_page = "chat"
-                st.rerun(scope="app")
+    #with Chao.container(height=75,border=False):
+    #    colss = st.columns(7,vertical_alignment="center")
+    #    with colss[3]:
+    #        if st.button("Experimentar",use_container_width=True):
+    #            st.session_state.usuario = "6019224769"
+    #            st.session_state.carregado = False
+    #            st.session_state.product_page = "chat"
+    #            st.rerun(scope="app")
+    
+    
+    
     #cols = st.columns(3)
     #with cols[1]:
     #    cols3 = st.columns(3)
