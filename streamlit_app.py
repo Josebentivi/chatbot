@@ -858,6 +858,13 @@ if "product_page" in st.session_state:
                                 provisorio.append(i)
                             elif i["role"] == "developer":
                                 provisorio.append(i)
+                            elif i["role"] == "ReferenciasArtigos":
+                                provisorio.append({'role': 'assistant', 'content': [{'type': 'text', 'text': i["content"][0]["text"].get("Pensamento")}]})
+                                provisorio.append({'role': 'assistant', 'content': [{'type': 'text', 'text': i["content"][0]["text"].get("Análise")}]})
+                                provisorio.append({'role': 'assistant', 'content': [{'type': 'text', 'text': i["content"][0]["text"].get("Contra-argumentos")}]})
+                                provisorio.append({'role': 'assistant', 'content': [{'type': 'text', 'text': i["content"][0]["text"].get("Referências da Argumentação")}]})
+                                provisorio.append({'role': 'assistant', 'content': [{'type': 'text', 'text': i["content"][0]["text"].get("Referências do Contra-argumento")}]})
+
                         st.markdown("---")
                         st.markdown(provisorio) 
 
