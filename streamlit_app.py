@@ -859,7 +859,7 @@ if "product_page" in st.session_state:
                             elif i["role"] == "developer":
                                 provisorio.append(i)
                         st.markdown("---")
-                        st.markdown(provisorio)
+                        st.markdown(provisorio) 
 
                         st.stop()
                         client = OpenAI()
