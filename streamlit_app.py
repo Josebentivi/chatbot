@@ -503,6 +503,10 @@ if "product_page" in st.session_state:
                     key="marcar_artigos", 
                     on_change=ativar_artigos
                 )
+                if st.session_state.Artigos == True:
+                    st.session_state.marcar_artigos = True
+                else:
+                    st.session_state.marcar_artigos = False
             with col_info:
                 # Define o texto que aparecerá ao passar o mouse
                 info_text = "Com o objetivo de ter um mecanismo de pesquisa imparcial. Desenvolvemos um algoritimo que verifica semânticamente toda nossa base de dados com mais de 220 mil artigos publicados no ano de 2024."
