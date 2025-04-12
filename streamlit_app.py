@@ -19,7 +19,6 @@ st.set_page_config(
         'Report a bug': "https://www.extremelycoolapp.com/bug",
         'About': "# This is a header. This is an *extremely* cool app!"
     }) 
-value = st.slider("Pick a number", 0, 100)
 if "selected_thinker" not in st.session_state:
     st.session_state.selected_thinker = None
 if "messages" not in st.session_state:
