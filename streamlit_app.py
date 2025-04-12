@@ -35,7 +35,7 @@ def Carregando(aceleracao=0.1):
             #url = "http://52.2.202.37/produto/post/filosofo/retornarconversa/"
             data = {"data":{"usuario": st.session_state.usuario},"chave":st.secrets["CHAVE"]}
             
-            st.session_state.messages = requests.post(url, json=data, timeout=5*60).json().get("saida")
+            st.session_state.messages = requests.post(url, json=data, timeout=20*60).json().get("saida")
         except requests.exceptions.RequestException as e:
             st.error(f"Erro ao acessar servidor: {e}")
             st.stop()
@@ -256,7 +256,7 @@ if "usuario" not in st.session_state:
                                 data = {"data":{"stream": 1,
                                         "pesquisa": st.session_state.PrimeitaEntrada},
                                         "chave":st.secrets["CHAVE"]}
-                                post_response = requests.post(url, json=data, timeout=5*60)
+                                post_response = requests.post(url, json=data, timeout=20*60)
                             except requests.exceptions.RequestException as e:
                                 st.error(f"Erro ao acessar servidor: {e}")
                                 st.stop()
@@ -664,7 +664,7 @@ if "product_page" in st.session_state:
                             data = {"data":{"stream": 1,
                                     "pesquisa": prompt["text"]},
                                     "chave":st.secrets["CHAVE"]}
-                            post_response = requests.post(url, json=data, timeout=5*60)
+                            post_response = requests.post(url, json=data, timeout=20*60)
                         except requests.exceptions.RequestException as e:
                             st.error(f"Erro ao acessar servidor: {e}")
                             st.stop()
