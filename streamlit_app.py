@@ -19,14 +19,7 @@ st.set_page_config(
         'Report a bug': "https://www.extremelycoolapp.com/bug",
         'About': "# This is a header. This is an *extremely* cool app!"
     }) 
-
-st.markdown("""<meta name="description" content="_" />
-<meta name="title" property="og:title" content="_" />
-<meta property="og:type" content="_" />
-<meta name="image" property="og:image" content="_" />
-<meta name="description" property="og:description" content="_" /><meta name="author" content="_" />""", unsafe_allow_html=True)
-
-
+value = st.slider("Pick a number", 0, 100)
 if "selected_thinker" not in st.session_state:
     st.session_state.selected_thinker = None
 if "messages" not in st.session_state:
