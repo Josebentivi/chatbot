@@ -419,7 +419,7 @@ if "usuario" not in st.session_state:
                     except requests.exceptions.RequestException as e:
                         st.error(f"Erro ao acessar servidor: {e}")
                         st.stop()
-                    st.session_state.Artigos = False
+                    st.session_state.marcar_artigos = False
                     st.rerun(scope="app")
                         
     with st.container(border=False):
@@ -428,7 +428,6 @@ if "usuario" not in st.session_state:
             if st.button("Experimentar",use_container_width=True):
                 st.session_state.usuario = str(uuid.uuid4())
                 st.session_state.carregado = False
-                st.session_state.Artigos = True
                 st.session_state.product_page = "chat"
                 st.rerun(scope="app")
     
@@ -503,10 +502,6 @@ if "product_page" in st.session_state:
                     key="marcar_artigos", 
                     on_change=ativar_artigos
                 )
-                if st.session_state.Artigos == True:
-                    st.session_state.marcar_artigos = True
-                else:
-                    st.session_state.marcar_artigos = False
             with col_info:
                 # Define o texto que aparecerá ao passar o mouse
                 info_text = "Com o objetivo de ter um mecanismo de pesquisa imparcial. Desenvolvemos um algoritimo que verifica semânticamente toda nossa base de dados com mais de 220 mil artigos publicados no ano de 2024."
@@ -833,7 +828,7 @@ if "product_page" in st.session_state:
                 except requests.exceptions.RequestException as e:
                     st.error(f"Erro ao acessar servidor: {e}")
                     st.stop()
-                st.session_state.Artigos = False
+                st.session_state.marcar_artigos = True
                 st.rerun(scope="app")
             else:
 
