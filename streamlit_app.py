@@ -426,7 +426,7 @@ if "usuario" not in st.session_state:
                     except requests.exceptions.RequestException as e:
                         st.error(f"Erro ao acessar servidor: {e}")
                         st.stop()
-                    st.session_state.Artigos = False
+                    st.session_state.marcar_artigos = False
                     st.rerun(scope="app")
                         
     with st.container(border=False):
@@ -836,7 +836,7 @@ if "product_page" in st.session_state:
                 except requests.exceptions.RequestException as e:
                     st.error(f"Erro ao acessar servidor: {e}")
                     st.stop()
-                st.session_state.Artigos = False
+                st.session_state.marcar_artigos = False
                 st.rerun(scope="app")
             else:
 
