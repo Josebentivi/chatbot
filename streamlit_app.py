@@ -179,7 +179,7 @@ if "usuario" not in st.session_state:
                 with st.container():
                     st.session_state.usuario = str(uuid.uuid4())
                     #st.session_state.selected_model = "gpt-4o-mini"
-                    st.session_state.selected_model = "o3-mini"
+                    st.session_state.selected_model = "o4-mini"
                     st.session_state.carregado = True
                     st.session_state.product_page = "chat"
                     st.session_state.marcar_artigos = True
@@ -266,6 +266,7 @@ if "usuario" not in st.session_state:
                         # Generate a response using the OpenAI API.
                         stream = client.chat.completions.create(
                         model=st.session_state.selected_model,
+                        reasoning={"effort": "high"},
                         messages=post_response.json().get("saida").get("mensagem"),
                         stream=True,
                         )
@@ -551,16 +552,16 @@ if "product_page" in st.session_state:
         with col[5]:
             #if not st.session_state.marcar_pensadores and not st.session_state.marcar_artigos:
             if not st.session_state.marcar_artigos:
-                if "selected_model" not in st.session_state or st.session_state.selected_model not in ["gpt-4o-mini", "gpt-4o", "o3-mini"]:
-                    st.session_state.selected_model = "o3-mini"
-                    #st.session_state.selected_model = "gpt-4o-mini"
+                if "selected_model" not in st.session_state or st.session_state.selected_model not in ["gpt-4o-mini", "gpt-4o", "o4-mini"]:
+                    #st.session_state.selected_model = "o4-mini"
+                    st.session_state.selected_model = "gpt-4.1-nano"
                 
                 
-                model_keys = [ "o3-mini", "gpt-4o","gpt-4o-mini"]
+                model_keys = [ "o4-mini", "gpt-4.1-mini","gpt-4.1-nano"]
                 model_names = {
-                    "o3-mini": "O3-mini: Modelo de pensamento para tarefas mais complexas",
-                    "gpt-4o": "Gpt-4o: Resposta rápida para tarefas com média complexidade.",
-                    "gpt-4o-mini": "Gpt-4o-mini: Resposta rápida para tarefas leves."
+                    "o4-mini": "O4-mini: Modelo de pensamento para tarefas mais complexas",
+                    "gpt-4.1-mini": "Gpt-4.1-mini: Resposta rápida para tarefas com média complexidade.",
+                    "gpt-4.1-nano": "Gpt-4.1-nano: Resposta rápida para tarefas leves."
                 }
                 selected = st.selectbox(
                     "Motor do chat:",
