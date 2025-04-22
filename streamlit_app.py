@@ -178,8 +178,8 @@ if "usuario" not in st.session_state:
             with MensagensIniciais.container(height=600,border=False): 
                 with st.container():
                     st.session_state.usuario = str(uuid.uuid4())
-                    #st.session_state.selected_model = "gpt-4o-mini"
-                    st.session_state.selected_model = "o4-mini"
+                    st.session_state.selected_model = "gpt-4.1-nano"
+                    #st.session_state.selected_model = "o4-mini"
                     st.session_state.carregado = True
                     st.session_state.product_page = "chat"
                     st.session_state.marcar_artigos = True
@@ -552,7 +552,7 @@ if "product_page" in st.session_state:
         with col[5]:
             #if not st.session_state.marcar_pensadores and not st.session_state.marcar_artigos:
             if not st.session_state.marcar_artigos:
-                if "selected_model" not in st.session_state or st.session_state.selected_model not in ["gpt-4o-mini", "gpt-4o", "o4-mini"]:
+                if "selected_model" not in st.session_state or st.session_state.selected_model not in ["gpt-4.1-nano", "gpt-4.1-mini", "o4-mini"]:
                     #st.session_state.selected_model = "o4-mini"
                     st.session_state.selected_model = "gpt-4.1-nano"
                 
