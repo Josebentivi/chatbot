@@ -43,8 +43,8 @@ if "usuario" not in st.session_state:
             f'<div style="text-align: center; font-size: 24px; font-weight: bold;">{rainbow_text}</div>',
             unsafe_allow_html=True
         )
-    col = st.columns([1],vertical_alignment="center")
-    with col[0]:
+    col = st.columns([1,1,1],vertical_alignment="center")
+    with col[1]:
         def hash_pwd(pwd: str) -> str:
             return hashlib.sha256(pwd.encode("utf-8")).hexdigest()
 
