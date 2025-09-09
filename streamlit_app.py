@@ -80,14 +80,9 @@ else:
             st.session_state.openai_api_key = st.text_input("Chave OpenAI", type="password", value=st.session_state.openai_api_key)
             chave = "Informada" if st.session_state.openai_api_key else "Não definida"
 
-        # Definições básicas
-        if "system_prompt" not in st.session_state:
-            st.session_state.system_prompt = "Você é um assistente útil."
-        st.session_state.system_prompt = st.text_area("System prompt", st.session_state.system_prompt, height=120)
-
+        
         # Parâmetros do modelo
-        model = st.selectbox("Modelo", ["gpt-4o-mini", "gpt-4o", "gpt-4.1-mini"], index=0)
-        temperature = st.slider("Temperatura", 0.0, 1.0, 0.7, 0.05)
+        model = st.selectbox("Modelo", [ "gpt-5", "gpt-4o-mini"], index=0)
 
         st.divider()
 
@@ -120,6 +115,9 @@ else:
                 "messages": [],
                 "created_at": time.time()
             }
+        
+        # Definições básicas
+        st.session_state.system_prompt = "Você é um assistente útil."
 
         # Garante que exista uma conversa inicial
         if st.session_state.current_conversation_id is None:
@@ -173,7 +171,6 @@ else:
             resp = client.chat.completions.create(
                 model=model,
                 messages=messages,
-                temperature=temperature
             )
             resposta = resp.choices[0].message.content.strip()
             st.session_state.chat_messages.append({"role": "assistant", "content": resposta})
