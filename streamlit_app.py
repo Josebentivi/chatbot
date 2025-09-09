@@ -54,6 +54,41 @@ if "usuario" not in st.session_state:
 
         if "modo_registro" not in st.session_state:
             st.session_state.modo_registro = False
+            # Move the "Registrar"/"Já tenho conta" toggle button next to the "Entrar" submit button using DOM manipulation
+            st.markdown("""
+            <style>
+            /* Make buttons inline when placed together */
+            .stButton > button {
+                white-space: nowrap;
+            }
+            </style>
+            <script>
+            function relocateButtons(){
+                const allButtons = Array.from(document.querySelectorAll('button'));
+                const registrarBtn = allButtons.find(b => /Registrar|Já tenho conta/.test(b.innerText.trim()));
+                const entrarBtn = allButtons.find(b => b.innerText.trim() === 'Entrar');
+                if (!registrarBtn || !entrarBtn) return;
+
+                // Avoid re-appending if already adjacent
+                if (entrarBtn.nextSibling === registrarBtn) return;
+
+                // Append registrar button right after entrar button
+                entrarBtn.parentElement.appendChild(registrarBtn);
+                registrarBtn.style.marginLeft = '0.5rem';
+            }
+
+            const observer = new MutationObserver(() => relocateButtons());
+            observer.observe(document.body, {childList: true, subtree: true});
+            window.addEventListener('load', relocateButtons);
+            setTimeout(relocateButtons, 500);
+            setInterval(relocateButtons, 1500);
+            </script>
+            """, unsafe_allow_html=True)
+        col1, col2 = st.columns([1,1])
+        with col1:
+            if st.button("Registrar" if not st.session_state.modo_registro else "Já tenho conta"):
+                st.session_state.modo_registro = not st.session_state.modo_registro
+                st.rerun()
 
         if st.session_state.modo_registro:
             st.subheader("Criar nova conta")
@@ -81,9 +116,6 @@ if "usuario" not in st.session_state:
                 user = st.text_input("Usuário")
                 pwd = st.text_input("Senha", type="password")
                 entrar = st.form_submit_button("Entrar")
-                if st.button("Registrar" if not st.session_state.modo_registro else "Já tenho conta"):
-                    st.session_state.modo_registro = not st.session_state.modo_registro
-                    st.rerun()
             if entrar:
                 if user in st.session_state.users and st.session_state.users[user] == hash_pwd(pwd):
                     st.session_state.usuario = user
