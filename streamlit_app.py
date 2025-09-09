@@ -44,32 +44,12 @@ with st.container(height=100,border=False):
         unsafe_allow_html=True
     )
 
-if "usuario" not in st.session_state:
+if not st.user.is_logged_in:
     col = st.columns([1,1,1],vertical_alignment="center")
     with col[1]:
-        def hash_pwd(pwd: str) -> str:
-            return hashlib.sha256(pwd.encode("utf-8")).hexdigest()
-
-        if "users" not in st.session_state:
-            # Usuários iniciais (senha: 1234)
-            st.session_state.users = {"admin": hash_pwd("1234")}
-        
-        else:
-            st.subheader("Login")
-            with st.form("form_login"):
-                user = st.text_input("Usuário")
-                pwd = st.text_input("Senha", type="password")
-                entrar = st.form_submit_button("Entrar", width="stretch")
-            if entrar:
-                if user in st.session_state.users and st.session_state.users[user] == hash_pwd(pwd):
-                    st.session_state.usuario = user
-                    st.success("Login realizado.")
-                    time.sleep(0.5)
-                    st.rerun()
-                else:
-                    st.error("Credenciais inválidas.")
-
-        #st.stop()
+        if st.button("Log in"):
+            st.login()
+            st.rerun()
 else:
     # Sidebar: configurações
     with st.sidebar:
@@ -180,7 +160,6 @@ else:
             st.error(f"Erro: {e}")
 
     # UI principal do chat
-    st.markdown("## 💬 Chat")
     for m in st.session_state.chat_messages:
         with st.chat_message("user" if m["role"] == "user" else "assistant"):
             st.markdown(m["content"])
