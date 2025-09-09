@@ -47,7 +47,7 @@ with st.container(height=100,border=False):
 if not st.user.is_logged_in:
     col = st.columns([1,1,1],vertical_alignment="center")
     with col[1]:
-        if st.button("Log in"):
+        if st.button("Log in",wight="stretch",use_container_width=True ):
             st.login()
             st.rerun()
 else:
