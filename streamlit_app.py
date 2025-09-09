@@ -50,7 +50,7 @@ if not st.user.is_logged_in:
         if st.button("Log in"):
             st.login()
             st.rerun()
-elif False:
+else:
     # Sidebar: configurações
     with st.sidebar:
         st.markdown("### Configurações")
