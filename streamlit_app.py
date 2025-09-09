@@ -20,29 +20,31 @@ st.set_page_config(
         'About': "# This is a header. This is an *extremely* cool app!"
     }) 
 
+with st.container(height=50,border=False):
+    st.empty()
+with st.container(height=100,border=False):
+    rainbow_colors = ["#FFB3BA", "#FEDEBA", "#FEFDBB", "#B9FEC9", "#BAE0FF", "#CFD2FF", "violet"]
+    #rainbow_colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"]
+    text = ["Revolucionando"," a ","Maneira"," de"," Pensar"," e"," Aprender"]
+    rainbow_text = ""
+    color_index = 0
+
+    for char in text:
+        if char != " ":
+            color = rainbow_colors[color_index % len(rainbow_colors)]
+            rainbow_text += f'<span style="color: {color};">{char}</span>'
+            color_index += 1
+        else:
+            rainbow_text += " "
+
+    st.markdown(
+        f'<div style="text-align: center; font-size: 24px; font-weight: bold;">{rainbow_text}</div>',
+        unsafe_allow_html=True
+    )
+
 if "usuario" not in st.session_state:
 
-    with st.container(height=50,border=False):
-        st.empty()
-    with st.container(height=100,border=False):
-        rainbow_colors = ["#FFB3BA", "#FEDEBA", "#FEFDBB", "#B9FEC9", "#BAE0FF", "#CFD2FF", "violet"]
-        #rainbow_colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"]
-        text = ["Revolucionando"," a ","Maneira"," de"," Pensar"," e"," Aprender"]
-        rainbow_text = ""
-        color_index = 0
-
-        for char in text:
-            if char != " ":
-                color = rainbow_colors[color_index % len(rainbow_colors)]
-                rainbow_text += f'<span style="color: {color};">{char}</span>'
-                color_index += 1
-            else:
-                rainbow_text += " "
-
-        st.markdown(
-            f'<div style="text-align: center; font-size: 24px; font-weight: bold;">{rainbow_text}</div>',
-            unsafe_allow_html=True
-        )
+    
     col = st.columns([1,1,1],vertical_alignment="center")
     with col[1]:
         def hash_pwd(pwd: str) -> str:
