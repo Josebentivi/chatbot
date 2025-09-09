@@ -6,6 +6,7 @@ from PIL import Image
 import time
 import uuid
 from urllib.parse import urlencode
+import hashlib
 
 if "usuario" not in st.session_state:
     # Suppress Streamlit's ScriptRunContext warning
@@ -42,95 +43,55 @@ if "usuario" not in st.session_state:
             f'<div style="text-align: center; font-size: 24px; font-weight: bold;">{rainbow_text}</div>',
             unsafe_allow_html=True
         )
-    # === Google OAuth (Login com Gmail) ===
-    # Adicionar em .streamlit/secrets.toml:
-    # [google]
-    # client_id = "SEU_CLIENT_ID.apps.googleusercontent.com"
-    # client_secret = "SEU_CLIENT_SECRET"
-    # redirect_uri = "http://localhost:8501"  # ou a URL implantada
+    def hash_pwd(pwd: str) -> str:
+        return hashlib.sha256(pwd.encode("utf-8")).hexdigest()
 
+    if "users" not in st.session_state:
+        # Usuários iniciais (senha: 1234)
+        st.session_state.users = {"admin": hash_pwd("1234")}
 
-    AUTH_ENDPOINT = "https://accounts.google.com/o/oauth2/v2/auth"
-    TOKEN_ENDPOINT = "https://oauth2.googleapis.com/token"
-    USERINFO_ENDPOINT = "https://openidconnect.googleapis.com/v1/userinfo"
-    SCOPE = "openid email profile"
+    if "modo_registro" not in st.session_state:
+        st.session_state.modo_registro = False
 
-    google_cfg = st.secrets.get("google", {})
-    CLIENT_ID = google_cfg.get("client_id", "")
-    CLIENT_SECRET = google_cfg.get("client_secret", "")
-    REDIRECT_URI = google_cfg.get("redirect_uri", "http://localhost:8501")
+    col1, col2 = st.columns([1,1])
+    with col1:
+        if st.button("Registrar" if not st.session_state.modo_registro else "Já tenho conta"):
+            st.session_state.modo_registro = not st.session_state.modo_registro
+            st.rerun()
 
-    query_params = st.experimental_get_query_params()
-
-    # Logout
-    if query_params.get("logout"):
-        for k in ("usuario", "google_tokens", "oauth_state"):
-            st.session_state.pop(k, None)
-        st.experimental_set_query_params()
-        st.rerun()
-
-    if "usuario" not in st.session_state:
-        # Fluxo de autorização inicial
-        if "code" not in query_params:
-            state = str(uuid.uuid4())
-            st.session_state["oauth_state"] = state
-            auth_url = AUTH_ENDPOINT + "?" + urlencode({
-                "client_id": CLIENT_ID,
-                "response_type": "code",
-                "scope": SCOPE,
-                "redirect_uri": REDIRECT_URI,
-                "state": state,
-                "access_type": "offline",
-                "prompt": "consent"
-            })
-            st.markdown(
-                f'<div style="text-align:center; margin-top:20px;">'
-                f'<a href="{auth_url}"><button style="padding:10px 18px; font-size:16px;">Entrar com Google</button></a>'
-                f'</div>',
-                unsafe_allow_html=True
-            )
-        else:
-            # Troca de código por tokens
-            if query_params.get("state", [""])[0] != st.session_state.get("oauth_state"):
-                st.error("Estado inválido. Recarregue a página.")
+    if st.session_state.modo_registro:
+        st.subheader("Criar nova conta")
+        with st.form("form_registro"):
+            novo_user = st.text_input("Novo usuário")
+            nova_senha = st.text_input("Senha", type="password")
+            confirmar = st.text_input("Confirmar senha", type="password")
+            reg_ok = st.form_submit_button("Registrar")
+        if reg_ok:
+            if not novo_user or not nova_senha:
+                st.error("Preencha todos os campos.")
+            elif novo_user in st.session_state.users:
+                st.error("Usuário já existe.")
+            elif nova_senha != confirmar:
+                st.error("Senhas não conferem.")
             else:
-                code = query_params["code"][0]
-                data = {
-                    "code": code,
-                    "client_id": CLIENT_ID,
-                    "client_secret": CLIENT_SECRET,
-                    "redirect_uri": REDIRECT_URI,
-                    "grant_type": "authorization_code"
-                }
-                resp = requests.post(TOKEN_ENDPOINT, data=data)
-                if resp.status_code == 200:
-                    tokens = resp.json()
-                    access_token = tokens.get("access_token")
-                    headers = {"Authorization": f"Bearer {access_token}"}
-                    userinfo = requests.get(USERINFO_ENDPOINT, headers=headers).json()
-                    if userinfo.get("email"):
-                        st.session_state["usuario"] = {
-                            "nome": userinfo.get("name"),
-                            "email": userinfo.get("email"),
-                            "foto": userinfo.get("picture")
-                        }
-                        st.session_state["google_tokens"] = tokens
-                        st.experimental_set_query_params()  # limpa ?code=...
-                        st.rerun()
-                    else:
-                        st.error("Não foi possível obter dados do usuário.")
-                else:
-                    st.error("Falha ao autenticar no Google.")
-    else:
-        # Usuário autenticado
-        u = st.session_state["usuario"]
-        col1, col2, col3 = st.columns([1,3,1])
-        with col2:
-            if u.get("foto"):
-                st.image(u["foto"], width=96)
-            st.success(f"Logado como: {u.get('nome')} ({u.get('email')})")
-            if st.button("Sair"):
-                st.experimental_set_query_params(logout="1")
+                st.session_state.users[novo_user] = hash_pwd(nova_senha)
+                st.success("Conta criada. Faça login.")
+                st.session_state.modo_registro = False
+                time.sleep(1)
                 st.rerun()
+    else:
+        st.subheader("Login")
+        with st.form("form_login"):
+            user = st.text_input("Usuário")
+            pwd = st.text_input("Senha", type="password")
+            entrar = st.form_submit_button("Entrar")
+        if entrar:
+            if user in st.session_state.users and st.session_state.users[user] == hash_pwd(pwd):
+                st.session_state.usuario = user
+                st.success("Login realizado.")
+                time.sleep(0.5)
+                st.rerun()
+            else:
+                st.error("Credenciais inválidas.")
 
-
+    st.stop()
