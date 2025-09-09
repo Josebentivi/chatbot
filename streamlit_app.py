@@ -108,7 +108,7 @@ else:
         # Atualiza título (caso o usuário já tenha digitado algo nesta execução)
         salvar_conversa_atual()
 
-        if st.button("Log out"):
+        if st.button("Log out", use_container_width=True):
             st.logout()
 
         if st.button("🆕 Nova Conversa", use_container_width=True):
