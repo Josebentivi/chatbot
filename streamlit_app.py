@@ -6,6 +6,45 @@ from PIL import Image
 import time
 import uuid
 
+if "usuario" not in st.session_state:
+    # Suppress Streamlit's ScriptRunContext warning
+    warnings.filterwarnings("ignore", message="missing ScriptRunContext")
+    st.set_page_config(
+        page_title="O Pensador Desktop",
+        page_icon=":thought_balloon:",
+        layout="wide",
+        initial_sidebar_state="auto",
+        menu_items={
+            'Ajuda': 'https://www.extremelycoolapp.com/help',
+            'Report a bug': "https://www.extremelycoolapp.com/bug",
+            'About': "# This is a header. This is an *extremely* cool app!"
+        }) 
+
+    with st.container(height=50,border=False):
+        st.empty()
+    with st.container(height=100,border=False):
+        rainbow_colors = ["#FFB3BA", "#FEDEBA", "#FEFDBB", "#B9FEC9", "#BAE0FF", "#CFD2FF", "violet"]
+        #rainbow_colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"]
+        text = ["Revolucionando"," a ","Maneira"," de"," Pensar"," e"," Aprender"]
+        rainbow_text = ""
+        color_index = 0
+
+        for char in text:
+            if char != " ":
+                color = rainbow_colors[color_index % len(rainbow_colors)]
+                rainbow_text += f'<span style="color: {color};">{char}</span>'
+                color_index += 1
+            else:
+                rainbow_text += " "
+
+        st.markdown(
+            f'<div style="text-align: center; font-size: 24px; font-weight: bold;">{rainbow_text}</div>',
+            unsafe_allow_html=True
+        )
+
+
+
+'''
 from time import sleep
 # Suppress Streamlit's ScriptRunContext warning
 warnings.filterwarnings("ignore", message="missing ScriptRunContext")
@@ -138,7 +177,7 @@ Chao = st.empty()
 
 
 
-if "usuario" not in st.session_state:
+if "usuario" not in st.session_state of False:
     with Cabencario.container(height=50,border=False):
         st.empty()
     with Corpo.container(height=100,border=False):
@@ -300,7 +339,7 @@ if "usuario" not in st.session_state:
                         stream=True,
                         )
                         response_text = st.write_stream(stream)
-
+ 
                         status.update(
                             label="Sabatina Completa", state="complete", expanded=False
                         )
@@ -925,7 +964,7 @@ if "product_page" in st.session_state:
                 st.success("Plano Premium selecionado")
                 
         # Lembre-se de fechar o container após os botões:
-        st.markdown('''</div>''', unsafe_allow_html=True)
+        st.markdown("""</div>""", unsafe_allow_html=True)
 
         # Exemplo de lista de pagamentos com id, valor, status e link
         payments = [
@@ -1075,6 +1114,6 @@ if "product_page" in st.session_state:
             unsafe_allow_html=True
             )
 
-
+'''
 
 
