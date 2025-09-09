@@ -20,7 +20,7 @@ st.set_page_config(
         'About': "# This is a header. This is an *extremely* cool app!"
     }) 
 
-if "usuario" not in st.session_state:
+if not st.user.is_logged_in:
     with st.container(height=50,border=False):
         st.empty()
 
@@ -50,7 +50,7 @@ if not st.user.is_logged_in:
         if st.button("Log in"):
             st.login()
             st.rerun()
-else:
+elif False:
     # Sidebar: configurações
     with st.sidebar:
         st.markdown("### Configurações")
