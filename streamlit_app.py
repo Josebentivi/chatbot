@@ -55,12 +55,6 @@ if "usuario" not in st.session_state:
         if "modo_registro" not in st.session_state:
             st.session_state.modo_registro = False
 
-        col1, col2 = st.columns([1,1])
-        with col1:
-            if st.button("Registrar" if not st.session_state.modo_registro else "Já tenho conta"):
-                st.session_state.modo_registro = not st.session_state.modo_registro
-                st.rerun()
-
         if st.session_state.modo_registro:
             st.subheader("Criar nova conta")
             with st.form("form_registro"):
@@ -87,6 +81,9 @@ if "usuario" not in st.session_state:
                 user = st.text_input("Usuário")
                 pwd = st.text_input("Senha", type="password")
                 entrar = st.form_submit_button("Entrar")
+                if st.button("Registrar" if not st.session_state.modo_registro else "Já tenho conta"):
+                    st.session_state.modo_registro = not st.session_state.modo_registro
+                    st.rerun()
             if entrar:
                 if user in st.session_state.users and st.session_state.users[user] == hash_pwd(pwd):
                     st.session_state.usuario = user
