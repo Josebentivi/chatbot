@@ -60,13 +60,13 @@ if "usuario" not in st.session_state:
     CLIENT_SECRET = google_cfg.get("client_secret", "")
     REDIRECT_URI = google_cfg.get("redirect_uri", "http://localhost:8501")
 
-    query_params = st.query_params()
+    query_params = st.experimental_get_query_params()
 
     # Logout
     if query_params.get("logout"):
         for k in ("usuario", "google_tokens", "oauth_state"):
             st.session_state.pop(k, None)
-        st.query_params()
+        st.experimental_set_query_params()
         st.rerun()
 
     if "usuario" not in st.session_state:
@@ -115,7 +115,7 @@ if "usuario" not in st.session_state:
                             "foto": userinfo.get("picture")
                         }
                         st.session_state["google_tokens"] = tokens
-                        st.query_params()  # limpa ?code=...
+                        st.experimental_set_query_params()  # limpa ?code=...
                         st.rerun()
                     else:
                         st.error("Não foi possível obter dados do usuário.")
@@ -130,7 +130,7 @@ if "usuario" not in st.session_state:
                 st.image(u["foto"], width=96)
             st.success(f"Logado como: {u.get('nome')} ({u.get('email')})")
             if st.button("Sair"):
-                st.query_params(logout="1")
+                st.experimental_set_query_params(logout="1")
                 st.rerun()
 
 
