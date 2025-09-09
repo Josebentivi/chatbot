@@ -43,7 +43,7 @@ if "usuario" not in st.session_state:
             f'<div style="text-align: center; font-size: 24px; font-weight: bold;">{rainbow_text}</div>',
             unsafe_allow_html=True
         )
-    col = st.columns([1,1,1,1,1],vertical_alignment="center")
-    with col[3]:
+    col = st.columns([1,1,1],vertical_alignment="center")
+    with col[1]:
         if st.button("Entrar"):
             st.switch_page("pages/login.py")
