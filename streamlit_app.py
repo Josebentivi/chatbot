@@ -58,9 +58,6 @@ if "usuario" not in st.session_state:
                 user = st.text_input("Usuário")
                 pwd = st.text_input("Senha", type="password")
                 entrar = st.form_submit_button("Entrar", width="stretch")
-            
-            if st.button("Registrar nova conta", width="stretch"):
-                st.switch_page("pages/login.py")
             if entrar:
                 if user in st.session_state.users and st.session_state.users[user] == hash_pwd(pwd):
                     st.session_state.usuario = user
@@ -69,5 +66,8 @@ if "usuario" not in st.session_state:
                     st.rerun()
                 else:
                     st.error("Credenciais inválidas.")
+            
+        if st.button("Registrar nova conta", width="stretch"):
+            st.switch_page("pages/login.py")
 
         st.stop()
