@@ -69,68 +69,68 @@ if "usuario" not in st.session_state:
 
         st.stop()
 
-        # Página estilo ChatGPT (executa somente após login bem-sucedido)
-        # Inicialização do estado
-        if "messages" not in st.session_state:
-            st.session_state.messages = [
-                {"role": "system", "content": "Você é um assistente útil e objetivo."}
-            ]
+    # Página estilo ChatGPT (executa somente após login bem-sucedido)
+    # Inicialização do estado
+    if "messages" not in st.session_state:
+        st.session_state.messages = [
+            {"role": "system", "content": "Você é um assistente útil e objetivo."}
+        ]
 
-        # Sidebar
-        with st.sidebar:
-            st.markdown(f"**Usuário:** {st.session_state.usuario}")
-            if st.button("Nova conversa", use_container_width=True):
-                st.session_state.messages = st.session_state.messages[:1]
-                st.rerun()
-            if st.button("Sair", type="secondary", use_container_width=True):
-                del st.session_state.usuario
-                st.rerun()
-
-        # Estilos leves inspirados no ChatGPT
-        st.markdown("""
-        <style>
-        .chat-container {max-width: 900px; margin: 0 auto;}
-        .chat-message {padding: 12px 16px; border-radius: 10px; margin-bottom: 8px; line-height: 1.4;}
-        .chat-user {background: #0d6efd22; border: 1px solid #0d6efd44;}
-        .chat-assistant {background: #343541; color: #fff;}
-        .chat-role {font-size: 11px; text-transform: uppercase; opacity: .6; margin-bottom: 4px;}
-        </style>
-        """, unsafe_allow_html=True)
-
-        st.markdown("<div class='chat-container'>", unsafe_allow_html=True)
-        st.title("Assistente")
-
-        # Render histórico (pulando a primeira system)
-        for msg in st.session_state.messages[1:]:
-            role = "Você" if msg["role"] == "user" else "Assistente"
-            klass = "chat-user" if msg["role"] == "user" else "chat-assistant"
-            st.markdown(
-                f"<div class='chat-message {klass}'><div class='chat-role'>{role}</div>{msg['content']}</div>",
-                unsafe_allow_html=True
-            )
-
-        # Entrada do usuário
-        if prompt := st.chat_input("Digite sua pergunta..."):
-            # Armazena e mostra imediatamente
-            st.session_state.messages.append({"role": "user", "content": prompt})
+    # Sidebar
+    with st.sidebar:
+        st.markdown(f"**Usuário:** {st.session_state.usuario}")
+        if st.button("Nova conversa", use_container_width=True):
+            st.session_state.messages = st.session_state.messages[:1]
+            st.rerun()
+        if st.button("Sair", type="secondary", use_container_width=True):
+            del st.session_state.usuario
             st.rerun()
 
-        # Gera resposta se último for user
-        if st.session_state.messages and st.session_state.messages[-1]["role"] == "user":
-            with st.spinner("Pensando..."):
-                try:
-                    client = OpenAI()
-                    response = client.chat.completions.create(
-                        model="gpt-4o-mini",
-                        messages=st.session_state.messages,
-                        temperature=0.7,
-                        max_tokens=700,
-                    )
-                    answer = response.choices[0].message.content.strip()
-                except Exception as e:
-                    answer = f"Erro ao gerar resposta: {e}"
+    # Estilos leves inspirados no ChatGPT
+    st.markdown("""
+    <style>
+    .chat-container {max-width: 900px; margin: 0 auto;}
+    .chat-message {padding: 12px 16px; border-radius: 10px; margin-bottom: 8px; line-height: 1.4;}
+    .chat-user {background: #0d6efd22; border: 1px solid #0d6efd44;}
+    .chat-assistant {background: #343541; color: #fff;}
+    .chat-role {font-size: 11px; text-transform: uppercase; opacity: .6; margin-bottom: 4px;}
+    </style>
+    """, unsafe_allow_html=True)
 
-                st.session_state.messages.append({"role": "assistant", "content": answer})
-                st.rerun()
+    st.markdown("<div class='chat-container'>", unsafe_allow_html=True)
+    st.title("Assistente")
 
-        st.markdown("</div>", unsafe_allow_html=True)
+    # Render histórico (pulando a primeira system)
+    for msg in st.session_state.messages[1:]:
+        role = "Você" if msg["role"] == "user" else "Assistente"
+        klass = "chat-user" if msg["role"] == "user" else "chat-assistant"
+        st.markdown(
+            f"<div class='chat-message {klass}'><div class='chat-role'>{role}</div>{msg['content']}</div>",
+            unsafe_allow_html=True
+        )
+
+    # Entrada do usuário
+    if prompt := st.chat_input("Digite sua pergunta..."):
+        # Armazena e mostra imediatamente
+        st.session_state.messages.append({"role": "user", "content": prompt})
+        st.rerun()
+
+    # Gera resposta se último for user
+    if st.session_state.messages and st.session_state.messages[-1]["role"] == "user":
+        with st.spinner("Pensando..."):
+            try:
+                client = OpenAI()
+                response = client.chat.completions.create(
+                    model="gpt-4o-mini",
+                    messages=st.session_state.messages,
+                    temperature=0.7,
+                    max_tokens=700,
+                )
+                answer = response.choices[0].message.content.strip()
+            except Exception as e:
+                answer = f"Erro ao gerar resposta: {e}"
+
+            st.session_state.messages.append({"role": "assistant", "content": answer})
+            st.rerun()
+
+    st.markdown("</div>", unsafe_allow_html=True)
