@@ -43,6 +43,10 @@ if "usuario" not in st.session_state:
             f'<div style="text-align: center; font-size: 24px; font-weight: bold;">{rainbow_text}</div>',
             unsafe_allow_html=True
         )
-    
+    st.markdown("""
+    <style>
+    div.stButton {text-align: center;}
+    </style>
+    """, unsafe_allow_html=True)
     if st.button("Entrar"):
         st.switch_page("login.py")
