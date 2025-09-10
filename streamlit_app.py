@@ -63,8 +63,7 @@ def Carregando(aceleracao=0.1):
         my_bar.progress(porcentagem, text="Finalizando...")
         tempo+=aceleracao
         time.sleep(tempo)
-        # Garante sempre lista
-        retorno = item.mensagens if isinstance(item.mensagens, list) else []
+        retorno = item.mensagens
         my_bar.empty()
     return retorno
 
@@ -154,14 +153,10 @@ if not st.user.is_logged_in:
         if st.button("Continue com o Google", width="stretch", use_container_width=True):
             st.login()
             st.rerun()
+else:
     st.session_state.usuario = 6019224769
     if "messages" not in st.session_state:
-        carregadas = Carregando(aceleracao=0.1)
-        st.session_state.messages = carregadas if isinstance(carregadas, list) else []
-    else:
-        if st.session_state.messages is None:
-            st.session_state.messages = []
-    # Sidebar: configurações
+        st.session_state.messages = Carregando(aceleracao=0.1)
     # Sidebar: configurações
     with st.sidebar:
         st.markdown("### Configurações")
@@ -352,11 +347,15 @@ if not st.user.is_logged_in:
             st.stop()
     #openai_api_key = st.session_state.openai_api_key'''
     
+    
+    # Create a session state variable to store the chat messages. This ensures that the
+    # messages persist across reruns.
+
+    # Display the existing chat messages via `st.chat_message`.
     if st.session_state.messages or True:
         with st.chat_message("assistant"):
             st.markdown('Olá! Como posso te ajudar?')
-        
-        for message in (st.session_state.messages or []):
+        for message in st.session_state.messages:
             if message["role"] == "developer":
                 #with st.chat_message("assistant"):
                 #    st.markdown(message["content"][0]["text"])
