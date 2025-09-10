@@ -355,7 +355,7 @@ else:
     # messages persist across reruns.
 
     # Display the existing chat messages via `st.chat_message`.
-    if st.session_state.messages or True:
+    if st.session_state.messages:
         with st.chat_message("assistant"):
             st.markdown('Olá! Como posso te ajudar?')
         for message in st.session_state.messages:
