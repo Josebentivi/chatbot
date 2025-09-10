@@ -69,8 +69,9 @@ if not st.user.is_logged_in:
         </style>
         """, unsafe_allow_html=True)
         if st.button("Continue com o Google", width="stretch", use_container_width=True):
-            st.login()
-            st.rerun()
+            with st.spinner("Carregando..."):
+                st.login()
+                st.rerun()
 else:
     # Sidebar: configurações
     with st.sidebar:
