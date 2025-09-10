@@ -160,7 +160,7 @@ if not st.user.is_logged_in:
                 st.session_state.usuario = 6019224769
                 st.rerun()
 else:
-    if not st.session_state.usuario:
+    if not st.session_state.messages:
         Carregando(aceleracao=0.1)
     # Sidebar: configurações
     with st.sidebar:
