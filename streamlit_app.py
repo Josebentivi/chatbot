@@ -160,6 +160,7 @@ if not st.user.is_logged_in:
 else:
     st.session_state.usuario = 6019224769
     if "messages" not in st.session_state:
+        st.text("Carregando mensagens...")
         st.session_state.messages = Carregando(aceleracao=0.1)
     # Sidebar: configurações
     with st.sidebar:
