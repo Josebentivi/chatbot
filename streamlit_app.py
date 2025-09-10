@@ -44,6 +44,7 @@ def Carregando(aceleracao=0.1):
     colsCarregando = st.columns(3)
     item = RetornoThread(st.session_state.usuario)
     item.start()
+    retorno = ""
     with colsCarregando[1]:
         my_bar = st.progress(porcentagem, text="Iniciando plataforma...")
         tempo=0.5
@@ -68,8 +69,9 @@ def Carregando(aceleracao=0.1):
         my_bar.progress(porcentagem, text="Finalizando...")
         tempo+=aceleracao
         time.sleep(tempo)
-        st.session_state.messages = item.mensagens
+        retorno = item.mensagens
         my_bar.empty()
+    return retorno
 
     #st.session_state.carregado = True
 def ativar_artigos():
@@ -160,7 +162,7 @@ if not st.user.is_logged_in:
 else:
     st.session_state.usuario = 6019224769
     if "messages" not in st.session_state:
-        Carregando(aceleracao=0.1)
+        st.session_state.messages = Carregando(aceleracao=0.1)
     # Sidebar: configurações
     with st.sidebar:
         st.markdown("### Configurações")
