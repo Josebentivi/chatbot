@@ -65,7 +65,10 @@ def Carregando(aceleracao=0.1):
         time.sleep(tempo)
         retorno = item.mensagens
         my_bar.empty()
-    return retorno
+    if retorno:
+        return retorno
+    else:
+        return []
 
     #st.session_state.carregado = True
 def ativar_artigos():
