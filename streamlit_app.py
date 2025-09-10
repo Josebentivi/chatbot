@@ -31,7 +31,7 @@ class RetornoThread(Thread):
         except requests.exceptions.RequestException as e:
             #st.error(f"Erro ao acessar servidor: {e}")
             #st.stop()
-            pass
+            self.mensagens = []
 
 def Resumir(usuario):
 	item = RetornoThread(usuario)
