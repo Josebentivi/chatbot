@@ -164,7 +164,7 @@ else:
         st.session_state.messages = Carregando(aceleracao=0.1)
     # Sidebar: configurações
     with st.sidebar:
-        st.markdown("### Configurações")
+        #st.markdown("### Configurações")
         if "openai_api_key" not in st.session_state:
             st.session_state.openai_api_key = ""
         if "OPENAI_API_KEY" in st.secrets:
@@ -232,6 +232,19 @@ else:
         if st.button("🆕 Nova Conversa", use_container_width=True):
             nova_conversa()
             st.rerun()
+            
+        if st.button("Limpar Chat", use_container_width=True):
+            try:
+                url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/recomecarconversa/"
+                #url = "http://52.2.202.37/produto/post/filosofo/recomecarconversa/"
+                data = {"data":{"usuario": st.session_state.usuario},"chave":st.secrets["CHAVE"]}
+                requests.post(url, json=data, timeout=5*60).json().get("saida")
+            except requests.exceptions.RequestException as e:
+                st.error(f"Erro ao acessar servidor: {e}")
+                st.stop()
+
+            st.session_state.messages = []
+            st.rerun(scope="app")
 
         st.divider()
         st.markdown("#### Últimas conversas")
@@ -298,18 +311,7 @@ else:
             )"""
     with col[1]:
     #with col[3]:
-        if st.button("Limpar Chat", use_container_width=True):
-            try:
-                url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/recomecarconversa/"
-                #url = "http://52.2.202.37/produto/post/filosofo/recomecarconversa/"
-                data = {"data":{"usuario": st.session_state.usuario},"chave":st.secrets["CHAVE"]}
-                requests.post(url, json=data, timeout=5*60).json().get("saida")
-            except requests.exceptions.RequestException as e:
-                st.error(f"Erro ao acessar servidor: {e}")
-                st.stop()
-
-            st.session_state.messages = []
-            st.rerun(scope="app")
+        pass
     with col[2]:
         #if st.button("Menu", use_container_width=True):
         #    st.session_state.product_page = "home"
