@@ -229,7 +229,7 @@ else:
         if st.button("Log out", icon=":material/thumb_up:", use_container_width=True):
             st.logout()
 
-        if st.button("Nova Conversa", icon=":material/thuAddmb_up:", use_container_width=True):
+        if st.button("Nova Conversa", icon=":material/Add:", use_container_width=True):
             nova_conversa()
             st.rerun()
 
