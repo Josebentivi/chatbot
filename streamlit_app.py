@@ -338,7 +338,7 @@ else:
 
     #with st.container(height=600,border=False): 
             #with st.container():
-    '''
+    x='''
     if not st.session_state.carregado:
         Carregando() 
     else:
@@ -387,7 +387,7 @@ else:
 
 
 
-'''
+x='''
 
     # Inicializa histórico
     if "chat_messages" not in st.session_state:
