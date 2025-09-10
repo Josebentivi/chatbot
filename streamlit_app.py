@@ -47,38 +47,25 @@ with st.container(height=100,border=False):
 if not st.user.is_logged_in:
     col = st.columns([1,1,2,1,1],vertical_alignment="center")
     with col[2]:
-        # Estiliza o botão de login para incluir o logo do Google
-        st.markdown("""
+        google_logo_url = "https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png"
+        st.markdown(f"""
         <style>
-        /* Aplica somente ao primeiro botão nesta coluna central (login) */
-        div[data-testid="column"] div.stButton button {
-            position: relative;
-            padding-left: 46px !important;
-            height: 48px;
-            font-size: 16px;
-            font-weight: 600;
-            border: 1px solid #dadce0 !important;
-            background: #ffffff !important;
-            color: #3c4043 !important;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-        }
-        div[data-testid="column"] div.stButton button:hover {
-            background: #f8faff !important;
-            border-color: #d2e3fc !important;
-        }
-        div[data-testid="column"] div.stButton button:before {
+        .stButton > button {{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 0.6rem 1rem;
+        }}
+        .stButton > button:before {{
             content: "";
-            position: absolute;
-            left: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 24px;
-            height: 24px;
+            width: 22px;
+            height: 22px;
+            background-image: url('{google_logo_url}');
+            background-size: contain;
+            background-position: center;
             background-repeat: no-repeat;
-            background-size: 24px 24px;
-            background-image: url("data:image/svg+xml;utf8,<svg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path fill='%234285F4' d='M23.52 12.272c0-.851-.076-1.667-.218-2.455H12v4.642h6.476a5.54 5.54 0 0 1-2.404 3.637v3.02h3.884c2.272-2.093 3.564-5.176 3.564-8.844Z'/><path fill='%2334A853' d='M12 24c3.24 0 5.956-1.075 7.941-2.884l-3.884-3.02c-1.075.72-2.45 1.147-4.057 1.147-3.118 0-5.756-2.105-6.697-4.935H1.31v3.101A11.997 11.997 0 0 0 12 24Z'/><path fill='%23FBBC05' d='M5.303 14.308A7.196 7.196 0 0 1 4.924 12c0-.8.138-1.576.379-2.308V6.591H1.31A11.997 11.997 0 0 0 0 12c0 1.91.458 3.716 1.31 5.409l3.993-3.101Z'/><path fill='%23EA4335' d='M12 4.75c1.764 0 3.348.607 4.596 1.8l3.447-3.447C17.952 1.23 15.236 0 12 0 7.31 0 3.177 2.69 1.31 6.591l3.993 3.101C6.244 6.855 8.882 4.75 12 4.75Z'/><path fill='none' d='M0 0h24v24H0z'/></svg>");
-            border-radius: 2px;
-        }
+        }}
         </style>
         """, unsafe_allow_html=True)
         if st.button("Continue com o Google", width="stretch", use_container_width=True):
