@@ -379,7 +379,7 @@ else:
                             status.update(
                                 label=f"{i} concluido(a).", state="complete", expanded=False
                             )
-            else:
+            elif message["role"] in ["user", "assistant"]:
                 with st.chat_message(message["role"]):
                     st.markdown(message["content"][0].get("text"))
 
