@@ -381,8 +381,7 @@ else:
                             )
             else:
                 with st.chat_message(message["role"]):
-                    st.markdown(message["content"][0]["text"])
-                    #st.markdown(message["content"][0].get("text"))
+                    st.markdown(message["content"][0].get("text"))
 
     entradachat = st.empty()
     saidachat = st.empty()
