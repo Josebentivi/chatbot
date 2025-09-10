@@ -226,14 +226,14 @@ else:
         # Atualiza título (caso o usuário já tenha digitado algo nesta execução)
         salvar_conversa_atual()
 
-        if st.button("Log out", use_container_width=True):
+        if st.button("Log out", icon=":material/thumb_up:", use_container_width=True):
             st.logout()
 
-        if st.button("🆕 Nova Conversa", use_container_width=True):
+        if st.button("Nova Conversa", icon=":material/thuAddmb_up:", use_container_width=True):
             nova_conversa()
             st.rerun()
-            
-        if st.button("Limpar Chat", use_container_width=True):
+
+        if st.button("Limpar Chat", icon=":material/Delete:", use_container_width=True):
             try:
                 url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/recomecarconversa/"
                 #url = "http://52.2.202.37/produto/post/filosofo/recomecarconversa/"
