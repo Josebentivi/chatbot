@@ -68,8 +68,8 @@ def Carregando(aceleracao=0.1):
         my_bar.progress(porcentagem, text="Finalizando...")
         tempo+=aceleracao
         time.sleep(tempo)
-        my_bar.empty()
         st.session_state.messages = item.mensagens
+        my_bar.empty()
 
     #st.session_state.carregado = True
 def ativar_artigos():
