@@ -175,10 +175,9 @@ else:
 
         
         # Parâmetros do modelo
-        if not st.session_state.marcar_artigos:
-            if "selected_model" not in st.session_state or st.session_state.selected_model not in ["gpt-4.1-nano", "gpt-4.1-mini", "o4-mini"]:
-                #st.session_state.selected_model = "gpt-5"
-                st.session_state.selected_model = "gpt-5-nano"
+        if "selected_model" not in st.session_state or st.session_state.selected_model not in ["gpt-4.1-nano", "gpt-4.1-mini", "o4-mini"]:
+            #st.session_state.selected_model = "gpt-5"
+            st.session_state.selected_model = "gpt-5-nano"
         model_keys = [ "gpt-5", "gpt-5-mini","gpt-5-nano"]
         model_names = {
             "gpt-5": "Gpt-5: Modelo de pensamento para tarefas mais complexas",
