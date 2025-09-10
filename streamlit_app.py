@@ -1,12 +1,79 @@
+import threading
 import streamlit as st
 from openai import OpenAI
 import requests
 import warnings
 from PIL import Image
 import time
+from time import sleep
 import uuid
 from urllib.parse import urlencode
 import hashlib
+
+#Funções
+def RetornarMsg():
+    try:
+        #url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/retornarconversa/"
+        url = "http://52.2.202.37/produto/post/filosofo/retornarconversa/"
+        data = {"data":{"usuario": st.session_state.usuario},"chave":st.secrets["CHAVE"]}
+        
+        st.session_state.chat_messages = requests.post(url, json=data, timeout=20*60).json().get("saida")
+    except requests.exceptions.RequestException as e:
+        st.error(f"Erro ao acessar servidor: {e}")
+        st.stop()
+x = threading.Thread(target=alarme, args=(1,))
+x.start()
+
+def Carregando(aceleracao=0.1):
+    porcentagem = 0
+    colsCarregando = st.columns(3)
+    with colsCarregando[1]:
+        my_bar = st.progress(porcentagem, text="Iniciando plataforma...")
+        tempo=0.5
+        
+        porcentagem += 25
+        my_bar.progress(porcentagem, text="Carregando Filósofos...")
+        tempo+=aceleracao
+        sleep(tempo)
+        
+        porcentagem += 25
+        my_bar.progress(porcentagem, text="Carregando Artigos científicos...")
+        tempo+=aceleracao
+        sleep(tempo)
+        
+        porcentagem += 25
+        my_bar.progress(porcentagem, text="Aprimorando inteligência...")
+        tempo+=aceleracao
+        sleep(tempo)
+        
+        porcentagem += 25
+        my_bar.progress(porcentagem, text="Finalizando...")
+        tempo+=aceleracao
+        time.sleep(tempo)
+        my_bar.empty()
+
+    #st.session_state.carregado = True
+def ativar_artigos():
+    if st.session_state.marcar_artigos:
+        st.session_state.marcar_pensadores = False
+        if st.session_state.selected_thinker:
+            st.session_state.selected_thinker = None
+
+def ativar_menu():
+    if st.session_state.marcar_artigos:
+        st.session_state.marcar_pensadores = False
+        if st.session_state.selected_thinker:
+            st.session_state.selected_thinker = None
+
+def ativar_pensadores():
+    if st.session_state.marcar_pensadores:
+        st.session_state.marcar_artigos = False
+        if st.session_state.selected_thinker is None:
+            st.session_state.selected_thinker = "Sócrates"
+
+
+
+
 # Suppress Streamlit's ScriptRunContext warning
 warnings.filterwarnings("ignore", message="missing ScriptRunContext")
 st.set_page_config(
@@ -71,8 +138,11 @@ if not st.user.is_logged_in:
         if st.button("Continue com o Google", width="stretch", use_container_width=True):
             with st.spinner("Carregando..."):
                 st.login()
+                st.session_state.usuario = 6019224769
                 st.rerun()
 else:
+    if not st.session_state.usuario:
+        Carregando(aceleracao=0.1)
     # Sidebar: configurações
     with st.sidebar:
         st.markdown("### Configurações")
@@ -110,23 +180,16 @@ else:
                 st.session_state.conversations[cid] = conv
 
         def nova_conversa():
-            salvar_conversa_atual()
+            #salvar_conversa_atual()
             cid = str(uuid.uuid4())
             st.session_state.current_conversation_id = cid
-            st.session_state.chat_messages = []
+            #st.session_state.chat_messages = []
             st.session_state.conversations[cid] = {
                 "title": "Nova conversa",
                 "messages": [],
                 "created_at": time.time()
             }
         
-        # Definições básicas
-        st.session_state.system_prompt = "Você é um assistente útil."
-
-        # Garante que exista uma conversa inicial
-        if st.session_state.current_conversation_id is None:
-            nova_conversa()
-
         # Atualiza título (caso o usuário já tenha digitado algo nesta execução)
         salvar_conversa_atual()
 
@@ -158,6 +221,9 @@ else:
                     st.rerun()
         
         st.caption(f"Chave: {chave}")
+
+
+
 
     # Inicializa histórico
     if "chat_messages" not in st.session_state:
