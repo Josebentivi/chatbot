@@ -65,6 +65,7 @@ def Carregando(aceleracao=0.1):
         time.sleep(tempo)
         retorno = item.mensagens
         my_bar.empty()
+    st.text(retorno)
     if retorno:
         return retorno
     else:
