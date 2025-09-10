@@ -380,7 +380,7 @@ else:
                                 label=f"{i} concluido(a).", state="complete", expanded=False
                             )
             elif message["role"] in ["user", "assistant"]:
-                st.text(message)
+                #st.text(message)
                 with st.chat_message(message["role"]):
                     st.markdown(message["content"][0].get("text"))
 
