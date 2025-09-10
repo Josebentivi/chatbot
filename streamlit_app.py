@@ -1,4 +1,5 @@
 import threading
+from threading import Thread
 import streamlit as st
 from openai import OpenAI
 import requests
@@ -11,22 +12,38 @@ from urllib.parse import urlencode
 import hashlib
 
 #Funções
-def RetornarMsg():
-    try:
-        #url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/retornarconversa/"
-        url = "http://52.2.202.37/produto/post/filosofo/retornarconversa/"
-        data = {"data":{"usuario": st.session_state.usuario},"chave":st.secrets["CHAVE"]}
-        
-        st.session_state.chat_messages = requests.post(url, json=data, timeout=20*60).json().get("saida")
-    except requests.exceptions.RequestException as e:
-        st.error(f"Erro ao acessar servidor: {e}")
-        st.stop()
-x = threading.Thread(target=alarme, args=(1,))
-x.start()
+class RetornoThread(Thread):
+    # constructor
+    def __init__(self,usuario):
+        # execute the base constructor
+        Thread.__init__(self)
+        self.usuario = usuario
+        self.mensagens = []
+
+	# function executed in a new thread
+    def run(self):
+        try:
+            #url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/retornarconversa/"
+            url = "http://52.2.202.37/produto/post/filosofo/retornarconversa/"
+            data = {"data":{"usuario": self.usuario},"chave":st.secrets["CHAVE"]}
+            
+            self.mensagens = requests.post(url, json=data, timeout=20*60).json().get("saida")
+        except requests.exceptions.RequestException as e:
+            #st.error(f"Erro ao acessar servidor: {e}")
+            #st.stop()
+            pass
+
+def Resumir(usuario):
+	item = RetornoThread(usuario)
+	item.start()
+	item.join()
+	saida = item.mensagens
 
 def Carregando(aceleracao=0.1):
     porcentagem = 0
     colsCarregando = st.columns(3)
+    item = RetornoThread(st.session_state.usuario)
+    item.start()
     with colsCarregando[1]:
         my_bar = st.progress(porcentagem, text="Iniciando plataforma...")
         tempo=0.5
@@ -44,6 +61,7 @@ def Carregando(aceleracao=0.1):
         porcentagem += 25
         my_bar.progress(porcentagem, text="Aprimorando inteligência...")
         tempo+=aceleracao
+        item.join()
         sleep(tempo)
         
         porcentagem += 25
@@ -51,6 +69,7 @@ def Carregando(aceleracao=0.1):
         tempo+=aceleracao
         time.sleep(tempo)
         my_bar.empty()
+        st.session_state.messages = item.mensagens
 
     #st.session_state.carregado = True
 def ativar_artigos():
@@ -222,8 +241,153 @@ else:
         
         st.caption(f"Chave: {chave}")
 
+    # Cria o checkbox e o ícone de informação na mesma linha
+    col = st.columns([1, 1, 1, 1, 1, 2], vertical_alignment="top")
+    with col[0]:
+        # Cria duas colunas: a primeira para o checkbox e a segunda para o ícone de informação
+        col_checkbox, col_info = st.columns([0.7, 0.3])
+        # Cria o checkbox e o ícone de informação na mesma linha
+        with col_checkbox:
+            marcarArtigos = st.checkbox(
+                "Artigos", 
+                value=False, 
+                key="marcar_artigos", 
+                on_change=ativar_artigos
+            )
+        with col_info:
+            # Define o texto que aparecerá ao passar o mouse
+            info_text = "Com o objetivo de ter um mecanismo de pesquisa imparcial. Desenvolvemos um algoritimo que verifica semânticamente toda nossa base de dados com mais de 220 mil artigos publicados no ano de 2024."
+            # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
+            st.markdown(
+                f"<span title='{info_text}' style='cursor: pointer;'>&#9432;</span>",
+                unsafe_allow_html=True
+            )
+    with col[1]:
+        ativarpensadorestexto = """# Cria duas colunas: a primeira para o checkbox e a segunda para o ícone de informação
+        col_checkbox, col_info = st.columns([0.7, 0.3])
+        # Cria o checkbox e o ícone de informação na mesma linha
+        with col_checkbox:
+            # Cria o checkbox para o modo "Pensadores" e o ícone de informação na mesma linha
+            marcarPensador = st.checkbox(
+                "Pensadores", 
+                value=False, 
+                key="marcar_pensadores", 
+                on_change=ativar_pensadores
+            )
+        with col_info:
+            # Define o texto que aparecerá ao passar o mouse
+            info_text = "Tenha uma inteligência artificial treinada nas obras de diversos pensadores. Desbrave o mundo das ideias e encontre respostas para os seus questionamentos mais difíceis."
+            # O ícone ℹ (código HTML &#9432;) possui o atributo title que exibe o tooltip
+            st.markdown(
+                f"<span title='{info_text}' style='cursor: pointer;'>&#9432;</span>",
+                unsafe_allow_html=True
+            )"""
+    with col[1]:
+    #with col[3]:
+        if st.button("Limpar Chat", use_container_width=True):
+            try:
+                url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/recomecarconversa/"
+                #url = "http://52.2.202.37/produto/post/filosofo/recomecarconversa/"
+                data = {"data":{"usuario": st.session_state.usuario},"chave":st.secrets["CHAVE"]}
+                requests.post(url, json=data, timeout=5*60).json().get("saida")
+            except requests.exceptions.RequestException as e:
+                st.error(f"Erro ao acessar servidor: {e}")
+                st.stop()
+
+            st.session_state.messages = []
+            st.rerun(scope="app")
+    with col[2]:
+        #if st.button("Menu", use_container_width=True):
+        #    st.session_state.product_page = "home"
+        #    st.rerun(scope="app")
+        pass
+    with col[5]:
+        #if not st.session_state.marcar_pensadores and not st.session_state.marcar_artigos:
+        if not st.session_state.marcar_artigos:
+            if "selected_model" not in st.session_state or st.session_state.selected_model not in ["gpt-4.1-nano", "gpt-4.1-mini", "o4-mini"]:
+                #st.session_state.selected_model = "o4-mini"
+                st.session_state.selected_model = "gpt-4.1-nano"
+            
+            
+            model_keys = [ "o4-mini", "gpt-4.1-mini","gpt-4.1-nano"]
+            model_names = {
+                "o4-mini": "O4-mini: Modelo de pensamento para tarefas mais complexas",
+                "gpt-4.1-mini": "Gpt-4.1-mini: Resposta rápida para tarefas com média complexidade.",
+                "gpt-4.1-nano": "Gpt-4.1-nano: Resposta rápida para tarefas leves."
+            }
+            selected = st.selectbox(
+                "Motor do chat:",
+                options=model_keys,
+                index=model_keys.index(st.session_state.selected_model),
+                format_func=lambda key: model_names[key]
+            )
+            st.session_state.selected_model = selected
+    
+    with col[5]:
+        #if st.session_state.marcar_artigos:
+        #    st.write("Artigos ativado.")
+        
+        #if st.session_state.marcar_pensadores:
+        #    st.session_state.selected_thinker = st.selectbox(
+        #        "Selecione o pensador:",
+        #        options=["Sócrates", "Platão", "Aristóteles", "Descartes"],
+        #        index=["Sócrates", "Platão", "Aristóteles", "Descartes"].index(st.session_state.selected_thinker)
+        #    )
+        pass
 
 
+    #with st.container(height=600,border=False): 
+            #with st.container():
+    '''
+    if not st.session_state.carregado:
+        Carregando() 
+    else:
+        try:
+            url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/retornarconversa/"
+            #url = "http://52.2.202.37/produto/post/filosofo/retornarconversa/"
+            data = {"data":{"usuario": st.session_state.usuario},"chave":st.secrets["CHAVE"]}
+            st.session_state.messages = requests.post(url, json=data, timeout=5*60).json().get("saida")
+        except requests.exceptions.RequestException as e:
+            st.error(f"Erro ao acessar servidor: {e}")
+            st.stop()
+    #openai_api_key = st.session_state.openai_api_key'''
+    
+    
+    # Create a session state variable to store the chat messages. This ensures that the
+    # messages persist across reruns.
+
+    # Display the existing chat messages via `st.chat_message`.
+    if st.session_state.messages:
+        with st.chat_message("assistant"):
+            st.markdown('Olá! Como posso te ajudar?')
+        for message in st.session_state.messages:
+            if message["role"] == "developer":
+                #with st.chat_message("assistant"):
+                #    st.markdown(message["content"][0]["text"])
+                pass
+            elif message["role"] == "ReferenciasArtigos":
+                with st.chat_message("assistant"):
+                    
+                    #st.markdown(message["content"][0]["text"].get("Pesquisa"))
+                    for i in ["Pensamento","Análise","Contra-argumentos","Referências da Argumentação","Referências do Contra-argumento"]:
+                        with st.status("Acessando Dados.", expanded=False) as status:
+                            if i in ["Referências da Argumentação","Referências do Contra-argumento"]:
+                                for k in message["content"][0]["text"].get(i).split("+=-!!-=+"):
+                                    st.markdown(k)
+                            else:
+                                st.markdown(message["content"][0]["text"].get(i))
+
+                            status.update(
+                                label=f"{i} concluido(a).", state="complete", expanded=False
+                            )
+            else:
+                with st.chat_message(message["role"]):
+                    st.markdown(message["content"][0]["text"])
+                    #st.markdown(message["content"][0].get("text"))
+
+
+
+'''
 
     # Inicializa histórico
     if "chat_messages" not in st.session_state:
@@ -266,4 +430,4 @@ else:
                 gerar_resposta()
             # Render a última resposta adicionada
             if st.session_state.chat_messages and st.session_state.chat_messages[-1]["role"] == "assistant":
-                placeholder.markdown(st.session_state.chat_messages[-1]["content"])
+                placeholder.markdown(st.session_state.chat_messages[-1]["content"])'''
