@@ -33,12 +33,6 @@ class RetornoThread(Thread):
             #st.stop()
             self.mensagens = []
 
-def Resumir(usuario):
-	item = RetornoThread(usuario)
-	item.start()
-	item.join()
-	saida = item.mensagens
-
 def Carregando(aceleracao=0.1):
     porcentagem = 0
     colsCarregando = st.columns(3)
@@ -358,7 +352,7 @@ else:
     # messages persist across reruns.
 
     # Display the existing chat messages via `st.chat_message`.
-    if st.session_state.messages:
+    if st.session_state.messages or True:
         with st.chat_message("assistant"):
             st.markdown('Olá! Como posso te ajudar?')
         for message in st.session_state.messages:
