@@ -91,7 +91,7 @@ def ativar_pensadores():
             st.session_state.selected_thinker = "Sócrates"
 
 
-
+st.logout()
 
 # Suppress Streamlit's ScriptRunContext warning
 warnings.filterwarnings("ignore", message="missing ScriptRunContext")
