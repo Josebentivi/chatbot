@@ -358,11 +358,6 @@ if not st.user.is_logged_in:
         
         for message in (st.session_state.messages or []):
             if message["role"] == "developer":
-        with st.chat_message("assistant"):
-            st.markdown('Olá! Como posso te ajudar?')
-        
-        for message in st.session_state.messages:
-            if message["role"] == "developer":
                 #with st.chat_message("assistant"):
                 #    st.markdown(message["content"][0]["text"])
                 pass
