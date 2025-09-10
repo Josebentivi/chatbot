@@ -155,13 +155,10 @@ if not st.user.is_logged_in:
         </style>
         """, unsafe_allow_html=True)
         if st.button("Continue com o Google", width="stretch", use_container_width=True):
-            st.session_state.usuario = 6019224769
             st.login()
             st.rerun()
 else:
-    if "usuario" not in st.session_state:
-        st.logout()
-        st.rerun()
+    st.session_state.usuario = 6019224769
     if "messages" not in st.session_state:
         Carregando(aceleracao=0.1)
     # Sidebar: configurações
