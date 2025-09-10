@@ -229,11 +229,11 @@ else:
         if st.button("Log out", icon=":material/thumb_up:", use_container_width=True):
             st.logout()
 
-        if st.button("Nova Conversa", icon=":material/Add:", use_container_width=True):
+        if st.button("Nova Conversa", icon=":material/add:", use_container_width=True):
             nova_conversa()
             st.rerun()
 
-        if st.button("Limpar Chat", icon=":material/Delete:", use_container_width=True):
+        if st.button("Limpar Chat", icon=":material/delete:", use_container_width=True):
             try:
                 url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/recomecarconversa/"
                 #url = "http://52.2.202.37/produto/post/filosofo/recomecarconversa/"
