@@ -214,6 +214,12 @@ else:
                 f"<span title='{info_text}' style='cursor: pointer;'>&#9432;</span>",
                 unsafe_allow_html=True
             )
+        if st.session_state.marcar_pensadores:
+            st.session_state.selected_thinker = st.selectbox(
+                "Selecione o pensador:",
+                options=["Sócrates", "Platão", "Aristóteles", "Descartes"],
+                index=["Sócrates", "Platão", "Aristóteles", "Descartes"].index(st.session_state.selected_thinker)
+            )
         st.divider()
 
         # Gerenciamento de conversas
