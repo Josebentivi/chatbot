@@ -45,7 +45,7 @@ with st.container(height=100,border=False):
     )
 
 if not st.user.is_logged_in:
-    col = st.columns([1,1,2,1,1],vertical_alignment="center")
+    col = st.columns([1,1,1,1,1],vertical_alignment="center")
     with col[2]:
         google_logo_url = "https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png"
         st.markdown(f"""
