@@ -175,8 +175,19 @@ else:
 
         
         # Parâmetros do modelo
-        model = st.selectbox("Modelo", [ "gpt-5", "gpt-4o-mini"], index=0)
-
+        model_keys = [ "gpt-5", "gpt-5-mini","gpt-5-nano"]
+        model_names = {
+            "gpt-5": "Gpt-5: Modelo de pensamento para tarefas mais complexas",
+            "gpt-5-mini": "Gpt-5-mini: Resposta rápida para tarefas com média complexidade.",
+            "gpt-5-nano": "Gpt-5-nano: Resposta rápida para tarefas leves."
+        }
+        selected = st.selectbox(
+            "Motor do chat:",
+            options=model_keys,
+            index=model_keys.index(st.session_state.selected_model),
+            format_func=lambda key: model_names[key]
+        )
+        st.session_state.selected_model = selected
         st.divider()
 
         # Gerenciamento de conversas
@@ -306,22 +317,8 @@ else:
         if not st.session_state.marcar_artigos:
             if "selected_model" not in st.session_state or st.session_state.selected_model not in ["gpt-4.1-nano", "gpt-4.1-mini", "o4-mini"]:
                 #st.session_state.selected_model = "o4-mini"
-                st.session_state.selected_model = "gpt-4.1-nano"
+                st.session_state.selected_model = "gpt-5-nano"
             
-            
-            model_keys = [ "o4-mini", "gpt-4.1-mini","gpt-4.1-nano"]
-            model_names = {
-                "o4-mini": "O4-mini: Modelo de pensamento para tarefas mais complexas",
-                "gpt-4.1-mini": "Gpt-4.1-mini: Resposta rápida para tarefas com média complexidade.",
-                "gpt-4.1-nano": "Gpt-4.1-nano: Resposta rápida para tarefas leves."
-            }
-            selected = st.selectbox(
-                "Motor do chat:",
-                options=model_keys,
-                index=model_keys.index(st.session_state.selected_model),
-                format_func=lambda key: model_names[key]
-            )
-            st.session_state.selected_model = selected
     
     with col[5]:
         #if st.session_state.marcar_artigos:
