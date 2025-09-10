@@ -398,7 +398,7 @@ else:
     if prompt := st.chat_input("Em que eu posso te ajudar?",accept_file=True,file_type=["jpg", "jpeg", "png","pdf","mp3"],):
 
         # Store and display the current prompt.
-        st.session_state.messages.append({"role": "user", "content": prompt["text"]})
+        st.session_state.messages.append({"role": "user", "content": [{"type":"text","text":prompt["text"]}]})
         with entradachat.container():
             with st.chat_message("user"):
                 st.markdown(prompt["text"])
