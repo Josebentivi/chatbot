@@ -385,18 +385,23 @@ else:
         dadosenvio={}
 
         
-        if st.session_state.marcar_artigos == True:
+        if st.session_state.marcar_artigos == True or st.session_state.marcar_pensadores == True:
+            caminho = ""
+            if st.session_state.marcar_artigos == True:
+                caminho = "/produto/post/artigos"
             usuario = 0
             with pensamento1.status("Acessando a Biblioteca.", expanded=True) as status:
                 st.write("Lendo mais de 220 mil Artigos Científicos.")
                 with st.spinner("Aguarde. (Tempo de espera médio de 5 minutos)", show_time=True):
                     try:
                         #url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/iniciar/"
-                        url = "http://52.2.202.37/produto/post/artigos/iniciar/"
+                        url = f"http://52.2.202.37{caminho}/iniciar/"
                         #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
                         data = {"data":{"stream": 1,
                                 "pesquisa": prompt["text"]},
                                 "chave":st.secrets["CHAVE"]}
+                        if st.session_state.marcar_artigos == False:
+                            data.append({"pensador":st.session_state.selected_thinker})
                         post_response = requests.post(url, json=data, timeout=20*60)
                     except requests.exceptions.RequestException as e:
                         st.error(f"Erro ao acessar servidor: {e}")
@@ -423,12 +428,14 @@ else:
                 with st.spinner("Aguarde.", show_time=True):
                     try:
                         #url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/continuar/"
-                        url = "http://52.2.202.37/produto/post/artigos/continuar/"
+                        url = f"http://52.2.202.37{caminho}/continuar/"
                         #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
                         data = {"data":{"stream": 2,
                                 "usuario": usuario,
                                 "retornostream": response_text},
                                 "chave":st.secrets["CHAVE"]}
+                        if st.session_state.marcar_artigos == False:
+                            data.append({"pensador":st.session_state.selected_thinker})
                         post_response = requests.post(url, json=data, timeout=5*60)
                     except requests.exceptions.RequestException as e:
                         st.error(f"Erro ao acessar servidor: {e}")
@@ -448,18 +455,18 @@ else:
                 )
                 
             with pensamento3.status("Preparo da Contra-Argumentação", expanded=True) as status:
-
-
                 st.write("Pesquisando por Contra-Argumentos...")
                 with st.spinner("Aguarde.", show_time=True):
                     try:
                         #url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/continuar/"
-                        url = "http://52.2.202.37/produto/post/artigos/continuar/"
+                        url = f"http://52.2.202.37{caminho}/continuar/"
                         #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
                         data = {"data":{"stream": 3,
                                 "usuario": usuario,
                                 "retornostream": response_text},
                                 "chave":st.secrets["CHAVE"]}
+                        if st.session_state.marcar_artigos == False:
+                            data.append({"pensador":st.session_state.selected_thinker})
                         post_response = requests.post(url, json=data, timeout=5*60)
                     except requests.exceptions.RequestException as e:
                         st.error(f"Erro ao acessar servidor: {e}")
@@ -485,12 +492,14 @@ else:
                 with st.spinner("Aguarde.", show_time=True):
                     try:
                         #url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/continuar/"
-                        url = "http://52.2.202.37/produto/post/artigos/continuar/"
+                        url = f"http://52.2.202.37{caminho}/continuar/"
                         #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
                         data = {"data":{"stream": 4,
                                 "usuario": usuario,
                                 "retornostream": response_text},
                                 "chave":st.secrets["CHAVE"]}
+                        if st.session_state.marcar_artigos == False:
+                            data.append({"pensador":st.session_state.selected_thinker})
                         post_response = requests.post(url, json=data, timeout=5*60)
                     except requests.exceptions.RequestException as e:
                         st.error(f"Erro ao acessar servidor: {e}")
@@ -511,12 +520,14 @@ else:
                 
             try:
                 #url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/continuar/"
-                url = "http://52.2.202.37/produto/post/artigos/continuar/"
+                url = f"http://52.2.202.37{caminho}/continuar/"
                 #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
                 data = {"data":{"stream": 5,
                         "usuario": usuario,
                         "retornostream": response_text},
                         "chave":st.secrets["CHAVE"]}
+                if st.session_state.marcar_artigos == False:
+                    data.append({"pensador":st.session_state.selected_thinker})
                 post_response = requests.post(url, json=data, timeout=5*60)
             except requests.exceptions.RequestException as e:
                 st.error(f"Erro ao acessar servidor: {e}")
