@@ -72,6 +72,12 @@ def Carregando(aceleracao=0.1):
         return []
 
     #st.session_state.carregado = True
+def desativar_marcacoes():
+    if st.session_state.marcar_artigos:
+        st.session_state.marcar_artigos = False
+    if st.session_state.marcar_pensadores:
+        st.session_state.marcar_pensadores = False
+
 def ativar_artigos():
     if st.session_state.marcar_artigos:
         st.session_state.marcar_pensadores = False
@@ -236,8 +242,8 @@ else:
         if st.session_state.marcar_pensadores:
             st.session_state.selected_thinker = st.selectbox(
                 "Selecione o pensador:",
-                options=["Sigmund Freud", "Carl Gustav Jung", "Michel Foucault", "Friedrich Nietzsche","Jiddu Krishnamurti","Santo Agostinho","Santo Tomás de Aquino","Martinho Lutero"],
-                index=["Sigmund Freud", "Carl Gustav Jung", "Michel Foucault", "Friedrich Nietzsche","Jiddu Krishnamurti","Santo Agostinho","Santo Tomás de Aquino","Martinho Lutero"].index(st.session_state.selected_thinker)
+                options=["Sigmund Freud", "Carl Gustav Jung", "Michel Foucault", "Friedrich Nietzsche","Jiddu Krishnamurti","Santo Agostinho","Santo Tomás de Aquino","Martinho Lutero","Paulo de Tarso"],
+                index=["Sigmund Freud", "Carl Gustav Jung", "Michel Foucault", "Friedrich Nietzsche","Jiddu Krishnamurti","Santo Agostinho","Santo Tomás de Aquino","Martinho Lutero","Paulo de Tarso"].index(st.session_state.selected_thinker)
             )
         st.divider()
 
@@ -586,6 +592,7 @@ else:
             except requests.exceptions.RequestException as e:
                 st.error(f"Erro ao acessar servidor: {e}")
                 st.stop()
+            desativar_marcacoes()
             st.rerun(scope="app")
         else:
 
