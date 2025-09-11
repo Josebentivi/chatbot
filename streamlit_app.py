@@ -456,7 +456,6 @@ else:
                         st.error(f"Erro ao acessar servidor: {e}")
                         st.stop()
                 #st.markdown(post_response.json())
-                st.text(post_response)
                 usuario = post_response.json().get("saida").get("usuario")
                 client = OpenAI()
                 # Generate a response using the OpenAI API.
@@ -595,20 +594,6 @@ else:
                 st.write("Referências do Contra-argumento")
                 for parte in argumentacao.get("Referências do Contra-argumento").split("+=-!!-=+"):
                     st.write(parte)
-            
-            with pensamento8.chat_message("assistant"):
-                response_text = st.write_stream(stream)
-                try:
-                    #url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/addusuario/"
-                    url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
-                    #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
-                    data = {"data":{"usuario": st.session_state.usuario,
-                            "entrada": prompt["text"],
-                            "saida": response_text},
-                            "chave":st.secrets["CHAVE"]}
-                    post_response = requests.post(url, json=data, timeout=5*60)
-                except requests.exceptions.RequestException as e:
-                    st.error(f"Erro ao enviar os dados: {e}")
                 
             try:
                 #url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/addartigostream/"
@@ -621,8 +606,20 @@ else:
             except requests.exceptions.RequestException as e:
                 st.error(f"Erro ao acessar servidor: {e}")
                 st.stop()
-            st.session_state.marcar_artigos = True
-            st.rerun(scope="app")
+            
+            with pensamento8.chat_message("assistant"):
+                response_text = st.write_stream(stream)
+                try:
+                    #url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/addusuario/"
+                    url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
+                    #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
+                    data = {"data":{"usuario": st.session_state.usuario,
+                            "entrada": prompt["text"],
+                            "saida": response_text},
+                            "chave":st.secrets["CHAVE"]}
+                    post_response2 = requests.post(url, json=data, timeout=5*60)
+                except requests.exceptions.RequestException as e:
+                    st.error(f"Erro ao enviar os dados: {e}")
         else:
 
             # Stream the response to the chat using `st.write_stream`, then store it in 
@@ -690,6 +687,9 @@ else:
                         st.error(f"Erro ao enviar os dados: {e}")
                     st.rerun(scope="app")
 
+            
+        st.session_state.marcar_artigos = False
+        st.rerun(scope="app")
 
 x='''
 
