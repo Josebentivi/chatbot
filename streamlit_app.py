@@ -443,7 +443,8 @@ else:
                 st.write("Lendo mais de 220 mil Artigos Científicos.")
                 with st.spinner("Aguarde. (Tempo de espera médio de 5 minutos)", show_time=True):
                     try:
-                        url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/iniciar/"
+                        #url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/iniciar/"
+                        url = "https://52.2.202.37/produto/post/artigos/iniciar/"
                         #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
                         data = {"data":{"stream": 1,
                                 "pesquisa": prompt["text"]},
@@ -473,7 +474,8 @@ else:
                 st.write("Análise Crítica...")
                 with st.spinner("Aguarde.", show_time=True):
                     try:
-                        url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/continuar/"
+                        #url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/continuar/"
+                        url = "https://52.2.202.37/produto/post/artigos/continuar/"
                         #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
                         data = {"data":{"stream": 2,
                                 "usuario": usuario,
@@ -503,7 +505,8 @@ else:
                 st.write("Pesquisando por Contra-Argumentos...")
                 with st.spinner("Aguarde.", show_time=True):
                     try:
-                        url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/continuar/"
+                        #url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/continuar/"
+                        url = "https://52.2.202.37/produto/post/artigos/continuar/"
                         #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
                         data = {"data":{"stream": 3,
                                 "usuario": usuario,
@@ -533,7 +536,8 @@ else:
                 st.write("Processando Contra-Argumentos...")
                 with st.spinner("Aguarde.", show_time=True):
                     try:
-                        url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/continuar/"
+                        #url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/continuar/"
+                        url = "https://52.2.202.37/produto/post/artigos/continuar/"
                         #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
                         data = {"data":{"stream": 4,
                                 "usuario": usuario,
@@ -558,7 +562,8 @@ else:
                 )
                 
             try:
-                url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/continuar/"
+                #url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/continuar/"
+                url = "https://52.2.202.37/produto/post/artigos/continuar/"
                 #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
                 data = {"data":{"stream": 5,
                         "usuario": usuario,
@@ -591,7 +596,8 @@ else:
             with pensamento8.chat_message("assistant"):
                 response_text = st.write_stream(stream)
                 try:
-                    url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/addusuario/"
+                    #url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/addusuario/"
+                    url = "https://52.2.202.37/produto/post/filosofo/addusuario/"
                     #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
                     data = {"data":{"usuario": st.session_state.usuario,
                             "entrada": prompt["text"],
@@ -602,7 +608,8 @@ else:
                     st.error(f"Erro ao enviar os dados: {e}")
                 
             try:
-                url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/addartigostream/"
+                #url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/addartigostream/"
+                url = "https://52.2.202.37/produto/post/filosofo/addartigostream/"
                 #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
                 data = {"data":{"usuario": st.session_state.usuario,
                                 "dados": argumentacao},
@@ -668,7 +675,8 @@ else:
                     st.session_state.messages.append({"role": "assistant", "content": [{"type":"text","text":response_text}]}) 
 
                     try:
-                        url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/addusuario/"
+                        #url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/addusuario/"
+                        url = "https://52.2.202.37/produto/post/filosofo/addusuario/"
                         #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
                         data = {"data":{"usuario": st.session_state.usuario,
                                 "entrada": prompt["text"],
