@@ -65,7 +65,7 @@ def Carregando(aceleracao=0.1):
         time.sleep(tempo)
         retorno = item.mensagens
         my_bar.empty()
-    st.text(retorno)
+    #st.text(retorno)
     if retorno:
         return retorno
     else:
@@ -88,7 +88,7 @@ def ativar_pensadores():
     if st.session_state.marcar_pensadores:
         st.session_state.marcar_artigos = False
         if st.session_state.selected_thinker is None:
-            st.session_state.selected_thinker = "Sócrates"
+            st.session_state.selected_thinker = "Sigmund Freud"
 
 
 #st.logout()
@@ -160,7 +160,7 @@ if not st.user.is_logged_in:
 else:
     st.session_state.usuario = 6019224769
     if "messages" not in st.session_state:
-        st.text("Carregando mensagens...")
+        #st.text("Carregando mensagens...")
         st.session_state.messages = Carregando(aceleracao=0.1)
     # Sidebar: configurações
     with st.sidebar:
