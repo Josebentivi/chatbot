@@ -286,7 +286,7 @@ else:
                 #url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/recomecarconversa/"
                 url = "https://52.2.202.37/produto/post/filosofo/recomecarconversa/"
                 #url = "http://52.2.202.37/produto/post/filosofo/recomecarconversa/"
-                data = {"data":{"usuario": 6019224769},"chave":st.secrets["CHAVE"]}
+                data = {"data":{"usuario": st.session_state.usuario},"chave":st.secrets["CHAVE"]}
                 requests.post(url, json=data, timeout=5*60).json().get("saida")
             except requests.exceptions.RequestException as e:
                 st.error(f"Erro ao acessar servidor: {e}")
