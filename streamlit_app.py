@@ -456,6 +456,7 @@ else:
                         st.error(f"Erro ao acessar servidor: {e}")
                         st.stop()
                 #st.markdown(post_response.json())
+                st.text(post_response)
                 usuario = post_response.json().get("saida").get("usuario")
                 client = OpenAI()
                 # Generate a response using the OpenAI API.
