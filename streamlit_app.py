@@ -77,9 +77,13 @@ def desativar_marcacoes():
         st.session_state.marcar_artigos = False
     if st.session_state.marcar_pensadores:
         st.session_state.marcar_pensadores = False
+    if st.session_state.acessando_livros:
+        st.session_state.acessando_livros = False
 
-
-desativar_marcacoes()
+if "acessando_livros" not in st.session_state:
+    st.session_state.acessando_livros = False
+if st.session_state.acessando_livros:
+    desativar_marcacoes()
 
 def ativar_artigos():
     if st.session_state.marcar_artigos:
@@ -395,6 +399,7 @@ else:
 
         
         if st.session_state.marcar_artigos == True or st.session_state.marcar_pensadores == True:
+            st.session_state.acessando_livros = True
             caminho = ""
             if st.session_state.marcar_artigos == True:
                 caminho = "/produto/post/artigos"
