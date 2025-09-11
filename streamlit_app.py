@@ -185,8 +185,8 @@ else:
         model_keys = [ "gpt-5", "gpt-5-mini","gpt-5-nano"]
         model_names = {
             "gpt-5": "Gpt-5: Modelo de pensamento para tarefas mais complexas",
-            "gpt-5-mini": "Gpt-5-mini: Resposta rápida para tarefas com média complexidade.",
-            "gpt-5-nano": "Gpt-5-nano: Resposta rápida para tarefas leves."
+            "gpt-5-mini": "Gpt-5 Mini: Resposta rápida para tarefas com média complexidade.",
+            "gpt-5-nano": "Gpt-5 Nano: Resposta rápida para tarefas leves."
         }
         selected = st.selectbox(
             "Motor do chat:",
@@ -567,7 +567,8 @@ else:
                 except requests.exceptions.RequestException as e:
                     st.error(f"Erro ao enviar os dados: {e}")
             try:
-                url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/retornarconversa/"
+                #url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/retornarconversa/"
+                url = "http://52.2.202.37/produto/post/filosofo/retornarconversa/"
                 #url = "http://52.2.202.37/produto/post/filosofo/retornarconversa/"
                 data = {"data":{"usuario": st.session_state.usuario},"chave":st.secrets["CHAVE"]}
                 st.session_state.messages = requests.post(url, json=data, timeout=5*60).json().get("saida")
