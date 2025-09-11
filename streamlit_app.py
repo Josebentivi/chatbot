@@ -688,6 +688,7 @@ else:
             
         #st.session_state.marcar_artigos = False
         #st.rerun(scope="app")
+        st.stop()
 
 x='''
 
