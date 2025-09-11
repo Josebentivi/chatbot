@@ -687,7 +687,7 @@ else:
 
             
         #st.session_state.marcar_artigos = False
-        st.rerun(scope="app")
+        #st.rerun(scope="app")
 
 x='''
 
