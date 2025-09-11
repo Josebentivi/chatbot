@@ -288,13 +288,11 @@ else:
                 #url = "http://52.2.202.37/produto/post/filosofo/recomecarconversa/"
                 data = {"data":{"usuario": st.session_state.usuario},"chave":st.secrets["CHAVE"]}
                 requests.post(url, json=data, timeout=5*60).json().get("saida")
-                st.rerun()
+                st.session_state.messages = []
+                st.rerun(scope="app")
             except requests.exceptions.RequestException as e:
                 st.error(f"Erro ao acessar servidor: {e}")
                 st.stop()
-
-            st.session_state.messages = []
-            st.rerun(scope="app")
 
         #st.divider()
         #st.markdown("#### Últimas conversas")
@@ -688,7 +686,7 @@ else:
                     st.rerun(scope="app")
 
             
-        st.session_state.marcar_artigos = False
+        #st.session_state.marcar_artigos = False
         st.rerun(scope="app")
 
 x='''
