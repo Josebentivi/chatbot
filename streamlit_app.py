@@ -283,7 +283,8 @@ else:
 
         if st.button("Limpar Chat", icon=":material/delete:", use_container_width=True):
             try:
-                url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/recomecarconversa/"
+                #url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/recomecarconversa/"
+                url = "https://52.2.202.37/produto/post/filosofo/recomecarconversa/"
                 #url = "http://52.2.202.37/produto/post/filosofo/recomecarconversa/"
                 data = {"data":{"usuario": st.session_state.usuario},"chave":st.secrets["CHAVE"]}
                 requests.post(url, json=data, timeout=5*60).json().get("saida")
