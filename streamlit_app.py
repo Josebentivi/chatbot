@@ -236,8 +236,8 @@ else:
         if st.session_state.marcar_pensadores:
             st.session_state.selected_thinker = st.selectbox(
                 "Selecione o pensador:",
-                options=["Sócrates", "Platão", "Aristóteles", "Descartes"],
-                index=["Sócrates", "Platão", "Aristóteles", "Descartes"].index(st.session_state.selected_thinker)
+                options=["Sigmund Freud", "Carl Gustav Jung", "Michel Foucault", "Friedrich Nietzsche","Jiddu Krishnamurti","Santo Agostinho","Santo Tomás de Aquino","Martinho Lutero"],
+                index=["Sigmund Freud", "Carl Gustav Jung", "Michel Foucault", "Friedrich Nietzsche","Jiddu Krishnamurti","Santo Agostinho","Santo Tomás de Aquino","Martinho Lutero"].index(st.session_state.selected_thinker)
             )
         st.divider()
 
@@ -277,9 +277,9 @@ else:
         if st.button("Log out", icon=":material/logout:", use_container_width=True):
             st.logout()
 
-        if st.button("Nova Conversa", icon=":material/add:", use_container_width=True):
-            nova_conversa()
-            st.rerun()
+        #if st.button("Nova Conversa", icon=":material/add:", use_container_width=True):
+        #    nova_conversa()
+        #    st.rerun()
 
         if st.button("Limpar Chat", icon=":material/delete:", use_container_width=True):
             try:
@@ -294,8 +294,8 @@ else:
             st.session_state.messages = []
             st.rerun(scope="app")
 
-        st.divider()
-        st.markdown("#### Últimas conversas")
+        #st.divider()
+        #st.markdown("#### Últimas conversas")
 
         # Ordena por mais recente
         sorted_convs = sorted(
@@ -314,7 +314,7 @@ else:
                     st.session_state.chat_messages = data["messages"].copy()
                     st.rerun()
         
-        st.caption(f"Chave: {chave}")
+        #st.caption(f"Chave: {chave}")
 
     # Cria o checkbox e o ícone de informação na mesma linha
     col = st.columns([1, 1, 1, 1, 1, 2], vertical_alignment="top")
