@@ -396,7 +396,6 @@ else:
             with st.chat_message("user"):
                 st.markdown(prompt["text"])
         dadosenvio={}
-
         
         if st.session_state.marcar_artigos == True or st.session_state.marcar_pensadores == True:
             st.session_state.acessando_livros = True
@@ -423,17 +422,17 @@ else:
                     except requests.exceptions.RequestException as e:
                         st.error(f"Erro ao acessar servidor: {e}")
                         st.stop()
-                #st.markdown(post_response.json())
-                usuario = post_response.json().get("saida").get("usuario")
-                client = OpenAI()
-                # Generate a response using the OpenAI API.
-                stream = client.chat.completions.create(
-                model=st.session_state.selected_model,
-                messages=post_response.json().get("saida").get("mensagem"),
-                stream=True,
-                )
-                spinner = st.empty()
-                response_text = st.write_stream(stream)
+                    #st.markdown(post_response.json())
+                    usuario = post_response.json().get("saida").get("usuario")
+                    client = OpenAI()
+                    # Generate a response using the OpenAI API.
+                    stream = client.chat.completions.create(
+                    model=st.session_state.selected_model,
+                    messages=post_response.json().get("saida").get("mensagem"),
+                    stream=True,
+                    )
+                    spinner = st.empty()
+                    response_text = st.write_stream(stream)
 
                 status.update(
                     label="Consulta a biblioteca concluida.", state="complete", expanded=False
@@ -456,15 +455,15 @@ else:
                     except requests.exceptions.RequestException as e:
                         st.error(f"Erro ao acessar servidor: {e}")
                         st.stop()
-                #st.markdown(post_response.json())
-                client = OpenAI()
-                # Generate a response using the OpenAI API.
-                stream = client.chat.completions.create(
-                model=st.session_state.selected_model,
-                messages=post_response.json().get("saida").get("mensagem"),
-                stream=True,
-                )
-                response_text = st.write_stream(stream)
+                    #st.markdown(post_response.json())
+                    client = OpenAI()
+                    # Generate a response using the OpenAI API.
+                    stream = client.chat.completions.create(
+                    model=st.session_state.selected_model,
+                    messages=post_response.json().get("saida").get("mensagem"),
+                    stream=True,
+                    )
+                    response_text = st.write_stream(stream)
 
                 status.update(
                     label="Sabatina Completa", state="complete", expanded=False
@@ -487,15 +486,15 @@ else:
                     except requests.exceptions.RequestException as e:
                         st.error(f"Erro ao acessar servidor: {e}")
                         st.stop()
-                #st.markdown(post_response.json())
-                client = OpenAI()
-                # Generate a response using the OpenAI API.
-                stream = client.chat.completions.create(
-                model=st.session_state.selected_model,
-                messages=post_response.json().get("saida").get("mensagem"),
-                stream=True,
-                )
-                response_text = st.write_stream(stream)
+                    #st.markdown(post_response.json())
+                    client = OpenAI()
+                    # Generate a response using the OpenAI API.
+                    stream = client.chat.completions.create(
+                    model=st.session_state.selected_model,
+                    messages=post_response.json().get("saida").get("mensagem"),
+                    stream=True,
+                    )
+                    response_text = st.write_stream(stream)
 
                 status.update(
                     label="Pesquisa por contra-argumentos completa.", state="complete", expanded=False
@@ -518,15 +517,15 @@ else:
                     except requests.exceptions.RequestException as e:
                         st.error(f"Erro ao acessar servidor: {e}")
                         st.stop()
-                #st.markdown(post_response.json())
-                client = OpenAI()
-                # Generate a response using the OpenAI API.
-                stream = client.chat.completions.create(
-                model=st.session_state.selected_model,
-                messages=post_response.json().get("saida").get("mensagem"),
-                stream=True,
-                )
-                response_text = st.write_stream(stream)
+                    #st.markdown(post_response.json())
+                    client = OpenAI()
+                    # Generate a response using the OpenAI API.
+                    stream = client.chat.completions.create(
+                    model=st.session_state.selected_model,
+                    messages=post_response.json().get("saida").get("mensagem"),
+                    stream=True,
+                    )
+                    response_text = st.write_stream(stream)
 
                 status.update(
                     label="Contra-Argumentos Completo.", state="complete", expanded=False
