@@ -78,6 +78,9 @@ def desativar_marcacoes():
     if st.session_state.marcar_pensadores:
         st.session_state.marcar_pensadores = False
 
+
+desativar_marcacoes()
+
 def ativar_artigos():
     if st.session_state.marcar_artigos:
         st.session_state.marcar_pensadores = False
@@ -592,7 +595,6 @@ else:
             except requests.exceptions.RequestException as e:
                 st.error(f"Erro ao acessar servidor: {e}")
                 st.stop()
-            desativar_marcacoes()
             st.rerun(scope="app")
         else:
 
