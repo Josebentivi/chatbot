@@ -401,7 +401,7 @@ else:
                                 "pesquisa": prompt["text"]},
                                 "chave":st.secrets["CHAVE"]}
                         if st.session_state.marcar_artigos == False:
-                            data.append({"pensador":st.session_state.selected_thinker})
+                            data["pensador"] = st.session_state.selected_thinker
                         post_response = requests.post(url, json=data, timeout=20*60)
                     except requests.exceptions.RequestException as e:
                         st.error(f"Erro ao acessar servidor: {e}")
@@ -435,7 +435,7 @@ else:
                                 "retornostream": response_text},
                                 "chave":st.secrets["CHAVE"]}
                         if st.session_state.marcar_artigos == False:
-                            data.append({"pensador":st.session_state.selected_thinker})
+                            data["pensador"] = st.session_state.selected_thinker
                         post_response = requests.post(url, json=data, timeout=5*60)
                     except requests.exceptions.RequestException as e:
                         st.error(f"Erro ao acessar servidor: {e}")
@@ -466,7 +466,7 @@ else:
                                 "retornostream": response_text},
                                 "chave":st.secrets["CHAVE"]}
                         if st.session_state.marcar_artigos == False:
-                            data.append({"pensador":st.session_state.selected_thinker})
+                            data["pensador"] = st.session_state.selected_thinker
                         post_response = requests.post(url, json=data, timeout=5*60)
                     except requests.exceptions.RequestException as e:
                         st.error(f"Erro ao acessar servidor: {e}")
@@ -499,7 +499,7 @@ else:
                                 "retornostream": response_text},
                                 "chave":st.secrets["CHAVE"]}
                         if st.session_state.marcar_artigos == False:
-                            data.append({"pensador":st.session_state.selected_thinker})
+                            data["pensador"] = st.session_state.selected_thinker
                         post_response = requests.post(url, json=data, timeout=5*60)
                     except requests.exceptions.RequestException as e:
                         st.error(f"Erro ao acessar servidor: {e}")
@@ -527,7 +527,7 @@ else:
                         "retornostream": response_text},
                         "chave":st.secrets["CHAVE"]}
                 if st.session_state.marcar_artigos == False:
-                    data.append({"pensador":st.session_state.selected_thinker})
+                    data["pensador"] = st.session_state.selected_thinker
                 post_response = requests.post(url, json=data, timeout=5*60)
             except requests.exceptions.RequestException as e:
                 st.error(f"Erro ao acessar servidor: {e}")
