@@ -288,6 +288,7 @@ else:
                 #url = "http://52.2.202.37/produto/post/filosofo/recomecarconversa/"
                 data = {"data":{"usuario": st.session_state.usuario},"chave":st.secrets["CHAVE"]}
                 requests.post(url, json=data, timeout=5*60).json().get("saida")
+                st.rerun()
             except requests.exceptions.RequestException as e:
                 st.error(f"Erro ao acessar servidor: {e}")
                 st.stop()
@@ -445,7 +446,7 @@ else:
                 with st.spinner("Aguarde. (Tempo de espera médio de 5 minutos)", show_time=True):
                     try:
                         #url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/iniciar/"
-                        url = "https://52.2.202.37/produto/post/artigos/iniciar/"
+                        url = "http://52.2.202.37/produto/post/artigos/iniciar/"
                         #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
                         data = {"data":{"stream": 1,
                                 "pesquisa": prompt["text"]},
@@ -476,7 +477,7 @@ else:
                 with st.spinner("Aguarde.", show_time=True):
                     try:
                         #url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/continuar/"
-                        url = "https://52.2.202.37/produto/post/artigos/continuar/"
+                        url = "http://52.2.202.37/produto/post/artigos/continuar/"
                         #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
                         data = {"data":{"stream": 2,
                                 "usuario": usuario,
@@ -507,7 +508,7 @@ else:
                 with st.spinner("Aguarde.", show_time=True):
                     try:
                         #url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/continuar/"
-                        url = "https://52.2.202.37/produto/post/artigos/continuar/"
+                        url = "http://52.2.202.37/produto/post/artigos/continuar/"
                         #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
                         data = {"data":{"stream": 3,
                                 "usuario": usuario,
@@ -538,7 +539,7 @@ else:
                 with st.spinner("Aguarde.", show_time=True):
                     try:
                         #url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/continuar/"
-                        url = "https://52.2.202.37/produto/post/artigos/continuar/"
+                        url = "http://52.2.202.37/produto/post/artigos/continuar/"
                         #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
                         data = {"data":{"stream": 4,
                                 "usuario": usuario,
@@ -564,7 +565,7 @@ else:
                 
             try:
                 #url = "https://plainly-touched-ox.ngrok-free.app/produto/post/artigos/continuar/"
-                url = "https://52.2.202.37/produto/post/artigos/continuar/"
+                url = "http://52.2.202.37/produto/post/artigos/continuar/"
                 #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
                 data = {"data":{"stream": 5,
                         "usuario": usuario,
@@ -598,7 +599,7 @@ else:
                 response_text = st.write_stream(stream)
                 try:
                     #url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/addusuario/"
-                    url = "https://52.2.202.37/produto/post/filosofo/addusuario/"
+                    url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
                     #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
                     data = {"data":{"usuario": st.session_state.usuario,
                             "entrada": prompt["text"],
@@ -610,7 +611,7 @@ else:
                 
             try:
                 #url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/addartigostream/"
-                url = "https://52.2.202.37/produto/post/filosofo/addartigostream/"
+                url = "http://52.2.202.37/produto/post/filosofo/addartigostream/"
                 #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
                 data = {"data":{"usuario": st.session_state.usuario,
                                 "dados": argumentacao},
@@ -677,7 +678,7 @@ else:
 
                     try:
                         #url = "https://plainly-touched-ox.ngrok-free.app/produto/post/filosofo/addusuario/"
-                        url = "https://52.2.202.37/produto/post/filosofo/addusuario/"
+                        url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
                         #url = "http://52.2.202.37/produto/post/filosofo/addusuario/"
                         data = {"data":{"usuario": st.session_state.usuario,
                                 "entrada": prompt["text"],
