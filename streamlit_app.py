@@ -210,25 +210,34 @@ else:
 
         
         # Parâmetros do modelo
-        
+        if "selected_model" not in st.session_state:
+            st.session_state.selected_model = "gpt-5-nano"
+        #st.session_state.selected_model = "gpt-5-nano"
+
+        if st.session_state.selected_model == "gpt-5-nano":
+            st.badge("Plano Gratuito", icon=":material/bolt:", color="red")
+
+        if st.session_state.selected_model == "gpt-5":
+            st.badge("Plano Pro", icon=":material/bolt:", color="green")
+
         if "selected_thinker" not in st.session_state:
             st.session_state.selected_thinker = None
-        if "selected_model" not in st.session_state or st.session_state.selected_model not in ["gpt-4.1-nano", "gpt-4.1-mini", "o4-mini"]:
-            #st.session_state.selected_model = "gpt-5"
-            st.session_state.selected_model = "gpt-5-nano"
+        #if "selected_model" not in st.session_state or st.session_state.selected_model not in ["gpt-4.1-nano", "gpt-4.1-mini", "o4-mini"]:
+        #    #st.session_state.selected_model = "gpt-5"
+        #    st.session_state.selected_model = "gpt-5-nano"
 
-        model_keys = [ "gpt-5", "gpt-5-mini","gpt-5-nano"]
-        model_names = {
-            "gpt-5": "Gpt-5: Modelo de pensamento para tarefas mais complexas",
-            "gpt-5-mini": "Gpt-5 Mini: Resposta rápida para tarefas com média complexidade.",
-            "gpt-5-nano": "Gpt-5 Nano: Resposta rápida para tarefas leves."
-        }
-        selected = st.selectbox(
-            "Motor do chat:",
-            options=model_keys,
-            index=model_keys.index(st.session_state.selected_model),
-            format_func=lambda key: model_names[key]
-        )
+        #model_keys = [ "gpt-5", "gpt-5-mini","gpt-5-nano"]
+        #model_names = {
+        #    "gpt-5": "Gpt-5: Modelo de pensamento para tarefas mais complexas",
+        #    "gpt-5-mini": "Gpt-5 Mini: Resposta rápida para tarefas com média complexidade.",
+        #    "gpt-5-nano": "Gpt-5 Nano: Resposta rápida para tarefas leves."
+        #}
+        #selected = st.selectbox(
+        #    "Motor do chat:",
+        #    options=model_keys,
+        #    index=model_keys.index(st.session_state.selected_model),
+        #    format_func=lambda key: model_names[key]
+        #)
         st.session_state.selected_model = selected
 
         # Cria duas colunas: a primeira para o checkbox e a segunda para o ícone de informação
