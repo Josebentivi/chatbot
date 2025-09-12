@@ -39,6 +39,16 @@ def Carregando(aceleracao=0.1):
     item = RetornoThread(st.session_state.usuario)
     item.start()
     retorno = ""
+    
+    textoinicial = """O Pensador é uma ferramenta baseada em inteligência artificial concebida para aprimorar o debate acadêmico e o pensamento crítico. O objetivo central do projeto é oferecer um meio pelo qual pesquisadores, estudantes e docentes possam confrontar ideias de forma estruturada, rigorosa e verificável, contrastando argumentos com trechos e referências de obras relevantes e simulando a interação entre diferentes pensadores sobre um mesmo tema."""
+    colinicial = st.columns([1,2,1],vertical_alignment="center")
+    with colinicial[1]:
+        #st.markdown("### Bem vindo ao Pensador")
+        #st.markdown("#### A revolução do pensamento crítico")
+        #st.markdown("##### Uma ferramenta para debates acadêmicos")
+        #st.markdown("###### Desenvolvido por João Beneti")
+        st.markdown(f"<div style='text-align: center;'>{textoinicial}</div>", unsafe_allow_html=True)
+
     with colsCarregando[1]:
         my_bar = st.progress(porcentagem, text="Iniciando plataforma...")
         tempo=0.5
@@ -65,6 +75,7 @@ def Carregando(aceleracao=0.1):
         time.sleep(tempo)
         retorno = item.mensagens
         my_bar.empty()
+    colinicial = st.empty()
     #st.text(retorno)
     if retorno:
         return retorno
@@ -125,18 +136,6 @@ if not st.user.is_logged_in:
 
 if "apresentacao" not in st.session_state:
     st.session_state.apresentacao = False
-
-if st.session_state.apresentacao:
-    textoinicial = """O Pensador é uma ferramenta baseada em inteligência artificial concebida para aprimorar o debate acadêmico e o pensamento crítico. O objetivo central do projeto é oferecer um meio pelo qual pesquisadores, estudantes e docentes possam confrontar ideias de forma estruturada, rigorosa e verificável, contrastando argumentos com trechos e referências de obras relevantes e simulando a interação entre diferentes pensadores sobre um mesmo tema."""
-    colinicial = st.columns([1,2,1],vertical_alignment="center")
-    with colinicial[1]:
-        #st.markdown("### Bem vindo ao Pensador")
-        #st.markdown("#### A revolução do pensamento crítico")
-        #st.markdown("##### Uma ferramenta para debates acadêmicos")
-        #st.markdown("###### Desenvolvido por João Beneti")
-        st.markdown(f"<div style='text-align: center;'>{textoinicial}</div>", unsafe_allow_html=True)
-    
-    st.button("Começar a usar o Pensador", use_container_width=True, on_click=lambda: st.session_state.update({"apresentacao": False}))
 
 with st.container(height=100,border=False):
     rainbow_colors = ["#FFB3BA", "#FEDEBA", "#FEFDBB", "#B9FEC9", "#BAE0FF", "#CFD2FF", "violet"]
