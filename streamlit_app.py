@@ -172,7 +172,7 @@ if not st.user.is_logged_in:
             st.rerun()
 else:
     st.session_state.usuario = str(st.user.sub)
-    st.text(st.user.sub)
+    #st.text(st.user.sub)
     if "messages" not in st.session_state:
         #st.text("Carregando mensagens...")
         st.session_state.messages = Carregando(aceleracao=0.1)
