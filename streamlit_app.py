@@ -183,6 +183,7 @@ if not st.user.is_logged_in:
         </style>
         """, unsafe_allow_html=True)
         if st.button("Continue com o Google", width="stretch", use_container_width=True):
+            st.session_state.apresentacao = True
             st.login()
             st.rerun()
 else:
