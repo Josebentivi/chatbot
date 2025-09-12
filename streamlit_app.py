@@ -134,9 +134,6 @@ if not st.user.is_logged_in:
     with st.container(height=50,border=False):
         st.empty()
 
-if "apresentacao" not in st.session_state:
-    st.session_state.apresentacao = False
-
 with st.container(height=100,border=False):
     rainbow_colors = ["#FFB3BA", "#FEDEBA", "#FEFDBB", "#B9FEC9", "#BAE0FF", "#CFD2FF", "violet"]
     #rainbow_colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"]
@@ -156,6 +153,8 @@ with st.container(height=100,border=False):
         f'<div style="text-align: center; font-size: 24px; font-weight: bold;">{rainbow_text}</div>',
         unsafe_allow_html=True
     )
+
+apresentacao = st.empty()
 
 if not st.user.is_logged_in:
     col = st.columns([1,1,1,1,1],vertical_alignment="center")
@@ -190,7 +189,16 @@ else:
     #st.text(st.user.sub)
     if "messages" not in st.session_state:
         #st.text("Carregando mensagens...")
+        textoinicial = """O Pensador é uma ferramenta baseada em inteligência artificial concebida para aprimorar o debate acadêmico e o pensamento crítico. O objetivo central do projeto é oferecer um meio pelo qual pesquisadores, estudantes e docentes possam confrontar ideias de forma estruturada, rigorosa e verificável, contrastando argumentos com trechos e referências de obras relevantes e simulando a interação entre diferentes pensadores sobre um mesmo tema."""
+        apresentacao = st.columns([1,2,1],vertical_alignment="center")
+        with colinicial[1]:
+            #st.markdown("### Bem vindo ao Pensador")
+            #st.markdown("#### A revolução do pensamento crítico")
+            #st.markdown("##### Uma ferramenta para debates acadêmicos")
+            #st.markdown("###### Desenvolvido por João Beneti")
+            st.markdown(f"<div style='text-align: center;'>{textoinicial}</div>", unsafe_allow_html=True)
         st.session_state.messages = Carregando(aceleracao=0.1)
+        apresentacao.empty()
     # Sidebar: configurações
     with st.sidebar:
         st.markdown("### Configurações")
