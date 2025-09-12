@@ -39,15 +39,6 @@ def Carregando(aceleracao=0.1):
     item = RetornoThread(st.session_state.usuario)
     item.start()
     retorno = ""
-    
-    textoinicial = """O Pensador é uma ferramenta baseada em inteligência artificial concebida para aprimorar o debate acadêmico e o pensamento crítico. O objetivo central do projeto é oferecer um meio pelo qual pesquisadores, estudantes e docentes possam confrontar ideias de forma estruturada, rigorosa e verificável, contrastando argumentos com trechos e referências de obras relevantes e simulando a interação entre diferentes pensadores sobre um mesmo tema."""
-    colinicial = st.columns([1,2,1],vertical_alignment="center")
-    with colinicial[1]:
-        #st.markdown("### Bem vindo ao Pensador")
-        #st.markdown("#### A revolução do pensamento crítico")
-        #st.markdown("##### Uma ferramenta para debates acadêmicos")
-        #st.markdown("###### Desenvolvido por João Beneti")
-        st.markdown(f"<div style='text-align: center;'>{textoinicial}</div>", unsafe_allow_html=True)
 
     with colsCarregando[1]:
         my_bar = st.progress(porcentagem, text="Iniciando plataforma...")
@@ -75,7 +66,6 @@ def Carregando(aceleracao=0.1):
         time.sleep(tempo)
         retorno = item.mensagens
         my_bar.empty()
-    colinicial = st.empty()
     #st.text(retorno)
     if retorno:
         return retorno
@@ -191,7 +181,7 @@ else:
         #st.text("Carregando mensagens...")
         textoinicial = """O Pensador é uma ferramenta baseada em inteligência artificial concebida para aprimorar o debate acadêmico e o pensamento crítico. O objetivo central do projeto é oferecer um meio pelo qual pesquisadores, estudantes e docentes possam confrontar ideias de forma estruturada, rigorosa e verificável, contrastando argumentos com trechos e referências de obras relevantes e simulando a interação entre diferentes pensadores sobre um mesmo tema."""
         apresentacao = st.columns([1,2,1],vertical_alignment="center")
-        with colinicial[1]:
+        with apresentacao[1]:
             #st.markdown("### Bem vindo ao Pensador")
             #st.markdown("#### A revolução do pensamento crítico")
             #st.markdown("##### Uma ferramenta para debates acadêmicos")
