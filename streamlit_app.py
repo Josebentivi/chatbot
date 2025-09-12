@@ -189,6 +189,8 @@ else:
                 #st.markdown("###### Desenvolvido por João Beneti")
                 st.markdown(f"<div style='text-align: center;'>{textoinicial}</div>", unsafe_allow_html=True)
             st.session_state.messages = Carregando(aceleracao=0.1)
+            with st.container(height=100,border=False):
+                st.empty()
         apresentacao.empty()
     # Sidebar: configurações
     with st.sidebar:
