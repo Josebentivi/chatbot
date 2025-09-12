@@ -189,9 +189,11 @@ else:
                     #st.markdown("##### Uma ferramenta para debates acadêmicos")
                     #st.markdown("###### Desenvolvido por João Beneti")
                     st.markdown(f"<div style='text-align: center;'>{textoinicial}</div>", unsafe_allow_html=True)
-            if st.button("Acessar Plataforma", width="stretch", use_container_width=True):
-                st.session_state.entrouapresentacao = True
-                st.rerun()
+            colsapresentacao = st.columns(5)
+            with colsapresentacao[2]:
+                if st.button("Acessar Plataforma", width="stretch", use_container_width=True):
+                    st.session_state.entrouapresentacao = True
+                    st.rerun()
             st.stop()
         st.session_state.messages = Carregando(aceleracao=0.1)
         apresentacao.empty()
