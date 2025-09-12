@@ -238,7 +238,7 @@ else:
         #    index=model_keys.index(st.session_state.selected_model),
         #    format_func=lambda key: model_names[key]
         #)
-        st.session_state.selected_model = selected
+        #st.session_state.selected_model = selected
 
         # Cria duas colunas: a primeira para o checkbox e a segunda para o ícone de informação
         col_checkbox, col_info = st.columns([0.7, 0.3])
