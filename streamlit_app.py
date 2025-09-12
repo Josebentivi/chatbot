@@ -151,7 +151,7 @@ if not st.user.is_logged_in:
         st.markdown("#### A revolução do pensamento crítico")
         st.markdown("##### Uma ferramenta para debates acadêmicos")
         st.markdown("###### Desenvolvido por João Beneti")
-        st.markdown(f"<div style='text-align: justify;'>{textoinicial}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div style='text-align: center;'>{textoinicial}</div>", unsafe_allow_html=True)
     col = st.columns([1,1,1,1,1],vertical_alignment="center")
     with col[2]:
         google_logo_url = "https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png"
