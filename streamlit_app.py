@@ -184,6 +184,7 @@ else:
         if st.button("Voltar", use_container_width=True):
             st.session_state.loja = False
             st.rerun()
+        st.stop()
     if "messages" not in st.session_state:
         #st.text("Carregando mensagens...")
         if "entrouapresentacao" not in st.session_state:
