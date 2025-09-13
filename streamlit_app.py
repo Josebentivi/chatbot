@@ -257,7 +257,7 @@ else:
         with credtstotal:
             st.markdown(f"### :green[Creditos: 20]")
         with addcredts:
-            if st.button("Loja", icon=":material/add_2:", use_container_width=True):
+            if st.button("Loja", use_container_width=True):
                 pass
         if st.session_state.selected_model == "gpt-5-nano":
             st.text("Chat Padrão (Gratuito)")
