@@ -253,7 +253,7 @@ else:
         #st.session_state.selected_model = selected
 
         # Cria duas colunas: a primeira para o checkbox e a segunda para o ícone de informação
-        credtstotal, addcredts = st.columns([0.6, 0.4])
+        credtstotal,vazio, addcredts = st.columns([0.6,0.2,0.2])
         with credtstotal:
             st.markdown(f"### :green[Creditos: 20]")
         with addcredts:
