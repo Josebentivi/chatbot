@@ -217,6 +217,8 @@ else:
         if st.session_state.selected_model == "gpt-5-nano":
             st.badge("Plano Gratuito", icon=":material/bolt:", color="red")
             
+            st.badge("Plano Gratuito", icon=":material/bolt:", color="red")
+            
             if st.button("Ativar Plano Pro", icon=":material/settings:", use_container_width=True):
                 st.session_state.selected_model = "gpt-5"
                 st.rerun()
@@ -225,7 +227,9 @@ else:
             if st.button("Ativar Plano Gratuito", icon=":material/settings:", use_container_width=True):
                 st.session_state.selected_model = "gpt-5-nano"
                 st.rerun()
-
+        st.markdown(
+            ":violet-badge[:material/star: #Favorite] :orange-badge[⚠️ Needs review] :gray-badge[Deprecated]"
+        )
         st.divider()
 
         if "selected_thinker" not in st.session_state:
