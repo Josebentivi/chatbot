@@ -176,7 +176,7 @@ if not st.user.is_logged_in:
             st.rerun()
 else:
     st.session_state.usuario = str(st.user.sub)
-    #st.text(st.user.sub)
+    st.text(st.user.sub)
     
     if "loja" not in st.session_state:
         st.session_state.loja = False
