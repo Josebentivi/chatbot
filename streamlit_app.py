@@ -253,11 +253,11 @@ else:
         #st.session_state.selected_model = selected
 
         # Cria duas colunas: a primeira para o checkbox e a segunda para o ícone de informação
-        credtstotal, addcredts = st.columns([0.7, 0.3])
+        credtstotal, addcredts = st.columns([0.6, 0.4])
         with credtstotal:
             st.markdown(f"### :green[Creditos: 20]")
         with addcredts:
-            if st.button("+", use_container_width=True):
+            if st.button("", icon=":material/add_2:", use_container_width=True):
                 pass
         if st.session_state.selected_model == "gpt-5-nano":
             st.text("Chat Padrão (Gratuito)")
