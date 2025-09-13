@@ -223,10 +223,10 @@ else:
                 st.session_state.selected_model = "gpt-5"
                 st.rerun()
         if st.session_state.selected_model == "gpt-5":
-            st.badge("Plano Pro", icon=":material/bolt:", color="green")
-            st.badge("IA: Aprimorada", icon=":material/robot_2:", color="orange")
-            st.badge("Pesquisa Literária: Profunda", icon=":material/menu_book:", color="orange")
-            st.badge("Mesa de Conversa: 4 Pensadores", icon=":material/person:", color="orange")
+            st.badge("Plano Pro", icon=":material/bolt:", color="orange")
+            st.badge("IA: Aprimorada", icon=":material/robot_2:", color="green")
+            st.badge("Pesquisa Literária: Profunda", icon=":material/menu_book:", color="green")
+            st.badge("Mesa de Conversa: 4 Pensadores", icon=":material/person:", color="green")
             if st.button("Ativar Plano Gratuito", icon=":material/toggle_on:", use_container_width=True):
                 st.session_state.selected_model = "gpt-5-nano"
                 st.rerun()
