@@ -176,8 +176,17 @@ if not st.user.is_logged_in:
             st.rerun()
 else:
     st.session_state.usuario = str(st.user.sub)
-    st.text(st.user.sub)
+    #st.text(st.user.sub)
     
+
+    if "criarpagamentos" not in st.session_state:
+        st.session_state.criarpagamentos = False
+    if st.session_state.criarpagamentos:
+        if st.button("Voltar", use_container_width=True):
+            st.session_state.criarpagamentos = False
+            st.rerun()
+        st.stop()
+
     if "loja" not in st.session_state:
         st.session_state.loja = False
     if st.session_state.loja:
@@ -239,6 +248,10 @@ else:
                 st.session_state.selected_model = "gpt-5-nano"
                 st.rerun()
         st.divider()
+        if st.user.sub == "114080373130036421068":
+            if st.button("Criar Pagamentos", icon=":material/attach_money:", use_container_width=True):
+                st.session_state.criarpagamentos = True
+                st.rerun()
 
         if "selected_thinker" not in st.session_state:
             st.session_state.selected_thinker = None
