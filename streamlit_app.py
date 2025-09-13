@@ -226,6 +226,7 @@ else:
                 st.session_state.selected_model = "gpt-5-nano"
                 st.rerun()
 
+        st.divider()
 
         if "selected_thinker" not in st.session_state:
             st.session_state.selected_thinker = None
