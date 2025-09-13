@@ -216,7 +216,6 @@ else:
 
         if st.session_state.selected_model == "gpt-5-nano":
             st.badge("Plano Gratuito", icon=":material/bolt:", color="red")
-            st.divider()
             st.badge("Inteligência Artificial: Padrão", icon=":material/robot_2:", color="gray")
             st.badge("Pesquisa Literária: Superficial", icon=":material/menu_book:", color="gray")
             st.badge("Discussão com os Pensadores: 2 Pensadores", icon=":material/person:", color="gray")
@@ -225,7 +224,6 @@ else:
                 st.rerun()
         if st.session_state.selected_model == "gpt-5":
             st.badge("Plano Pro", icon=":material/bolt:", color="green")
-            st.divider()
             st.badge("Inteligência Artificial: Aprimorada", icon=":material/robot_2:", color="orange")
             st.badge("Pesquisa Literária: Profunda", icon=":material/menu_book:", color="orange")
             st.badge("Discussão com os Pensadores: 4 Pensadores", icon=":material/person:", color="orange")
