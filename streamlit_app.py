@@ -217,12 +217,12 @@ else:
         if st.session_state.selected_model == "gpt-5-nano":
             st.badge("Plano Gratuito", icon=":material/bolt:", color="red")
             
-            if st.button("Ativar Plano Pro", icon=":material/refresh:", use_container_width=True):
+            if st.button("Ativar Plano Pro", icon=":material/settings:", use_container_width=True):
                 st.session_state.selected_model = "gpt-5"
                 st.rerun()
         if st.session_state.selected_model == "gpt-5":
             st.badge("Plano Pro", icon=":material/bolt:", color="green")
-            if st.button("Ativar Plano Gratuito", icon=":material/refresh:", use_container_width=True):
+            if st.button("Ativar Plano Gratuito", icon=":material/settings:", use_container_width=True):
                 st.session_state.selected_model = "gpt-5-nano"
                 st.rerun()
 
