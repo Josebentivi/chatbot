@@ -177,6 +177,13 @@ if not st.user.is_logged_in:
 else:
     st.session_state.usuario = str(st.user.sub)
     #st.text(st.user.sub)
+    
+    if "loja" not in st.session_state:
+        st.session_state.loja = False
+    if st.session_state.loja:
+        if st.button("Voltar", use_container_width=True):
+            st.session_state.loja = False
+            st.rerun()
     if "messages" not in st.session_state:
         #st.text("Carregando mensagens...")
         if "entrouapresentacao" not in st.session_state:
@@ -258,7 +265,8 @@ else:
             st.markdown(f"### :green[Creditos: 20]")
         with addcredts:
             if st.button("Loja", use_container_width=True):
-                pass
+                st.session_state.loja = True
+                st.rerun()
         if st.session_state.selected_model == "gpt-5-nano":
             st.text("Chat Padrão (Gratuito)")
             col_checkbox, col_info = st.columns([0.7, 0.3])
