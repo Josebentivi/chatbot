@@ -199,7 +199,7 @@ else:
         apresentacao.empty()
     # Sidebar: configurações
     with st.sidebar:
-        st.markdown("### Configurações")
+        #st.markdown("### Configurações")
         if "openai_api_key" not in st.session_state:
             st.session_state.openai_api_key = ""
         if "OPENAI_API_KEY" in st.secrets:
@@ -216,9 +216,16 @@ else:
 
         if st.session_state.selected_model == "gpt-5-nano":
             st.badge("Plano Gratuito", icon=":material/bolt:", color="red")
-
+            
+            if st.button("Ativar Plano Pro", icon=":material/refresh:", use_container_width=True):
+                st.session_state.selected_model = "gpt-5"
+                st.rerun()
         if st.session_state.selected_model == "gpt-5":
             st.badge("Plano Pro", icon=":material/bolt:", color="green")
+            if st.button("Ativar Plano Gratuito", icon=":material/refresh:", use_container_width=True):
+                st.session_state.selected_model = "gpt-5-nano"
+                st.rerun()
+
 
         if "selected_thinker" not in st.session_state:
             st.session_state.selected_thinker = None
