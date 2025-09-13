@@ -254,8 +254,8 @@ else:
 
         # Cria duas colunas: a primeira para o checkbox e a segunda para o ícone de informação
         st.markdown(f"### :green[Creditos: 20]")
-
         if st.session_state.selected_model == "gpt-5-nano":
+            st.text("Chat Padrão (Gratuito)")
             col_checkbox, col_info = st.columns([0.7, 0.3])
             # Cria o checkbox e o ícone de informação na mesma linha
             with col_checkbox:
@@ -299,6 +299,7 @@ else:
                     index=["Sigmund Freud", "Carl Gustav Jung", "Michel Foucault", "Friedrich Nietzsche","Jiddu Krishnamurti","Santo Agostinho","Santo Tomás de Aquino","Martinho Lutero","Paulo de Tarso"].index(st.session_state.selected_thinker)
                 )
         elif st.session_state.selected_model == "gpt-5":
+            st.text("Chat Pro (1 crédito)")
             col_checkbox, col_info = st.columns([0.7, 0.3])
             # Cria o checkbox e o ícone de informação na mesma linha
             with col_checkbox:
