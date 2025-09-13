@@ -182,9 +182,11 @@ else:
     if "criarpagamentos" not in st.session_state:
         st.session_state.criarpagamentos = False
     if st.session_state.criarpagamentos:
-        if st.button("Voltar", use_container_width=True):
-            st.session_state.criarpagamentos = False
-            st.rerun()
+        colunas = st.columns([1,1,1,1,1,1,1,1])
+        with colunas[0]:
+            if st.button("Voltar", use_container_width=True):
+                st.session_state.criarpagamentos = False
+                st.rerun()
         st.stop()
 
     if "loja" not in st.session_state:
