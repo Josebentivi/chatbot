@@ -189,6 +189,9 @@ else:
                 st.rerun()
         with colunas[3]:
             number = st.number_input("Valor a cobrar:", min_value=1.00, max_value=1000.00, value=10.00, step=1.00, format="%.2f", help="Defina o valor que deseja cobrar pelo acesso ao plano Pro.")
+        with colunas[4]:
+            if st.button("Gerar Link de Pagamento", use_container_width=True):
+                st.text(f"Gerando link de pagamento de R$ {number:.2f}.")
         st.stop()
 
     if "loja" not in st.session_state:
